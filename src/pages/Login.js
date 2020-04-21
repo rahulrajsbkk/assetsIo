@@ -1,35 +1,47 @@
-import React, { useState } from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useState, useContext } from 'react';
 import Fade from 'react-reveal/Fade';
 import Zoom from 'react-reveal/Zoom';
+import { Redirect } from 'react-router-dom';
 import Axios from 'axios';
 import message from 'antd/lib/message';
 import logoText from '../static/images/logo-text.svg';
+import { BankContext } from '../context/Context';
 
-function Login() {
-  const [email, setEmail] = useState('');
+function Login({ history }) {
+  const [emailid, setEmailId] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMsg, setErrorMsg] = useState('');
   const [loading, setLoading] = useState(false);
-
-  const login = (e) => {
+  const { login, email } = useContext(BankContext);
+  const loginvalidate = (e) => {
     e.preventDefault();
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+    if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(emailid)) {
       setLoading(true);
       Axios.post('https://gxauth.apimachine.com/gx/user/login', {
-        email,
+        email: emailid,
         password,
       })
         .then((response) => {
-          // const { data } = response;
-          console.log('response :', response);
+          const { data } = response;
+          console.log('data :', data);
+          if (data.status) {
+            login(emailid, data.accessToken, data.idToken);
+            message.success(data.message);
+            history.push('/');
+          } else {
+            message.error(data.message);
+          }
         })
         .catch((error) => {
-          console.log('Login Error', error);
-          setErrorMsg('Some Thing Went Wrong!');
+          message.error(
+            error.message ? error.message : 'Some Thing Went Wrong!'
+          );
+        })
+        .finally(() => {
           setLoading(false);
         });
     } else {
-      message.error('Enter Valid Email');
+      message.error('Enter Valid EmailId');
     }
   };
 
@@ -41,13 +53,13 @@ function Login() {
         </Zoom>
         <Fade bottom>
           <div className="login-form d-flex flex-column mx-auto">
-            <form className="d-flex" onSubmit={login}>
+            <form className="d-flex" onSubmit={loginvalidate}>
               <div className="col-9 p-0">
                 <div className="group">
                   <input
                     type="text"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={emailid}
+                    onChange={(e) => setEmailId(e.target.value)}
                     required="required"
                   />
                   <span className="highlight" />
@@ -83,7 +95,6 @@ function Login() {
             <button type="button" className="btn-forgot mx-auto">
               Forgot Password
             </button>
-            <p className="text-danger">{errorMsg}</p>
           </div>
         </Fade>
       </div>
