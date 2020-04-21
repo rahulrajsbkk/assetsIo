@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Routes from './Routes';
 
-function App() {
+const App = () => {
+  useEffect(() => {
+    toast.configure();
+    return () => {};
+  }, []);
+
   return (
-    <div className="App">
-    </div>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
