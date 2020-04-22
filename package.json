@@ -24,14 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "precommit": "NODE_ENV=production lint-staged",
-    "lint-staged": {
-      "*.{js,jsx}": [
-        "pretty-quick --staged",
-        "eslint src/ --fix",
-        "git add"
-      ]
-    }
+    "netlify-deploy": "npm run build && netlify deploy --dir=build --prod"
   },
   "eslintConfig": {
     "extends": "react-app"

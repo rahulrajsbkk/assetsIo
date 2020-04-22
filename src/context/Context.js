@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
+import Axios from 'axios';
 
 export const BankContext = createContext();
 
@@ -28,6 +29,18 @@ function BankContextProvider({ children }) {
     setAccessToken(paramAccessToken);
     setIdToken(paramIdToken);
   };
+
+  useEffect(() => {
+    if (email && idToken) {
+      Axios.post('https://comms.globalxchange.com/coin/verifyToken', {
+        email,
+        token: idToken,
+      }).then((res) => {
+        return res.data.status ? '' : login('', '', '');
+      });
+    }
+  }, [email, idToken]);
+
   return (
     <BankContext.Provider value={{ login, email }}>
       {children}
