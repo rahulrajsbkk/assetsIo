@@ -1,0 +1,27 @@
+#bitbucket-pipelines.yml
+image: node:10.15.3
+
+pipelines:
+  branches:
+   master:
+       - step:
+           name: Build React Project
+           caches:
+             - node
+           script:
+             - npm install
+             - CI=false npm run build
+             - mkdir packaged
+             - tar -czvf packaged/package-${BITBUCKET_BUILD_NUMBER}.tar.gz -C build .
+           artifacts:
+             - packaged/**
+       - step:
+           name: Deploy to Web
+           image: alpine
+           deployment: production
+           script:
+             - mkdir upload
+             - tar -xf packaged/package-${BITBUCKET_BUILD_NUMBER}.tar.gz -C upload
+             - apk update && apk add openssh rsync
+             - rsync -zrSlh --stats upload/ $USERNAME@$SERVER:app.nvestbank
+             - ssh  $USERNAME@$SERVER "./app.nvestbank"
