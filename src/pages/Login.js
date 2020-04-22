@@ -2,7 +2,8 @@
 import React, { useState, useContext } from 'react';
 import Fade from 'react-reveal/Fade';
 import Zoom from 'react-reveal/Zoom';
-import { Redirect } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Axios from 'axios';
 import message from 'antd/lib/message';
 import logoText from '../static/images/logo-text.svg';
@@ -12,7 +13,7 @@ function Login({ history }) {
   const [emailid, setEmailId] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login, email } = useContext(BankContext);
+  const { login } = useContext(BankContext);
   const loginvalidate = (e) => {
     e.preventDefault();
     if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(emailid)) {
@@ -54,7 +55,7 @@ function Login({ history }) {
         <Fade bottom>
           <div className="login-form d-flex flex-column mx-auto">
             <form className="d-flex" onSubmit={loginvalidate}>
-              <div className="col-9 p-0">
+              <div className="col p-0">
                 <div className="group">
                   <input
                     type="text"
@@ -78,14 +79,14 @@ function Login({ history }) {
                   <label>Password</label>
                 </div>
               </div>
-              <div className="d-flex col-3 p-0">
+              <div className="d-flex px-2 p-0">
                 <button
                   type="submit"
                   disabled={loading}
                   className="btn btn-unbank"
                 >
                   {loading ? (
-                    <i className="fas fa-spinner fa-pulse" />
+                    <FontAwesomeIcon icon={faSpinner} spin />
                   ) : (
                     'UnBank'
                   )}
