@@ -35,9 +35,7 @@ function BankContextProvider({ children }) {
       Axios.post('https://comms.globalxchange.com/coin/verifyToken', {
         email,
         token: idToken,
-      }).then((res) => {
-        return res.data.status ? '' : login('', '', '');
-      });
+      }).then((res) => (res.data.status ? '' : login('', '', '')));
     }
   }, [email, idToken]);
 
