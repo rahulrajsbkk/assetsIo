@@ -54,10 +54,152 @@
     flex: 0 0 50%;
     max-width: 50%;
     background: #ffffff;
+    .balance {
+      h6 {
+        font-weight: normal;
+      }
+      h2 {
+        font-weight: bold;
+        font-size: 2.2rem;
+      }
+      span {
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        font-size: 1.6rem;
+        color: #6d7d8c;
+        &:hover {
+          color: #282e33;
+        }
+      }
+    }
+    .drop-down-list {
+      .drop-down {
+        cursor: pointer;
+        margin-right: 10px;
+        font-size: 16px;
+        padding: 4px 16px;
+        border-radius: 20px;
+        border: 1px solid #bacbde;
+        &:hover {
+          background-color: #bacbde80;
+        }
+        &:last-child {
+          border: none;
+        }
+      }
+    }
+    .transaction-table {
+      height: 0;
+      flex-grow: 1;
+      overflow-y: auto;
+      h6 {
+        font-weight: bold;
+        font-size: 14px;
+      }
+      .trans-item {
+        .user-trans {
+          flex: 0 0 40%;
+          max-width: 40%;
+          h5 {
+            margin-bottom: 5px;
+          }
+          h6 {
+            font-weight: normal;
+          }
+        }
+        .time {
+          flex: 0 0 30%;
+          max-width: 30%;
+          h6 {
+            text-align: center;
+            font-weight: normal;
+          }
+        }
+        .balance {
+          flex: 0 0 30%;
+          max-width: 30%;
+          h6 {
+            text-align-last: right;
+            font-weight: bold;
+          }
+        }
+        &:nth-child(odd) {
+          background: #f8f9fa;
+        }
+      }
+    }
   }
   .side-bar-right {
     flex: 0 0 28%;
     max-width: 28%;
     background: #f3f3f3;
+    padding: 22px;
+    .close {
+      font-size: 1.5rem;
+    }
+    h2 {
+      font-weight: bold;
+      font-size: 2.3rem;
+      color: #182542;
+    }
+    h5 {
+      font-weight: bold;
+      color: #637282;
+    }
+    .payment-card {
+      font-weight: bold;
+    }
+    .chart {
+      height: 300px;
+    }
+    .credit-card {
+      .card-icon {
+        height: 50px;
+        width: 50px;
+        border-radius: 25px;
+        background: #e3edff;
+        svg {
+          margin: auto;
+          font-size: 1.2rem;
+          color: #2d7dff;
+        }
+      }
+      .card-dtail {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        h5 {
+          line-height: 1;
+          margin: 0;
+          color: #1b2733;
+          font-weight: bold;
+        }
+        h6 {
+          line-height: 1;
+          margin: 0;
+          font-weight: normal;
+          color: #637282;
+        }
+      }
+      .remark {
+        color: #637282;
+      }
+    }
+    .notes,
+    .reciept {
+      h5 {
+        line-height: 1;
+        margin: 0;
+        color: #1b2733;
+        font-weight: bold;
+        justify-content: space-between;
+      }
+      .note-area {
+        outline: none !important;
+        border: none !important;
+        width: 100%;
+        resize: none;
+      }
+    }
   }
 }

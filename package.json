@@ -11,6 +11,7 @@
     "antd": "^4.1.4",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "lightweight-charts": "^2.0.0",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

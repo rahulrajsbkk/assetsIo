@@ -4,3 +4,17 @@ body {
   min-height: 100vh;
   margin: 0;
 }
+
+::-webkit-scrollbar {
+  width: 4px !important;
+  height: 0px !important;
+}
+::-webkit-scrollbar-track {
+  background: #00000000;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(85, 85, 85, 0.733);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(51, 51, 51);
+}
