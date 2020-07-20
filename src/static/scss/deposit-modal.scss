@@ -1,0 +1,438 @@
+$bg-color: #b2b3c7;
+$border-color: #002a51;
+.deposit-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  .overlay-deposit {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.37);
+  }
+  .deposit-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 90%;
+    max-width: 500px;
+    max-height: 500px;
+    min-height: 500px;
+    margin: auto;
+    background-color: white;
+    flex-direction: column;
+    display: flex;
+    .title {
+      cursor: default;
+      border-bottom: 1px solid $border-color;
+      color: $border-color;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.7rem;
+      line-height: 1;
+      margin: 0;
+    }
+    .select-coin {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      .search-wrap {
+        border: 1px solid $border-color;
+        color: $border-color;
+        font-size: 20px;
+        border-radius: 4px;
+        i {
+          padding-left: 8px;
+        }
+        .search-input {
+          width: 0;
+          flex-grow: 1;
+          padding-left: 8px;
+          padding-right: 8px;
+          border: none;
+          background: none;
+          outline: none;
+        }
+      }
+      .tab-coins {
+        border: 1px solid $border-color;
+        text-align: center;
+        color: $border-color;
+        overflow: hidden;
+        .tab-itm {
+          background-color: $bg-color;
+          cursor: pointer;
+          padding: 8px;
+          &:hover {
+            color: white;
+            transform: scaleX(1.1);
+          }
+          &.active {
+            background-color: $border-color;
+            color: white;
+          }
+        }
+      }
+      .asset-list {
+        overflow-y: auto;
+        height: 0;
+        flex-grow: 1;
+        // max-height: 350px;
+        overflow-y: auto;
+        .asset-item {
+          cursor: pointer;
+          border-bottom: 1px solid $border-color;
+          .icon {
+            width: 32px;
+            height: 32px;
+          }
+          h4 {
+            font-size: 21px;
+            line-height: 1;
+            color: $border-color;
+            margin-top: auto;
+            margin-bottom: auto;
+            span {
+              &.up {
+                color: #26a69a;
+              }
+              &.down {
+                color: #ef5350;
+              }
+            }
+          }
+          &.active,
+          &:hover {
+            h4 {
+              color: black;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+      .deposit-footer {
+        cursor: pointer;
+        background-color: $border-color;
+        color: white;
+        font-size: 16px;
+        text-align: center;
+        line-height: 1;
+        padding: 12px;
+        margin: 0;
+        margin-top: auto;
+      }
+    }
+    .set-amount {
+      height: 0;
+      flex-grow: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      .group {
+        p {
+          color: $border-color;
+        }
+        .border-wrap {
+          cursor: default;
+          border: 1px solid $border-color;
+          color: $border-color;
+          padding: 6px;
+          border-radius: 4px;
+          height: 60px;
+          // To Remove The Buttons
+          input[type='number']::-webkit-inner-spin-button,
+          input[type='number']::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+          input[type='number'] {
+            -moz-appearance: textfield;
+          }
+          .amount-input {
+            border-color: $border-color !important;
+            width: 0;
+            flex-grow: 1;
+            padding-left: 8px;
+            padding-right: 8px;
+            font-size: 20px;
+            border: none;
+            background: none;
+            outline: none;
+          }
+          .icon {
+            margin-top: auto;
+            margin-bottom: auto;
+            margin-left: 10px;
+            margin-right: 10px;
+            width: 30px;
+            height: 30px;
+          }
+          h4 {
+            color: $border-color;
+            margin: 0;
+            font-size: 22px;
+            span {
+              text-transform: capitalize;
+            }
+          }
+          h6 {
+            color: $border-color;
+            margin: 0;
+            font-size: 14px;
+          }
+          &.select-sym {
+            height: unset;
+            min-height: 60px;
+            padding: 0;
+            .drop-togle {
+              min-height: 60px;
+              padding: 6px;
+              .fas {
+                cursor: pointer;
+              }
+            }
+            .drop-items {
+              border-top: 1px solid $border-color;
+              height: 60px;
+              padding: 6px;
+              justify-content: space-around;
+              i {
+                font-size: 2rem;
+                margin-left: auto;
+                margin-right: auto;
+              }
+              h6 {
+                text-align: center;
+                margin: 4px;
+                margin-left: auto;
+                margin-right: auto;
+              }
+              div {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+      .coin-detail {
+        h5 {
+          font-size: 18px;
+          color: $border-color;
+          margin: 0;
+          line-height: 1;
+          font-weight: 500;
+        }
+        h6 {
+          font-size: 14px;
+          color: $border-color;
+          margin: 0;
+          line-height: 1;
+          font-weight: 500;
+        }
+      }
+      .deposit-footer {
+        cursor: pointer;
+        background-color: $border-color;
+        color: white;
+        font-size: 16px;
+        text-align: center;
+        line-height: 1;
+        padding: 10px;
+        margin: 0;
+        margin-top: auto;
+      }
+    }
+    .succes-page {
+      flex-grow: 1;
+      flex-direction: column;
+      display: flex;
+      h2 {
+        margin: 25px 0;
+        text-align: center;
+        font-weight: bold;
+        color: $border-color;
+      }
+      p {
+        margin: 0 auto;
+        margin-bottom: 10px;
+        width: 70%;
+        text-align: center;
+        font-size: 20px;
+        color: $border-color;
+      }
+      h6 {
+        margin: 0 auto;
+        width: 70%;
+        text-align: center;
+        font-weight: 600;
+        font-size: 24px;
+        color: $border-color;
+      }
+
+      #slider {
+        margin: 10px 0;
+        flex-grow: 1;
+        height: 100%;
+        position: relative;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+
+        label {
+          margin: auto;
+          width: 50%;
+          height: 100%;
+          border-radius: 4px;
+          position: absolute;
+          left: 0;
+          right: 0;
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          transition: transform 0.4s ease;
+          box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
+          background: white;
+          .logo-wrapper {
+            height: 200px;
+            width: 100%;
+            display: flex;
+          }
+          .lottery-card {
+            cursor: default;
+            display: flex;
+            flex-direction: column;
+            border: 2px solid $primary-colr;
+            margin-right: 20px;
+            height: 100%;
+            min-width: 100%;
+            .head-img {
+              height: 30px;
+              img {
+                margin: auto;
+                height: 20px;
+              }
+            }
+            .jackpot {
+              flex-grow: 1;
+              background-color: $primary-colr;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              padding-top: 10px;
+              padding-bottom: 10px;
+              h4 {
+                margin: 0;
+                color: white;
+                font-size: 14px;
+              }
+              h2 {
+                margin: 0;
+                color: white;
+                font-size: 20px;
+                font-weight: 600;
+              }
+            }
+            .potential {
+              background-color: $primary-colr;
+              display: flex;
+              flex-direction: column;
+              h4 {
+                margin: auto;
+                color: white;
+                font-size: 2rem;
+              }
+            }
+            .time {
+              height: 50px;
+              .unit {
+                width: 20%;
+                height: 50px;
+                border-bottom: 2px solid $primary-colr;
+                border-left: 2px solid $primary-colr;
+                display: flex;
+                flex-direction: column;
+                &:first-child {
+                  border-left: none;
+                }
+                h3 {
+                  font-size: 22px;
+                  color: $primary-colr;
+                  font-weight: 600;
+                  margin: auto auto 0 auto;
+                  line-height: 1;
+                }
+                h5 {
+                  font-size: 10px;
+                  color: $primary-colr;
+                  font-weight: 500;
+                  margin: 0 auto auto auto;
+                  line-height: 1;
+                }
+              }
+            }
+            .foot {
+              height: 40px;
+              .rate {
+                height: 100%;
+                width: 60%;
+                display: flex;
+                h5 {
+                  margin: auto;
+                  font-weight: 600;
+                  font-size: 15px;
+                }
+              }
+              .buy {
+                cursor: pointer;
+                width: 40%;
+                display: flex;
+                justify-content: space-around;
+                border-left: 2px solid $primary-colr;
+                h5 {
+                  font-weight: 500;
+                  font-size: 17px;
+                }
+                img {
+                  width: 15px;
+                }
+                &:hover,
+                &.active {
+                  background-color: $primary-colr;
+                  h5 {
+                    color: white;
+                  }
+                  img {
+                    filter: brightness(0) invert(1);
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .left {
+          transform: translate3d(50%, 0, -300px);
+        }
+
+        .right {
+          transform: translate3d(-50%, 0, -300px);
+        }
+
+        .active {
+          transform: translate3d(0, 0, 0);
+        }
+        .inactive {
+          transform: translate3d(0, 0, -500px);
+        }
+      }
+    }
+  }
+}

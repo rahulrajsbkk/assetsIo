@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { useState } from 'react';
-import DonutChart from '../DonutChart/Index';
+import DonutChart from '../../DonutChart/Index';
 
 function VaultDashBoard() {
   const [segment, setSegment] = useState(null);
