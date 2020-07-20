@@ -1,9 +1,42 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { useState } from 'react';
 import DonutChart from '../../DonutChart/Index';
 
 function VaultDashBoard() {
   const [segment, setSegment] = useState(null);
+
+  const totalDataChart = [
+    {
+      value: 1,
+      color: '#002A51',
+      name: 'Liquid',
+    },
+    {
+      value: 1,
+      color: '#8B8B8B',
+      name: 'Pooled',
+    },
+  ];
+  const liquidDataChart = [
+    {
+      value: 1,
+      color: '#002A51',
+      name: 'Liquid',
+    },
+  ];
+
+  const pooledDataChart = [
+    {
+      value: 1,
+      color: '#8B8B8B',
+      name: 'Pooled',
+    },
+  ];
+
+  const [chartData, setChartData] = useState(totalDataChart);
+  console.log('chartData', chartData);
+
   return (
     <div className="vault-dashboard p-3">
       <div className="card h-100 dashboard d-flex flex-column">
@@ -45,16 +78,37 @@ function VaultDashBoard() {
         </div>
         <div className="dash-home">
           <div className="head d-flex">
-            <div className="col-6 total active">
+            <div
+              role="button"
+              tabIndex="0"
+              className={`col-6 total ${
+                chartData === totalDataChart ? 'active' : ''
+              }`}
+              onClick={() => setChartData(totalDataChart)}
+            >
               <h6>Total</h6>
               <h4>$1,606.00</h4>
             </div>
             <div className="col-6 detail">
-              <div className="liquid">
+              <div
+                role="button"
+                tabIndex="0"
+                className={`liquid ${
+                  chartData === liquidDataChart ? 'active' : ''
+                }`}
+                onClick={() => setChartData(liquidDataChart)}
+              >
                 <h6>Liquid</h6>
                 <h3>$1,606.00</h3>
               </div>
-              <div className="pooled">
+              <div
+                role="button"
+                tabIndex="0"
+                className={`pooled ${
+                  chartData === liquidDataChart ? 'active' : ''
+                }`}
+                onClick={() => setChartData(pooledDataChart)}
+              >
                 <h6>Pooled</h6>
                 <h3>$0.00</h3>
               </div>
@@ -71,20 +125,7 @@ function VaultDashBoard() {
                   </h6>
                 </div>
                 <DonutChart
-                  pieData={[
-                    {
-                      value: 5,
-                      color: '#8B8B8B',
-                      name: 'Bitcoin',
-                      coin: 'btc',
-                    },
-                    {
-                      value: 0,
-                      color: '#002A51',
-                      name: 'Ethereum',
-                      coin: 'eth',
-                    },
-                  ]}
+                  pieData={chartData}
                   onMouseOver={(segmentIndex) => {
                     setSegment(segmentIndex);
                   }}
