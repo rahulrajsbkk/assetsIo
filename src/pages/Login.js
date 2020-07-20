@@ -5,7 +5,6 @@ import Zoom from 'react-reveal/Zoom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Axios from 'axios';
-import message from 'antd/lib/message';
 import logoText from '../static/images/logo-text.svg';
 import { BankContext } from '../context/Context';
 
@@ -13,7 +12,7 @@ function Login({ history }) {
   const [emailid, setEmailId] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login } = useContext(BankContext);
+  const { login, tostShowOn } = useContext(BankContext);
   const loginvalidate = (e) => {
     e.preventDefault();
     if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(emailid)) {
@@ -24,25 +23,22 @@ function Login({ history }) {
       })
         .then((response) => {
           const { data } = response;
-          console.log('data :', data);
           if (data.status) {
             login(emailid, data.accessToken, data.idToken);
-            message.success(data.message);
+            // tostShowOn(data.message);
             history.push('/');
           } else {
-            message.error(data.message);
+            tostShowOn(data.message);
           }
         })
         .catch((error) => {
-          message.error(
-            error.message ? error.message : 'Some Thing Went Wrong!'
-          );
+          tostShowOn(error.message ? error.message : 'Some Thing Went Wrong!');
         })
         .finally(() => {
           setLoading(false);
         });
     } else {
-      message.error('Enter Valid EmailId');
+      tostShowOn('Enter Valid EmailId');
     }
   };
 

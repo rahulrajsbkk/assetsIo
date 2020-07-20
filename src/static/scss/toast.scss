@@ -1,0 +1,27 @@
+/* toast */
+.my-toast {
+  color: #000;
+  line-height: 1.5;
+  margin-bottom: 1em;
+  padding: 1.25em;
+  position: fixed;
+  right: -365px;
+  top: 1em;
+  transition: 0.6s ease-in-out;
+  max-width: 325px;
+  width: 90%;
+  background-color: #99004d;
+  color: #fff;
+  .close {
+    cursor: pointer;
+    float: right;
+    font-size: 1.25rem;
+    line-height: 1;
+    margin-left: 1em;
+    opacity: 0.8;
+    color: #fff;
+  }
+  &.on {
+    transform: translateX(-365px);
+  }
+}

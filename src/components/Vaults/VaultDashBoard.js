@@ -1,6 +1,9 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
+import React, { useState } from 'react';
+import DonutChart from '../DonutChart/Index';
 
 function VaultDashBoard() {
+  const [segment, setSegment] = useState(null);
   return (
     <div className="vault-dashboard p-3">
       <div className="card h-100 dashboard d-flex flex-column">
@@ -67,22 +70,29 @@ function VaultDashBoard() {
                     Vault
                   </h6>
                 </div>
-                <svg viewBox="0 0 100 100" width="100%" height="100%">
-                  <path
-                    d="M 96.25 50 A 46.25 46.25 0 1 1 96.24999999295572 49.99919278522099"
-                    fill="none"
-                    strokeWidth="7.5"
-                    strokeLinecap="round"
-                    stroke="#002A51"
-                  />
-                  <path
-                    d
-                    fill="none"
-                    strokeWidth="7.5"
-                    strokeLinecap="round"
-                    stroke="#8B8B8B"
-                  />
-                </svg>
+                <DonutChart
+                  pieData={[
+                    {
+                      value: 5,
+                      color: '#8B8B8B',
+                      name: 'Bitcoin',
+                      coin: 'btc',
+                    },
+                    {
+                      value: 0,
+                      color: '#002A51',
+                      name: 'Ethereum',
+                      coin: 'eth',
+                    },
+                  ]}
+                  onMouseOver={(segmentIndex) => {
+                    setSegment(segmentIndex);
+                  }}
+                  onMouseOut={() => {
+                    setSegment(null);
+                  }}
+                  segment={segment}
+                />
               </div>
             </div>
             <div className="col-6 d-flex">
@@ -111,10 +121,6 @@ function VaultDashBoard() {
                   <div className="indicator">
                     <h6 className="my-4">
                       <svg
-                        aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fas"
-                        data-icon="dot-circle"
                         className="svg-inline--fa fa-dot-circle fa-w-16 "
                         role="img"
                         xmlns="http://www.w3.org/2000/svg"
@@ -126,14 +132,11 @@ function VaultDashBoard() {
                           d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm80 248c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80z"
                         />
                       </svg>
-                      Liquid <span>(100.0%)</span>
+                      Liquid&nbsp;
+                      <span>(100.0%)</span>
                     </h6>
                     <h6 className="my-4">
                       <svg
-                        aria-hidden="true"
-                        focusable="false"
-                        data-prefix="fas"
-                        data-icon="dot-circle"
                         className="svg-inline--fa fa-dot-circle fa-w-16 "
                         role="img"
                         xmlns="http://www.w3.org/2000/svg"
@@ -145,7 +148,8 @@ function VaultDashBoard() {
                           d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm80 248c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80z"
                         />
                       </svg>
-                      Pooled <span>(0.0%)</span>
+                      Pooled&nbsp;
+                      <span>(0.0%)</span>
                     </h6>
                   </div>
                 </div>

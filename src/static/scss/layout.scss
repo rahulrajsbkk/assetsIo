@@ -26,8 +26,11 @@
     .menu-side {
       .menu-itm {
         cursor: pointer;
+        text-decoration: none !important;
         h5 {
           line-height: 1;
+          color: #212529;
+          text-decoration: none;
         }
         &:hover,
         &.active {

@@ -116,6 +116,7 @@
             margin: auto;
             margin-left: 100px;
             position: relative;
+            transform-style: preserve-3d;
             @include xl {
               margin-left: 85px;
               width: 45%;
@@ -131,6 +132,7 @@
               left: 0;
               right: 0;
               display: flex;
+              transform: translate3d(0, 0, -1px);
               h6 {
                 font-weight: bold;
                 color: $primary-colr;

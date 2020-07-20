@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import Axios from 'axios';
+import Toast from '../components/Toast/Toast';
 
 export const BankContext = createContext();
 
@@ -39,9 +40,20 @@ function BankContextProvider({ children }) {
     }
   }, [email, idToken]);
 
+  const [toastShow, setToastShow] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
+  const tostShowOn = (message) => {
+    setToastShow(true);
+    setToastMessage(message);
+    setTimeout(() => {
+      setToastShow(false);
+    }, 3000);
+  };
+
   return (
-    <BankContext.Provider value={{ login, email }}>
+    <BankContext.Provider value={{ login, email, tostShowOn }}>
       {children}
+      <Toast show={toastShow} message={toastMessage} />
     </BankContext.Provider>
   );
 }
