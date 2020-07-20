@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable indent */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -9,7 +10,7 @@ import { BankContext } from '../../../../../context/Context';
 // import vault from '../../../static/images/vault.svg';
 // import * as animationData from '../../../static/animation/wallet-coin.json';
 
-function SetAmount({ coinObject, price, transCoin }) {
+function SetAmount({ fundOrWithdraw, coinObject, price, transCoin }) {
   // eslint-disable-next-line object-curly-newline
   const { email, idToken, name, rates } = useContext(BankContext);
 
@@ -261,7 +262,7 @@ function SetAmount({ coinObject, price, transCoin }) {
               setLoading(true);
             }}
           >
-            Deposit
+            {fundOrWithdraw}
           </div>
         </div>
       )}

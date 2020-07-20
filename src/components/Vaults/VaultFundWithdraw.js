@@ -52,7 +52,12 @@ function VaultFundWithdraw() {
           </div>
         </div>
       </div>
-      <FundVault openModal={openModal} setOpenModal={setOpenModal} />
+      <FundVault
+        key={openModal}
+        fundOrWithdraw={tab}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      />
     </>
   );
 }

@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect, useContext } from 'react';
 // import Lottie from 'react-lottie';
@@ -7,7 +9,7 @@ import SetAmount from './Fund/SetAmount/SetAmount';
 // import * as animationData from '../../static/animation/teris_cl_blue.json';
 import { BankContext } from '../../../context/Context';
 
-function FundVault({ openModal, setOpenModal }) {
+function FundVault({ fundOrWithdraw, openModal, setOpenModal }) {
   const [transCoin, setTransCoin] = useState('');
   const { email } = useContext(BankContext);
   const [coinObject, setCoinObject] = useState({
@@ -59,7 +61,12 @@ function FundVault({ openModal, setOpenModal }) {
 
   return (
     <div className={`deposit-modal ${openModal ? '' : 'd-none'}`}>
-      <div className="overlay-deposit" onClick={() => setOpenModal(false)} />
+      <div
+        className="overlay-deposit"
+        role="button"
+        tabIndex="-1"
+        onClick={() => setOpenModal(false)}
+      />
       <div className="deposit-card">
         {loading ? (
           <div className="m-auto">
@@ -72,6 +79,7 @@ function FundVault({ openModal, setOpenModal }) {
             price={price}
             transCoin={transCoin}
             setTransCoin={setTransCoin}
+            fundOrWithdraw={fundOrWithdraw}
           />
         ) : (
           <SetAmount
@@ -80,6 +88,7 @@ function FundVault({ openModal, setOpenModal }) {
             price={price}
             transCoin={transCoin}
             setTransCoin={setTransCoin}
+            fundOrWithdraw={fundOrWithdraw}
           />
         )}
       </div>

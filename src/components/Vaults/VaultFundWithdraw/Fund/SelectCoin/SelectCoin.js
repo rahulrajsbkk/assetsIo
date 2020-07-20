@@ -107,6 +107,7 @@ function SelectCoin({
   setIsCoinSelected,
   price,
   transCoin,
+  fundOrWithdraw,
   setTransCoin,
 }) {
   const [tab, setTab] = useState('Crypto');
@@ -188,7 +189,9 @@ function SelectCoin({
           className="deposit-footer"
           onClick={() => setIsCoinSelected(true)}
         >
-          Proceed To Fund With&nbsp;
+          Proceed To&nbsp;
+          {fundOrWithdraw}
+          &nbsp;With&nbsp;
           {transCoin}
           &nbsp;Vault
         </div>
