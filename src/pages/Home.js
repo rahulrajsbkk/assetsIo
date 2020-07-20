@@ -2,8 +2,6 @@ import React, { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCaretDown,
-  faWallet,
-  faExchangeAlt,
   faCreditCard,
   faSearch,
   faDownload,
@@ -15,52 +13,13 @@ import {
 import { Redirect } from 'react-router-dom';
 import { BankContext } from '../context/Context';
 import BalanceChart from '../components/Home/BalanceChart';
+import Layout from '../Layout/Index';
 
 function Home() {
   const { email } = useContext(BankContext);
   if (email && email !== '') {
     return (
-      <div className="d-flex home-page">
-        <div className="side-bar d-flex flex-column">
-          <div className="profile d-flex">
-            <img
-              src="https://optionsdocuments.blob.core.windows.net/documents/user-image-b939ba6b-c66d-4e15-8dd4-cc36cfdbd05e.png"
-              alt=""
-            />
-            <div className="col py-3">
-              <h5>
-                John Fernandaz &nbsp;
-                <FontAwesomeIcon icon={faCaretDown} />
-              </h5>
-              <h6>Admin</h6>
-            </div>
-          </div>
-          <div className="d-flex flex-column flex-grow-1 menu-side my-5 mx-3">
-            <div className="menu-itm">
-              <h5 className="d-flex py-3 menu-itm">
-                <FontAwesomeIcon className="mr-4" icon={faWallet} />
-                <span className="my-auto">Accounts</span>
-              </h5>
-            </div>
-            <div className="menu-itm">
-              <h5 className="d-flex py-3 menu-itm">
-                <FontAwesomeIcon className="mr-4" icon={faCreditCard} />
-                <span className="my-auto">Cards</span>
-              </h5>
-            </div>
-            <div className="menu-itm">
-              <h5 className="d-flex py-3 menu-itm">
-                <FontAwesomeIcon className="mr-4" icon={faExchangeAlt} />
-                <span className="my-auto">Payments</span>
-              </h5>
-            </div>
-          </div>
-          <div className="last-seen-card card p-4">
-            <h6>Last Connection</h6>
-            <h4>Tue,July 21st 20:48</h4>
-          </div>
-        </div>
-
+      <Layout active="accounts" className="home">
         <div className="main-content d-flex flex-column p-5">
           <div className="balance d-flex flex-column">
             <h6 className="my-auto">Your Balance</h6>
@@ -119,7 +78,7 @@ function Home() {
                     d="M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50Z"
                     fill="#FFEAE9"
                   />
-                </svg>{' '}
+                </svg>
                 <div className="col">
                   <h5>Paypal</h5>
                   <h6>Various</h6>
@@ -145,60 +104,7 @@ function Home() {
                     d="M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50Z"
                     fill="#FFEAE9"
                   />
-                </svg>{' '}
-                <div className="col">
-                  <h5>Paypal</h5>
-                  <h6>Various</h6>
-                </div>
-              </div>
-              <div className="time my-auto">
-                <h6>10:10</h6>
-              </div>
-              <div className="balance my-auto">
-                <h6>32.56 $</h6>
-              </div>
-            </div>{' '}
-            <div className="trans-item d-flex mx-2 px-3 py-2">
-              <div className="d-flex user-trans">
-                <svg
-                  width="50"
-                  height="50"
-                  viewBox="0 0 50 50"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50Z"
-                    fill="#FFEAE9"
-                  />
-                </svg>{' '}
-                <div className="col">
-                  <h5>Paypal</h5>
-                  <h6>Various</h6>
-                </div>
-              </div>
-              <div className="time my-auto">
-                <h6>10:10</h6>
-              </div>
-              <div className="balance my-auto">
-                <h6>32.56 $</h6>
-              </div>
-            </div>
-            <h6 className="py-3 px-2">Today</h6>
-            <div className="trans-item d-flex mx-2 px-3 py-2">
-              <div className="d-flex user-trans">
-                <svg
-                  width="50"
-                  height="50"
-                  viewBox="0 0 50 50"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50Z"
-                    fill="#FFEAE9"
-                  />
-                </svg>{' '}
+                </svg>
                 <div className="col">
                   <h5>Paypal</h5>
                   <h6>Various</h6>
@@ -224,33 +130,7 @@ function Home() {
                     d="M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50Z"
                     fill="#FFEAE9"
                   />
-                </svg>{' '}
-                <div className="col">
-                  <h5>Paypal</h5>
-                  <h6>Various</h6>
-                </div>
-              </div>
-              <div className="time my-auto">
-                <h6>10:10</h6>
-              </div>
-              <div className="balance my-auto">
-                <h6>32.56 $</h6>
-              </div>
-            </div>{' '}
-            <div className="trans-item d-flex mx-2 px-3 py-2">
-              <div className="d-flex user-trans">
-                <svg
-                  width="50"
-                  height="50"
-                  viewBox="0 0 50 50"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50Z"
-                    fill="#FFEAE9"
-                  />
-                </svg>{' '}
+                </svg>
                 <div className="col">
                   <h5>Paypal</h5>
                   <h6>Various</h6>
@@ -277,7 +157,7 @@ function Home() {
                     d="M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50Z"
                     fill="#FFEAE9"
                   />
-                </svg>{' '}
+                </svg>
                 <div className="col">
                   <h5>Paypal</h5>
                   <h6>Various</h6>
@@ -303,7 +183,7 @@ function Home() {
                     d="M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50Z"
                     fill="#FFEAE9"
                   />
-                </svg>{' '}
+                </svg>
                 <div className="col">
                   <h5>Paypal</h5>
                   <h6>Various</h6>
@@ -315,7 +195,7 @@ function Home() {
               <div className="balance my-auto">
                 <h6>32.56 $</h6>
               </div>
-            </div>{' '}
+            </div>
             <div className="trans-item d-flex mx-2 px-3 py-2">
               <div className="d-flex user-trans">
                 <svg
@@ -329,7 +209,86 @@ function Home() {
                     d="M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50Z"
                     fill="#FFEAE9"
                   />
-                </svg>{' '}
+                </svg>
+                <div className="col">
+                  <h5>Paypal</h5>
+                  <h6>Various</h6>
+                </div>
+              </div>
+              <div className="time my-auto">
+                <h6>10:10</h6>
+              </div>
+              <div className="balance my-auto">
+                <h6>32.56 $</h6>
+              </div>
+            </div>
+            <h6 className="py-3 px-2">Today</h6>
+            <div className="trans-item d-flex mx-2 px-3 py-2">
+              <div className="d-flex user-trans">
+                <svg
+                  width="50"
+                  height="50"
+                  viewBox="0 0 50 50"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50Z"
+                    fill="#FFEAE9"
+                  />
+                </svg>
+                <div className="col">
+                  <h5>Paypal</h5>
+                  <h6>Various</h6>
+                </div>
+              </div>
+              <div className="time my-auto">
+                <h6>10:10</h6>
+              </div>
+              <div className="balance my-auto">
+                <h6>32.56 $</h6>
+              </div>
+            </div>
+            <div className="trans-item d-flex mx-2 px-3 py-2">
+              <div className="d-flex user-trans">
+                <svg
+                  width="50"
+                  height="50"
+                  viewBox="0 0 50 50"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50Z"
+                    fill="#FFEAE9"
+                  />
+                </svg>
+                <div className="col">
+                  <h5>Paypal</h5>
+                  <h6>Various</h6>
+                </div>
+              </div>
+              <div className="time my-auto">
+                <h6>10:10</h6>
+              </div>
+              <div className="balance my-auto">
+                <h6>32.56 $</h6>
+              </div>
+            </div>
+            <div className="trans-item d-flex mx-2 px-3 py-2">
+              <div className="d-flex user-trans">
+                <svg
+                  width="50"
+                  height="50"
+                  viewBox="0 0 50 50"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M25 50C38.8071 50 50 38.8071 50 25C50 11.1929 38.8071 0 25 0C11.1929 0 0 11.1929 0 25C0 38.8071 11.1929 50 25 50Z"
+                    fill="#FFEAE9"
+                  />
+                </svg>
                 <div className="col">
                   <h5>Paypal</h5>
                   <h6>Various</h6>
@@ -388,7 +347,7 @@ function Home() {
             </h5>
           </div>
         </div>
-      </div>
+      </Layout>
     );
   }
   return <Redirect to="/login" />;

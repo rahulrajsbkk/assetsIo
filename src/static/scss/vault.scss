@@ -1,0 +1,1080 @@
+.vault-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  .vault-dashboard {
+    flex: 0 0 70%;
+    max-height: 70%;
+    .dashboard {
+      .tab {
+        height: 5.7vmin;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.05);
+        .tab-itm {
+          flex: 0 0 20%;
+          max-width: 20%;
+          cursor: pointer;
+          display: flex;
+          padding: 1.6vmin;
+          border-bottom: 1px solid #0000000a;
+          h5 {
+            color: $primary-colr;
+            font-size: 1.6vmin;
+            margin: auto;
+            font-weight: 400;
+            opacity: 0.25;
+          }
+          &.active,
+          &:hover {
+            h5 {
+              font-weight: 700;
+              opacity: 1;
+            }
+          }
+        }
+      }
+      .dash-home {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        .head {
+          background: #f8f8f8;
+          .total {
+            cursor: pointer;
+            margin: auto 0;
+            padding: 20px 50px;
+            padding-left: 100px;
+            h6 {
+              color: $primary-colr;
+              font-size: 15px;
+            }
+            h4 {
+              color: $primary-colr;
+              font-size: 35px;
+              font-weight: bold;
+            }
+            opacity: 0.7;
+            &.active {
+              opacity: 1;
+            }
+            @include xl {
+              padding: 8px auto;
+              h6 {
+                font-size: 13px;
+              }
+              h4 {
+                font-size: 28px;
+              }
+            }
+          }
+          .detail {
+            display: flex;
+            flex-direction: column;
+            .liquid,
+            .pooled {
+              cursor: pointer;
+              margin: 20px auto;
+              margin-left: 50px;
+              h6 {
+                color: $primary-colr;
+                font-size: 15px;
+                line-height: 1;
+              }
+              h3 {
+                color: $primary-colr;
+                font-size: 25px;
+                font-weight: bold;
+              }
+              opacity: 0.7;
+              &.active {
+                opacity: 1;
+              }
+            }
+            .liquid {
+              margin-bottom: 0;
+            }
+            @include xl {
+              .liquid,
+              .pooled {
+                margin: 8px auto;
+                margin-left: 30px;
+
+                h6 {
+                  font-size: 9px;
+                }
+                h3 {
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+        }
+        .chart-section {
+          display: flex;
+          flex-grow: 1;
+          .chart {
+            height: 80%;
+            margin: auto;
+            margin-left: 100px;
+            position: relative;
+            @include xl {
+              margin-left: 85px;
+              width: 45%;
+            }
+            span {
+              width: 100%;
+              height: 100%;
+            }
+            .chart-name {
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              display: flex;
+              h6 {
+                font-weight: bold;
+                color: $primary-colr;
+                font-size: 24px;
+                line-height: 1;
+                @include xl {
+                  font-size: 18px;
+                }
+              }
+            }
+          }
+          .view {
+            display: flex;
+            .indicator {
+              margin: auto;
+              margin-left: 50px;
+              h6 {
+                font-size: 12px;
+                span {
+                  font-weight: bold;
+                }
+                svg {
+                  margin: 0 10px 0 0;
+                }
+                font-size: 22px;
+              }
+              @include xl {
+                margin-left: 30px;
+                h6 {
+                  font-size: 14px;
+                }
+              }
+            }
+          }
+        }
+      }
+      .dash-lottery {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        .thead {
+          background: rgba(0, 0, 0, 0.5);
+          justify-content: space-around;
+          .th {
+            color: white;
+            &:first-child {
+              padding-left: 5%;
+            }
+          }
+        }
+        .list {
+          height: 0;
+          overflow-y: auto;
+          .tdata {
+            height: 10vmin;
+            .td {
+              display: flex;
+              img {
+                height: 3vmin;
+                width: 3vmin;
+                margin: auto 0;
+                margin-right: 1.5vmin;
+              }
+              h6 {
+                font-size: 1.6vmin;
+                margin-top: auto;
+                margin-bottom: auto;
+                font-weight: bold;
+              }
+              &:first-child {
+                padding-left: 5%;
+              }
+              .time {
+                width: 100%;
+                margin: auto;
+                display: flex;
+                .unit {
+                  width: 20%;
+                  h3 {
+                    font-size: 1.6vmin;
+                    margin: 0;
+                    font-weight: 600;
+                  }
+                  h5 {
+                    font-size: 0.6vmin;
+                    margin: 0;
+                    font-weight: 600;
+                  }
+                }
+              }
+            }
+            &:nth-child(odd) {
+              background-color: rgba(235, 235, 235, 0.5);
+            }
+          }
+        }
+      }
+      .deposit-withdraw {
+        display: flex;
+        flex-direction: column;
+        .thead {
+          background: rgba(0, 0, 0, 0.5);
+          justify-content: space-around;
+          .th {
+            color: white;
+            &.col {
+              text-align: center;
+            }
+            &:first-child {
+              padding-left: 5%;
+            }
+          }
+        }
+        .list {
+          height: 0;
+          overflow-y: auto;
+          .tdata {
+            .td {
+              display: flex;
+              img {
+                height: 30px;
+                width: 100px;
+                margin: 15px 5px;
+                margin-right: auto;
+              }
+              h6 {
+                margin-top: auto;
+                margin-bottom: auto;
+              }
+              &.col {
+                text-align: center;
+              }
+              &:first-child {
+                padding-left: 5%;
+              }
+            }
+            &:nth-child(odd) {
+              background-color: rgba(235, 235, 235, 0.5);
+            }
+          }
+        }
+      }
+      .wallet-dash-closed {
+        height: 0;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        .fullscreen {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: white;
+          z-index: 10000;
+        }
+        .closed-lottery-card {
+          display: flex;
+          flex-direction: column;
+          flex-grow: 1;
+          border: 1px solid #f8f8f8;
+          .lottery-name-wrapper {
+            display: flex;
+            position: relative;
+            background: $primary-colr;
+            justify-content: space-between;
+            padding: 0 3vmin;
+            height: 4vmin;
+            img {
+              z-index: 1;
+              cursor: pointer;
+              margin: auto 0;
+              padding: 0 3vmin;
+              height: 1.7vmin;
+              filter: brightness(0) invert(1);
+              &.prev {
+                transform: scaleX(-1);
+              }
+            }
+            .name-next-prev {
+              z-index: 0;
+              display: flex;
+              justify-content: center;
+              position: absolute;
+              margin: auto;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              .lottery-name {
+                text-align: center;
+                color: white;
+                padding: 1vmin 0;
+                font-size: 1.6vmin;
+                margin: 0;
+              }
+              img {
+                cursor: pointer;
+                margin: auto 0;
+                padding: 0 3vmin;
+                height: 1.4vmin;
+                filter: brightness(0) invert(1);
+                &.prev {
+                  transform: scaleX(-1);
+                }
+              }
+            }
+            .switch {
+              z-index: 1;
+              display: flex;
+              svg {
+                cursor: pointer;
+                margin: auto 0;
+                padding: 0 0.7vmin;
+                height: 1.8vmin;
+              }
+              h6 {
+                font-size: 1.4vmin;
+                margin: auto 0;
+                color: white;
+                line-height: 1;
+              }
+            }
+          }
+          .detail-container {
+            padding: 0.5vmin;
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            gap: 0.5vmin 0.5vmin;
+            grid-template-areas: 'lottery-detail my-investment winner-detail' 'lottery-detail my-investment winner-detail' 'lottery-detail profit-sharing redeemable';
+            .lottery-detail {
+              grid-area: lottery-detail;
+            }
+
+            .my-investment {
+              grid-area: my-investment;
+            }
+
+            .winner-detail {
+              grid-area: winner-detail;
+            }
+
+            .profit-sharing {
+              grid-area: profit-sharing;
+              display: flex;
+              flex-direction: column;
+              .profit-sharing-content {
+                padding: 0 3vmin;
+                flex-grow: 1;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+                gap: 1px 1px;
+                grid-template-areas: 'equal-one profit-share profit-share profit-share profit-share x percent-total percent-total percent-total' 'equal-two my-profit-share my-profit-share my-profit-share my-profit-share . . . .';
+                .equal-one {
+                  grid-area: equal-one;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                }
+
+                .profit-share {
+                  grid-area: profit-share;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                }
+
+                .x {
+                  grid-area: x;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                }
+
+                .percent-total {
+                  grid-area: percent-total;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                }
+
+                .equal-two {
+                  grid-area: equal-two;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                }
+
+                .my-profit-share {
+                  grid-area: my-profit-share;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                }
+                h5,
+                h6 {
+                  margin: 0;
+                  line-height: 1;
+                  color: $primary-colr;
+                }
+                h6 {
+                  font-size: 0.9vmin;
+                }
+                h5 {
+                  font-size: 1.2vmin;
+                  font-weight: bold;
+                }
+              }
+            }
+
+            .redeemable {
+              grid-area: redeemable;
+              .profit-sharing-content {
+                padding: 0 3vmin;
+                flex-grow: 1;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                grid-template-rows: 1fr 1fr;
+                gap: 1px 1px;
+                grid-template-areas: 'equal-one profit-share profit-share profit-share profit-share x percent-total percent-total percent-total' 'equal-two my-profit-share my-profit-share my-profit-share my-profit-share . . . .';
+                .equal-one {
+                  grid-area: equal-one;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                }
+
+                .profit-share {
+                  grid-area: profit-share;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                }
+
+                .x {
+                  grid-area: x;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                }
+
+                .percent-total {
+                  grid-area: percent-total;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                }
+
+                .equal-two {
+                  grid-area: equal-two;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                }
+
+                .my-profit-share {
+                  grid-area: my-profit-share;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                }
+                h5,
+                h6 {
+                  margin: 0;
+                  line-height: 1;
+                  color: $primary-colr;
+                }
+                h6 {
+                  font-size: 0.9vmin;
+                }
+                h5 {
+                  font-size: 1.2vmin;
+                  font-weight: bold;
+                }
+              }
+            }
+            .group {
+              border: 1px solid #f8f8f8;
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              .title {
+                background: $primary-colr;
+                padding: 0.7vmin 0;
+                display: flex;
+                position: relative;
+                h6 {
+                  text-align: center;
+                  font-size: 1.3vmin;
+                  color: white;
+                  flex-grow: 1;
+                  margin: 0;
+                }
+                img {
+                  right: 1vmin;
+                  top: 0;
+                  bottom: 0;
+                  position: absolute;
+                  margin: auto 0;
+                  height: 1.5vmin;
+                  filter: brightness(0) invert(1);
+                }
+              }
+              .items {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                flex-grow: 1;
+                .item {
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 0 3vmin;
+                  color: #002a51;
+                  font-size: 1.3vmin;
+                  margin-bottom: 0.4vmin;
+                  .name {
+                    font-weight: 500;
+                  }
+                  .value {
+                    font-weight: 700;
+                    white-space: nowrap;
+                  }
+                  .div {
+                    padding: 0 3vmin;
+                    width: 0;
+                    flex-grow: 1;
+                    overflow-y: auto;
+                    display: flex;
+                    .percent {
+                      min-width: 12vmin;
+                      padding: 0 1vmin;
+                      padding-left: 0;
+                      display: flex;
+                      flex-direction: column;
+                      .label {
+                        font-size: 1.1vmin;
+                        color: $primary-colr;
+                        white-space: nowrap;
+                      }
+                      .btn-value {
+                        padding: 0.3vmin 2vmin;
+                        font-size: 1.4vmin;
+                        background-color: white;
+                        text-align: center;
+                        border-radius: 0.6vmin;
+                        border: solid 1px $primary-colr;
+                        color: $primary-colr;
+                        margin-top: 2px;
+                        margin-right: auto;
+                      }
+                    }
+                  }
+                }
+
+                .winner-participant {
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 0 3vmin;
+                  font-size: 1.2vmin;
+                  .btn-win {
+                    padding: 0.2vmin 0;
+                    background: white;
+                    color: $primary-colr;
+                    border: $primary-colr 1px solid;
+                    width: 45%;
+                    text-align: center;
+                  }
+                  .btn-paricipant {
+                    padding: 0.2vmin 0;
+                    background: $primary-colr;
+                    color: white;
+                    width: 45%;
+                    text-align: center;
+                  }
+                }
+              }
+            }
+          }
+          .redeemable-n-featured {
+            display: flex;
+            flex-grow: 1;
+            .total-redeemable {
+              display: flex;
+              flex-grow: 1;
+              flex-direction: column;
+              .title {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                background: $primary-colr;
+                color: white;
+                height: calc(3.7vmin + 1px);
+                font-size: 1.4vmin;
+                position: relative;
+                margin: 0;
+                img {
+                  right: 1vmin;
+                  top: 0;
+                  bottom: 0;
+                  position: absolute;
+                  margin: auto 0;
+                  height: 1.5vmin;
+                  filter: brightness(0) invert(1);
+                }
+              }
+              .title-value {
+                border: $primary-colr solid 1px;
+                border-right: none;
+                background: white;
+                padding: 0.7vmin 2vmin;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                line-height: 1;
+                height: calc(3.7vmin + 1px);
+                text-align: center;
+                font-size: 1.5vmin;
+                color: $primary-colr;
+                margin: auto 0;
+                margin: 0;
+              }
+              padding: 0;
+              h5 {
+                color: $primary-colr;
+                margin: auto;
+                padding: 0 3vmin;
+                text-align: center;
+                font-size: 2vmin;
+                font-weight: 700;
+                width: 70%;
+              }
+              .footers {
+                display: flex;
+                font-size: 1.5vmin;
+                margin: 0;
+                line-height: 1;
+                .btn-outline {
+                  padding: 0.5vmin 0;
+                  width: 33.333%;
+                  text-align: center;
+                  color: $primary-colr;
+                  border: 1px solid #f8f8f8;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                }
+                .btn-dark-blue {
+                  padding: 0.5vmin 0;
+                  flex-grow: 1;
+                  background: $primary-colr;
+                  color: white;
+                  text-align: center;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                }
+              }
+            }
+            .card-wrapper {
+              flex: 0 0 34%;
+              max-width: 34%;
+              padding: 0;
+              .lottery-card {
+                cursor: default;
+                display: flex;
+                flex-direction: column;
+                border: 1px solid $primary-colr;
+                height: 100%;
+                min-width: 100%;
+                .head-img {
+                  height: 3.7vmin;
+                  border-bottom: $primary-colr solid 1px;
+                  img {
+                    margin: auto;
+                    height: 2vmin;
+                  }
+                }
+                .jackpot {
+                  flex-grow: 1;
+                  background-color: $primary-colr;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  padding-top: 1vmin;
+                  padding-bottom: 1vmin;
+                  h4 {
+                    margin: 0;
+                    color: white;
+                    font-size: 1.4vmin;
+                  }
+                  h2 {
+                    margin: 0;
+                    color: white;
+                    font-size: 2vmin;
+                    font-weight: 600;
+                  }
+                }
+                .potential {
+                  background-color: $primary-colr;
+                  display: flex;
+                  flex-direction: column;
+                  h4 {
+                    margin: auto;
+                    color: white;
+                    font-size: 1.7vmin;
+                  }
+                }
+                .time {
+                  height: 5vmin;
+                  .unit {
+                    width: 20%;
+                    height: 5vmin;
+                    border-bottom: 1px solid $primary-colr;
+                    border-left: 1px solid $primary-colr;
+                    display: flex;
+                    flex-direction: column;
+                    &:first-child {
+                      border-left: none;
+                    }
+                    h3 {
+                      font-size: 2.2vmin;
+                      color: $primary-colr;
+                      font-weight: 600;
+                      margin: auto auto 0 auto;
+                      line-height: 1;
+                    }
+                    h5 {
+                      font-size: 1vmin;
+                      color: $primary-colr;
+                      font-weight: 500;
+                      margin: 0 auto auto auto;
+                      line-height: 1;
+                    }
+                  }
+                }
+                .foot {
+                  height: 4vmin;
+                  .rate {
+                    height: 100%;
+                    width: 60%;
+                    display: flex;
+                    h5 {
+                      margin: auto;
+                      font-weight: 600;
+                      font-size: 1.5vmin;
+                    }
+                  }
+                  .buy {
+                    cursor: pointer;
+                    width: 40%;
+                    display: flex;
+                    justify-content: space-around;
+                    border-left: 1px solid $primary-colr;
+                    h5 {
+                      font-weight: 500;
+                      font-size: 1.7vmin;
+                    }
+                    img {
+                      width: 1.5vmin;
+                    }
+                    &:hover,
+                    &.active {
+                      background-color: $primary-colr;
+                      h5 {
+                        color: white;
+                      }
+                      img {
+                        filter: brightness(0) invert(1);
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          &.fullscreen {
+            .lottery-name-wrapper {
+              height: 7vmin;
+              img {
+                padding: 0 5.1vmin;
+                height: 4.1vmin;
+              }
+              .lottery-name {
+                padding: 1.7vmin 0;
+                font-size: 2.7vmin;
+                margin: 0;
+              }
+            }
+            .detail-container {
+              padding: 1vmin;
+              gap: 1vmin 1vmin;
+              .profit-sharing,
+              .redeemable {
+                .profit-sharing-content {
+                  padding: 0 5.1vmin;
+                  h6 {
+                    font-size: 1.53vmin;
+                  }
+                  h5 {
+                    font-size: 2.05vmin;
+                  }
+                }
+              }
+              .group {
+                .title {
+                  padding: 1.19vmin 0;
+                  h6 {
+                    font-size: 2.6vmin;
+                    padding: 0 2vmin;
+                  }
+                  img {
+                    height: 2.7vmin;
+                    margin-right: 2vmin;
+                  }
+                }
+                .items {
+                  .item {
+                    padding: 0 5.1vmin;
+                    font-size: 2.2vmin;
+                    margin-bottom: 0.7vmin;
+                    .div {
+                      padding: 0 5.1vmin;
+                      .percent {
+                        min-width: 20.5vmin;
+                        padding: 0 1.7vmin;
+                        .label {
+                          font-size: 1.9vmin;
+                        }
+                        .btn-value {
+                          padding: 0.5vmin 4vmin;
+                          font-size: 1.9vmin;
+                        }
+                      }
+                    }
+                  }
+
+                  .winner-participant {
+                    padding: 0 5.1vmin;
+                    font-size: 2.05vmin;
+                    .btn-win {
+                      padding: 0.34vmin 0;
+                    }
+                    .btn-paricipant {
+                      padding: 0.34vmin 0;
+                    }
+                  }
+                }
+              }
+            }
+            .redeemable-n-featured {
+              .total-redeemable {
+                .title {
+                  padding: 1.7vmin 0;
+                  height: calc(6.33vmin + 1px);
+                  font-size: 2.4vmin;
+                  img {
+                    height: 2.7vmin;
+                  }
+                }
+                .title-value {
+                  padding: 1.7vmin;
+                  height: calc(6.33vmin + 1px);
+                  font-size: 2.6vmin;
+                }
+                h5 {
+                  padding: 0 5.1vmin;
+                  font-size: 3.4vmin;
+                }
+                .footers {
+                  font-size: 2.6vmin;
+                  .btn-outline {
+                    padding: 0.85vmin 0;
+                  }
+                  .btn-dark-blue {
+                    padding: 0.85vmin 0;
+                  }
+                }
+              }
+              .card-wrapper {
+                .lottery-card {
+                  .head-img {
+                    height: 6.33vmin;
+                    img {
+                      height: 3.4vmin;
+                    }
+                  }
+                  .jackpot {
+                    padding-top: 1.7vmin;
+                    padding-bottom: 1.7vmin;
+                    h4 {
+                      font-size: 2.4vmin;
+                    }
+                    h2 {
+                      font-size: 3.4vmin;
+                    }
+                  }
+                  .potential {
+                    h4 {
+                      font-size: 2.91vmin;
+                    }
+                  }
+                  .time {
+                    height: 8.5vmin;
+                    .unit {
+                      height: 8.5vmin;
+                      h3 {
+                        font-size: 3.8vmin;
+                      }
+                      h5 {
+                        font-size: 1.7vmin;
+                      }
+                    }
+                  }
+                  .foot {
+                    height: 6.8vmin;
+                    .rate {
+                      h5 {
+                        font-size: 2.6vmin;
+                      }
+                    }
+                    .buy {
+                      h5 {
+                        font-size: 2.91vmin;
+                      }
+                      img {
+                        width: 2.6vmin;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .thead {
+          background: rgba(0, 0, 0, 0.5);
+          justify-content: space-around;
+          padding: 0 4vmin;
+          .th {
+            font-size: 1.4vmin;
+            color: white;
+            white-space: nowrap;
+          }
+        }
+        .list {
+          height: 0;
+          overflow-y: auto;
+          .tdata {
+            height: 10vmin;
+            padding: 0 4vmin;
+            .td {
+              display: flex;
+              img {
+                margin: auto;
+                height: 2.6vmin;
+                width: 2.6vmin;
+                margin-left: 0;
+              }
+              h6 {
+                font-size: 1.6vmin;
+                margin-top: auto;
+                margin-bottom: auto;
+                font-weight: bold;
+              }
+              &.actions {
+                display: flex;
+                justify-content: space-around;
+                .btn-dark-blue {
+                  width: 35%;
+                  font-size: 1.4vmin;
+                  padding: 0.4vmin 0;
+                  border-radius: 0.6vmin;
+                  margin: auto 0;
+                  border: $primary-colr 2px solid;
+                  color: $primary-colr;
+                  text-align: center;
+                  cursor: pointer;
+                }
+              }
+            }
+            &:nth-child(odd) {
+              background-color: rgba(235, 235, 235, 0.5);
+            }
+          }
+        }
+      }
+    }
+  }
+  .vault-fund-withdraw {
+    flex: 0 0 30%;
+    max-height: 30%;
+    .accounts {
+      display: flex;
+      flex-direction: column;
+      .tab {
+        height: 5.7vmin;
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.05);
+        .tab-itm {
+          cursor: pointer;
+          display: flex;
+          padding: 1.6vmin;
+          border-bottom: 1px solid #0000000a;
+          outline: none;
+          h5 {
+            color: $primary-colr;
+            margin: auto;
+            font-weight: 400;
+            font-size: 1.6vmin;
+            opacity: 0.25;
+          }
+          &.active,
+          &:focus,
+          &:hover {
+            h5 {
+              font-weight: 700;
+              opacity: 1;
+            }
+          }
+        }
+      }
+      .account-list {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: row;
+        .account-itm {
+          min-height: 33.33%;
+          display: flex;
+          flex-grow: 1;
+          img {
+            transform: scale(0.9);
+            margin: auto;
+            max-height: 50%;
+            max-width: 40%;
+          }
+          &:hover {
+            background: #f8f8f8;
+          }
+        }
+      }
+    }
+  }
+}
