@@ -1,0 +1,52 @@
+.home-layout {
+  min-height: 100vh;
+  .side-bar {
+    flex: 0 0 22%;
+    max-width: 22%;
+    background: #f3f3f3;
+    padding: 30px;
+    .profile {
+      img {
+        width: 60px;
+        height: 90px;
+        background-color: #f7d7cd;
+        border-top-right-radius: 12px;
+        border-top-left-radius: 12px;
+      }
+      h5 {
+        color: #1b2733;
+        margin-bottom: 6px;
+      }
+      h6 {
+        color: #637282;
+        font-weight: normal;
+        line-height: 1;
+      }
+    }
+    .menu-side {
+      .menu-itm {
+        cursor: pointer;
+        h5 {
+          line-height: 1;
+        }
+        &:hover,
+        &.active {
+          h5,
+          svg {
+            color: #2d7dff;
+          }
+        }
+      }
+    }
+    .last-seen-card {
+      h6 {
+        font-size: 14px;
+        color: #637282;
+      }
+      h4 {
+        color: #1b2733;
+        font-weight: normal;
+      }
+    }
+  }
+}

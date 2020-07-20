@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 function Layout({ children, active, className }) {
   return (
-    <div className="d-flex home-page">
+    <div className="d-flex home-layout">
       <div className="side-bar d-flex flex-column">
         <div className="profile d-flex">
           <img
