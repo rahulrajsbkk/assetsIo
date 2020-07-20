@@ -9,22 +9,18 @@ const Arc = ({
   onMouseOver,
   onMouseOut,
   segment,
-}) => {
-  const colorsArray = ['#002A51', '#8B8B8B'];
-  return (
-    <g key={index} className="arc">
-      <path
-        opacity={segment === index || segment === null ? 1 : 0.1}
-        onMouseEnter={() => onMouseOver(index)}
-        onMouseLeave={() => onMouseOut()}
-        className="arc"
-        d={createArc(data)}
-        fill={colorsArray[index] ? colorsArray[index] : colors(index)}
-      />
-    </g>
-  );
-};
-
+}) => (
+  <g key={index} className="arc">
+    <path
+      opacity={segment === index || segment === null ? 1 : 0.1}
+      onMouseEnter={() => onMouseOver(index)}
+      onMouseLeave={() => onMouseOut()}
+      className="arc"
+      d={createArc(data)}
+      fill={data.data.color ? data.data.color : colors(index)}
+    />
+  </g>
+);
 // eslint-disable-next-line object-curly-newline
 const DonutChart = ({ onMouseOver, onMouseOut, pieData, segment }) => {
   const innerRadius = 120;
