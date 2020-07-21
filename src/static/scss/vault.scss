@@ -2,9 +2,6 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  *:focus {
-    outline: none;
-  }
   .vault-dashboard {
     flex: 0 0 55%;
     max-height: 55%;
@@ -20,7 +17,7 @@
           padding: 1.6vmin;
           border-bottom: 1px solid #0000000a;
           h5 {
-            color: $primary-colr;
+            color: $primary-color;
             font-size: 1.6vmin;
             margin: auto;
             font-weight: 400;
@@ -46,11 +43,11 @@
             cursor: pointer;
             margin: auto 0;
             h6 {
-              color: $primary-colr;
+              color: $primary-color;
               font-size: 18px;
             }
             h4 {
-              color: $primary-colr;
+              color: $primary-color;
               font-size: 35px;
               font-weight: bold;
             }
@@ -89,7 +86,7 @@
                 transform: translate3d(0, 0, -1px);
                 h6 {
                   font-weight: bold;
-                  color: $primary-colr;
+                  color: $primary-color;
                   font-size: 24px;
                   line-height: 1;
                 }
@@ -257,7 +254,7 @@
           .lottery-name-wrapper {
             display: flex;
             position: relative;
-            background: $primary-colr;
+            background: $primary-color;
             justify-content: space-between;
             padding: 0 3vmin;
             height: 4vmin;
@@ -394,7 +391,7 @@
                 h6 {
                   margin: 0;
                   line-height: 1;
-                  color: $primary-colr;
+                  color: $primary-color;
                 }
                 h6 {
                   font-size: 0.9vmin;
@@ -461,7 +458,7 @@
                 h6 {
                   margin: 0;
                   line-height: 1;
-                  color: $primary-colr;
+                  color: $primary-color;
                 }
                 h6 {
                   font-size: 0.9vmin;
@@ -478,7 +475,7 @@
               display: flex;
               flex-direction: column;
               .title {
-                background: $primary-colr;
+                background: $primary-color;
                 padding: 0.7vmin 0;
                 display: flex;
                 position: relative;
@@ -532,7 +529,7 @@
                       flex-direction: column;
                       .label {
                         font-size: 1.1vmin;
-                        color: $primary-colr;
+                        color: $primary-color;
                         white-space: nowrap;
                       }
                       .btn-value {
@@ -541,8 +538,8 @@
                         background-color: white;
                         text-align: center;
                         border-radius: 0.6vmin;
-                        border: solid 1px $primary-colr;
-                        color: $primary-colr;
+                        border: solid 1px $primary-color;
+                        color: $primary-color;
                         margin-top: 2px;
                         margin-right: auto;
                       }
@@ -558,14 +555,14 @@
                   .btn-win {
                     padding: 0.2vmin 0;
                     background: white;
-                    color: $primary-colr;
-                    border: $primary-colr 1px solid;
+                    color: $primary-color;
+                    border: $primary-color 1px solid;
                     width: 45%;
                     text-align: center;
                   }
                   .btn-paricipant {
                     padding: 0.2vmin 0;
-                    background: $primary-colr;
+                    background: $primary-color;
                     color: white;
                     width: 45%;
                     text-align: center;
@@ -586,7 +583,7 @@
                 flex-direction: column;
                 justify-content: center;
                 text-align: center;
-                background: $primary-colr;
+                background: $primary-color;
                 color: white;
                 height: calc(3.7vmin + 1px);
                 font-size: 1.4vmin;
@@ -603,7 +600,7 @@
                 }
               }
               .title-value {
-                border: $primary-colr solid 1px;
+                border: $primary-color solid 1px;
                 border-right: none;
                 background: white;
                 padding: 0.7vmin 2vmin;
@@ -614,13 +611,13 @@
                 height: calc(3.7vmin + 1px);
                 text-align: center;
                 font-size: 1.5vmin;
-                color: $primary-colr;
+                color: $primary-color;
                 margin: auto 0;
                 margin: 0;
               }
               padding: 0;
               h5 {
-                color: $primary-colr;
+                color: $primary-color;
                 margin: auto;
                 padding: 0 3vmin;
                 text-align: center;
@@ -637,7 +634,7 @@
                   padding: 0.5vmin 0;
                   width: 33.333%;
                   text-align: center;
-                  color: $primary-colr;
+                  color: $primary-color;
                   border: 1px solid #f8f8f8;
                   display: flex;
                   flex-direction: column;
@@ -646,7 +643,7 @@
                 .btn-dark-blue {
                   padding: 0.5vmin 0;
                   flex-grow: 1;
-                  background: $primary-colr;
+                  background: $primary-color;
                   color: white;
                   text-align: center;
                   display: flex;
@@ -663,12 +660,12 @@
                 cursor: default;
                 display: flex;
                 flex-direction: column;
-                border: 1px solid $primary-colr;
+                border: 1px solid $primary-color;
                 height: 100%;
                 min-width: 100%;
                 .head-img {
                   height: 3.7vmin;
-                  border-bottom: $primary-colr solid 1px;
+                  border-bottom: $primary-color solid 1px;
                   img {
                     margin: auto;
                     height: 2vmin;
@@ -676,7 +673,7 @@
                 }
                 .jackpot {
                   flex-grow: 1;
-                  background-color: $primary-colr;
+                  background-color: $primary-color;
                   display: flex;
                   flex-direction: column;
                   justify-content: center;
@@ -695,7 +692,7 @@
                   }
                 }
                 .potential {
-                  background-color: $primary-colr;
+                  background-color: $primary-color;
                   display: flex;
                   flex-direction: column;
                   h4 {
@@ -709,8 +706,8 @@
                   .unit {
                     width: 20%;
                     height: 5vmin;
-                    border-bottom: 1px solid $primary-colr;
-                    border-left: 1px solid $primary-colr;
+                    border-bottom: 1px solid $primary-color;
+                    border-left: 1px solid $primary-color;
                     display: flex;
                     flex-direction: column;
                     &:first-child {
@@ -718,14 +715,14 @@
                     }
                     h3 {
                       font-size: 2.2vmin;
-                      color: $primary-colr;
+                      color: $primary-color;
                       font-weight: 600;
                       margin: auto auto 0 auto;
                       line-height: 1;
                     }
                     h5 {
                       font-size: 1vmin;
-                      color: $primary-colr;
+                      color: $primary-color;
                       font-weight: 500;
                       margin: 0 auto auto auto;
                       line-height: 1;
@@ -749,7 +746,7 @@
                     width: 40%;
                     display: flex;
                     justify-content: space-around;
-                    border-left: 1px solid $primary-colr;
+                    border-left: 1px solid $primary-color;
                     h5 {
                       font-weight: 500;
                       font-size: 1.7vmin;
@@ -759,7 +756,7 @@
                     }
                     &:hover,
                     &.active {
-                      background-color: $primary-colr;
+                      background-color: $primary-color;
                       h5 {
                         color: white;
                       }
@@ -971,8 +968,8 @@
                   padding: 0.4vmin 0;
                   border-radius: 0.6vmin;
                   margin: auto 0;
-                  border: $primary-colr 2px solid;
-                  color: $primary-colr;
+                  border: $primary-color 2px solid;
+                  color: $primary-color;
                   text-align: center;
                   cursor: pointer;
                 }
@@ -987,16 +984,114 @@
     }
   }
   .vault-new-contract {
-    border-top: 0.5px solid #e7e7e7;
+    border-top: 0.5px solid $vault-border-color;
     flex: 0 0 45%;
     max-height: 45%;
+    display: flex;
+    flex-direction: column;
     .head {
       font-weight: 700;
       color: #464b4e;
       font-size: 28px;
       line-height: 1;
       padding: 20px 60px;
-      border-bottom: 0.5px solid #e7e7e7;
+      border-bottom: 0.5px solid $vault-border-color;
+    }
+    .content-steps {
+      flex-grow: 1;
+      display: flex;
+      .step-one {
+        flex: 0 0 50%;
+        max-width: 50%;
+        border-right: 0.5px solid $vault-border-color;
+        padding: 40px 60px;
+        display: flex;
+        flex-direction: column;
+        h5 {
+          color: #464b4e;
+          font-size: 24px;
+          font-weight: 600;
+        }
+        .scroll-view {
+          display: flex;
+          flex-grow: 1;
+          align-items: center;
+          .card {
+            padding: 30px 10px;
+            flex: 1;
+            margin-right: 30px;
+            align-items: center;
+            img {
+              width: 60px;
+              height: 60px;
+              margin-bottom: 20px;
+            }
+            .coin {
+              color: #9b9b9b;
+              font-size: 14px;
+              margin-bottom: 5px;
+            }
+            .value {
+              color: #828282;
+              font-size: 20px;
+            }
+          }
+        }
+      }
+      .step-two {
+        flex: 0 0 50%;
+        max-width: 50%;
+        display: flex;
+        flex-direction: column;
+        .period-hold {
+          padding: 40px 60px;
+          flex: 1px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          h5 {
+            color: #464b4e;
+            font-size: 24px;
+            font-weight: 600;
+          }
+          .days {
+            border: 0.5px solid $vault-border-color;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 80px;
+            display: flex;
+            input {
+              flex: 1;
+              background: none;
+              border: none;
+              padding: 0 50px;
+              font-size: 24px;
+            }
+            .btn-days {
+              background: $primary-color;
+              display: flex;
+              align-items: center;
+              padding: 0 30px;
+              h6 {
+                font-size: 26px;
+                color: white;
+              }
+            }
+          }
+        }
+        .btn-calculate {
+          background-color: $primary-color;
+          padding: 20px 0;
+          h5 {
+            color: white;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1;
+            margin: 0;
+          }
+        }
+      }
     }
   }
 }

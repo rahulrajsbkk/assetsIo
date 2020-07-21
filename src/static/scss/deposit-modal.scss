@@ -309,7 +309,7 @@ $border-color: #002a51;
             cursor: default;
             display: flex;
             flex-direction: column;
-            border: 2px solid $primary-colr;
+            border: 2px solid $primary-color;
             margin-right: 20px;
             height: 100%;
             min-width: 100%;
@@ -322,7 +322,7 @@ $border-color: #002a51;
             }
             .jackpot {
               flex-grow: 1;
-              background-color: $primary-colr;
+              background-color: $primary-color;
               display: flex;
               flex-direction: column;
               justify-content: center;
@@ -341,7 +341,7 @@ $border-color: #002a51;
               }
             }
             .potential {
-              background-color: $primary-colr;
+              background-color: $primary-color;
               display: flex;
               flex-direction: column;
               h4 {
@@ -355,8 +355,8 @@ $border-color: #002a51;
               .unit {
                 width: 20%;
                 height: 50px;
-                border-bottom: 2px solid $primary-colr;
-                border-left: 2px solid $primary-colr;
+                border-bottom: 2px solid $primary-color;
+                border-left: 2px solid $primary-color;
                 display: flex;
                 flex-direction: column;
                 &:first-child {
@@ -364,14 +364,14 @@ $border-color: #002a51;
                 }
                 h3 {
                   font-size: 22px;
-                  color: $primary-colr;
+                  color: $primary-color;
                   font-weight: 600;
                   margin: auto auto 0 auto;
                   line-height: 1;
                 }
                 h5 {
                   font-size: 10px;
-                  color: $primary-colr;
+                  color: $primary-color;
                   font-weight: 500;
                   margin: 0 auto auto auto;
                   line-height: 1;
@@ -395,7 +395,7 @@ $border-color: #002a51;
                 width: 40%;
                 display: flex;
                 justify-content: space-around;
-                border-left: 2px solid $primary-colr;
+                border-left: 2px solid $primary-color;
                 h5 {
                   font-weight: 500;
                   font-size: 17px;
@@ -405,7 +405,7 @@ $border-color: #002a51;
                 }
                 &:hover,
                 &.active {
-                  background-color: $primary-colr;
+                  background-color: $primary-color;
                   h5 {
                     color: white;
                   }
