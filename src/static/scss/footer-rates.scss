@@ -1,0 +1,52 @@
+.footer-rates {
+  flex: 0 0 130px;
+  max-height: 130px;
+  display: flex;
+  flex-direction: column;
+  .current-rates {
+    padding: 12px;
+    background: #4d4d4d;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h5 {
+      font-size: 22px;
+      color: white;
+      line-height: 1;
+    }
+  }
+  .rates-list {
+    display: flex;
+    flex-grow: 1;
+    .coin {
+      flex: 0 0 25%;
+      max-width: 25%;
+      display: flex;
+      border-left: 0.5px solid #e7e7e7;
+      .coin-logo {
+        display: flex;
+        svg {
+          margin: auto;
+          height: 40%;
+        }
+      }
+      .rate-text {
+        display: flex;
+        .rate {
+          margin: auto;
+          text-align: center;
+          font-size: 30px;
+          small {
+            font-size: 16px;
+            color: #3ea154;
+            margin-top: auto;
+            svg {
+              height: 16px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import Axios from 'axios';
 import logoText from '../static/images/logo-text.svg';
 import { BankContext } from '../context/Context';
+import FooterRates from '../components/FooterRates/FooterRates';
 
 function Login({ history }) {
   const [emailid, setEmailId] = useState('');
@@ -43,7 +44,7 @@ function Login({ history }) {
   };
 
   return (
-    <div className="login-page d-flex">
+    <div className="login-page d-flex flex-column">
       <div className="d-flex flex-column mx-auto my-auto">
         <Zoom>
           <img className="img-logo mx-auto" src={logoText} alt="" />
@@ -95,6 +96,7 @@ function Login({ history }) {
           </div>
         </Fade>
       </div>
+      <FooterRates />
     </div>
   );
 }
