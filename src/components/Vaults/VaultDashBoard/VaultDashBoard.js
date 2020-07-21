@@ -1,11 +1,35 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDotCircle } from '@fortawesome/free-solid-svg-icons';
+import { select, area, curveCardinal } from 'd3';
 import DonutChart from '../../DonutChart/Index';
 
+const data = [0, 45, 35, 60, 75, 55, 49, 80];
 function VaultDashBoard() {
+  const svgRef = useRef();
+  useEffect(() => {
+    const svg = select(svgRef.current);
+    const totalWidth = svg._groups[0][0].clientWidth;
+    const totalHeight = svg._groups[0][0].clientHeight;
+    const maxVal = Math.max(...data);
+    const ratio = totalHeight / maxVal;
+    const myArea = area()
+      .x((value, index) => index * (totalWidth / (data.length - 1)))
+      .y0(totalHeight)
+      .y1((value) => totalHeight - ratio * value)
+      .curve(curveCardinal);
+
+    svg
+      .selectAll('path')
+      .data([data])
+      .join('path')
+      .attr('d', (value) => myArea(value))
+      .attr('fill', 'url(#grad1)')
+      .attr('stroke', 'none');
+  }, [data]);
   const [segment, setSegment] = useState(null);
 
   const chartData = [
@@ -156,7 +180,28 @@ function VaultDashBoard() {
               </div>
             </div>
           </div>
-          <div className="chart-area">.</div>
+          <div className="chart-area">
+            <svg className="chart-curved" ref={svgRef}>
+              <defs>
+                <linearGradient id="grad1" x1="0%" y1="100%" x2="0%" y2="0%">
+                  <stop
+                    offset="0%"
+                    style={{
+                      stopColor: 'rgb(0, 0, 0)',
+                      stopOpacity: '0',
+                    }}
+                  />
+                  <stop
+                    offset="100%"
+                    style={{
+                      stopColor: 'rgb(0, 0, 0)',
+                      stopOpacity: 0.2,
+                    }}
+                  />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
