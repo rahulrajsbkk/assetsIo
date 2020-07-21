@@ -23,5 +23,5 @@ pipelines:
              - mkdir upload
              - tar -xf packaged/package-${BITBUCKET_BUILD_NUMBER}.tar.gz -C upload
              - apk update && apk add openssh rsync
-             - rsync -zrSlh --stats upload/ $USERNAME@$SERVER:app.nvestbank
-             - ssh  $USERNAME@$SERVER "./app.nvestbank.sh"
+             - rsync -zrSlh --stats upload/ $USERNAME@$SERVER:icedvault
+             - ssh  $USERNAME@$SERVER "./icedvault.sh"
