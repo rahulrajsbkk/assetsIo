@@ -29,7 +29,7 @@ function VaultDashBoard() {
       .attr('d', (value) => myArea(value))
       .attr('fill', 'url(#grad1)')
       .attr('stroke', 'none');
-  }, [data]);
+  }, []);
   const [segment, setSegment] = useState(null);
 
   const chartData = [
