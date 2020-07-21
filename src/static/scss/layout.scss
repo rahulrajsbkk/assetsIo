@@ -3,9 +3,11 @@
   .side-bar {
     flex: 0 0 22%;
     max-width: 22%;
-    background: #f3f3f3;
-    padding: 30px;
+    // background: #f3f3f3;
+    border-right: 0.5px solid #e7e7e7;
+    background: white;
     .profile {
+      padding: 30px 30px 0 30px;
       img {
         width: 60px;
         height: 90px;
@@ -24,6 +26,7 @@
       }
     }
     .menu-side {
+      padding: 0 30px;
       .menu-itm {
         cursor: pointer;
         text-decoration: none !important;
@@ -41,14 +44,46 @@
         }
       }
     }
-    .last-seen-card {
-      h6 {
-        font-size: 14px;
-        color: #637282;
+    .rates-list {
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 50%;
+      max-height: 50vh;
+      height: 0;
+      overflow-y: auto;
+      .coin {
+        display: flex;
+        padding: 35px 30px;
+        border-top: 0.5px solid #e7e7e7;
+        .coin-logo {
+          margin: auto;
+          margin-left: 0;
+          height: 25px;
+        }
+        .rate {
+          margin: auto;
+          margin-right: 0;
+          text-align: center;
+          font-size: 24px;
+          small {
+            font-size: 16px;
+            color: #3ea154;
+            margin-top: auto;
+            svg {
+              height: 16px;
+            }
+          }
+        }
       }
-      h4 {
-        color: #1b2733;
-        font-weight: normal;
+    }
+    .logout {
+      border-top: 0.5px solid #e7e7e7;
+      padding: 25px 15px;
+      h5 {
+        font-size: 28px;
+        line-height: 1;
+        margin: auto;
+        text-align: center;
       }
     }
   }

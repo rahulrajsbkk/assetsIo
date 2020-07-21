@@ -1,12 +1,14 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDotCircle } from '@fortawesome/free-solid-svg-icons';
 import DonutChart from '../../DonutChart/Index';
 
 function VaultDashBoard() {
   const [segment, setSegment] = useState(null);
 
-  const totalDataChart = [
+  const chartData = [
     {
       value: 1,
       color: '#002A51',
@@ -18,27 +20,9 @@ function VaultDashBoard() {
       name: 'Pooled',
     },
   ];
-  const liquidDataChart = [
-    {
-      value: 1,
-      color: '#002A51',
-      name: 'Liquid',
-    },
-  ];
-
-  const pooledDataChart = [
-    {
-      value: 1,
-      color: '#8B8B8B',
-      name: 'Pooled',
-    },
-  ];
-
-  const [chartData, setChartData] = useState(totalDataChart);
-
   return (
-    <div className="vault-dashboard p-3">
-      <div className="card h-100 dashboard d-flex flex-column">
+    <div className="vault-dashboard">
+      <div className="h-100 dashboard d-flex flex-column">
         <div className="d-flex tab">
           <div className="tab-itm active">
             <h5>Dashboard</h5>
@@ -57,45 +41,17 @@ function VaultDashBoard() {
           </div>
         </div>
         <div className="dash-home">
-          <div className="head d-flex">
+          <div className="total-portfolio d-flex">
             <div
               role="button"
               tabIndex="0"
-              className={`col-6 total ${
-                chartData === totalDataChart ? 'active' : ''
-              }`}
-              onClick={() => setChartData(totalDataChart)}
+              className="total"
+              // onClick={() => setChartData(totalDataChart)}
             >
-              <h6>Total</h6>
+              <h6>Total Portfolio</h6>
               <h4>$1,606.00</h4>
             </div>
-            <div className="col-6 detail">
-              <div
-                role="button"
-                tabIndex="0"
-                className={`liquid ${
-                  chartData === liquidDataChart ? 'active' : ''
-                }`}
-                onClick={() => setChartData(liquidDataChart)}
-              >
-                <h6>Liquid</h6>
-                <h3>$1,606.00</h3>
-              </div>
-              <div
-                role="button"
-                tabIndex="0"
-                className={`pooled ${
-                  chartData === liquidDataChart ? 'active' : ''
-                }`}
-                onClick={() => setChartData(pooledDataChart)}
-              >
-                <h6>Pooled</h6>
-                <h3>$0.00</h3>
-              </div>
-            </div>
-          </div>
-          <div className="chart-section">
-            <div className="col-6 p-0 d-flex">
+            <div className="chart-section">
               <div className="chart">
                 <div className="chart-name">
                   <h6 className="m-auto text-center">
@@ -115,8 +71,6 @@ function VaultDashBoard() {
                   segment={segment}
                 />
               </div>
-            </div>
-            <div className="col-6 d-flex">
               <div
                 className="cards-list"
                 style={{
@@ -140,37 +94,29 @@ function VaultDashBoard() {
                   }}
                 >
                   <div className="indicator">
-                    <h6 className="my-4">
-                      <svg
-                        className="svg-inline--fa fa-dot-circle fa-w-16 "
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512"
+                    <h6 className="my-3 d-flex">
+                      <FontAwesomeIcon
+                        className="my-auto"
+                        icon={faDotCircle}
                         style={{ color: 'rgb(0, 42, 81)' }}
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm80 248c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80z"
-                        />
-                      </svg>
-                      Liquid&nbsp;
-                      <span>(100.0%)</span>
+                      />
+                      <h6 className="m-0">
+                        Liquid&nbsp;
+                        <br />
+                        <span>(100.0%)</span>
+                      </h6>
                     </h6>
-                    <h6 className="my-4">
-                      <svg
-                        className="svg-inline--fa fa-dot-circle fa-w-16 "
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512"
+                    <h6 className="my-3 d-flex">
+                      <FontAwesomeIcon
+                        className="my-auto"
+                        icon={faDotCircle}
                         style={{ color: 'rgb(139, 139, 139)' }}
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm80 248c0 44.112-35.888 80-80 80s-80-35.888-80-80 35.888-80 80-80 80 35.888 80 80z"
-                        />
-                      </svg>
-                      Pooled&nbsp;
-                      <span>(0.0%)</span>
+                      />
+                      <h6 className="m-0">
+                        Pooled&nbsp;
+                        <br />
+                        <span>(0.0%)</span>
+                      </h6>
                     </h6>
                   </div>
                 </div>
@@ -210,6 +156,7 @@ function VaultDashBoard() {
               </div>
             </div>
           </div>
+          <div className="chart-area">.</div>
         </div>
       </div>
     </div>

@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
-import bitcoin from '../../static/images/vault-methods/bitcoin.svg';
-import vault from '../../static/images/vault-methods/vault.svg';
-import FundVault from './VaultFundWithdraw/FundVault';
+import bitcoin from '../../../static/images/vault-methods/bitcoin.svg';
+import vault from '../../../static/images/vault-methods/vault.svg';
+import FundVault from './FundVault';
 
 function VaultFundWithdraw() {
   const [tab, setTab] = useState('Fund');
