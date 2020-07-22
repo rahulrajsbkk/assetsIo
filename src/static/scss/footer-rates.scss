@@ -116,6 +116,9 @@
     }
   }
   @include mdportrait {
+    height: 100px;
+    flex: 0 0 100px;
+    max-height: 100px;
     .current-rates {
       display: flex;
       flex-direction: row;
@@ -134,6 +137,26 @@
     }
     .carousel-wrapper {
       display: block;
+      .carousel-rates {
+        .coin {
+          .coin-logo {
+            img {
+              height: 33%;
+            }
+          }
+          .rate-text {
+            .rate {
+              font-size: 22px;
+              small {
+                font-size: 12px;
+                svg {
+                  height: 12px;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
