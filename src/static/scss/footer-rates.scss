@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   .current-rates {
-    padding: 12px;
+    padding: 15 px;
     background: #4d4d4d;
     text-align: center;
     display: flex;
@@ -14,6 +14,7 @@
       font-size: 22px;
       color: white;
       line-height: 1;
+      margin: 0;
     }
   }
   .rates-list {
@@ -26,9 +27,9 @@
       border-left: 0.5px solid #e7e7e7;
       .coin-logo {
         display: flex;
-        svg {
+        img {
           margin: auto;
-          height: 40%;
+          height: 30%;
         }
       }
       .rate-text {
@@ -36,14 +37,21 @@
         .rate {
           margin: auto;
           text-align: center;
-          font-size: 30px;
+          font-size: 27px;
           small {
-            font-size: 16px;
+            font-size: 14px;
             color: #3ea154;
             margin-top: auto;
             svg {
-              height: 16px;
+              height: 14px;
             }
+          }
+        }
+      }
+      &:first-child {
+        .coin-logo {
+          img {
+            height: 25%;
           }
         }
       }

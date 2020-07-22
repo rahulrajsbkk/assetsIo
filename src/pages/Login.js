@@ -3,7 +3,7 @@ import React, { useState, useContext } from 'react';
 import Fade from 'react-reveal/Fade';
 import Zoom from 'react-reveal/Zoom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import Axios from 'axios';
 import logoText from '../static/images/logo-text.svg';
 import { BankContext } from '../context/Context';
@@ -76,17 +76,16 @@ function Login({ history }) {
                   <label>Password</label>
                 </div>
               </div>
-              <div className="d-flex px-2 p-0">
+              <div className="d-flex p-0">
                 <button
                   type="submit"
                   disabled={loading}
                   className="btn btn-unbank"
                 >
-                  {loading ? (
-                    <FontAwesomeIcon icon={faSpinner} spin />
-                  ) : (
-                    'UnBank'
-                  )}
+                  <FontAwesomeIcon
+                    icon={loading ? faSpinner : faPaperPlane}
+                    spin={loading}
+                  />
                 </button>
               </div>
             </form>
