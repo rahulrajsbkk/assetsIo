@@ -31,6 +31,10 @@ function BankContextProvider({ children }) {
     setIdToken(paramIdToken);
   };
 
+  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
+  const [profileImg, setProfileImg] = useState('');
+
   useEffect(() => {
     if (email && idToken) {
       Axios.post('https://comms.globalxchange.com/coin/verifyToken', {
@@ -38,6 +42,17 @@ function BankContextProvider({ children }) {
         token: idToken,
       }).then((res) => (res.data.status ? '' : login('', '', '')));
     }
+
+    Axios.post('https://comms.globalxchange.com/get_affiliate_data_no_logs', {
+      email: email,
+    }).then((res) => {
+      const data = res.data[0];
+      if (data) {
+        setUsername(data.username);
+        setName(data.name);
+        setProfileImg(data.profile_img);
+      }
+    });
   }, [email, idToken]);
 
   const [toastShow, setToastShow] = useState(false);
@@ -51,7 +66,9 @@ function BankContextProvider({ children }) {
   };
 
   return (
-    <BankContext.Provider value={{ login, email, tostShowOn }}>
+    <BankContext.Provider
+      value={{ login, email, tostShowOn, username, name, profileImg }}
+    >
       {children}
       <Toast show={toastShow} message={toastMessage} />
     </BankContext.Provider>

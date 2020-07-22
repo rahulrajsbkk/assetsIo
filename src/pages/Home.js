@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCaretDown,
@@ -13,9 +13,10 @@ import {
 import BalanceChart from '../components/Home/BalanceChart';
 import Layout from '../Layout/Index';
 
-function Home() {
+function Home({ match }) {
+  const [openSidebar, setOpenSidebar] = useState(true);
   return (
-    <Layout active="accounts" className="home">
+    <Layout active={`transactions-${match.params.type}`} className="home">
       <div className="main-content d-flex flex-column p-5">
         <div className="balance d-flex flex-column">
           <h6 className="my-auto">Your Balance</h6>
@@ -299,50 +300,57 @@ function Home() {
           </div>
         </div>
       </div>
-
-      <div className="side-bar-right d-flex flex-column">
-        <FontAwesomeIcon className="close ml-auto" icon={faTimes} />
-        <h2 className="mx-auto my-4">$ 10,923</h2>
-        <h5 className="mx-auto mt-4 mb-2">Monoprix</h5>
-        <h6 className="mx-auto my-1">Alimentary</h6>
-        <div className="card payment-card px-2 py-1 mt-5 mx-auto">
-          Payment By Card
-        </div>
-        <div className="chart d-flex flex-grow-1">
-          <BalanceChart />
-        </div>
-        <div className="card mb-2 credit-card p-3 d-flex flex-row">
-          <div className="d-flex card-icon">
-            <FontAwesomeIcon icon={faCreditCard} />
-          </div>
-          <div className="card-dtail mx-2">
-            <h5>Credit Card</h5>
-            <h6>XXX5904</h6>
-          </div>
-          <div className="remark my-auto ml-auto">Socite Genarale</div>
-        </div>
-        <div className="card notes p-3 mb-2">
-          <h5 className="d-flex">
-            Add Note
-            <span>
-              <FontAwesomeIcon icon={faPencilAlt} />
-            </span>
-          </h5>
-          <textarea
-            placeholder="Type ypur text here"
-            rows="5"
-            className="note-area"
+      {openSidebar ? (
+        <div className="side-bar-right d-flex flex-column">
+          <FontAwesomeIcon
+            className="close ml-auto"
+            icon={faTimes}
+            onClick={() => setOpenSidebar(false)}
           />
+          <h2 className="mx-auto my-4">$ 10,923</h2>
+          <h5 className="mx-auto mt-4 mb-2">Monoprix</h5>
+          <h6 className="mx-auto my-1">Alimentary</h6>
+          <div className="card payment-card px-2 py-1 mt-5 mx-auto">
+            Payment By Card
+          </div>
+          <div className="chart d-flex flex-grow-1">
+            <BalanceChart />
+          </div>
+          <div className="card mb-2 credit-card p-3 d-flex flex-row">
+            <div className="d-flex card-icon">
+              <FontAwesomeIcon icon={faCreditCard} />
+            </div>
+            <div className="card-dtail mx-2">
+              <h5>Credit Card</h5>
+              <h6>XXX5904</h6>
+            </div>
+            <div className="remark my-auto ml-auto">Socite Genarale</div>
+          </div>
+          <div className="card notes p-3 mb-2">
+            <h5 className="d-flex">
+              Add Note
+              <span>
+                <FontAwesomeIcon icon={faPencilAlt} />
+              </span>
+            </h5>
+            <textarea
+              placeholder="Type ypur text here"
+              rows="5"
+              className="note-area"
+            />
+          </div>
+          <div className="card reciept p-3">
+            <h5 className="d-flex mb-2">
+              Add reciept
+              <span>
+                <FontAwesomeIcon icon={faPaperclip} />
+              </span>
+            </h5>
+          </div>
         </div>
-        <div className="card reciept p-3">
-          <h5 className="d-flex mb-2">
-            Add reciept
-            <span>
-              <FontAwesomeIcon icon={faPaperclip} />
-            </span>
-          </h5>
-        </div>
-      </div>
+      ) : (
+        ''
+      )}
     </Layout>
   );
 }

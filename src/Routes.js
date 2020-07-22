@@ -7,9 +7,9 @@ import Vaults from './pages/Vaults';
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/" component={Home} />
+      <Route exact path="/" component={Vaults} />
       <Route exact path="/login" component={Login} />
-      <Route exact path="/vaults" component={Vaults} />
+      <Route exact path="/transactions/:type" component={Home} />
     </Switch>
   );
 }

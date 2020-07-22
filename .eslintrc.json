@@ -34,6 +34,7 @@
       }
     ],
     "comma-dangle": ["error", "only-multiline"],
-    "react/prop-types": [0]
+    "react/prop-types": [0],
+    "linebreak-style": ["windows"]
   }
 }

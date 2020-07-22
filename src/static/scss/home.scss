@@ -2,8 +2,7 @@
   flex-grow: 1;
   display: flex;
   .main-content {
-    flex: 0 0 70%;
-    max-width: 70%;
+    flex: 1;
     background: #ffffff;
     .balance {
       h6 {
