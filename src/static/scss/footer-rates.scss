@@ -16,6 +16,9 @@
       line-height: 1;
       margin: 0;
     }
+    img {
+      display: none;
+    }
   }
   .rates-list {
     display: flex;
@@ -48,6 +51,89 @@
           }
         }
       }
+    }
+  }
+  .carousel-wrapper {
+    display: none;
+    overflow: hidden;
+    position: relative;
+    flex: 1;
+    .carousel-rates {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      perspective: 1000px;
+      transform-style: preserve-3d;
+      .coin {
+        transition: transform 0.4s ease;
+        background-color: white;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        .coin-logo {
+          display: flex;
+          img {
+            margin: auto;
+            height: 30%;
+          }
+        }
+        .rate-text {
+          display: flex;
+          .rate {
+            margin: auto;
+            text-align: center;
+            font-size: 27px;
+            small {
+              font-size: 14px;
+              color: #3ea154;
+              margin-top: auto;
+              svg {
+                height: 14px;
+              }
+            }
+          }
+        }
+        &.prev {
+          transform: translate3d(50%, 0, -300px);
+        }
+
+        &.next {
+          transform: translate3d(-50%, 0, -300px);
+        }
+
+        &.active {
+          transform: translate3d(0, 0, 0);
+        }
+        &.inactive {
+          transform: translate3d(0, 0, -500px);
+        }
+      }
+    }
+  }
+  @include mdportrait {
+    .current-rates {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 10px;
+      h5 {
+        font-size: 16px;
+      }
+      img {
+        display: block;
+        height: 16px;
+      }
+    }
+    .rates-list {
+      display: none;
+    }
+    .carousel-wrapper {
+      display: block;
     }
   }
 }

@@ -10,6 +10,9 @@ $screen-lg-min: 992px;
 // Large tablets and desktops
 $screen-xl-min: 1200px;
 
+// Custom Res
+$screen-xxl-min: 1400px;
+
 // Small devices
 @mixin sm {
   @media (max-width: #{$screen-sm-min}) {
@@ -17,9 +20,37 @@ $screen-xl-min: 1200px;
   }
 }
 
+// Small devices
+@mixin smlscape {
+  @media (max-width: #{$screen-sm-min}) and (orientation:landscape) {
+    @content;
+  }
+}
+
+// Small devices
+@mixin smportrait {
+  @media (max-width: #{$screen-sm-min}) and (orientation:portrait) {
+    @content;
+  }
+}
+
 // Medium devices
 @mixin md {
-  @media (max-width: #{$screen-md-min}) {
+  @media (max-width: #{$screen-md-min}) and (orientation:landscape) {
+    @content;
+  }
+}
+
+// Medium devices
+@mixin mdportrait {
+  @media (max-width: #{$screen-md-min}) and (orientation:portrait) {
+    @content;
+  }
+}
+
+// Medium devices
+@mixin mdlscape {
+  @media (max-width: #{$screen-md-min}) and (orientation:landscape) {
     @content;
   }
 }
@@ -34,6 +65,13 @@ $screen-xl-min: 1200px;
 // Extra large devices
 @mixin xl {
   @media (max-width: #{$screen-xl-min}) {
+    @content;
+  }
+}
+
+// Extra large devices
+@mixin xxl {
+  @media (max-width: #{$screen-xxl-min}) {
     @content;
   }
 }

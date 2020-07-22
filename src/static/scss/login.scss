@@ -44,7 +44,7 @@ $width: 500px;
     .btn-unbank {
       margin-top: auto;
       margin-bottom: auto;
-      background-color: #182542;
+      background-color: $primary-color;
       color: white;
     }
     input[type='password'],
