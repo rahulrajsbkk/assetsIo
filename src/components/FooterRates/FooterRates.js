@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 import btc from '../../static/images/vault-methods/bitcoin.svg';
 import eth from '../../static/images/vault-methods/ethereum.svg';
 import xrp from '../../static/images/vault-methods/ripple.svg';
@@ -6,7 +7,7 @@ import usdt from '../../static/images/vault-methods/tether.svg';
 import next from '../../static/images/next.svg';
 import prev from '../../static/images/prev.svg';
 
-const coins = [{ img: btc }, { img: eth }, { img: xrp }, { img: usdt }];
+const coins = [{ img: btc }, { img: eth }, { img: usdt }, { img: xrp }];
 function FooterRates() {
   const [index, setIndex] = useState(0);
 
@@ -26,6 +27,24 @@ function FooterRates() {
     }
     return false;
   };
+  const [ratesRes, setRatesRes] = useState([]);
+  useEffect(() => {
+    Axios.get(
+      'https://comms.globalxchange.com/coin/vault/earnings/getinterestrates'
+    ).then((res) => {
+      const { data } = res;
+      if (data.status) {
+        setRatesRes(data.rates);
+      }
+    });
+  }, []);
+
+  const formatPercent = (num) =>
+    new Intl.NumberFormat('en-US', {
+      maximumFractionDigits: 1,
+      minimumFractionDigits: 1,
+    }).format(num);
+
   const arrow = (
     <svg viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -56,7 +75,10 @@ function FooterRates() {
           </div>
           <div className="col-6 rate-text">
             <div className="rate">
-              12.3%
+              {ratesRes[0] && ratesRes[0].tier1.rate
+                ? formatPercent(ratesRes[0].tier1.rate)
+                : '0.0'}
+              %
               <small>
                 (1.2%)
                 {arrow}
@@ -70,7 +92,10 @@ function FooterRates() {
           </div>
           <div className="col-6 rate-text">
             <div className="rate">
-              12.3%
+              {ratesRes[1] && ratesRes[1].tier1.rate
+                ? formatPercent(ratesRes[1].tier1.rate)
+                : '0.0'}
+              %
               <small>
                 (1.2%)
                 {arrow}
@@ -84,7 +109,10 @@ function FooterRates() {
           </div>
           <div className="col-6 rate-text">
             <div className="rate">
-              12.3%
+              {ratesRes[2] && ratesRes[2].tier1.rate
+                ? formatPercent(ratesRes[2].tier1.rate)
+                : '0.0'}
+              %
               <small>
                 (1.2%)
                 {arrow}
@@ -98,7 +126,10 @@ function FooterRates() {
           </div>
           <div className="col-6 rate-text">
             <div className="rate">
-              12.3%
+              {ratesRes[3] && ratesRes[3].tier1.rate
+                ? formatPercent(ratesRes[3].tier1.rate)
+                : '0.0'}
+              %
               <small>
                 (1.2%)
                 {arrow}
@@ -127,7 +158,10 @@ function FooterRates() {
               </div>
               <div className="col-6 rate-text">
                 <div className="rate">
-                  12.3%
+                  {ratesRes[i] && ratesRes[i].tier1.rate
+                    ? formatPercent(ratesRes[i].tier1.rate)
+                    : '0.0'}
+                  %
                   <small>
                     (1.2%)
                     {arrow}

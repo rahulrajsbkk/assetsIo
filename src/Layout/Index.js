@@ -1,11 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCaretDown,
-  faCreditCard,
-  faChartLine,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 
 import { BankContext } from '../context/Context';
@@ -59,7 +55,7 @@ function Layout({ children, active, className }) {
               className={`menu-itm${active === 'vaults' ? ' active' : ''}`}
             >
               <h5 className="d-flex py-3 menu-itm">
-                <img src={portfolio} />
+                <img src={portfolio} alt="" />
                 <span className="my-auto">Portfolio</span>
               </h5>
             </Link>
