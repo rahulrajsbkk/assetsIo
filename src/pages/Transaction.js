@@ -10,13 +10,16 @@ import {
   faPencilAlt,
   faPaperclip,
 } from '@fortawesome/free-solid-svg-icons';
-import BalanceChart from '../components/Home/BalanceChart';
+import BalanceChart from '../components/Transaction/BalanceChart';
 import Layout from '../Layout/Index';
 
-function Home({ match }) {
+function Transaction({ match }) {
   const [openSidebar, setOpenSidebar] = useState(true);
   return (
-    <Layout active={`transactions-${match.params.type}`} className="home">
+    <Layout
+      active={`transactions-${match.params.type}`}
+      className="transaction"
+    >
       <div className="main-content d-flex flex-column p-5">
         <div className="balance d-flex flex-column">
           <h6 className="my-auto">Your Balance</h6>
@@ -355,4 +358,4 @@ function Home({ match }) {
   );
 }
 
-export default Home;
+export default Transaction;

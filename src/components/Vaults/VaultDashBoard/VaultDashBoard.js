@@ -64,7 +64,7 @@ function VaultDashBoard() {
             <h5>Trades</h5>
           </div>
         </div>
-        <div className="dash-home">
+        <div className="dash-transaction">
           <div className="total-portfolio d-flex">
             <div
               role="button"

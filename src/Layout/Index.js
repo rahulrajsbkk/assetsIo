@@ -45,7 +45,7 @@ function Layout({ children, active, className }) {
   const [openSubMenu, setOpenSubMenu] = useState(false);
   if (email && email !== '') {
     return (
-      <div className="d-flex home-layout">
+      <div className="d-flex transaction-layout">
         <div className="side-bar d-flex flex-column">
           <div className="profile d-flex">
             <img
