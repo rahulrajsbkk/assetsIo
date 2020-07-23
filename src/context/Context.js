@@ -65,9 +65,21 @@ function BankContextProvider({ children }) {
     }, 3000);
   };
 
+  const [ratesRes, setRatesRes] = useState([]);
+  useEffect(() => {
+    Axios.get(
+      'https://comms.globalxchange.com/coin/vault/earnings/getinterestrates'
+    ).then((res) => {
+      const { data } = res;
+      if (data.status) {
+        setRatesRes(data.rates);
+      }
+    });
+  }, []);
+
   return (
     <BankContext.Provider
-      value={{ login, email, tostShowOn, username, name, profileImg }}
+      value={{ login, email, tostShowOn, username, name, profileImg, ratesRes }}
     >
       {children}
       <Toast show={toastShow} message={toastMessage} />

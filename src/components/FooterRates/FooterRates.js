@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Axios from 'axios';
 import btc from '../../static/images/vault-methods/bitcoin.svg';
 import eth from '../../static/images/vault-methods/ethereum.svg';
@@ -6,6 +6,7 @@ import xrp from '../../static/images/vault-methods/ripple.svg';
 import usdt from '../../static/images/vault-methods/tether.svg';
 import next from '../../static/images/next.svg';
 import prev from '../../static/images/prev.svg';
+import { BankContext } from '../../context/Context';
 
 const coins = [{ img: btc }, { img: eth }, { img: usdt }, { img: xrp }];
 function FooterRates() {
@@ -27,17 +28,8 @@ function FooterRates() {
     }
     return false;
   };
-  const [ratesRes, setRatesRes] = useState([]);
-  useEffect(() => {
-    Axios.get(
-      'https://comms.globalxchange.com/coin/vault/earnings/getinterestrates'
-    ).then((res) => {
-      const { data } = res;
-      if (data.status) {
-        setRatesRes(data.rates);
-      }
-    });
-  }, []);
+
+  const { ratesRes } = useContext(BankContext);
 
   const formatPercent = (num) =>
     new Intl.NumberFormat('en-US', {

@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Scrollbars } from 'react-custom-scrollbars';
 import {
   faCaretDown,
   faCaretUp,
@@ -21,7 +22,9 @@ import portfolio from '../static/images/sidebar-icons/portfolio.svg';
 import withdraw from '../static/images/sidebar-icons/withdraw.svg';
 
 function Layout({ children, active, className }) {
-  const { login, email, username, name, profileImg } = useContext(BankContext);
+  const { login, email, username, name, profileImg, ratesRes } = useContext(
+    BankContext
+  );
   const history = useHistory();
   const arrow = (
     <svg viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,6 +34,13 @@ function Layout({ children, active, className }) {
       />
     </svg>
   );
+
+  const formatPercent = (num) =>
+    new Intl.NumberFormat('en-US', {
+      maximumFractionDigits: 1,
+      minimumFractionDigits: 1,
+    }).format(num);
+
   const [openSubMenu, setOpenSubMenu] = useState(false);
   if (email && email !== '') {
     return (
@@ -50,7 +60,7 @@ function Layout({ children, active, className }) {
               <h6>Platnium</h6>
             </div>
           </div>
-          <div className="d-flex flex-column menu-side my-5">
+          <div className="d-flex flex-column menu-side mt-5">
             <Link
               to="/"
               className={`menu-itm${active === 'vaults' ? ' active' : ''}`}
@@ -107,90 +117,119 @@ function Layout({ children, active, className }) {
               ''
             )}
           </div>
-          <div className="flex-grow-1 d-flex flex-column position-relative rate-list-wrapper">
-            <div className="rates-list">
-              <div className="coin">
-                <img className="coin-logo" src={btc} alt="" />
-                <div className="rate">
-                  12.3%
-                  <small>
-                    (1.2%)
-                    {arrow}
-                  </small>
-                </div>
-              </div>
-              <div className="coin">
-                <img className="coin-logo" src={eth} alt="" />
-                <div className="rate">
-                  12.3%
-                  <small>
-                    (1.2%)
-                    {arrow}
-                  </small>
-                </div>
-              </div>
-              <div className="coin">
-                <img className="coin-logo" src={xrp} alt="" />
-                <div className="rate">
-                  12.3%
-                  <small>
-                    (1.2%)
-                    {arrow}
-                  </small>
-                </div>
-              </div>
-              <div className="coin">
-                <img className="coin-logo" src={usdt} alt="" />
-                <div className="rate">
-                  12.3%
-                  <small>
-                    (1.2%)
-                    {arrow}
-                  </small>
-                </div>
-              </div>
-              <div className="coin">
-                <img className="coin-logo" src={btc} alt="" />
-                <div className="rate">
-                  12.3%
-                  <small>
-                    (1.2%)
-                    {arrow}
-                  </small>
-                </div>
-              </div>
-              <div className="coin">
-                <img className="coin-logo" src={eth} alt="" />
-                <div className="rate">
-                  12.3%
-                  <small>
-                    (1.2%)
-                    {arrow}
-                  </small>
-                </div>
-              </div>
-              <div className="coin">
-                <img className="coin-logo" src={xrp} alt="" />
-                <div className="rate">
-                  12.3%
-                  <small>
-                    (1.2%)
-                    {arrow}
-                  </small>
-                </div>
-              </div>
-              <div className="coin">
-                <img className="coin-logo" src={usdt} alt="" />
-                <div className="rate">
-                  12.3%
-                  <small>
-                    (1.2%)
-                    {arrow}
-                  </small>
-                </div>
+          <Scrollbars
+            className="rate-list-wrapper"
+            renderTrackVertical={(props) => (
+              <div {...props} className="d-none" />
+            )}
+            renderThumbVertical={(props) => (
+              <div {...props} className="d-none" />
+            )}
+            renderView={(props) => <div {...props} className="rates-list" />}
+          >
+            <div className="coin">
+              <img className="coin-logo" src={btc} alt="" />
+              <div className="rate">
+                {ratesRes[0] && ratesRes[0].tier1.rate
+                  ? formatPercent(ratesRes[0].tier1.rate)
+                  : '0.0'}
+                %
+                <small>
+                  (1.2%)
+                  {arrow}
+                </small>
               </div>
             </div>
-          </div>
+            <div className="coin">
+              <img className="coin-logo" src={eth} alt="" />
+              <div className="rate">
+                {ratesRes[1] && ratesRes[1].tier1.rate
+                  ? formatPercent(ratesRes[1].tier1.rate)
+                  : '0.0'}
+                %
+                <small>
+                  (1.2%)
+                  {arrow}
+                </small>
+              </div>
+            </div>
+            <div className="coin">
+              <img className="coin-logo" src={usdt} alt="" />
+              <div className="rate">
+                {ratesRes[2] && ratesRes[2].tier1.rate
+                  ? formatPercent(ratesRes[2].tier1.rate)
+                  : '0.0'}
+                %
+                <small>
+                  (1.2%)
+                  {arrow}
+                </small>
+              </div>
+            </div>
+            <div className="coin">
+              <img className="coin-logo" src={xrp} alt="" />
+              <div className="rate">
+                {ratesRes[3] && ratesRes[3].tier1.rate
+                  ? formatPercent(ratesRes[3].tier1.rate)
+                  : '0.0'}
+                <small>
+                  (1.2%)
+                  {arrow}
+                </small>
+              </div>
+            </div>
+            <div className="coin">
+              <img className="coin-logo" src={btc} alt="" />
+              <div className="rate">
+                {ratesRes[0] && ratesRes[0].tier1.rate
+                  ? formatPercent(ratesRes[0].tier1.rate)
+                  : '0.0'}
+                %
+                <small>
+                  (1.2%)
+                  {arrow}
+                </small>
+              </div>
+            </div>
+            <div className="coin">
+              <img className="coin-logo" src={eth} alt="" />
+              <div className="rate">
+                {ratesRes[1] && ratesRes[1].tier1.rate
+                  ? formatPercent(ratesRes[1].tier1.rate)
+                  : '0.0'}
+                %
+                <small>
+                  (1.2%)
+                  {arrow}
+                </small>
+              </div>
+            </div>
+            <div className="coin">
+              <img className="coin-logo" src={usdt} alt="" />
+              <div className="rate">
+                {ratesRes[2] && ratesRes[2].tier1.rate
+                  ? formatPercent(ratesRes[2].tier1.rate)
+                  : '0.0'}
+                %
+                <small>
+                  (1.2%)
+                  {arrow}
+                </small>
+              </div>
+            </div>
+            <div className="coin">
+              <img className="coin-logo" src={xrp} alt="" />
+              <div className="rate">
+                {ratesRes[3] && ratesRes[3].tier1.rate
+                  ? formatPercent(ratesRes[3].tier1.rate)
+                  : '0.0'}
+                <small>
+                  (1.2%)
+                  {arrow}
+                </small>
+              </div>
+            </div>
+          </Scrollbars>
           <div
             onClick={() => login()}
             role="button"
