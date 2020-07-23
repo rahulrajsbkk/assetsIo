@@ -20,6 +20,7 @@ import card from '../static/images/sidebar-icons/card.svg';
 import deposit from '../static/images/sidebar-icons/deposit.svg';
 import portfolio from '../static/images/sidebar-icons/portfolio.svg';
 import withdraw from '../static/images/sidebar-icons/withdraw.svg';
+import appstore from '../static/images/sidebar-icons/appstore.svg';
 
 function Layout({ children, active, className }) {
   const { login, email, username, name, profileImg, ratesRes } = useContext(
@@ -60,7 +61,7 @@ function Layout({ children, active, className }) {
               <h6>Platnium</h6>
             </div>
           </div>
-          <div className="d-flex flex-column menu-side mt-5">
+          <div className="d-flex flex-column menu-side mt-1">
             <Link
               to="/"
               className={`menu-itm${active === 'vaults' ? ' active' : ''}`}
@@ -116,6 +117,15 @@ function Layout({ children, active, className }) {
             ) : (
               ''
             )}
+            <Link
+              to="/mobile-apps"
+              className={`menu-itm${active === 'mobileApps' ? ' active' : ''}`}
+            >
+              <h5 className="d-flex py-3 menu-itm">
+                <img src={appstore} alt="" />
+                <span className="my-auto">Mobile Apps</span>
+              </h5>
+            </Link>
           </div>
           <Scrollbars
             className="rate-list-wrapper"

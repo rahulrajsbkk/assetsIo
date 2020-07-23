@@ -1,0 +1,39 @@
+import React, { useState } from 'react';
+import Layout from '../Layout/Index';
+import logo from '../static/images/logo-text.svg';
+import android from '../static/images/android.svg';
+import ios from '../static/images/ios.svg';
+
+function MobileApps({ match }) {
+  const [openSidebar, setOpenSidebar] = useState(true);
+  return (
+    <Layout active="mobileApps" className="mobileApps">
+      <div className="logo-n-title">
+        <div className="logo">
+          <img src={logo} alt="" />
+        </div>
+        <div className="title">Ice</div>
+      </div>
+      <div className="download">
+        <h6>Download The App</h6>
+        <div className="buttons">
+          <a
+            href="https://sushil.brain.stream/#/icedJuly23"
+            target="_blank"
+            className="btn-app"
+          >
+            <img src={android} alt="" />
+            Android
+          </a>
+          <div className="space" />
+          <div className="btn-app">
+            <img src={ios} alt="" />
+            IOS
+          </div>
+        </div>
+      </div>
+    </Layout>
+  );
+}
+
+export default MobileApps;
