@@ -38,7 +38,7 @@
         .total-portfolio {
           flex: 0 0 30%;
           flex-direction: column;
-          padding: 100px 60px;
+          padding: 80px 0 80px 60px;
           .total {
             cursor: pointer;
             margin: auto 0;
@@ -87,7 +87,7 @@
                 h6 {
                   font-weight: bold;
                   color: $primary-color;
-                  font-size: 24px;
+                  font-size: 18px;
                   line-height: 1;
                 }
               }
@@ -992,7 +992,7 @@
     .head {
       font-weight: 700;
       color: #464b4e;
-      font-size: 28px;
+      font-size: 26px;
       line-height: 1;
       padding: 20px 60px;
       border-bottom: 0.5px solid $vault-border-color;
@@ -1017,6 +1017,7 @@
           flex-grow: 1;
           align-items: center;
           .card {
+            opacity: 0.2;
             padding: 30px 10px;
             flex: 1;
             margin-right: 30px;
@@ -1034,6 +1035,9 @@
             .value {
               color: #828282;
               font-size: 20px;
+            }
+            &.true {
+              opacity: 1;
             }
           }
         }
@@ -1057,7 +1061,6 @@
           .days {
             border: 0.5px solid $vault-border-color;
             border-radius: 8px;
-            overflow: hidden;
             height: 80px;
             display: flex;
             input {
@@ -1067,14 +1070,52 @@
               padding: 0 50px;
               font-size: 24px;
             }
-            .btn-days {
-              background: $primary-color;
-              display: flex;
-              align-items: center;
-              padding: 0 30px;
-              h6 {
-                font-size: 26px;
-                color: white;
+            .btn-days-wrapper {
+              width: 190px;
+              height: 78px;
+              position: relative;
+              .btn-days {
+                border-radius: 0 8px 8px 0;
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: $primary-color;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 0 30px;
+                h5 {
+                  cursor: pointer;
+                  width: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  height: 78px;
+                  font-size: 26px;
+                  color: white;
+                  margin: 0;
+                }
+                h6 {
+                  cursor: pointer;
+                  display: none;
+                  width: 100%;
+                  align-items: center;
+                  justify-content: space-between;
+                  height: 40px;
+                  font-size: 20px;
+                  color: white;
+                  margin: 0;
+                }
+                &.true {
+                  border-radius: 0 8px 8px 8px;
+                  h5 {
+                    margin-bottom: -15px;
+                  }
+                  h6 {
+                    display: flex;
+                  }
+                }
               }
             }
           }
@@ -1083,12 +1124,19 @@
           background-color: $primary-color;
           padding: 20px 0;
           h5 {
+            display: flex;
             color: white;
             text-align: center;
             font-size: 24px;
             font-weight: 600;
             line-height: 1;
             margin: 0;
+            justify-content: center;
+            align-items: center;
+            img {
+              margin-left: 15px;
+              height: 24px;
+            }
           }
         }
       }

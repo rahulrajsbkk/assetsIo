@@ -9,6 +9,7 @@ function Routes() {
     <Switch>
       <Route exact path="/" component={Vaults} />
       <Route exact path="/login" component={Login} />
+      <Route exact path="/transactions" component={Home} />
       <Route exact path="/transactions/:type" component={Home} />
     </Switch>
   );

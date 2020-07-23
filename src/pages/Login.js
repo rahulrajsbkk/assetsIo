@@ -5,10 +5,11 @@ import Zoom from 'react-reveal/Zoom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import Axios from 'axios';
+import Lottie from 'react-lottie';
 import logoText from '../static/images/logo-text.svg';
 import { BankContext } from '../context/Context';
 import FooterRates from '../components/FooterRates/FooterRates';
-
+import * as animationData from '../static/animations/cpu-loading.json';
 function Login({ history }) {
   const [emailid, setEmailId] = useState('');
   const [password, setPassword] = useState('');
@@ -41,6 +42,15 @@ function Login({ history }) {
     } else {
       tostShowOn('Enter Valid EmailId');
     }
+  };
+
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData.default,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
   };
 
   return (
@@ -96,6 +106,13 @@ function Login({ history }) {
         </Fade>
       </div>
       <FooterRates />
+      {loading ? (
+        <div className="loading-login">
+          <Lottie options={defaultOptions} height={300} width={300} />
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 }

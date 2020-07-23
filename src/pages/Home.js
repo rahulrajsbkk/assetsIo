@@ -300,7 +300,7 @@ function Home({ match }) {
           </div>
         </div>
       </div>
-      {openSidebar ? (
+      {openSidebar && match.params.type !== undefined ? (
         <div className="side-bar-right d-flex flex-column">
           <FontAwesomeIcon
             className="close ml-auto"

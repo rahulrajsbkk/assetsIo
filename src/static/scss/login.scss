@@ -6,9 +6,6 @@ $width: 500px;
 
 .login-page {
   min-height: 100vh;
-  // background-image: url('../images/bg-login.svg');
-  background-size: cover;
-  background-position: bottom;
   .img-logo {
     width: 30%;
   }
@@ -83,6 +80,18 @@ $width: 500px;
       left: 5px;
       top: 10px;
       transition: $trans-time ease all;
+    }
+  }
+  .loading-login {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    display: flex;
+    > div {
+      margin: auto !important;
     }
   }
 }

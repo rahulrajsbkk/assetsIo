@@ -1,7 +1,11 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCaretDown,
+  faCaretUp,
+  faLock,
+} from '@fortawesome/free-solid-svg-icons';
 import { Link, Redirect, useHistory } from 'react-router-dom';
 
 import { BankContext } from '../context/Context';
@@ -42,14 +46,11 @@ function Layout({ children, active, className }) {
               alt=""
             />
             <div className="col py-3">
-              <h5>
-                {name ? name : username}&nbsp;
-                <FontAwesomeIcon icon={faCaretDown} />
-              </h5>
+              <h5>{name ? name : username}&nbsp;</h5>
               <h6>Platnium</h6>
             </div>
           </div>
-          <div className="d-flex flex-column menu-side my-5 mx-3">
+          <div className="d-flex flex-column menu-side my-5">
             <Link
               to="/"
               className={`menu-itm${active === 'vaults' ? ' active' : ''}`}
@@ -65,16 +66,19 @@ function Layout({ children, active, className }) {
               }`}
               onClick={() => {
                 setOpenSubMenu(!openSubMenu);
-                history.push('/transactions/deposit');
+                history.push('/transactions');
               }}
             >
               <h5 className="d-flex py-3 menu-itm">
                 <img src={card} alt="" />
                 <span className="my-auto">Transactions</span>
-                <FontAwesomeIcon className="ml-auto" icon={faCaretDown} />
+                <FontAwesomeIcon
+                  className="ml-auto"
+                  icon={openSubMenu ? faCaretUp : faCaretDown}
+                />
               </h5>
             </div>
-            {openSubMenu || active.includes('transactions') ? (
+            {openSubMenu ? (
               <div className="submenu">
                 <Link
                   to="/transactions/deposit"
@@ -103,7 +107,7 @@ function Layout({ children, active, className }) {
               ''
             )}
           </div>
-          <div className="flex-grow-1 d-flex flex-column position-relative">
+          <div className="flex-grow-1 d-flex flex-column position-relative rate-list-wrapper">
             <div className="rates-list">
               <div className="coin">
                 <img className="coin-logo" src={btc} alt="" />
@@ -193,7 +197,10 @@ function Layout({ children, active, className }) {
             tabIndex="0"
             className="logout"
           >
-            <h5>Logout</h5>
+            <h5>
+              <FontAwesomeIcon icon={faLock} className="mr-2" />
+              Logout
+            </h5>
           </div>
         </div>
         <div className={`page-content ${className}`}>{children}</div>

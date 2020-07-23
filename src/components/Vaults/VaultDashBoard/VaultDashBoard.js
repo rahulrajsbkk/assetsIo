@@ -35,7 +35,7 @@ function VaultDashBoard() {
   const chartData = [
     {
       value: 1,
-      color: '#002A51',
+      color: '#464B4E',
       name: 'Liquid',
     },
     {
@@ -100,7 +100,7 @@ function VaultDashBoard() {
                 style={{
                   position: 'relative',
                   overflow: 'hidden',
-                  width: '100%',
+                  width: '80%',
                   height: '100%',
                 }}
               >
@@ -122,7 +122,7 @@ function VaultDashBoard() {
                       <FontAwesomeIcon
                         className="my-auto"
                         icon={faDotCircle}
-                        style={{ color: 'rgb(0, 42, 81)' }}
+                        style={{ color: '#464B4E' }}
                       />
                       <h6 className="m-0">
                         Liquid&nbsp;
@@ -134,7 +134,7 @@ function VaultDashBoard() {
                       <FontAwesomeIcon
                         className="my-auto"
                         icon={faDotCircle}
-                        style={{ color: 'rgb(139, 139, 139)' }}
+                        style={{ color: '#8B8B8B' }}
                       />
                       <h6 className="m-0">
                         Pooled&nbsp;

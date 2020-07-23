@@ -1,14 +1,14 @@
 .home-layout {
   min-height: 100vh;
   .side-bar {
-    font-family: 'Roboto', sans-serif;
+    // font-family: 'Roboto', sans-serif;
     flex: 0 0 22%;
     max-width: 22%;
     // background: #f3f3f3;
     border-right: 0.5px solid #e7e7e7;
     background: white;
     .profile {
-      padding: 30px 30px 0 30px;
+      padding: 30px 50px 0 50px;
       img {
         width: 60px;
         height: 60px;
@@ -26,14 +26,14 @@
       }
     }
     .menu-side {
-      padding: 0 30px;
+      padding: 0 50px;
       .menu-itm {
         cursor: pointer;
         text-decoration: none !important;
         h5 {
           line-height: 1;
           font-weight: normal;
-          color: #212529;
+          color: #637282;
           text-decoration: none;
           img {
             height: 20px;
@@ -46,6 +46,7 @@
           h5,
           svg {
             font-weight: bold;
+            color: #212529;
           }
         }
       }
@@ -53,35 +54,41 @@
         padding-left: 20px;
       }
     }
-    .rates-list {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      overflow-y: auto;
-      .coin {
+    .rate-list-wrapper {
+      margin-top: auto;
+      max-height: 420px;
+      .rates-list {
         display: flex;
-        padding: 35px 30px;
-        border-top: 0.5px solid #e7e7e7;
-        .coin-logo {
-          margin: auto;
-          margin-left: 0;
-          height: 25px;
-        }
-        .rate {
-          margin: auto;
-          margin-right: 0;
-          text-align: center;
-          font-size: 24px;
-          small {
-            font-size: 16px;
-            color: #3ea154;
-            margin-top: auto;
-            svg {
-              height: 16px;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow-y: auto;
+        .coin {
+          height: 105px;
+          min-height: 105px;
+          display: flex;
+          padding: 35px 50px;
+          border-top: 0.5px solid #e7e7e7;
+          .coin-logo {
+            margin: auto;
+            margin-left: 0;
+            height: 22px;
+          }
+          .rate {
+            margin: auto;
+            margin-right: 0;
+            text-align: center;
+            font-size: 21px;
+            small {
+              font-size: 12px;
+              color: #3ea154;
+              margin-top: auto;
+              svg {
+                height: 16px;
+              }
             }
           }
         }
@@ -91,8 +98,9 @@
       border-top: 0.5px solid #e7e7e7;
       padding: 25px 15px;
       h5 {
-        font-size: 28px;
+        font-size: 22px;
         line-height: 1;
+        font-weight: 600;
         margin: auto;
         text-align: center;
       }
