@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Zoom from 'react-reveal/Zoom';
 import Layout from '../Layout/Index';
 import logo from '../static/images/logo-text.svg';
 import android from '../static/images/android.svg';
 import ios from '../static/images/ios.svg';
 
-function MobileApps({ match }) {
-  const [openSidebar, setOpenSidebar] = useState(true);
+function MobileApps() {
   return (
     <Layout active="mobileApps" className="mobileApps">
       <Zoom>
@@ -24,6 +23,7 @@ function MobileApps({ match }) {
             href="https://sushil.brain.stream/#/icedJuly23"
             target="_blank"
             className="btn-app"
+            rel="noopener noreferrer"
           >
             <img src={android} alt="" />
             Android

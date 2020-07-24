@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
-import Axios from 'axios';
+import React, { useState, useContext } from 'react';
 import btc from '../../static/images/vault-methods/bitcoin.svg';
 import eth from '../../static/images/vault-methods/ethereum.svg';
 import xrp from '../../static/images/vault-methods/ripple.svg';

@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
 import Zoom from 'react-reveal/Zoom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -106,6 +107,9 @@ function Login({ history }) {
         </Fade>
       </div>
       <FooterRates />
+      <Link to="/markets" className="btn btn-iced-index">
+        Iced Index
+      </Link>
       {loading ? (
         <div className="loading-login">
           <Lottie options={defaultOptions} height={300} width={300} />

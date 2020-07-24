@@ -94,4 +94,13 @@ $width: 500px;
       margin: auto !important;
     }
   }
+  .btn-iced-index {
+    position: fixed;
+    right: 35px;
+    top: 25px;
+    font-size: 22px;
+    border: 1.5px solid $primary-color;
+    border-radius: 0;
+    padding: 10px 25px;
+  }
 }

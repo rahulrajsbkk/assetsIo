@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import Transaction from './pages/Transaction';
 import Vaults from './pages/Vaults';
 import MobileApps from './pages/MobileApps';
+import Markets from './pages/Markets';
 
 function Routes() {
   return (
@@ -13,6 +14,7 @@ function Routes() {
       <Route exact path="/transactions" component={Transaction} />
       <Route exact path="/transactions/:type" component={Transaction} />
       <Route exact path="/mobile-apps" component={MobileApps} />
+      <Route exact path="/markets" component={Markets} />
     </Switch>
   );
 }
