@@ -47,6 +47,7 @@
   }
   .controlls {
     height: 40px;
+    min-height: 40px;
     display: flex;
     .drop-select,
     .search {
