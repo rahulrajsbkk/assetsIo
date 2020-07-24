@@ -56,12 +56,12 @@ function Layout({ children, active, className }) {
               }
               alt=""
             />
-            <div className="col py-3">
+            <div className="col my-auto">
               <h5>{name ? name : username}&nbsp;</h5>
               <h6>Platnium</h6>
             </div>
           </div>
-          <div className="d-flex flex-column menu-side mt-1">
+          <div className="d-flex flex-column menu-side mt-5">
             <Link
               to="/"
               className={`menu-itm${active === 'vaults' ? ' active' : ''}`}

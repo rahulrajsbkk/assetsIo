@@ -1,154 +1,129 @@
 .transaction {
   flex-grow: 1;
   display: flex;
-  .main-content {
-    flex: 1;
-    background: #ffffff;
-    .balance {
-      h6 {
-        font-weight: normal;
+  flex-direction: column;
+  padding: 60px 50px 40px 80px;
+  .head {
+    height: 60px;
+    display: flex;
+    margin-bottom: 4rem;
+    .vault-n-balance {
+      line-height: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .vault {
+        font-size: 17px;
       }
-      h2 {
+      .balance {
+        font-size: 37px;
         font-weight: bold;
-        font-size: 2.2rem;
-      }
-      span {
-        cursor: pointer;
-        padding: 0.5rem 1rem;
-        font-size: 1.6rem;
-        color: #6d7d8c;
-        &:hover {
-          color: #282e33;
-        }
       }
     }
-    .drop-down-list {
-      .drop-down {
-        cursor: pointer;
-        margin-right: 10px;
-        font-size: 16px;
-        padding: 4px 16px;
-        border-radius: 20px;
-        border: 1px solid #bacbde;
-        &:hover {
-          background-color: #bacbde80;
+    .coin-select {
+      display: flex;
+      margin-left: auto;
+      .coin-wrap {
+        height: 60px;
+        width: 60px;
+        border-radius: 6px;
+        border: 1px solid $primary-color;
+        margin-left: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 40px;
+          height: 40px;
         }
-        &:last-child {
-          border: none;
-        }
-      }
-    }
-    .transaction-table {
-      height: 0;
-      flex-grow: 1;
-      overflow-y: auto;
-      h6 {
-        font-weight: bold;
-        font-size: 14px;
-      }
-      .trans-item {
-        .user-trans {
-          flex: 0 0 40%;
-          max-width: 40%;
-          h5 {
-            margin-bottom: 5px;
+        &.true {
+          background-color: $primary-color;
+          img {
+            filter: brightness(0) invert(1);
           }
-          h6 {
-            font-weight: normal;
-          }
-        }
-        .time {
-          flex: 0 0 30%;
-          max-width: 30%;
-          h6 {
-            text-align: center;
-            font-weight: normal;
-          }
-        }
-        .balance {
-          flex: 0 0 30%;
-          max-width: 30%;
-          h6 {
-            text-align-last: right;
-            font-weight: bold;
-          }
-        }
-        &:nth-child(odd) {
-          background: #f8f9fa;
         }
       }
     }
   }
-  .side-bar-right {
-    flex: 0 0 30%;
-    max-width: 30%;
-    background: #f3f3f3;
-    padding: 22px;
-    .close {
-      font-size: 1.5rem;
+  .controlls {
+    height: 40px;
+    display: flex;
+    .drop-select,
+    .search {
+      padding: 0 20px;
+      display: flex;
+      border: 1px solid $primary-color;
+      color: $primary-color;
+      border-radius: 6px;
+      justify-content: center;
+      align-items: center;
     }
-    h2 {
-      font-weight: bold;
-      font-size: 2.3rem;
-      color: #182542;
-    }
-    h5 {
-      font-weight: bold;
-      color: #637282;
-    }
-    .payment-card {
-      font-weight: bold;
-    }
-    .chart {
-      height: 300px;
-    }
-    .credit-card {
-      .card-icon {
-        height: 50px;
-        width: 50px;
-        border-radius: 25px;
-        background: #e3edff;
-        svg {
-          margin: auto;
-          font-size: 1.2rem;
-          color: #2d7dff;
-        }
+    .search {
+      input {
+        height: 100%;
+        width: 200px;
+        border: none;
+        background: none;
       }
-      .card-dtail {
+    }
+  }
+  .transaction-list {
+    margin-top: 30px;
+    .transactions {
+      .day {
+        font-size: 16px;
+        line-height: 1;
+        padding: 6px 0;
+        font-weight: bold;
+      }
+      .transaction-itm {
         display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        h5 {
+        margin-left: 20px;
+        height: 90px;
+        img {
+          background: #ffeae9;
+          height: 40px;
+          width: 40px;
+          border-radius: 20px;
+          margin: auto 20px;
+        }
+        .name-n-date {
+          height: 100%;
+          display: flex;
           line-height: 1;
-          margin: 0;
-          color: #1b2733;
+          flex-direction: column;
+          justify-content: center;
+          .name {
+            font-weight: 600;
+            font-size: 18px;
+          }
+          .date {
+            font-size: 11px;
+          }
+        }
+        .credit,
+        .debit,
+        .balance {
+          flex: 12%;
+          max-width: 12%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 18px;
+        }
+        .credit {
+          color: #3ea254;
+        }
+        .debit {
+          color: #ea0f0f;
+        }
+        .balance {
+          color: $primary-color;
           font-weight: bold;
         }
-        h6 {
-          line-height: 1;
-          margin: 0;
-          font-weight: normal;
-          color: #637282;
+        &:hover {
+          background: #f8f9fa;
         }
-      }
-      .remark {
-        color: #637282;
-      }
-    }
-    .notes,
-    .reciept {
-      h5 {
-        line-height: 1;
-        margin: 0;
-        color: #1b2733;
-        font-weight: bold;
-        justify-content: space-between;
-      }
-      .note-area {
-        outline: none !important;
-        border: none !important;
-        width: 100%;
-        resize: none;
       }
     }
   }
