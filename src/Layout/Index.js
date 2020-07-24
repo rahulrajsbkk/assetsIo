@@ -115,17 +115,18 @@ function Layout({ children, active, className }) {
                 </Link>
               </div>
             ) : (
-              ''
+              <Link
+                to="/mobile-apps"
+                className={`menu-itm${
+                  active === 'mobileApps' ? ' active' : ''
+                }`}
+              >
+                <h5 className="d-flex py-3 menu-itm">
+                  <img src={appstore} alt="" />
+                  <span className="my-auto">Mobile Apps</span>
+                </h5>
+              </Link>
             )}
-            <Link
-              to="/mobile-apps"
-              className={`menu-itm${active === 'mobileApps' ? ' active' : ''}`}
-            >
-              <h5 className="d-flex py-3 menu-itm">
-                <img src={appstore} alt="" />
-                <span className="my-auto">Mobile Apps</span>
-              </h5>
-            </Link>
           </div>
           <Scrollbars
             className="rate-list-wrapper"

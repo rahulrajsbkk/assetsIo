@@ -55,13 +55,13 @@ function VaultDashBoard() {
             <h5>Contracts</h5>
           </div>
           <div className="tab-itm">
-            <h5>Deposits</h5>
+            <h5>Mortgages</h5>
           </div>
           <div className="tab-itm">
-            <h5>Withdrawals</h5>
+            <h5>Co-Investing</h5>
           </div>
           <div className="tab-itm ant-dropdown-trigger">
-            <h5>Trades</h5>
+            <h5>Profile</h5>
           </div>
         </div>
         <div className="dash-transaction">

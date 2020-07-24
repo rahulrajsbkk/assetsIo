@@ -15,7 +15,7 @@
           cursor: pointer;
           display: flex;
           padding: 1.6vmin;
-          border-bottom: 1px solid #0000000a;
+          border-bottom: 2px solid #0000000a;
           h5 {
             color: $primary-color;
             font-size: 1.6vmin;
@@ -29,6 +29,7 @@
               font-weight: 700;
               opacity: 1;
             }
+            border-bottom: 2px solid $primary-color;
           }
         }
       }
