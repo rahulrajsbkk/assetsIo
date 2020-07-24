@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Zoom from 'react-reveal/Zoom';
 import Layout from '../Layout/Index';
 import logo from '../static/images/logo-text.svg';
 import android from '../static/images/android.svg';
@@ -8,12 +9,14 @@ function MobileApps({ match }) {
   const [openSidebar, setOpenSidebar] = useState(true);
   return (
     <Layout active="mobileApps" className="mobileApps">
-      <div className="logo-n-title">
-        <div className="logo">
-          <img src={logo} alt="" />
+      <Zoom>
+        <div className="logo-n-title">
+          <div className="logo">
+            <img src={logo} alt="" />
+          </div>
+          <div className="title">Ice</div>
         </div>
-        <div className="title">Ice</div>
-      </div>
+      </Zoom>
       <div className="download">
         <h6>Download The App</h6>
         <div className="buttons">

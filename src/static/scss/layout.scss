@@ -39,9 +39,12 @@
           color: #637282;
           text-decoration: none;
           margin-bottom: 0.25rem;
+          font-size: 17px;
           img {
-            height: 20px;
-            width: 30px;
+            height: 16px;
+            width: 20px;
+            display: flex;
+            align-content: flex-start;
             margin-right: 1.5rem;
           }
         }
