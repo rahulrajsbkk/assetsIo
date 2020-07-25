@@ -6,6 +6,43 @@
   .sidebar-markets {
     flex: 0 0 30%;
     max-width: 450px;
+    padding: 50px 50px;
+    display: flex;
+    flex-direction: column;
+    .brand {
+      display: flex;
+      img {
+        height: 60px;
+        width: 60px;
+      }
+      h3 {
+        font-size: 50px;
+        color: $primary-color;
+        margin-left: 15px;
+      }
+    }
+    .markets-side-menu {
+      display: flex;
+      flex-direction: column;
+      padding: 40px 0;
+      .menu-itm,
+      .sub-menu-itm {
+        margin-top: 24px;
+        font-weight: 600;
+        cursor: pointer;
+        &:hover,
+        &.active {
+          color: #2395ff;
+        }
+      }
+      .menu-itm {
+        font-weight: bold;
+      }
+      .sub-menu-itm {
+        margin-top: 20px;
+        margin-left: 26px;
+      }
+    }
   }
   .markets-content {
     flex: 1;
@@ -13,159 +50,201 @@
     flex-direction: column;
     padding: 50px 100px;
     .earn-intrest {
-      flex: 0 0 50%;
-    }
-    .earn-intrest-controll {
-      width: 100%;
-      height: 80px;
-      margin-bottom: 10px;
+      flex: 1;
+      height: 60vh;
       display: flex;
-      justify-content: space-between;
-      .tab-item {
-        cursor: pointer;
+      flex-direction: column;
+      .earn-intrest-controll {
+        width: 100%;
+        height: 80px;
+        margin-bottom: 10px;
         display: flex;
-        flex-direction: column;
-        width: calc((100% - 20px) / 3);
-        height: 100%;
-        background-color: white;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-        padding: 0 20px;
-        justify-content: center;
-        border-bottom: 4px solid transparent;
-        h5 {
-          font-size: 20px;
-          margin-bottom: 0.2rem;
-          color: $primary-color;
-          font-weight: 600;
-        }
-        h6 {
-          font-size: 13px;
-          color: $primary-color;
-        }
-        &:hover {
-          background-color: aliceblue;
+        justify-content: space-between;
+        .tab-item {
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          width: calc((100% - 20px) / 3);
+          height: 100%;
+          background-color: white;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+          padding: 0 20px;
+          justify-content: center;
+          border-bottom: 4px solid transparent;
           h5 {
-            color: rgb(35, 149, 255);
+            font-size: 20px;
+            margin-bottom: 0.2rem;
+            color: $primary-color;
+            font-weight: 600;
+          }
+          h6 {
+            font-size: 13px;
+            color: $primary-color;
+          }
+          &:hover {
+            background-color: aliceblue;
+            h5 {
+              color: rgb(35, 149, 255);
+            }
+          }
+          &.active {
+            border-color: $primary-color;
+            h5 {
+              font-weight: bold;
+              color: $primary-color;
+            }
           }
         }
-        &.active {
-          border-color: $primary-color;
-          h5 {
-            font-weight: bold;
-            color: $primary-color;
+      }
+      .table-scroll-wrapper {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        table {
+          background: white;
+          text-align: left;
+          position: relative;
+          border-collapse: collapse;
+          th,
+          td {
+            padding: 0.5rem 0.25rem;
+            min-width: 150px;
+          }
+          .table-head {
+            position: sticky;
+            top: 0;
+            .coin-head {
+              background: white;
+              th {
+                height: 90px;
+                background: white;
+                position: sticky;
+                top: 0;
+                justify-content: center;
+                box-shadow: 0px 2px 0px 0px $vault-border-color;
+                .img-spacer,
+                img {
+                  width: 100%;
+                  height: 24px;
+                  margin-bottom: 10px;
+                  margin-top: 10px;
+                }
+                h6 {
+                  text-align: center;
+                }
+                &:first-child {
+                  position: sticky;
+                  left: 0;
+                  z-index: 1;
+                  h6 {
+                    text-align: left;
+                  }
+                }
+              }
+            }
+            .price-n-change {
+              background: white;
+              th {
+                background: white;
+                position: sticky;
+                top: 92px;
+                box-shadow: 0px 1px 0px 0px $vault-border-color;
+                h5 {
+                  text-align: center;
+                  font-size: 16px;
+                }
+                h6 {
+                  text-align: center;
+                  font-size: 14px;
+                }
+                &:first-child {
+                  position: sticky;
+                  left: 0;
+                  z-index: 1;
+                  padding-left: 50px;
+                  h5 {
+                    text-align: left;
+                  }
+                  h6 {
+                    text-align: left;
+                  }
+                }
+              }
+            }
+          }
+          .table-body {
+            .table-row {
+              .property {
+                position: sticky;
+                left: 0;
+                padding-left: 0;
+                .property-container {
+                  background: white;
+                  display: flex;
+                  img {
+                    width: 50px;
+                    height: 30px;
+                    margin: auto 0;
+                  }
+                  .prop-name {
+                    margin: auto 0;
+                    font-size: 16px;
+                    font-weight: 600;
+                  }
+                }
+              }
+              .prop-value {
+                font-size: 14px;
+                display: flex;
+                height: 100%;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+              }
+              &:nth-child(odd) {
+                background-color: aliceblue;
+                .property-container {
+                  background: aliceblue;
+                }
+              }
+            }
           }
         }
       }
     }
-    .table-scroll-wrapper {
+    .loans-card {
+      margin-top: 20px;
+      height: 45vh;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-      table {
-        background: white;
-        text-align: left;
-        position: relative;
-        border-collapse: collapse;
-        th,
-        td {
-          padding: 0.5rem 0.25rem;
-          min-width: 150px;
+      display: flex;
+      .loan-col-3 {
+        flex: 0 0 33.333%;
+        max-width: 33.333%;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        .name {
+          font-size: 24px;
         }
-        .table-head {
-          position: sticky;
-          top: 0;
-          .coin-head {
-            background: white;
-            th {
-              height: 90px;
-              background: white;
-              position: sticky;
-              top: 0;
-              justify-content: center;
-              box-shadow: 0px 2px 0px 0px $vault-border-color;
-              .img-spacer,
-              img {
-                width: 100%;
-                height: 24px;
-                margin-bottom: 10px;
-                margin-top: 10px;
-              }
-              h6 {
-                text-align: center;
-              }
-              &:first-child {
-                position: sticky;
-                left: 0;
-                z-index: 1;
-                h6 {
-                  text-align: left;
-                }
-              }
-            }
-          }
-          .price-n-change {
-            background: white;
-            th {
-              background: white;
-              position: sticky;
-              top: 92px;
-              box-shadow: 0px 1px 0px 0px $vault-border-color;
-              h5 {
-                text-align: center;
-                font-size: 16px;
-              }
-              h6 {
-                text-align: center;
-                font-size: 14px;
-              }
-              &:first-child {
-                position: sticky;
-                left: 0;
-                z-index: 1;
-                padding-left: 50px;
-                h5 {
-                  text-align: left;
-                }
-                h6 {
-                  text-align: left;
-                }
-              }
-            }
-          }
+        .volume {
+          font-size: 14px;
         }
-        .table-body {
-          .table-row {
-            .property {
-              position: sticky;
-              left: 0;
-              padding-left: 0;
-              .property-container {
-                background: white;
-                display: flex;
-                img {
-                  width: 50px;
-                  height: 30px;
-                  margin: auto 0;
-                }
-                .prop-name {
-                  margin: auto 0;
-                  font-size: 16px;
-                  font-weight: 600;
-                }
-              }
-            }
-            .prop-value {
-              font-size: 14px;
-              display: flex;
-              height: 100%;
-              width: 100%;
-              justify-content: center;
-              align-items: center;
-            }
-            &:nth-child(odd) {
-              background-color: aliceblue;
-              .property-container {
-                background: aliceblue;
-              }
-            }
+        .volume-amt {
+          font-size: 28px;
+          font-weight: 600;
+        }
+        .chart {
+          //   flex: 1;
+          height: 250px;
+          position: relative;
+        }
+        .details {
+          padding: 8px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #f7fafc;
+          &:hover {
+            background: #2e9ede;
+            color: white;
           }
         }
       }
