@@ -1,9 +1,9 @@
 import React from 'react';
 
-function EarnIntrestControll() {
+function EarnIntrestControll({ title }) {
   return (
     <>
-      <h2 className="mb-4">Earn Interest</h2>
+      <h2 className="mb-4">{title}</h2>
       <div className="earn-intrest-controll">
         <div className="tab-item active">
           <h5>Crypto U.S. Dollars</h5>

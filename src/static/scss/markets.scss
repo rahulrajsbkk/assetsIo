@@ -232,8 +232,7 @@
           font-weight: 600;
         }
         .chart {
-          //   flex: 1;
-          height: 250px;
+          flex: 1;
           position: relative;
         }
         .details {
@@ -245,6 +244,92 @@
           &:hover {
             background: #2e9ede;
             color: white;
+          }
+        }
+      }
+    }
+    .historical-rates {
+      display: flex;
+      flex-direction: column;
+      .historical-rate-controll {
+        width: 32%;
+        height: 45px;
+        margin-left: auto;
+        display: flex;
+        .period {
+          cursor: pointer;
+          font-weight: 600;
+          width: 14.285%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-bottom: 4px solid gainsboro;
+          &:hover {
+            color: blue;
+          }
+          &.active {
+            border-color: $primary-color;
+          }
+        }
+      }
+      .historical-rate-card {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        margin-top: 20px;
+        margin-bottom: 40px;
+        min-height: 45vh;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        .coin-head {
+          display: flex;
+          align-items: center;
+          img {
+            height: 34px;
+          }
+          .coin-name {
+            font-size: 26px;
+            font-weight: 600;
+          }
+        }
+        .chart-n-indicator {
+          flex-grow: 1;
+          display: flex;
+          .chart-wrapper {
+            flex: 0 0 70%;
+            max-width: 70%;
+            position: relative;
+          }
+          .chart-indicators {
+            flex: 0 0 30%;
+            max-width: 30%;
+            display: flex;
+            flex-direction: column;
+            .platforms {
+              font-size: 14px;
+            }
+            .platform-itm {
+              display: flex;
+              align-items: center;
+              padding: 15px 10px;
+              line-height: 1;
+              border: 1px gainsboro;
+              border-style: solid none none none;
+              .indicator {
+                height: 10px;
+                width: 20px;
+                margin-right: 5px;
+              }
+              .platform-name {
+                font-size: 17px;
+              }
+              .apy {
+                font-size: 17px;
+                margin-left: auto;
+              }
+              &:last-child {
+                border-style: solid none;
+              }
+            }
           }
         }
       }

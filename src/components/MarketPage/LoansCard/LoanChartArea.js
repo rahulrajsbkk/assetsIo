@@ -9,6 +9,8 @@ const data = {
       data: [12, 19, 3, 5],
       backgroundColor: 'rgb(67, 145, 236)',
       borderColor: 'rgb(67, 145, 236)',
+      pointBorderColor: 'transparent',
+      pointBackgroundColor: 'transparent',
       borderWidth: 1,
     },
     {
@@ -16,6 +18,8 @@ const data = {
       data: [12, 5, 2, 3],
       backgroundColor: 'rgb(0, 194, 170)',
       borderColor: 'rgb(0, 194, 170)',
+      pointBorderColor: 'transparent',
+      pointBackgroundColor: 'transparent',
       borderWidth: 1,
     },
     {
@@ -23,6 +27,8 @@ const data = {
       data: [1, 1, 1, 1],
       backgroundColor: 'rgb(151, 56, 235)',
       borderColor: 'rgb(151, 56, 235)',
+      pointBorderColor: 'transparent',
+      pointBackgroundColor: 'transparent',
       borderWidth: 1,
     },
   ],
