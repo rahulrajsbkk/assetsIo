@@ -336,7 +336,8 @@
         }
       }
     }
-    .loans-content {
+    .loans-content,
+    .collateral-content {
       display: flex;
       flex-direction: column;
       .show-amount-in {

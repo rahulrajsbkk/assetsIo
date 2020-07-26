@@ -4,6 +4,7 @@ import logo from '../static/images/logo-text.svg';
 import LoansCard from '../components/MarketPage/EarnIntrest/LoansCard/LoansCard';
 import HistoricalRates from '../components/MarketPage/HistoricalRates/HistoricalRates';
 import Loans from '../components/MarketPage/Loans/Loans';
+import Collateral from '../components/MarketPage/Collateral/Collateral';
 function Markets() {
   const [menuSelected, setMenuSelected] = useState('earn-intrest');
   const [title, setTitle] = useState('Earn Interest');
@@ -36,6 +37,8 @@ function Markets() {
         );
       case 'loan':
         return <Loans />;
+      case 'collateral':
+        return <Collateral />;
 
       default:
         return (
@@ -149,10 +152,47 @@ function Markets() {
           >
             Repayments
           </a>
-          <div className="menu-itm">COLLATERAL</div>
-          <div className="sub-menu-itm">Supply / Collateral Added</div>
-          <div className="sub-menu-itm">Collateral Ratio</div>
-          <div className="sub-menu-itm">Collateral Liquidated</div>
+          <div
+            className={`menu-itm${
+              menuSelected === 'collateral' ? ' active' : ''
+            }`}
+            onClick={() => {
+              setMenuSelected('collateral');
+              setTitle('COLLATERAL');
+            }}
+          >
+            COLLATERAL
+          </div>
+          <a
+            href="#collateral-added"
+            onClick={() => {
+              setMenuSelected('collateral');
+              setTitle('COLLATERAL');
+            }}
+            className="sub-menu-itm"
+          >
+            Supply / Collateral Added
+          </a>
+          <a
+            href="#collateral-ratio"
+            onClick={() => {
+              setMenuSelected('collateral');
+              setTitle('COLLATERAL');
+            }}
+            className="sub-menu-itm"
+          >
+            Collateral Ratio
+          </a>
+          <a
+            href="#collateral-liquidated"
+            onClick={() => {
+              setMenuSelected('collateral');
+              setTitle('COLLATERAL');
+            }}
+            className="sub-menu-itm"
+          >
+            Collateral Liquidated
+          </a>
         </div>
       </div>
       <div className="markets-content">{getPageContent(menuSelected)}</div>
