@@ -30,6 +30,8 @@
         margin-top: 24px;
         font-weight: 600;
         cursor: pointer;
+        color: $primary-color;
+        text-decoration: none;
         &:hover,
         &.active {
           color: #2395ff;
@@ -329,6 +331,220 @@
               &:last-child {
                 border-style: solid none;
               }
+            }
+          }
+        }
+      }
+    }
+    .loans-content {
+      display: flex;
+      flex-direction: column;
+      .show-amount-in {
+        display: flex;
+        margin-left: auto;
+        align-items: center;
+        .switch {
+          background: #ebf1f7;
+          display: flex;
+          padding: 4px;
+          .option {
+            cursor: pointer;
+            padding: 3px 5px;
+            font-size: 14px;
+            line-height: 1;
+            &.true {
+              background-color: $primary-color;
+              color: white;
+            }
+          }
+        }
+      }
+      .loans-controlls {
+        margin-top: 15px;
+        display: flex;
+        .type-controll {
+          height: 45px;
+          display: flex;
+          .type {
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            padding: 0 10px;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 4px solid gainsboro;
+            .indicator {
+              content: '';
+              height: 7px;
+              width: 14px;
+              margin-right: 6px;
+            }
+            &:hover {
+              color: blue;
+            }
+            &.active {
+              border-color: $primary-color;
+            }
+          }
+        }
+        .time-period-controll {
+          width: 32%;
+          height: 45px;
+          margin-left: auto;
+          display: flex;
+          .period {
+            cursor: pointer;
+            font-weight: 600;
+            width: 14.285%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 4px solid gainsboro;
+            &:hover {
+              color: blue;
+            }
+            &.active {
+              border-color: $primary-color;
+            }
+          }
+        }
+      }
+      .loans-originated-card {
+        margin-top: 15px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        height: 50vh;
+        padding: 25px;
+        .loans-originated-head {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 24px;
+          .switch {
+            background: #ebf1f7;
+            display: flex;
+            padding: 6px;
+            .option {
+              cursor: pointer;
+              padding: 3px 5px;
+              font-size: 16px;
+              line-height: 1;
+              &.true {
+                background-color: $primary-color;
+                color: white;
+              }
+            }
+          }
+        }
+
+        .chart-n-table {
+          flex-grow: 1;
+          display: flex;
+          .chart-detail {
+            flex: 0 0 65%;
+            max-width: 65%;
+            display: flex;
+            flex-direction: column;
+            .volume-n-transaction {
+              display: flex;
+              justify-content: space-between;
+              .one-month {
+                font-size: 13px;
+              }
+              .volume {
+                font-size: 28px;
+                font-weight: 600;
+              }
+            }
+            .chart {
+              flex-grow: 1;
+              position: relative;
+            }
+          }
+          .table-chart {
+            flex: 0 0 35%;
+            max-width: 35%;
+            padding-left: 20px;
+            .head {
+              display: flex;
+              font-size: 12px;
+              .amount {
+                flex: 0 0 40%;
+                max-width: 40%;
+                padding: 8px;
+                text-align: right;
+              }
+              .asset {
+                flex: 0 0 40%;
+                max-width: 40%;
+                padding: 8px;
+              }
+              .share {
+                flex: 0 0 20%;
+                max-width: 20%;
+                padding: 8px;
+              }
+            }
+            .list-itm {
+              display: flex;
+              line-height: 1.2;
+              border-top: 1px gainsboro solid;
+              .amount {
+                flex: 0 0 40%;
+                max-width: 40%;
+                padding: 8px;
+                text-align: right;
+                .amt {
+                  font-weight: 600;
+                  font-size: 16px;
+                }
+                .usd {
+                  font-size: 13px;
+                }
+              }
+              .asset {
+                flex: 0 0 40%;
+                max-width: 40%;
+                padding: 8px;
+                display: flex;
+                .coin-img {
+                  height: 30px;
+                  width: 30px;
+                }
+              }
+              .share {
+                flex: 0 0 20%;
+                max-width: 20%;
+                padding: 8px;
+              }
+              &:last-child {
+                border-bottom: 1px gainsboro solid;
+              }
+            }
+          }
+        }
+        .type-controll {
+          display: flex;
+          .type {
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            padding: 0 10px;
+            justify-content: center;
+            align-items: center;
+            .indicator {
+              content: '';
+              height: 5px;
+              width: 14px;
+              margin-right: 6px;
+            }
+            &:hover {
+              color: blue;
+            }
+            &.active {
+              border-color: $primary-color;
             }
           }
         }

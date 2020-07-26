@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import EarnIntrest from '../components/MarketPage/EarnIntrest/EarnIntrest';
 import logo from '../static/images/logo-text.svg';
-import LoansCard from '../components/MarketPage/LoansCard/LoansCard';
+import LoansCard from '../components/MarketPage/EarnIntrest/LoansCard/LoansCard';
 import HistoricalRates from '../components/MarketPage/HistoricalRates/HistoricalRates';
+import Loans from '../components/MarketPage/Loans/Loans';
 function Markets() {
   const [menuSelected, setMenuSelected] = useState('earn-intrest');
   const [title, setTitle] = useState('Earn Interest');
@@ -33,6 +34,9 @@ function Markets() {
             <HistoricalRates title={title} />
           </>
         );
+      case 'loan':
+        return <Loans />;
+
       default:
         return (
           <>
@@ -106,10 +110,45 @@ function Markets() {
           >
             REFERENCE RATES
           </div>
-          <div className="menu-itm">LOANS</div>
-          <div className="sub-menu-itm">Originated</div>
-          <div className="sub-menu-itm">Outstanding</div>
-          <div className="sub-menu-itm">Repayments</div>
+          <div
+            className={`menu-itm${menuSelected === 'loan' ? ' active' : ''}`}
+            onClick={() => {
+              setMenuSelected('loan');
+              setTitle('Loans');
+            }}
+          >
+            LOANS
+          </div>
+          <a
+            href="#loan-originated"
+            onClick={() => {
+              setMenuSelected('loan');
+              setTitle('Loans');
+            }}
+            className="sub-menu-itm"
+          >
+            Originated
+          </a>
+          <a
+            href="#loan-outstanding"
+            onClick={() => {
+              setMenuSelected('loan');
+              setTitle('Loans');
+            }}
+            className="sub-menu-itm"
+          >
+            Outstanding
+          </a>
+          <a
+            href="#loan-repay"
+            onClick={() => {
+              setMenuSelected('loan');
+              setTitle('Loans');
+            }}
+            className="sub-menu-itm"
+          >
+            Repayments
+          </a>
           <div className="menu-itm">COLLATERAL</div>
           <div className="sub-menu-itm">Supply / Collateral Added</div>
           <div className="sub-menu-itm">Collateral Ratio</div>
