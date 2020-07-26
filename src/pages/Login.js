@@ -29,6 +29,13 @@ function Login({ history }) {
           if (data.status) {
             login(emailid, data.accessToken, data.idToken);
             // tostShowOn(data.message);
+            Axios.post(
+              'https://comms.globalxchange.com/gxb/apps/register/user',
+              {
+                email: emailid, // user email
+                app_code: 'ice', // app_code
+              }
+            );
             history.push('/');
           } else {
             tostShowOn(data.message);
