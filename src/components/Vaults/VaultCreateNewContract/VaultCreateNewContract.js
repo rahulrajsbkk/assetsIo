@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
+import React, { useState, useContext } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 import next from '../../../static/images/next-anim.svg';
+import { BankContext } from '../../../context/Context';
 
 const validNumber = new RegExp(/^\d*\.?\d*$/);
 
 function VaultCreateNewContract() {
+  const { coinList } = useContext(BankContext);
   const usdAmountFormatter = new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
@@ -21,17 +22,6 @@ function VaultCreateNewContract() {
     const { value } = e.target;
     if (value === '' || validNumber.test(value)) setDuration(value);
   };
-  const [coinList, setCoiList] = useState([]);
-  useEffect(() => {
-    Axios.post('https://comms.globalxchange.com/coin/vault/service/coins/get', {
-      app_code: 'ice',
-    }).then((res) => {
-      const { data } = res;
-      if (data.status) {
-        setCoiList(data.coins_data);
-      }
-    });
-  }, []);
 
   return (
     <div className="vault-new-contract">

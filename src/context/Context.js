@@ -77,9 +77,30 @@ function BankContextProvider({ children }) {
     });
   }, []);
 
+  const [coinList, setCoiList] = useState([]);
+  useEffect(() => {
+    Axios.post('https://comms.globalxchange.com/coin/vault/service/coins/get', {
+      app_code: 'ice',
+    }).then((res) => {
+      const { data } = res;
+      if (data.status) {
+        setCoiList(data.coins_data);
+      }
+    });
+  }, []);
+
   return (
     <BankContext.Provider
-      value={{ login, email, tostShowOn, username, name, profileImg, ratesRes }}
+      value={{
+        login,
+        email,
+        tostShowOn,
+        username,
+        name,
+        profileImg,
+        ratesRes,
+        coinList,
+      }}
     >
       {children}
       <Toast show={toastShow} message={toastMessage} />

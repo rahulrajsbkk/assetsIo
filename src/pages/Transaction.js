@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faSearch } from '@fortawesome/free-solid-svg-icons';
 
+import { BankContext } from '../context/Context';
 import Layout from '../Layout/Index';
 import btc from '../static/images/coin-small/btc.svg';
 import eth from '../static/images/coin-small/eth.svg';
 import usdt from '../static/images/coin-small/usdt.svg';
+import searchIcon from '../static/images/search.svg';
 
 function Transaction({ match }) {
+  const { coinList } = useContext(BankContext);
   const [coin, setCoin] = useState('Bitcoin');
+  const [searchEnable, setSearchEnable] = useState(false);
+  const usdAmountFormatter = new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
   return (
     <Layout
       active={`transactions-${match.params.type}`}
@@ -21,23 +29,80 @@ function Transaction({ match }) {
           <div className="balance">0.03211</div>
         </div>
         <div className="coin-select">
-          <div
-            className={`coin-wrap ${coin === 'Bitcoin'}`}
-            onClick={() => setCoin('Bitcoin')}
-          >
-            <img src={btc} alt="" />
-          </div>
-          <div
-            className={`coin-wrap ${coin === 'Ethereum'}`}
-            onClick={() => setCoin('Ethereum')}
-          >
-            <img src={eth} alt="" />
-          </div>
-          <div
-            className={`coin-wrap ${coin === 'Tether'}`}
-            onClick={() => setCoin('Tether')}
-          >
-            <img src={usdt} alt="" />
+          {searchEnable ? (
+            ''
+          ) : (
+            <>
+              <div
+                className={`coin-wrap ${coin === 'Bitcoin'}`}
+                onClick={() => setCoin('Bitcoin')}
+              >
+                <img src={btc} alt="" />
+              </div>
+              <div
+                className={`coin-wrap ${coin === 'Ethereum'}`}
+                onClick={() => setCoin('Ethereum')}
+              >
+                <img src={eth} alt="" />
+              </div>
+              <div
+                className={`coin-wrap ${coin === 'Tether'}`}
+                onClick={() => setCoin('Tether')}
+              >
+                <img src={usdt} alt="" />
+              </div>
+            </>
+          )}
+          <div className={`search-wrapper  ${searchEnable}`}>
+            <div className="serch-n-result">
+              {searchEnable ? (
+                <>
+                  <div className="search">
+                    <input type="text" placeholder="Search Iced Vaults" />
+                    <span
+                      className="serch-close"
+                      onClick={() => {
+                        setSearchEnable(!searchEnable);
+                      }}
+                    >
+                      ×
+                    </span>
+                  </div>
+                  {coinList.map((coin) => (
+                    <div
+                      className="search-res"
+                      key={coin.coinName}
+                      onClick={() => {
+                        setCoin(coin.coinName);
+                        setSearchEnable(!searchEnable);
+                      }}
+                    >
+                      <img
+                        src={coin.coinImage}
+                        alt=""
+                        className="search-coin"
+                      />
+                      <div className="coin">{coin.coinName}</div>
+                      <div className="value">
+                        ${usdAmountFormatter.format(coin.price.USD)}
+                        <small className={`change ${coin._24hrchange < 0}`}>
+                          ({usdAmountFormatter.format(coin._24hrchange)}%)
+                        </small>
+                      </div>
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <img
+                  className="search-icon"
+                  src={searchIcon}
+                  alt=""
+                  onClick={() => {
+                    setSearchEnable(!searchEnable);
+                  }}
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>

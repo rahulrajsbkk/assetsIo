@@ -43,6 +43,98 @@
           }
         }
       }
+      .search-wrapper {
+        margin-left: 15px;
+        height: 60px;
+        width: 60px;
+        transition: all 0.4s ease;
+        position: relative;
+        .serch-n-result {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 1;
+          transition: all 0.4s ease;
+          border-radius: 6px;
+          min-height: 60px;
+          max-height: 360px;
+          overflow: auto;
+          background: rgba(216, 216, 216, 0.5);
+          display: flex;
+          flex-direction: column;
+          .search-icon {
+            margin: 15px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+          }
+          .search {
+            height: 56px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: white;
+            input {
+              border: none;
+              background: none;
+              height: 100%;
+              width: 0;
+              flex-grow: 1;
+              font-size: 20px;
+              padding: 0 20px;
+            }
+            .serch-close {
+              color: $primary-color;
+              cursor: pointer;
+              padding: 0 14px 0 0;
+              height: 100%;
+              font-size: 40px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+          .search-res {
+            padding: 0 25px;
+            height: 56px;
+            min-height: 56px;
+            border-top: 1px solid #f2f2f2;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            .search-coin {
+              width: 30px;
+              height: 30px;
+            }
+            .coin,
+            .value {
+              font-size: 18px;
+              font-weight: 600;
+            }
+            .coin {
+              margin-left: 10px;
+            }
+            .value {
+              margin-left: auto;
+            }
+            .change {
+              margin-left: 5px;
+              font-size: 10px;
+            }
+          }
+        }
+        &.true {
+          width: 350px;
+          .serch-n-result {
+            background-color: white;
+            border: 1px solid rgba(70, 75, 78, 0.5);
+            width: 350px;
+          }
+        }
+      }
     }
   }
   .controlls {
