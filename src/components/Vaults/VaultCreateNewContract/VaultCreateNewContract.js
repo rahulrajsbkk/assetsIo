@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
+import { Scrollbars } from 'react-custom-scrollbars';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
-import btc from '../../../static/images/coin-color/bitcoin.svg';
-import eth from '../../../static/images/coin-color/ethereum.svg';
-import usdt from '../../../static/images/coin-color/tether.svg';
 import next from '../../../static/images/next-anim.svg';
 
 const validNumber = new RegExp(/^\d*\.?\d*$/);
 
 function VaultCreateNewContract() {
+  const usdAmountFormatter = new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
   const [duration, setDuration] = useState('');
   const [durationUnit, setDurationUnit] = useState('Days');
   const [selectedCard, setSelectedCard] = useState('');
@@ -18,44 +21,50 @@ function VaultCreateNewContract() {
     const { value } = e.target;
     if (value === '' || validNumber.test(value)) setDuration(value);
   };
+  const [coinList, setCoiList] = useState([]);
+  useEffect(() => {
+    Axios.post('https://comms.globalxchange.com/coin/vault/service/coins/get', {
+      app_code: 'ice',
+    }).then((res) => {
+      const { data } = res;
+      if (data.status) {
+        setCoiList(data.coins_data);
+      }
+    });
+  }, []);
+
   return (
     <div className="vault-new-contract">
       <div className="head">Create A New Ice Contract</div>
       <div className="content-steps">
         <div className="step-one">
           <h5>Step 1: Select Asset</h5>
-          <div className="scroll-view">
-            <div
-              className={`card ${
-                selectedCard === '' || selectedCard === 'btc'
-              }`}
-              onClick={() => setSelectedCard('btc')}
-            >
-              <img src={btc} alt="" />
-              <div className="coin">Bitcoin</div>
-              <div className="value">$104.20</div>
-            </div>
-            <div
-              className={`card ${
-                selectedCard === '' || selectedCard === 'eth'
-              }`}
-              onClick={() => setSelectedCard('eth')}
-            >
-              <img src={eth} alt="" />
-              <div className="coin">Ethereum</div>
-              <div className="value">$251.20</div>
-            </div>
-            <div
-              className={`card ${
-                selectedCard === '' || selectedCard === 'usdt'
-              }`}
-              onClick={() => setSelectedCard('usdt')}
-            >
-              <img src={usdt} alt="" />
-              <div className="coin">Tether</div>
-              <div className="value">$47.28</div>
-            </div>
-          </div>
+          <Scrollbars
+            autoHide
+            className="scroll-view"
+            renderTrackVertical={(props) => (
+              <div {...props} className="d-none" />
+            )}
+            renderThumbVertical={(props) => (
+              <div {...props} className="d-none" />
+            )}
+            renderView={(props) => <div {...props} className="scroll-view" />}
+          >
+            {coinList.map((coin) => (
+              <div
+                className={`card ${
+                  selectedCard === '' || selectedCard === 'btc'
+                }`}
+                onClick={() => setSelectedCard('btc')}
+              >
+                <img src={coin.coinImage} alt="" />
+                <div className="coin">{coin.coinName}</div>
+                <div className="value">
+                  ${usdAmountFormatter.format(coin.price.USD)}
+                </div>
+              </div>
+            ))}
+          </Scrollbars>
         </div>
         <div className="step-two">
           <div className="period-hold">
