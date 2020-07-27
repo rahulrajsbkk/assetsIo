@@ -1,0 +1,115 @@
+.mobile-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  .mobile-navbar {
+    height: 54px;
+    display: flex;
+    position: relative;
+    background-color: white;
+    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.08);
+    .hamburger {
+      z-index: 2;
+    }
+    .title {
+      display: flex;
+      flex: 1;
+      font-size: 28px;
+      font-weight: bold;
+      margin-right: 70px;
+      align-items: center;
+      justify-content: center;
+    }
+    .menu-open {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      z-index: 1;
+      .profile {
+        flex: 0 0 33%;
+        max-height: 33%;
+        background-color: $primary-color;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        img {
+          border: white 2px solid;
+          margin: 0 auto;
+          height: 35%;
+          border-radius: 50%;
+        }
+        .user-info {
+          .name {
+            color: white;
+            text-align: center;
+            margin: 0;
+            font-size: 14px;
+          }
+          .balance {
+            color: white;
+            text-align: center;
+            font-size: 22px;
+          }
+        }
+      }
+      .menu {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        .menu-itm {
+          font-size: 19px;
+          color: $primary-color;
+          text-decoration: none;
+          &.true {
+            font-weight: 600;
+            text-decoration: underline;
+          }
+        }
+        .logout-btn {
+          border: 1px solid $primary-color;
+          padding: 8px;
+          width: 60%;
+          text-align: center;
+        }
+      }
+    }
+  }
+  .mobile-content {
+    height: 0;
+    flex: 1;
+    overflow: auto;
+  }
+  .mobile-footer {
+    height: 50px;
+    background-color: white;
+    display: flex;
+    box-shadow: 0px -2px 3px 0px rgba(0, 0, 0, 0.08);
+    .footer-itm {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img,
+      svg {
+        height: 25px;
+        opacity: 0.8;
+      }
+      &.true {
+        svg {
+          transform: scale(1.2);
+          path {
+            fill: $primary-color;
+            stroke: $primary-color;
+          }
+        }
+      }
+    }
+  }
+}

@@ -6,7 +6,7 @@ import VaultCreateNewContract from '../components/Vaults/VaultCreateNewContract/
 
 function Vaults() {
   return (
-    <Layout active="vaults" className="vault-content">
+    <Layout active="portfolio" className="vault-content">
       <VaultDashBoard />
       <VaultCreateNewContract />
     </Layout>
