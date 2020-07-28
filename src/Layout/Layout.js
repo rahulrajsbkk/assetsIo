@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Scrollbars } from 'react-custom-scrollbars';
 import {
@@ -23,10 +23,24 @@ import withdraw from '../static/images/sidebar-icons/withdraw.svg';
 import appstore from '../static/images/sidebar-icons/appstore.svg';
 
 function Layout({ children, active, className }) {
-  const { login, email, username, name, profileImg, ratesRes } = useContext(
-    BankContext
-  );
+  const {
+    login,
+    email,
+    username,
+    name,
+    profileImg,
+    ratesRes,
+    coinList,
+  } = useContext(BankContext);
   const history = useHistory();
+  const [coinListObj, setCoinListObj] = useState({});
+  useEffect(() => {
+    let obj = {};
+    coinList.forEach((coin) => {
+      obj[coin.coinSymbol] = coin;
+    });
+    setCoinListObj(obj);
+  }, [coinList]);
   const arrow = (
     <svg viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -41,8 +55,15 @@ function Layout({ children, active, className }) {
       maximumFractionDigits: 1,
       minimumFractionDigits: 1,
     }).format(num);
+  const formatNum = (num, prec) =>
+    new Intl.NumberFormat('en-US', {
+      maximumFractionDigits: prec,
+      minimumFractionDigits: prec,
+    }).format(num);
 
   const [openSubMenu, setOpenSubMenu] = useState(false);
+  const [tabItem, setTabItem] = useState('Interest Rates');
+
   if (email && email !== '') {
     return (
       <div className="d-flex transaction-layout">
@@ -128,6 +149,20 @@ function Layout({ children, active, className }) {
               </Link>
             )}
           </div>
+          <div className="tab-inrest-asset">
+            <div
+              className={`tab-itm ${tabItem === 'Interest Rates'}`}
+              onClick={() => setTabItem('Interest Rates')}
+            >
+              Interest Rates
+            </div>
+            <div
+              className={`tab-itm ${tabItem === 'Asset Prices'}`}
+              onClick={() => setTabItem('Asset Prices')}
+            >
+              Asset Prices
+            </div>
+          </div>
           <Scrollbars
             className="rate-list-wrapper"
             renderTrackVertical={(props) => (
@@ -140,105 +175,151 @@ function Layout({ children, active, className }) {
           >
             <div className="coin">
               <img className="coin-logo" src={btc} alt="" />
-              <div className="rate">
-                {ratesRes[0] && ratesRes[0].tier1.rate
-                  ? formatPercent(ratesRes[0].tier1.rate)
-                  : '0.0'}
-                %
-                <small>
-                  (1.2%)
-                  {arrow}
-                </small>
-              </div>
+              {tabItem === 'Interest Rates' ? (
+                <div className="rate">
+                  {ratesRes[0] && ratesRes[0].tier1.rate
+                    ? formatPercent(ratesRes[0].tier1.rate)
+                    : '0.0'}
+                  %
+                  <small>
+                    (1.2%)
+                    {arrow}
+                  </small>
+                </div>
+              ) : (
+                <div className="rate">
+                  {formatNum(
+                    coinListObj &&
+                      coinListObj.BTC &&
+                      coinListObj.BTC.price &&
+                      coinListObj.BTC.price.USD,
+                    2
+                  )}
+                  $
+                  <small>
+                    (
+                    {formatNum(
+                      coinListObj &&
+                        coinListObj.BTC &&
+                        coinListObj.BTC.price &&
+                        coinListObj.BTC._24hrchange,
+                      2
+                    )}
+                    %)
+                  </small>
+                </div>
+              )}
             </div>
             <div className="coin">
               <img className="coin-logo" src={eth} alt="" />
-              <div className="rate">
-                {ratesRes[1] && ratesRes[1].tier1.rate
-                  ? formatPercent(ratesRes[1].tier1.rate)
-                  : '0.0'}
-                %
-                <small>
-                  (1.2%)
-                  {arrow}
-                </small>
-              </div>
+              {tabItem === 'Interest Rates' ? (
+                <div className="rate">
+                  {ratesRes[1] && ratesRes[1].tier1.rate
+                    ? formatPercent(ratesRes[1].tier1.rate)
+                    : '0.0'}
+                  %
+                  <small>
+                    (1.2%)
+                    {arrow}
+                  </small>
+                </div>
+              ) : (
+                <div className="rate">
+                  {formatNum(
+                    coinListObj &&
+                      coinListObj.ETH &&
+                      coinListObj.ETH.price &&
+                      coinListObj.ETH.price.USD,
+                    2
+                  )}
+                  $
+                  <small>
+                    (
+                    {formatNum(
+                      coinListObj &&
+                        coinListObj.ETH &&
+                        coinListObj.ETH.price &&
+                        coinListObj.ETH._24hrchange,
+                      2
+                    )}
+                    %)
+                  </small>
+                </div>
+              )}
             </div>
             <div className="coin">
               <img className="coin-logo" src={usdt} alt="" />
-              <div className="rate">
-                {ratesRes[2] && ratesRes[2].tier1.rate
-                  ? formatPercent(ratesRes[2].tier1.rate)
-                  : '0.0'}
-                %
-                <small>
-                  (1.2%)
-                  {arrow}
-                </small>
-              </div>
+              {tabItem === 'Interest Rates' ? (
+                <div className="rate">
+                  {ratesRes[2] && ratesRes[2].tier1.rate
+                    ? formatPercent(ratesRes[2].tier1.rate)
+                    : '0.0'}
+                  %
+                  <small>
+                    (1.2%)
+                    {arrow}
+                  </small>
+                </div>
+              ) : (
+                <div className="rate">
+                  {formatNum(
+                    coinListObj &&
+                      coinListObj.USDT &&
+                      coinListObj.USDT.price &&
+                      coinListObj.USDT.price.USD,
+                    2
+                  )}
+                  $
+                  <small>
+                    (
+                    {formatNum(
+                      coinListObj &&
+                        coinListObj.USDT &&
+                        coinListObj.USDT.price &&
+                        coinListObj.USDT._24hrchange,
+                      2
+                    )}
+                    %)
+                  </small>
+                </div>
+              )}
             </div>
             <div className="coin">
               <img className="coin-logo" src={xrp} alt="" />
-              <div className="rate">
-                {ratesRes[3] && ratesRes[3].tier1.rate
-                  ? formatPercent(ratesRes[3].tier1.rate)
-                  : '0.0'}
-                <small>
-                  (1.2%)
-                  {arrow}
-                </small>
-              </div>
-            </div>
-            <div className="coin">
-              <img className="coin-logo" src={btc} alt="" />
-              <div className="rate">
-                {ratesRes[0] && ratesRes[0].tier1.rate
-                  ? formatPercent(ratesRes[0].tier1.rate)
-                  : '0.0'}
-                %
-                <small>
-                  (1.2%)
-                  {arrow}
-                </small>
-              </div>
-            </div>
-            <div className="coin">
-              <img className="coin-logo" src={eth} alt="" />
-              <div className="rate">
-                {ratesRes[1] && ratesRes[1].tier1.rate
-                  ? formatPercent(ratesRes[1].tier1.rate)
-                  : '0.0'}
-                %
-                <small>
-                  (1.2%)
-                  {arrow}
-                </small>
-              </div>
-            </div>
-            <div className="coin">
-              <img className="coin-logo" src={usdt} alt="" />
-              <div className="rate">
-                {ratesRes[2] && ratesRes[2].tier1.rate
-                  ? formatPercent(ratesRes[2].tier1.rate)
-                  : '0.0'}
-                %
-                <small>
-                  (1.2%)
-                  {arrow}
-                </small>
-              </div>
-            </div>
-            <div className="coin">
-              <img className="coin-logo" src={xrp} alt="" />
-              <div className="rate">
-                {ratesRes[3] && ratesRes[3].tier1.rate
-                  ? formatPercent(ratesRes[3].tier1.rate)
-                  : '0.0'}
-                <small>
-                  (1.2%)
-                  {arrow}
-                </small>
-              </div>
+              {tabItem === 'Interest Rates' ? (
+                <div className="rate">
+                  {ratesRes[3] && ratesRes[3].tier1.rate
+                    ? formatPercent(ratesRes[3].tier1.rate)
+                    : '0.0'}
+                  %
+                  <small>
+                    (1.2%)
+                    {arrow}
+                  </small>
+                </div>
+              ) : (
+                <div className="rate">
+                  {formatNum(
+                    coinListObj &&
+                      coinListObj.XRP &&
+                      coinListObj.XRP.price &&
+                      coinListObj.XRP.price.USD,
+                    2
+                  )}
+                  $
+                  <small>
+                    (
+                    {formatNum(
+                      coinListObj &&
+                        coinListObj.XRP &&
+                        coinListObj.XRP.price &&
+                        coinListObj.XRP._24hrchange,
+                      2
+                    )}
+                    %)
+                  </small>
+                </div>
+              )}
             </div>
           </Scrollbars>
           <div
