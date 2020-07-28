@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -14,10 +14,24 @@ function Transaction({ match }) {
   const { coinList } = useContext(BankContext);
   const [coin, setCoin] = useState('Bitcoin');
   const [searchEnable, setSearchEnable] = useState(false);
+  const [searchStr, setSearchStr] = useState('');
+  const [searchResult, setSearchResult] = useState([]);
   const usdAmountFormatter = new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
+
+  useEffect(() => {
+    if (!searchStr) {
+      setSearchResult([]);
+    } else {
+      setSearchResult(
+        coinList.filter((coin) =>
+          coin.coinName.toLowerCase().includes(searchStr.toLowerCase())
+        )
+      );
+    }
+  }, [coinList, searchStr]);
   return (
     <Layout
       active={`transactions-${match.params.type}`}
@@ -58,17 +72,23 @@ function Transaction({ match }) {
               {searchEnable ? (
                 <>
                   <div className="search">
-                    <input type="text" placeholder="Search Iced Vaults" />
+                    <input
+                      type="text"
+                      value={searchStr}
+                      onChange={(e) => setSearchStr(e.target.value)}
+                      placeholder="Search Iced Vaults"
+                    />
                     <span
                       className="serch-close"
                       onClick={() => {
                         setSearchEnable(!searchEnable);
+                        setSearchStr('');
                       }}
                     >
                       ×
                     </span>
                   </div>
-                  {coinList.map((coin) => (
+                  {searchResult.map((coin) => (
                     <div
                       className="search-res"
                       key={coin.coinName}

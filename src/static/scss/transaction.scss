@@ -123,6 +123,10 @@
             .change {
               margin-left: 5px;
               font-size: 10px;
+              color: #3ea254;
+              &.true {
+                color: #e50914;
+              }
             }
           }
         }
