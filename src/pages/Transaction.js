@@ -26,8 +26,10 @@ function Transaction({ match }) {
       setSearchResult([]);
     } else {
       setSearchResult(
-        coinList.filter((coin) =>
-          coin.coinName.toLowerCase().includes(searchStr.toLowerCase())
+        coinList.filter(
+          (coin) =>
+            coin.coinName.toLowerCase().includes(searchStr.toLowerCase()) ||
+            coin.coinSymbol.toLowerCase().includes(searchStr.toLowerCase())
         )
       );
     }
