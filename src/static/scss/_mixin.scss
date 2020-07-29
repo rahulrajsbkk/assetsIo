@@ -13,6 +13,9 @@ $screen-xl-min: 1200px;
 // Custom Res
 $screen-xxl-min: 1400px;
 
+// Custom Res
+$screen-xxxl-min: 1600px;
+
 // Small devices
 @mixin sm {
   @media (max-width: #{$screen-sm-min}) {
@@ -72,6 +75,13 @@ $screen-xxl-min: 1400px;
 // Extra large devices
 @mixin xxl {
   @media (max-width: #{$screen-xxl-min}) {
+    @content;
+  }
+}
+
+// Extra large devices
+@mixin xxxl {
+  @media (max-width: #{$screen-xxxl-min}) {
     @content;
   }
 }
