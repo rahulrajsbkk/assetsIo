@@ -1,5 +1,7 @@
 .transaction-layout {
-  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  flex-grow: 1;
   .side-bar {
     // font-family: 'Roboto', sans-serif;
     flex: 0 0 22%;
@@ -131,5 +133,22 @@
         text-align: center;
       }
     }
+  }
+  @include xxxl {
+    zoom: 0.9;
+    .side-bar {
+      .rate-list-wrapper {
+        max-height: 50%;
+      }
+    }
+  }
+  @include xxl {
+    zoom: 0.7;
+  }
+  @include xl {
+    zoom: 0.6;
+  }
+  @include lg {
+    zoom: 0.5;
   }
 }
