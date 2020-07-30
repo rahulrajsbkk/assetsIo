@@ -31,6 +31,23 @@
         line-height: 1;
         margin: 0;
       }
+      @include xxxl {
+        zoom: 0.95;
+        .side-bar {
+          .rate-list-wrapper {
+            max-height: 50%;
+          }
+        }
+      }
+      @include xxl {
+        zoom: 0.85;
+      }
+      @include xl {
+        zoom: 0.75;
+      }
+      @include lg {
+        zoom: 0.65;
+      }
     }
     .menu-side {
       padding: 0 50px;
@@ -66,6 +83,18 @@
       .submenu {
         padding-left: 20px;
       }
+      @include xxxl {
+        zoom: 0.99;
+      }
+      @include xxl {
+        zoom: 0.95;
+      }
+      @include xl {
+        zoom: 0.85;
+      }
+      @include lg {
+        zoom: 0.75;
+      }
     }
     .tab-inrest-asset {
       display: flex;
@@ -82,6 +111,23 @@
         &.true {
           border-color: $primary-color;
         }
+      }
+      @include xxxl {
+        zoom: 0.9;
+        .side-bar {
+          .rate-list-wrapper {
+            max-height: 50%;
+          }
+        }
+      }
+      @include xxl {
+        zoom: 0.8;
+      }
+      @include xl {
+        zoom: 0.7;
+      }
+      @include lg {
+        zoom: 0.6;
       }
     }
     .rate-list-wrapper {
@@ -122,6 +168,18 @@
           }
         }
       }
+      @include xxxl {
+        zoom: 0.8;
+      }
+      @include xxl {
+        zoom: 0.7;
+      }
+      @include xl {
+        zoom: 0.6;
+      }
+      @include lg {
+        zoom: 0.5;
+      }
     }
     .logout {
       height: 75px;
@@ -135,23 +193,37 @@
         margin: auto;
         text-align: center;
       }
-    }
-  }
-  @include xxxl {
-    zoom: 0.9;
-    .side-bar {
-      .rate-list-wrapper {
-        max-height: 50%;
+      @include xxxl {
+        zoom: 0.8;
+      }
+      @include xxl {
+        zoom: 0.7;
+      }
+      @include xl {
+        zoom: 0.6;
+      }
+      @include lg {
+        zoom: 0.5;
       }
     }
   }
-  @include xxl {
-    zoom: 0.7;
-  }
-  @include xl {
-    zoom: 0.6;
-  }
-  @include lg {
-    zoom: 0.5;
+  .page-content {
+    @include xxxl {
+      zoom: 0.8;
+      .side-bar {
+        .rate-list-wrapper {
+          max-height: 50%;
+        }
+      }
+    }
+    @include xxl {
+      zoom: 0.7;
+    }
+    @include xl {
+      zoom: 0.6;
+    }
+    @include lg {
+      zoom: 0.5;
+    }
   }
 }
