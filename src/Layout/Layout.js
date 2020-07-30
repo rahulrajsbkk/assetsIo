@@ -10,10 +10,10 @@ function Layout({ children, active, className }) {
   const { email } = useContext(BankContext);
   const [countryName, setCountryName] = useState('');
   useEffect(() => {
-    Axios.get('https://ipapi.co/json/')
+    Axios.get('https://ipapi.co/country_name/')
       .then((response) => {
         let data = response.data;
-        setCountryName(data.country_name);
+        setCountryName(data);
       })
       .catch((error) => {
         console.log(error);
