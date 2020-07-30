@@ -103,6 +103,7 @@ function LoginModal({ onClose, onLogin }) {
                       <span className="highlight" />
                       <span className="bar" />
                       <FontAwesomeIcon
+                        className="eye"
                         onClick={() => {
                           setShowPassword(!showPassword);
                         }}
