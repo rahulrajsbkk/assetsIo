@@ -77,7 +77,7 @@ function LayoutSidebar({ active, countryName }) {
       </div>
       <div className="d-flex flex-column menu-side mt-2">
         <Link
-          to="/iced-index"
+          to="/"
           className={`menu-itm${active === 'icedIndex' ? ' active' : ''}`}
         >
           <h5 className="d-flex py-3 menu-itm">
@@ -86,7 +86,7 @@ function LayoutSidebar({ active, countryName }) {
           </h5>
         </Link>
         <Link
-          to="/"
+          to="/portfolio"
           className={`menu-itm${active === 'portfolio' ? ' active' : ''}`}
         >
           <h5 className="d-flex py-3 menu-itm">

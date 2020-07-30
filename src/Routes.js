@@ -10,9 +10,9 @@ import IcedIndex from './pages/IcedIndex';
 function Routes() {
   return (
     <Switch>
-      <Route exact path="/" component={Vaults} />
+      <Route exact path="/portfolio" component={Vaults} />
       <Route exact path="/login" component={Login} />
-      <Route exact path="/iced-index" component={IcedIndex} />
+      <Route exact path="/" component={IcedIndex} />
       <Route exact path="/transactions" component={Transaction} />
       <Route exact path="/transactions/:type" component={Transaction} />
       <Route exact path="/mobile-apps" component={MobileApps} />
