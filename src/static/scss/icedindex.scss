@@ -1,0 +1,527 @@
+.icedIndex {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  .tab {
+    height: 70px;
+    display: flex;
+    .tab-itm {
+      flex: 1;
+      border-bottom: 2px solid #e7e7e7;
+      font-size: 19px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &.true {
+        border-color: $primary-color;
+      }
+    }
+  }
+  .content-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 100px;
+    .earn-intrest {
+      flex: 1;
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      .earn-intrest-controll {
+        width: 100%;
+        height: 80px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        .tab-item {
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          width: calc((100% - 20px) / 3);
+          height: 100%;
+          background-color: white;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+          padding: 0 20px;
+          justify-content: center;
+          border-bottom: 4px solid transparent;
+          h5 {
+            font-size: 18px;
+            margin-bottom: 0.2rem;
+            color: $primary-color;
+            font-weight: 600;
+          }
+          h6 {
+            font-size: 12px;
+            color: $primary-color;
+          }
+          &:hover {
+            background-color: aliceblue;
+            h5 {
+              color: rgb(35, 149, 255);
+            }
+          }
+          &.active {
+            border-color: $primary-color;
+            h5 {
+              font-weight: bold;
+              color: $primary-color;
+            }
+          }
+        }
+      }
+      .table-scroll-wrapper {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        table {
+          background: white;
+          text-align: left;
+          position: relative;
+          border-collapse: collapse;
+          th,
+          td {
+            padding: 0.5rem 0.25rem;
+            min-width: 150px;
+          }
+          .table-head {
+            position: sticky;
+            top: 0;
+            .coin-head {
+              background: white;
+              th {
+                height: 90px;
+                background: white;
+                position: sticky;
+                top: 0;
+                justify-content: center;
+                box-shadow: 0px 2px 0px 0px $vault-border-color;
+                .img-spacer,
+                img {
+                  width: 100%;
+                  height: 24px;
+                  margin-bottom: 10px;
+                  margin-top: 10px;
+                }
+                h6 {
+                  text-align: center;
+                  font-size: 16px;
+                }
+                &:first-child {
+                  position: sticky;
+                  left: 0;
+                  z-index: 1;
+                  h6 {
+                    text-align: left;
+                  }
+                }
+              }
+            }
+            .price-n-change {
+              background: white;
+              th {
+                background: white;
+                position: sticky;
+                top: 92px;
+                box-shadow: 0px 1px 0px 0px $vault-border-color;
+                h5 {
+                  text-align: center;
+                  font-size: 14px;
+                }
+                h6 {
+                  text-align: center;
+                  font-size: 13px;
+                }
+                &:first-child {
+                  position: sticky;
+                  left: 0;
+                  z-index: 1;
+                  padding-left: 50px;
+                  h5 {
+                    text-align: left;
+                  }
+                  h6 {
+                    text-align: left;
+                  }
+                }
+              }
+            }
+          }
+          .table-body {
+            .table-row {
+              .property {
+                position: sticky;
+                left: 0;
+                padding-left: 0;
+                .property-container {
+                  background: white;
+                  display: flex;
+                  img {
+                    width: 50px;
+                    height: 30px;
+                    margin: auto 0;
+                  }
+                  .prop-name {
+                    margin: auto 0;
+                    font-size: 14px;
+                    font-weight: 600;
+                  }
+                }
+              }
+              .prop-value {
+                font-size: 14px;
+                display: flex;
+                height: 100%;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+              }
+              &:nth-child(odd) {
+                background-color: aliceblue;
+                .property-container {
+                  background: aliceblue;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .loans-card {
+      margin-top: 20px;
+      height: 45vh;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      display: flex;
+      .loan-col-3 {
+        flex: 0 0 33.333%;
+        max-width: 33.333%;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        .name {
+          font-size: 20px;
+        }
+        .volume {
+          font-size: 12px;
+        }
+        .volume-amt {
+          font-size: 24px;
+          font-weight: 600;
+        }
+        .chart {
+          flex: 1;
+          position: relative;
+        }
+        .details {
+          padding: 8px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #f7fafc;
+          &:hover {
+            background: #2e9ede;
+            color: white;
+          }
+        }
+      }
+    }
+    .historical-rates {
+      display: flex;
+      flex-direction: column;
+      .historical-rate-controll {
+        width: 32%;
+        height: 45px;
+        margin-left: auto;
+        display: flex;
+        .period {
+          cursor: pointer;
+          font-weight: 600;
+          width: 14.285%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-bottom: 4px solid gainsboro;
+          &:hover {
+            color: blue;
+          }
+          &.active {
+            border-color: $primary-color;
+          }
+        }
+      }
+      .historical-rate-card {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        margin-top: 20px;
+        margin-bottom: 40px;
+        min-height: 45vh;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        .coin-head {
+          display: flex;
+          align-items: center;
+          img {
+            height: 34px;
+          }
+          .coin-name {
+            font-size: 26px;
+            font-weight: 600;
+          }
+        }
+        .chart-n-indicator {
+          flex-grow: 1;
+          display: flex;
+          .chart-wrapper {
+            flex: 0 0 70%;
+            max-width: 70%;
+            position: relative;
+          }
+          .chart-indicators {
+            flex: 0 0 30%;
+            max-width: 30%;
+            display: flex;
+            flex-direction: column;
+            .platforms {
+              font-size: 14px;
+            }
+            .platform-itm {
+              display: flex;
+              align-items: center;
+              padding: 15px 10px;
+              line-height: 1;
+              border: 1px gainsboro;
+              border-style: solid none none none;
+              .indicator {
+                height: 10px;
+                width: 20px;
+                margin-right: 5px;
+              }
+              .platform-name {
+                font-size: 17px;
+              }
+              .apy {
+                font-size: 17px;
+                margin-left: auto;
+              }
+              &:last-child {
+                border-style: solid none;
+              }
+            }
+          }
+        }
+      }
+    }
+    .loans-content,
+    .collateral-content {
+      display: flex;
+      flex-direction: column;
+      .show-amount-in {
+        display: flex;
+        margin-left: auto;
+        align-items: center;
+        .switch {
+          background: #ebf1f7;
+          display: flex;
+          padding: 4px;
+          .option {
+            cursor: pointer;
+            padding: 3px 5px;
+            font-size: 14px;
+            line-height: 1;
+            &.true {
+              background-color: $primary-color;
+              color: white;
+            }
+          }
+        }
+      }
+      .loans-controlls {
+        margin-top: 15px;
+        display: flex;
+        .type-controll {
+          height: 45px;
+          display: flex;
+          .type {
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            padding: 0 10px;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 4px solid gainsboro;
+            .indicator {
+              content: '';
+              height: 7px;
+              width: 14px;
+              margin-right: 6px;
+            }
+            &:hover {
+              color: blue;
+            }
+            &.active {
+              border-color: $primary-color;
+            }
+          }
+        }
+        .time-period-controll {
+          width: 32%;
+          height: 45px;
+          margin-left: auto;
+          display: flex;
+          .period {
+            cursor: pointer;
+            font-weight: 600;
+            width: 14.285%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 4px solid gainsboro;
+            &:hover {
+              color: blue;
+            }
+            &.active {
+              border-color: $primary-color;
+            }
+          }
+        }
+      }
+      .loans-originated-card {
+        margin-top: 15px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        height: 50vh;
+        padding: 25px;
+        .loans-originated-head {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-size: 24px;
+          .switch {
+            background: #ebf1f7;
+            display: flex;
+            padding: 6px;
+            .option {
+              cursor: pointer;
+              padding: 3px 5px;
+              font-size: 16px;
+              line-height: 1;
+              &.true {
+                background-color: $primary-color;
+                color: white;
+              }
+            }
+          }
+        }
+
+        .chart-n-table {
+          flex-grow: 1;
+          display: flex;
+          .chart-detail {
+            flex: 0 0 65%;
+            max-width: 65%;
+            display: flex;
+            flex-direction: column;
+            .volume-n-transaction {
+              display: flex;
+              justify-content: space-between;
+              .one-month {
+                font-size: 13px;
+              }
+              .volume {
+                font-size: 28px;
+                font-weight: 600;
+              }
+            }
+            .chart {
+              flex-grow: 1;
+              position: relative;
+            }
+          }
+          .table-chart {
+            flex: 0 0 35%;
+            max-width: 35%;
+            padding-left: 20px;
+            .head {
+              display: flex;
+              font-size: 12px;
+              .amount {
+                flex: 0 0 40%;
+                max-width: 40%;
+                padding: 8px;
+                text-align: right;
+              }
+              .asset {
+                flex: 0 0 40%;
+                max-width: 40%;
+                padding: 8px;
+              }
+              .share {
+                flex: 0 0 20%;
+                max-width: 20%;
+                padding: 8px;
+              }
+            }
+            .list-itm {
+              display: flex;
+              line-height: 1.2;
+              border-top: 1px gainsboro solid;
+              .amount {
+                flex: 0 0 40%;
+                max-width: 40%;
+                padding: 8px;
+                text-align: right;
+                .amt {
+                  font-weight: 600;
+                  font-size: 16px;
+                }
+                .usd {
+                  font-size: 13px;
+                }
+              }
+              .asset {
+                flex: 0 0 40%;
+                max-width: 40%;
+                padding: 8px;
+                display: flex;
+                .coin-img {
+                  height: 30px;
+                  width: 30px;
+                }
+              }
+              .share {
+                flex: 0 0 20%;
+                max-width: 20%;
+                padding: 8px;
+              }
+              &:last-child {
+                border-bottom: 1px gainsboro solid;
+              }
+            }
+          }
+        }
+        .type-controll {
+          display: flex;
+          .type {
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            padding: 0 10px;
+            justify-content: center;
+            align-items: center;
+            .indicator {
+              content: '';
+              height: 5px;
+              width: 14px;
+              margin-right: 6px;
+            }
+            &:hover {
+              color: blue;
+            }
+            &.active {
+              border-color: $primary-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}
