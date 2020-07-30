@@ -5,6 +5,7 @@ import Zoom from 'react-reveal/Zoom';
 import Axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-regular-svg-icons';
 
 import TwoFAInput from './TwoFAInput';
 import Signup from './Signup';
@@ -17,6 +18,7 @@ function LoginModal({ onClose, onLogin }) {
   const { login, tostShowOn } = useContext(BankContext);
   const [mfaEnabled, setMfaEnabled] = useState(false);
   const [firstLogin, setFirstLogin] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const loginvalidate = (e) => {
     e.preventDefault();
@@ -92,7 +94,7 @@ function LoginModal({ onClose, onLogin }) {
                   <Fade bottom>
                     <div className="group">
                       <input
-                        type="password"
+                        type={showPassword ? 'text' : 'password'}
                         name="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
@@ -100,6 +102,12 @@ function LoginModal({ onClose, onLogin }) {
                       />
                       <span className="highlight" />
                       <span className="bar" />
+                      <FontAwesomeIcon
+                        onClick={() => {
+                          setShowPassword(!showPassword);
+                        }}
+                        icon={showPassword ? faEyeSlash : faEye}
+                      />
                       <label>Password</label>
                     </div>
                   </Fade>
