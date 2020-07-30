@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import Axios from 'axios';
 import Lottie from 'react-lottie';
-import logoText from '../static/images/logo-text.svg';
+import logoText from '../static/images/logo.svg';
 import { BankContext } from '../context/Context';
 import FooterRates from '../components/FooterRates/FooterRates';
 import * as animationData from '../static/animations/cpu-loading.json';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import EarnIntrest from '../components/MarketPage/EarnIntrest/EarnIntrest';
-import logo from '../static/images/logo-text.svg';
+import logo from '../static/images/logo.svg';
 import LoansCard from '../components/MarketPage/EarnIntrest/LoansCard/LoansCard';
 import HistoricalRates from '../components/MarketPage/HistoricalRates/HistoricalRates';
 import Loans from '../components/MarketPage/Loans/Loans';

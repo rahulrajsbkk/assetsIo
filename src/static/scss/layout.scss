@@ -3,10 +3,8 @@
   height: 100%;
   flex-grow: 1;
   .side-bar {
-    // font-family: 'Roboto', sans-serif;
     flex: 0 0 22%;
     max-width: 22%;
-    // background: #f3f3f3;
     border-right: 0.5px solid #e7e7e7;
     background: white;
     .profile {
@@ -98,7 +96,7 @@
           min-height: calc((45vh - 75px) / 3);
           display: flex;
           padding: 35px 50px;
-          border-bottom: 0.5px solid #e7e7e7;
+          border-top: 0.5px solid #e7e7e7;
           .coin-logo {
             margin: auto;
             margin-left: 0;
@@ -123,9 +121,10 @@
     }
     .logout {
       height: 75px;
-      border-top: 0.5px solid #e7e7e7;
+      background: #8b8b8b;
       padding: 25px 15px;
       h5 {
+        color: white;
         font-size: 22px;
         line-height: 1;
         font-weight: 600;

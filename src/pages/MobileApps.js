@@ -1,7 +1,7 @@
 import React from 'react';
 import Zoom from 'react-reveal/Zoom';
 import Layout from '../Layout/Index';
-import logo from '../static/images/logo-text.svg';
+import logo from '../static/images/logo.svg';
 import android from '../static/images/android.svg';
 import ios from '../static/images/ios.svg';
 
