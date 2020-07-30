@@ -278,7 +278,11 @@ $trans-time: 300ms;
       }
     }
     .twofa-login {
+      height: 100%;
       padding: 70px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
       .loading {
         display: flex;
         flex-direction: column;
@@ -303,7 +307,7 @@ $trans-time: 300ms;
       }
       .input-wrapper-2fa {
         width: 100%;
-        height: 100%;
+        height: 80px;
         div {
           flex-grow: 1;
           .input-2fa {
