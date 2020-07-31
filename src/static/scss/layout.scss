@@ -49,11 +49,25 @@
         zoom: 0.65;
       }
     }
+
+    .menu-scrl {
+      flex: 1;
+      height: unset !important;
+    }
     .menu-side {
       padding: 0 50px;
-      flex: 1;
       justify-content: center;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      justify-content: flex-start;
+      .spacer {
+        height: 1px;
+        min-height: 1px;
+        width: 100%;
+      }
       .menu-itm {
+        flex: 0 0 33.333%;
         cursor: pointer;
         text-decoration: none !important;
         h5 {
@@ -83,23 +97,13 @@
       .submenu {
         padding-left: 20px;
       }
-      @include xxxl {
-        zoom: 0.99;
-      }
-      @include xxl {
-        zoom: 0.95;
-      }
-      @include xl {
-        zoom: 0.85;
-      }
-      @include lg {
-        zoom: 0.75;
-      }
     }
     .tab-inrest-asset {
+      margin-top: auto;
       display: flex;
       border: 1px #e7e7e7;
       border-style: solid none solid none;
+      margin-bottom: -1px;
       .tab-itm {
         cursor: pointer;
         flex: 0 0 50%;
@@ -108,6 +112,7 @@
         justify-content: center;
         padding: 6px;
         border-bottom: 2px solid transparent;
+        font-size: 16px;
         &.true {
           border-color: $primary-color;
         }
@@ -142,15 +147,18 @@
         right: 0;
         overflow-y: auto;
         .coin {
-          height: calc((45vh - 75px) / 3);
-          min-height: calc((45vh - 75px) / 3);
+          flex: 0 0 25%;
           display: flex;
           padding: 35px 50px;
           border-top: 0.5px solid #e7e7e7;
+          align-items: center;
           .coin-logo {
             margin: auto;
             margin-left: 0;
             height: 23px;
+          }
+          .coin-name {
+            font-size: 20px;
           }
           .rate {
             margin: auto;
@@ -162,23 +170,34 @@
               color: #3ea154;
               margin-top: auto;
               svg {
+                margin-left: 4px;
                 height: 16px;
+              }
+              &.true {
+                color: #da3a3a;
+                svg {
+                  transform: scale(-1);
+                  height: 16px;
+                  path {
+                    fill: #da3a3a;
+                  }
+                }
               }
             }
           }
         }
-      }
-      @include xxxl {
-        zoom: 0.8;
-      }
-      @include xxl {
-        zoom: 0.7;
-      }
-      @include xl {
-        zoom: 0.6;
-      }
-      @include lg {
-        zoom: 0.5;
+        @include xxxl {
+          zoom: 0.8;
+        }
+        @include xxl {
+          zoom: 0.7;
+        }
+        @include xl {
+          zoom: 0.6;
+        }
+        @include lg {
+          zoom: 0.5;
+        }
       }
     }
     .logout {
