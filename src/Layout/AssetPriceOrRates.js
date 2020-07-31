@@ -166,7 +166,7 @@ function AssetPriceOrRates() {
         ) : (
           <>
             {coinList.map((coin) => (
-              <div className="coin">
+              <div className="coin" key={coin.coinName}>
                 <img className="coin-logo mr-2" src={coin.coinImage} alt="" />
                 <div className="coin-name">{coin.coinName}</div>
                 <div className="rate">

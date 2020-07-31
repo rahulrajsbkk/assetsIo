@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCaretDown,
@@ -21,6 +21,19 @@ function LayoutSidebar({ active, countryName }) {
   const history = useHistory();
   const { login, username, name, profileImg } = useContext(BankContext);
   const [openSubMenu, setOpenSubMenu] = useState(false);
+
+  const menuEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    if (menuEndRef && menuEndRef.current)
+      menuEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    if (active.includes('transactions')) {
+      scrollToBottom();
+    }
+  }, [active]);
 
   return (
     <div className="side-bar d-flex flex-column">
@@ -71,6 +84,9 @@ function LayoutSidebar({ active, countryName }) {
           onClick={() => {
             setOpenSubMenu(!openSubMenu);
             history.push('/transactions');
+            setTimeout(() => {
+              scrollToBottom();
+            }, 100);
           }}
         >
           <h5 className="d-flex py-3 menu-itm">
@@ -118,7 +134,7 @@ function LayoutSidebar({ active, countryName }) {
             </h5>
           </Link>
         )}
-        <div className="spacer" />
+        <div ref={menuEndRef} className="spacer" />
       </Scrollbars>
       <AssetPriceOrRates />
       <div
