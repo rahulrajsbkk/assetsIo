@@ -1,3 +1,4 @@
+@import 'assetPlatformTable';
 .icedIndex {
   flex: 1;
   display: flex;
@@ -41,7 +42,7 @@
           width: calc((100% - 45px) / 3);
           height: 100%;
           background-color: white;
-          // box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
           padding: 0 20px;
           align-items: center;
           justify-content: flex-start;

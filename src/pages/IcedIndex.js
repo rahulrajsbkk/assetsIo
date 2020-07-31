@@ -47,7 +47,7 @@ function IcedIndex() {
         return (
           <>
             <EarnIntrest title={title} />
-            <LoansCard />
+            {/* <LoansCard /> */}
           </>
         );
     }
