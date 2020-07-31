@@ -1,21 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
+import btc from '../../../static/images/coin-color/bitcoin.svg';
+import usdt from '../../../static/images/coin-color/tether.svg';
+import indices from '../../../static/images/indices.svg';
 
-function EarnIntrestControll({ title }) {
+function EarnIntrestControll() {
+  const [tabSelected, setTabSelected] = useState('stableCoin');
   return (
     <>
-      <h2 className="mb-4">{title}</h2>
+      {/* <h2 className="mb-4">{title}</h2> */}
       <div className="earn-intrest-controll">
-        <div className="tab-item active">
-          <h5>Crypto U.S. Dollars</h5>
-          <h6>Digital U.S. dollar, asset-backed U.S. dollar</h6>
+        <div
+          className={`tab-item ${tabSelected === 'stableCoin'}`}
+          onClick={() => setTabSelected('stableCoin')}
+        >
+          <img className="coin-img" src={usdt} alt="" />
+          <div className="text-content">
+            <h5>StableCoins</h5>
+            <h6>Digital Assets Pegged To A Analog Asset</h6>
+          </div>
         </div>
-        <div className="tab-item">
-          <h5>Crypto</h5>
-          <h6>Cryptocurrencies</h6>
+        <div
+          className={`tab-item ${tabSelected === 'cryptoCoin'}`}
+          onClick={() => setTabSelected('cryptoCoin')}
+        >
+          <img className="coin-img" src={btc} alt="" />
+          <div className="text-content">
+            <h5>Cryptocurrencies</h5>
+            <h6>Assets Built On A Blockchain</h6>
+          </div>
         </div>
-        <div className="tab-item">
-          <h5>All</h5>
-          <h6>U.S. Dollars and Cryptocurrencies</h6>
+        <div
+          className={`tab-item ${tabSelected === 'indices'}`}
+          onClick={() => setTabSelected('indices')}
+        >
+          <img className="coin-img" src={indices} alt="" />
+          <div className="text-content">
+            <h5>Indices</h5>
+            <h6>Basket Of Assets</h6>
+          </div>
         </div>
       </div>
     </>
