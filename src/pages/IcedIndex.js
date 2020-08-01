@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Layout from '../Layout/Index';
 import EarnIntrest from '../components/MarketPage/EarnIntrest/EarnIntrest';
-import LoansCard from '../components/MarketPage/EarnIntrest/LoansCard/LoansCard';
+// import LoansCard from '../components/MarketPage/EarnIntrest/LoansCard/LoansCard';
 import HistoricalRates from '../components/MarketPage/HistoricalRates/HistoricalRates';
 import Loans from '../components/MarketPage/Loans/Loans';
 import Collateral from '../components/MarketPage/Collateral/Collateral';
@@ -23,7 +23,7 @@ function IcedIndex() {
         return (
           <>
             <EarnIntrest title={title} />
-            <LoansCard />
+            {/* <LoansCard /> */}
           </>
         );
       case 'borrow-history':
@@ -66,15 +66,6 @@ function IcedIndex() {
           Lend
         </div>
         <div
-          className={`tab-itm ${menuSelected === 'earn-history'}`}
-          onClick={() => {
-            setMenuSelected('earn-history');
-            setTitle('Earn Interest');
-          }}
-        >
-          Bonds
-        </div>
-        <div
           className={`tab-itm ${menuSelected === 'borrow-intrest'}`}
           onClick={() => {
             setMenuSelected('borrow-intrest');
@@ -82,6 +73,15 @@ function IcedIndex() {
           }}
         >
           Borrow
+        </div>
+        <div
+          className={`tab-itm ${menuSelected === 'earn-history'}`}
+          onClick={() => {
+            setMenuSelected('earn-history');
+            setTitle('Earn Interest');
+          }}
+        >
+          Bonds
         </div>
         <div
           className={`tab-itm ${menuSelected === 'loan'}`}

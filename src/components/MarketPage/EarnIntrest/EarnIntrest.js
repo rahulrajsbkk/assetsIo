@@ -10,6 +10,7 @@ import EarnIntrestControll from './EarnIntrestControll';
 import AssetPlatformTable from './AssetPlatformTable';
 import fullScreenIcon from '../../../static/images/fullScreen.svg';
 import fullScreenIconExit from '../../../static/images/fullScreenExit.svg';
+import usdt from '../../../static/images/coin-color/tether.svg';
 
 function EarnIntrest({ title }) {
   const [isAsset, setIsAsset] = useState(true);
@@ -37,28 +38,22 @@ function EarnIntrest({ title }) {
               onClick={() => setDropDownOpen(!dropDownOpen)}
             >
               <div className="btn-togle">
-                <img
-                  src="https://icedvault.com/static/media/tether.5c35de51.svg"
-                  alt=""
-                />
+                <img src={usdt} alt="" />
                 USDT
               </div>
+              <span className="platform">2 Platforms</span>
               <FontAwesomeIcon icon={dropDownOpen ? faCaretUp : faCaretDown} />
               {dropDownOpen ? (
                 <div className="menu">
                   <div className="btn-togle">
-                    <img
-                      src="https://icedvault.com/static/media/tether.5c35de51.svg"
-                      alt=""
-                    />
+                    <img src={usdt} alt="" />
                     USDT
+                    <span className="platform">2 Platforms</span>
                   </div>
                   <div className="btn-togle">
-                    <img
-                      src="https://icedvault.com/static/media/tether.5c35de51.svg"
-                      alt=""
-                    />
+                    <img src={usdt} alt="" />
                     USDT
+                    <span className="platform">2 Platforms</span>
                   </div>
                 </div>
               ) : (

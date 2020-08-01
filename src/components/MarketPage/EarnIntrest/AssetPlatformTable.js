@@ -35,16 +35,19 @@ function AssetPlatformTable() {
               <img src={usdt} alt="" />
               USDT
             </div>
+            <span className="platform">2 Platforms</span>
             <FontAwesomeIcon icon={dropDownOpen ? faCaretUp : faCaretDown} />
             {dropDownOpen ? (
               <div className="menu">
                 <div className="btn-togle">
                   <img src={usdt} alt="" />
                   USDT
+                  <span className="platform">2 Platforms</span>
                 </div>
                 <div className="btn-togle">
                   <img src={usdt} alt="" />
                   USDT
+                  <span className="platform">2 Platforms</span>
                 </div>
               </div>
             ) : (

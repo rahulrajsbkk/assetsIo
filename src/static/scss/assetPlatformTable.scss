@@ -29,18 +29,24 @@
           justify-content: space-between;
           align-items: center;
           border: 1px solid #e7e7e7;
-          width: 90px;
+          min-width: 170px;
           margin-left: 20px;
           font-weight: normal;
           .btn-togle {
             display: flex;
             align-items: center;
             font-size: 13px;
+            font-weight: 600;
             img {
               height: 16px;
               width: 16px;
               margin-right: 8px;
             }
+          }
+          .platform {
+            font-size: 12px;
+            margin-left: auto;
+            margin-right: 4px;
           }
           .menu {
             border: 1px solid #e7e7e7;
@@ -60,6 +66,11 @@
                 height: 14px;
                 width: 14px;
                 margin-right: 12px;
+              }
+              .platform {
+                font-size: 11px;
+                margin-left: auto;
+                margin-right: 14px;
               }
               &:last-child {
                 border: none;
@@ -188,18 +199,24 @@
           justify-content: space-between;
           align-items: center;
           border: 1px solid #e7e7e7;
-          width: 90px;
+          min-width: 170px;
           margin-left: 20px;
           font-weight: normal;
           .btn-togle {
             display: flex;
             align-items: center;
             font-size: 13px;
+            font-weight: 600;
             img {
               height: 16px;
               width: 16px;
               margin-right: 8px;
             }
+          }
+          .platform {
+            font-size: 12px;
+            margin-left: auto;
+            margin-right: 4px;
           }
           .menu {
             border: 1px solid #e7e7e7;
@@ -219,6 +236,11 @@
                 height: 14px;
                 width: 14px;
                 margin-right: 12px;
+              }
+              .platform {
+                font-size: 11px;
+                margin-left: auto;
+                margin-right: 14px;
               }
               &:last-child {
                 border: none;
