@@ -35,7 +35,7 @@ function PlatformTable() {
             </div>
           </td>
           <td className="annRate">1.02%</td>
-          <td className="dayChange">0.12%</td>
+          <td className="dayChange true">-0.12%</td>
           <td className="supply">Surety Deposit</td>
           <td className="chart"></td>
         </tr>
@@ -71,7 +71,7 @@ function PlatformTable() {
             </div>
           </td>
           <td className="annRate">1.02%</td>
-          <td className="dayChange">0.12%</td>
+          <td className="dayChange true">-0.12%</td>
           <td className="supply">Trading Volume</td>
           <td className="chart"></td>
         </tr>

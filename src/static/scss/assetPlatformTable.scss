@@ -1,143 +1,263 @@
-.assetPlatformTable {
-  border: 1px solid #e7e7e7;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  flex: 0 0 60%;
-  margin-bottom: 30px;
-  display: flex;
-  flex-direction: column;
-  .assetTableControlls {
-    height: 50px;
-    border-bottom: 1px solid #e7e7e7;
+.content-section {
+  position: relative;
+  .assetPlatformTable {
+    border: 1px solid #e7e7e7;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
+    flex: 0 0 60%;
+    margin-bottom: 30px;
     display: flex;
-    .bt-asset {
-      padding: 0 50px;
-      cursor: pointer;
-      border-right: 1px solid #e7e7e7;
+    flex-direction: column;
+    .assetTableControlls {
+      height: 50px;
+      border-bottom: 1px solid #e7e7e7;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      min-width: 170px;
-      font-size: 16px;
-      color: $primary-color;
-      opacity: 0.7;
-      .platform-select {
-        display: none;
-        position: relative;
-        padding: 5px;
-        justify-content: space-between;
+      .bt-asset {
+        padding: 0 50px;
+        cursor: pointer;
+        border-right: 1px solid #e7e7e7;
+        display: flex;
+        justify-content: center;
         align-items: center;
-        border: 1px solid #e7e7e7;
-        width: 90px;
-        margin-left: 20px;
-        .btn-togle {
-          display: flex;
+        min-width: 170px;
+        font-size: 16px;
+        color: $primary-color;
+        opacity: 0.7;
+        .platform-select {
+          display: none;
+          position: relative;
+          padding: 5px;
+          justify-content: space-between;
           align-items: center;
-          font-size: 13px;
-          img {
-            height: 16px;
-            width: 16px;
-          }
-        }
-        .menu {
           border: 1px solid #e7e7e7;
-          z-index: 222;
-          position: absolute;
-          top: 100%;
-          left: -1px;
-          right: -1px;
+          width: 90px;
+          margin-left: 20px;
+          font-weight: normal;
           .btn-togle {
-            background-color: white;
-            border-bottom: 1px solid #e7e7e7;
-            padding: 5px;
             display: flex;
             align-items: center;
             font-size: 13px;
             img {
               height: 16px;
               width: 16px;
-            }
-            &:last-child {
-              border: none;
+              margin-right: 8px;
             }
           }
-        }
-      }
-      &.true {
-        opacity: 1;
-        font-weight: bold;
-        .platform-select {
-          display: flex;
-        }
-      }
-    }
-    .searchWrapper {
-      margin: 0 0 0 auto;
-      padding: 0 7%;
-      display: flex;
-      align-items: center;
-      input {
-        border: none;
-        background: none;
-      }
-    }
-  }
-  .tableScrollWrapper {
-    .asetPlatformTable {
-      position: relative;
-      width: 100%;
-      .tableHead {
-        tr {
-          background: rgba(231, 231, 231, 0.27);
-          th {
-            top: 0;
-            position: sticky;
-            background: rgb(231, 231, 231);
-            font-size: 12px;
-            padding: 6px 0;
-            &:first-child {
-              padding-left: 50px;
-            }
-          }
-        }
-      }
-      .tableContent {
-        tr {
-          border-bottom: 1px solid #e7e7e7;
-          td {
-            font-size: 18px;
-            font-weight: 600;
-            padding: 25px 0;
-            &.coin {
-              .coin-name {
-                display: flex;
-                align-items: center;
-                .coinLogo {
-                  height: 20px;
-                  width: 20px;
-                  margin-right: 6px;
-                }
+          .menu {
+            border: 1px solid #e7e7e7;
+            z-index: 222;
+            position: absolute;
+            top: 100%;
+            left: -1px;
+            right: -1px;
+            .btn-togle {
+              background-color: white;
+              border-bottom: 1px solid #e7e7e7;
+              padding: 5px;
+              display: flex;
+              align-items: center;
+              font-size: 11px;
+              img {
+                height: 14px;
+                width: 14px;
+                margin-right: 12px;
+              }
+              &:last-child {
+                border: none;
+              }
+              &:hover {
+                background-color: rgb(246, 246, 246);
               }
             }
-            &.annRate {
+          }
+        }
+        &.true {
+          opacity: 1;
+          font-weight: bold;
+          .platform-select {
+            display: flex;
+          }
+        }
+      }
+      .searchWrapper {
+        margin: 0 0 0 auto;
+        padding: 0 2%;
+        display: flex;
+        align-items: center;
+        input {
+          border: none;
+          background: none;
+        }
+      }
+      .fullIcon {
+        height: 17px;
+        margin: auto 7% auto 0;
+      }
+    }
+    .tableScrollWrapper {
+      .asetPlatformTable {
+        position: relative;
+        width: 100%;
+        .tableHead {
+          tr {
+            background: rgba(231, 231, 231, 0.27);
+            th {
+              top: 0;
+              position: sticky;
+              background: rgb(231, 231, 231);
+              font-size: 12px;
+              padding: 6px 0;
+              &:first-child {
+                padding-left: 50px;
+              }
             }
-            &.dayChange {
-            }
-            &.supply {
-            }
-            &.chart {
-              min-width: 150px;
-            }
-            &:first-child {
-              padding-left: 50px;
+          }
+        }
+        .tableContent {
+          tr {
+            border-bottom: 1px solid #e7e7e7;
+            td {
+              font-size: 18px;
+              font-weight: 600;
+              padding: 36px 0;
+              &.coin {
+                .coin-name {
+                  display: flex;
+                  align-items: center;
+                  .coinLogo {
+                    height: 20px;
+                    width: 20px;
+                    margin-right: 6px;
+                  }
+                }
+              }
+              &.annRate {
+              }
+              &.dayChange {
+                color: #3ea254;
+                &.true {
+                  color: #f13219;
+                }
+              }
+              &.supply {
+              }
+              &.chart {
+                min-width: 150px;
+              }
+              &:first-child {
+                padding-left: 50px;
+              }
             }
           }
         }
       }
     }
+
+    &.fullScreen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+    }
   }
-}
-.areaBelowTable {
-  border: 1px solid #e7e7e7;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  flex-grow: 1;
+  .areaBelowTable {
+    border: 1px solid #e7e7e7;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
+    flex-grow: 1;
+    .assetTableControlls {
+      height: 50px;
+      border-bottom: 1px solid #e7e7e7;
+      display: flex;
+      .bt-asset {
+        padding: 0 50px;
+        cursor: pointer;
+        border-right: 1px solid #e7e7e7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 170px;
+        font-size: 16px;
+        color: $primary-color;
+        opacity: 0.7;
+        .platform-select {
+          display: none;
+          position: relative;
+          padding: 5px;
+          justify-content: space-between;
+          align-items: center;
+          border: 1px solid #e7e7e7;
+          width: 90px;
+          margin-left: 20px;
+          font-weight: normal;
+          .btn-togle {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            img {
+              height: 16px;
+              width: 16px;
+              margin-right: 8px;
+            }
+          }
+          .menu {
+            border: 1px solid #e7e7e7;
+            z-index: 222;
+            position: absolute;
+            top: 100%;
+            left: -1px;
+            right: -1px;
+            .btn-togle {
+              background-color: white;
+              border-bottom: 1px solid #e7e7e7;
+              padding: 5px;
+              display: flex;
+              align-items: center;
+              font-size: 11px;
+              img {
+                height: 14px;
+                width: 14px;
+                margin-right: 12px;
+              }
+              &:last-child {
+                border: none;
+              }
+              &:hover {
+                background-color: rgb(246, 246, 246);
+              }
+            }
+          }
+        }
+        &.true {
+          opacity: 1;
+          font-weight: bold;
+          .platform-select {
+            display: flex;
+          }
+        }
+      }
+      .searchWrapper {
+        margin: 0 0 0 auto;
+        padding: 0 2%;
+        display: flex;
+        align-items: center;
+        input {
+          border: none;
+          background: none;
+        }
+      }
+      .fullIcon {
+        height: 17px;
+        margin: auto 7% auto 0;
+      }
+    }
+    &.fullScreen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+    }
+  }
 }

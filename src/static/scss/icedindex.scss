@@ -42,7 +42,7 @@
           width: calc((100% - 45px) / 3);
           height: 100%;
           background-color: white;
-          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
           padding: 0 20px;
           align-items: center;
           justify-content: flex-start;
@@ -80,7 +80,7 @@
         }
       }
       .table-scroll-wrapper {
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
         table {
           background: white;
           text-align: left;
@@ -197,7 +197,7 @@
     .loans-card {
       margin-top: 20px;
       height: 45vh;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
       display: flex;
       .loan-col-3 {
         flex: 0 0 33.333%;
@@ -257,7 +257,7 @@
         }
       }
       .historical-rate-card {
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
         margin-top: 20px;
         margin-bottom: 40px;
         min-height: 45vh;
@@ -395,7 +395,7 @@
       .loans-originated-card {
         margin-top: 15px;
         margin-bottom: 25px;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
         display: flex;
         flex-direction: column;
         height: 50vh;
