@@ -8,7 +8,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import AssetTable from './AssetTable';
 import PlatformTable from './PlatformTable';
+import usdt from '../../../static/images/coin-color/tether.svg';
 import fullScreenIcon from '../../../static/images/fullScreen.svg';
+import fullScreenIconExit from '../../../static/images/fullScreenExit.svg';
 
 function AssetPlatformTable() {
   const [isAsset, setIsAsset] = useState(true);
@@ -30,27 +32,18 @@ function AssetPlatformTable() {
             onClick={() => setDropDownOpen(!dropDownOpen)}
           >
             <div className="btn-togle">
-              <img
-                src="https://icedvault.com/static/media/tether.5c35de51.svg"
-                alt=""
-              />
+              <img src={usdt} alt="" />
               USDT
             </div>
             <FontAwesomeIcon icon={dropDownOpen ? faCaretUp : faCaretDown} />
             {dropDownOpen ? (
               <div className="menu">
                 <div className="btn-togle">
-                  <img
-                    src="https://icedvault.com/static/media/tether.5c35de51.svg"
-                    alt=""
-                  />
+                  <img src={usdt} alt="" />
                   USDT
                 </div>
                 <div className="btn-togle">
-                  <img
-                    src="https://icedvault.com/static/media/tether.5c35de51.svg"
-                    alt=""
-                  />
+                  <img src={usdt} alt="" />
                   USDT
                 </div>
               </div>
@@ -66,7 +59,7 @@ function AssetPlatformTable() {
         <img
           onClick={() => setFullScreen(!fullScreen)}
           className="fullIcon"
-          src={fullScreenIcon}
+          src={fullScreen ? fullScreenIconExit : fullScreenIcon}
           alt=""
         />
       </div>

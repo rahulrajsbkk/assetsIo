@@ -9,6 +9,7 @@ import {
 import EarnIntrestControll from './EarnIntrestControll';
 import AssetPlatformTable from './AssetPlatformTable';
 import fullScreenIcon from '../../../static/images/fullScreen.svg';
+import fullScreenIconExit from '../../../static/images/fullScreenExit.svg';
 
 function EarnIntrest({ title }) {
   const [isAsset, setIsAsset] = useState(true);
@@ -72,7 +73,7 @@ function EarnIntrest({ title }) {
           <img
             onClick={() => setFullScreen(!fullScreen)}
             className="fullIcon"
-            src={fullScreenIcon}
+            src={fullScreen ? fullScreenIconExit : fullScreenIcon}
             alt=""
           />
         </div>
