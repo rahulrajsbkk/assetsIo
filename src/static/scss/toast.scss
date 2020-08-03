@@ -1,6 +1,5 @@
 /* toast */
 .my-toast {
-  color: #000;
   line-height: 1.5;
   margin-bottom: 1em;
   padding: 1.25em;
@@ -12,6 +11,7 @@
   width: 90%;
   background-color: #99004d;
   color: #fff;
+  z-index: 500;
   .close {
     cursor: pointer;
     float: right;
