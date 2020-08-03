@@ -4,7 +4,14 @@ import LoginModal from './LoginModal';
 function LoginWrapper({ onClose, onLogin }) {
   return (
     <div className="login-wrapper">
-      <div className="bg-close"></div>
+      <div
+        className="bg-close"
+        onClick={() => {
+          try {
+            onClose();
+          } catch (error) {}
+        }}
+      />
       <LoginModal onClose={onClose} onLogin={onLogin} />
     </div>
   );

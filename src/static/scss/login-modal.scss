@@ -382,7 +382,8 @@ $trans-time: 300ms;
     &.true {
       max-width: 450px;
       .signup-wrap {
-        display: none;
+        flex-grow: 1;
+        max-width: 100%;
       }
       .login-wrap {
         flex: 0 0 100% !important;
