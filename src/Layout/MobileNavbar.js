@@ -8,6 +8,9 @@ function MobileNavbar({ active }) {
   console.log('active :>> ', active);
   let title;
   switch (active) {
+    case 'index':
+      title = 'Index';
+      break;
     case 'portfolio':
       title = 'Portfolio';
       break;
@@ -53,7 +56,13 @@ function MobileNavbar({ active }) {
             </div>
           </div>
           <div className="menu">
-            <Link to="/" className={`menu-itm ${active === 'portfolio'}`}>
+            <Link to="/" className={`menu-itm ${active === 'index'}`}>
+              Index
+            </Link>
+            <Link
+              to="/portfolio"
+              className={`menu-itm ${active === 'portfolio'}`}
+            >
               Portfolio
             </Link>
             <Link

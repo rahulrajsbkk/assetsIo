@@ -3,7 +3,14 @@ import useWindowDimensions from '../utils/WindowSize';
 import MobileLayout from './MobileLayout';
 import Layout from './Layout';
 
-function MainLayout({ children, active, className }) {
+function MainLayout({
+  children,
+  active,
+  className,
+  setTitle,
+  setMenuSelected,
+  menuSelected,
+}) {
   const { width } = useWindowDimensions();
   return (
     <>
@@ -14,6 +21,9 @@ function MainLayout({ children, active, className }) {
           children={children}
           active={active}
           className={className}
+          setTitle={setTitle}
+          setMenuSelected={setMenuSelected}
+          menuSelected={menuSelected}
         />
       )}
     </>
