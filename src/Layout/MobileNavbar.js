@@ -23,6 +23,7 @@ function MobileNavbar({ active }) {
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [onLoginPage, setOnLoginPage] = useState('');
   const onLogin = () => {
+    setLoginModalOpen(false);
     if (onLoginPage) {
       history.push(onLoginPage);
     }
@@ -139,6 +140,7 @@ function MobileNavbar({ active }) {
       {loginModalOpen ? (
         <LoginWrapper
           onClose={() => {
+            console.log('close');
             setLoginModalOpen(false);
             setOnLoginPage();
           }}
