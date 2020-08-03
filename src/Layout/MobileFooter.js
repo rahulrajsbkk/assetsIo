@@ -18,6 +18,7 @@ function MobileFooter({ menuSelected, setTitle, setMenuSelected }) {
         }}
       >
         <DashSvg />
+        <div className="tab-name">Lend</div>
       </div>
       <div
         className={`footer-itm ${menuSelected === 'borrow-intrest'}`}
@@ -29,6 +30,7 @@ function MobileFooter({ menuSelected, setTitle, setMenuSelected }) {
         }}
       >
         <ContractSvg />
+        <div className="tab-name">Borrow</div>
       </div>
       <div
         className={`footer-itm ${menuSelected === 'earn-history'}`}
@@ -40,6 +42,7 @@ function MobileFooter({ menuSelected, setTitle, setMenuSelected }) {
         }}
       >
         <MortageSvg />
+        <div className="tab-name">Bonds</div>
       </div>
       <div
         className={`footer-itm ${menuSelected === 'loan'}`}
@@ -51,6 +54,7 @@ function MobileFooter({ menuSelected, setTitle, setMenuSelected }) {
         }}
       >
         <CoinInvestSvg />
+        <div className="tab-name">Loans</div>
       </div>
       <div
         className={`footer-itm ${menuSelected === 'collateral'}`}
@@ -62,6 +66,7 @@ function MobileFooter({ menuSelected, setTitle, setMenuSelected }) {
         }}
       >
         <ProfileSvg />
+        <div className="tab-name">Collateral</div>
       </div>
     </div>
   );
