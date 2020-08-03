@@ -66,39 +66,41 @@ function LoginMobile({ setIsLogin, onLogin }) {
       <div className="login-enter">
         <div className="main-text">Login</div>
         <div className="sub-text">Please sign in to continue.</div>
-        <Fade bottom>
-          <label className="group">
-            <img src={emailIcon} alt="" />
-            <input
-              type="text"
-              name="email"
-              placeholder="EMAIL"
-              value={emailid}
-              onChange={(e) => setEmailId(e.target.value)}
-              required="required"
-            />
-          </label>
-        </Fade>
-        <Fade bottom>
-          <label className="group">
-            <img src={passwordIcon} alt="" />
-            <input
-              type={showPassword ? 'text' : 'password'}
-              name="password"
-              value={password}
-              placeholder="PASSWORD"
-              onChange={(e) => setPassword(e.target.value)}
-              required="required"
-            />
-            <FontAwesomeIcon
-              className="eye"
-              onClick={() => {
-                setShowPassword(!showPassword);
-              }}
-              icon={showPassword ? faEyeSlash : faEye}
-            />
-          </label>
-        </Fade>
+        <div className="stepContent">
+          <Fade bottom>
+            <label className="group">
+              <img src={emailIcon} alt="" />
+              <input
+                type="text"
+                name="email"
+                placeholder="EMAIL"
+                value={emailid}
+                onChange={(e) => setEmailId(e.target.value)}
+                required="required"
+              />
+            </label>
+          </Fade>
+          <Fade bottom>
+            <label className="group">
+              <img src={passwordIcon} alt="" />
+              <input
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                value={password}
+                placeholder="PASSWORD"
+                onChange={(e) => setPassword(e.target.value)}
+                required="required"
+              />
+              <FontAwesomeIcon
+                className="eye"
+                onClick={() => {
+                  setShowPassword(!showPassword);
+                }}
+                icon={showPassword ? faEyeSlash : faEye}
+              />
+            </label>
+          </Fade>
+        </div>
       </div>
       <div className="bottomBtn" onClick={loginvalidate}>
         {loading ? <FontAwesomeIcon icon={faSpinner} spin /> : 'Access Account'}

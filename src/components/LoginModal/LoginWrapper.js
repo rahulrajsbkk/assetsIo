@@ -6,7 +6,7 @@ import SignupMobile from './Mobile/SignupMobile';
 
 function LoginWrapper({ onClose, onLogin }) {
   const { width } = useWindowDimensions();
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   return (
     <div className="login-wrapper">
       <div
