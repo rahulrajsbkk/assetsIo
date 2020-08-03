@@ -6,13 +6,18 @@ import Vaults from './pages/Vaults';
 import MobileApps from './pages/MobileApps';
 import Markets from './pages/Markets';
 import IcedIndex from './pages/IcedIndex';
+import useWindowDimensions from './utils/WindowSize';
+import IcedIndexMobile from './pages/IcedIndexMobile';
 
 function Routes() {
+  const { width } = useWindowDimensions();
   return (
     <Switch>
       <Route exact path="/portfolio" component={Vaults} />
       <Route exact path="/login" component={Login} />
-      <Route exact path="/" component={IcedIndex} />
+      <Route exact path="/">
+        <>{width > 768 ? <IcedIndex /> : <IcedIndexMobile />}</>
+      </Route>
       <Route exact path="/transactions" component={Transaction} />
       <Route exact path="/transactions/:type" component={Transaction} />
       <Route exact path="/mobile-apps" component={MobileApps} />
