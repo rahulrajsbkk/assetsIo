@@ -37,7 +37,7 @@ function LayoutSidebarGuest({ active, countryName }) {
         >
           <Link
             to="/"
-            className={`menu-itm${active === 'icedIndex' ? ' active' : ''}`}
+            className={`menu-itm${active === 'index' ? ' active' : ''}`}
           >
             <h5 className="d-flex py-3 menu-itm">
               <img src={iced} alt="" />
@@ -67,7 +67,7 @@ function LayoutSidebarGuest({ active, countryName }) {
           </Link>
         </Scrollbars>
 
-        <AssetPriceOrRates />
+        <AssetPriceOrRates isIndex={active === 'index'} />
         <div
           onClick={() => {
             setLoginModalOpen(true);

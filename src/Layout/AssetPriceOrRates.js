@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 import { BankContext } from '../context/Context';
@@ -8,7 +8,7 @@ import eth from '../static/images/vault-methods/ethereum.svg';
 import xrp from '../static/images/vault-methods/ripple.svg';
 import usdt from '../static/images/vault-methods/tether.svg';
 
-function AssetPriceOrRates() {
+function AssetPriceOrRates({ isIndex }) {
   const { ratesRes, coinList } = useContext(BankContext);
 
   const arrow = (
@@ -32,8 +32,13 @@ function AssetPriceOrRates() {
     }).format(num);
 
   const [tabItem, setTabItem] = useState('Interest Rates');
-
-  console.log('coinList :>> ', coinList);
+  useEffect(() => {
+    if (isIndex) {
+      setTabItem('Asset Prices');
+    } else {
+      setTabItem('Interest Rates');
+    }
+  }, [isIndex]);
 
   return (
     <>

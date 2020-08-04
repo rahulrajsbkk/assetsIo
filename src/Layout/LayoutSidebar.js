@@ -61,7 +61,7 @@ function LayoutSidebar({ active, countryName }) {
         <div className="spacer" />
         <Link
           to="/"
-          className={`menu-itm${active === 'icedIndex' ? ' active' : ''}`}
+          className={`menu-itm${active === 'index' ? ' active' : ''}`}
         >
           <h5 className="d-flex py-3 menu-itm">
             <img src={iced} alt="" />
@@ -136,7 +136,7 @@ function LayoutSidebar({ active, countryName }) {
         )}
         <div ref={menuEndRef} className="spacer" />
       </Scrollbars>
-      <AssetPriceOrRates />
+      <AssetPriceOrRates isIndex={active === 'index'} />
       <div
         onClick={() => login()}
         role="button"

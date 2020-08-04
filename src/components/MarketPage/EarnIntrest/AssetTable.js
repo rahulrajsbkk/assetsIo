@@ -1,7 +1,10 @@
 import React from 'react';
-import usdt from '../../../static/images/coin-color/tether.svg';
 
-function AssetTable() {
+function AssetTable({ coinList }) {
+  const amtFormatter = new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
   return (
     <table className="asetPlatformTable">
       <thead className="tableHead">
@@ -15,54 +18,23 @@ function AssetTable() {
         </tr>
       </thead>
       <tbody className="tableContent">
-        <tr>
-          <td className="rank">1</td>
-          <td className="coin">
-            <div className="coin-name">
-              <img src={usdt} alt="" className="coinLogo" /> Tether
-            </div>
-          </td>
-          <td className="annRate">1.02%</td>
-          <td className="dayChange">0.12%</td>
-          <td className="supply">1,125,166.24 USDT</td>
-          <td className="chart"></td>
-        </tr>
-        <tr>
-          <td className="rank">1</td>
-          <td className="coin">
-            <div className="coin-name">
-              <img src={usdt} alt="" className="coinLogo" /> Tether
-            </div>
-          </td>
-          <td className="annRate">1.02%</td>
-          <td className="dayChange">0.12%</td>
-          <td className="supply">1,125,166.24 USDT</td>
-          <td className="chart"></td>
-        </tr>
-        <tr>
-          <td className="rank">1</td>
-          <td className="coin">
-            <div className="coin-name">
-              <img src={usdt} alt="" className="coinLogo" /> Tether
-            </div>
-          </td>
-          <td className="annRate">1.02%</td>
-          <td className="dayChange">0.12%</td>
-          <td className="supply">1,125,166.24 USDT</td>
-          <td className="chart"></td>
-        </tr>
-        <tr>
-          <td className="rank">1</td>
-          <td className="coin">
-            <div className="coin-name">
-              <img src={usdt} alt="" className="coinLogo" /> Tether
-            </div>
-          </td>
-          <td className="annRate">1.02%</td>
-          <td className="dayChange">0.12%</td>
-          <td className="supply">1,125,166.24 USDT</td>
-          <td className="chart"></td>
-        </tr>
+        {coinList.map((coin, i) => (
+          <tr key={coin._id}>
+            <td className="rank">{i + 1}</td>
+            <td className="coin">
+              <div className="coin-name">
+                <img src={coin.coinImage} alt="" className="coinLogo" />{' '}
+                {coin.coinName}
+              </div>
+            </td>
+            <td className="annRate">1.02%</td>
+            <td className={`dayChange ${0 > coin._24hrchange}`}>
+              {amtFormatter.format(coin._24hrchange)}%
+            </td>
+            <td className="supply">1,125,166.24 {coin.coinSymbol}</td>
+            <td className="chart"></td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );

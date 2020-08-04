@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import btc from '../../../static/images/coin-color/bitcoin.svg';
 import usdt from '../../../static/images/coin-color/tether.svg';
 import indices from '../../../static/images/indices.svg';
 
-function EarnIntrestControll() {
+function EarnIntrestControll({ setAssetTab }) {
   const [tabSelected, setTabSelected] = useState('stableCoin');
+  useEffect(() => {
+    try {
+      setAssetTab(tabSelected);
+    } catch (error) {}
+  }, [tabSelected, setAssetTab]);
   return (
     <>
       {/* <h2 className="mb-4">{title}</h2> */}

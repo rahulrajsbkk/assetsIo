@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faSearch,
@@ -10,16 +10,41 @@ import EarnIntrestControll from './EarnIntrestControll';
 import AssetPlatformTable from './AssetPlatformTable';
 import fullScreenIcon from '../../../static/images/fullScreen.svg';
 import fullScreenIconExit from '../../../static/images/fullScreenExit.svg';
-import usdt from '../../../static/images/coin-color/tether.svg';
+import { BankContext } from '../../../context/Context';
 
 function EarnIntrest({ title }) {
+  const { coinList } = useContext(BankContext);
   const [isAsset, setIsAsset] = useState(true);
   const [dropDownOpen, setDropDownOpen] = useState(false);
   const [fullScreen, setFullScreen] = useState(false);
+  const [assetTab, setAssetTab] = useState('');
+  const [filterList, setFilterList] = useState([]);
+  const [searchTitle, setSearchTitle] = useState('Stable Coins');
+  const [coinSelect, setCoinSelect] = useState({});
+
+  useEffect(() => {
+    switch (assetTab) {
+      case 'stableCoin':
+        setFilterList(coinList.filter((coin) => coin.asset_type === 'Fiat'));
+        setSearchTitle('Stable Coins');
+        break;
+      case 'cryptoCoin':
+        setFilterList(coinList.filter((coin) => coin.asset_type === 'Crypto'));
+        setSearchTitle('Crypto Currency');
+        break;
+      case 'indices':
+        setFilterList([]);
+        setSearchTitle('Indices');
+        break;
+      default:
+        setFilterList([]);
+        break;
+    }
+  }, [assetTab, coinList]);
   return (
     <div className="earn-intrest">
-      <EarnIntrestControll title={title} />
-      <AssetPlatformTable />
+      <EarnIntrestControll title={title} setAssetTab={setAssetTab} />
+      <AssetPlatformTable coinList={filterList} searchTitle={searchTitle} />
       <div className={`areaBelowTable ${fullScreen ? ' fullScreen' : ''}`}>
         <div className="assetTableControlls">
           <div
@@ -38,23 +63,23 @@ function EarnIntrest({ title }) {
               onClick={() => setDropDownOpen(!dropDownOpen)}
             >
               <div className="btn-togle">
-                <img src={usdt} alt="" />
-                USDT
+                <img src={coinSelect.coinImage} alt="" />
+                {coinSelect.coinSymbol}
               </div>
               <span className="platform">2 Platforms</span>
               <FontAwesomeIcon icon={dropDownOpen ? faCaretUp : faCaretDown} />
               {dropDownOpen ? (
                 <div className="menu">
-                  <div className="btn-togle">
-                    <img src={usdt} alt="" />
-                    USDT
-                    <span className="platform">2 Platforms</span>
-                  </div>
-                  <div className="btn-togle">
-                    <img src={usdt} alt="" />
-                    USDT
-                    <span className="platform">2 Platforms</span>
-                  </div>
+                  {coinList.map((coin) => (
+                    <div
+                      className="btn-togle"
+                      onClick={() => setCoinSelect(coin)}
+                    >
+                      <img src={coin.coinImage} alt="" />
+                      {coin.coinSymbol}
+                      <span className="platform">2 Platforms</span>
+                    </div>
+                  ))}
                 </div>
               ) : (
                 ''
@@ -62,7 +87,7 @@ function EarnIntrest({ title }) {
             </div>
           </div>
           <label className="searchWrapper">
-            <input type="text" placeholder="Search Stablecoins" />
+            <input type="text" placeholder={`Search ${searchTitle}`} />
             <FontAwesomeIcon icon={faSearch} />
           </label>
           <img
