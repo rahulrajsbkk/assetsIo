@@ -61,13 +61,14 @@ function AssetPlatformTable({ coinList, searchTitle }) {
         </div>
         <label className="searchWrapper">
           <input
+            value={search}
             type="text"
             onChange={(e) => setSearch(e.target.value)}
             placeholder={`Search ${searchTitle}`}
           />
           <FontAwesomeIcon icon={faSearch} />
           {search ? (
-            <div className="menu">
+            <div className="menu" onClick={() => setSearch('')}>
               {coinList
                 .filter(
                   (coin) =>
