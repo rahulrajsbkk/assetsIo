@@ -198,10 +198,11 @@
     }
     .tableCoinDetail {
       flex: 1;
-      padding: 20px;
+      padding: 20px 30px;
       display: flex;
       flex-direction: column;
       .breadCrumbs {
+        padding-left: 20px;
         display: flex;
         .div,
         .bread {
@@ -240,6 +241,7 @@
           align-items: center;
           justify-content: center;
           font-weight: 600;
+          font-size: 14px;
         }
         .btnDeposit {
           background: $primary-color;

@@ -30,24 +30,24 @@ function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
         </div>
         <div className="subSec">
           <h3>316.35B</h3>
-          <div className="label">MKT CAP</div>
+          <div className="label">Market Cap</div>
         </div>
         <div className="subSec">
           <h3>25.16B</h3>
-          <div className="label">MKT CAP</div>
+          <div className="label">24 Hr Volume</div>
         </div>
         <div className="subSec">
-          <h3>25.16B</h3>
-          <div className="label">MKT CAP</div>
+          <h3>4:1</h3>
+          <div className="label">Trade/Hold Ratio</div>
         </div>
       </div>
       <div className="lastIntrest">
         <div className="price">
           <h2>
-            $1.01
+            1.36%
             <small className="true">(1.36%)</small>
           </h2>
-          <div className="label">Last Price</div>
+          <div className="label">Last Interest Rate</div>
         </div>
         <div className="subSec">
           <h3>12.36%</h3>
