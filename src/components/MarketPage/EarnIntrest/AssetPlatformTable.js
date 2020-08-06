@@ -106,7 +106,11 @@ function AssetPlatformTable({ coinList, searchTitle }) {
         />
       </div>
       {coinToDetail ? (
-        <CoinDetailTable isAsset={isAsset} coinToDetail={coinToDetail} />
+        <CoinDetailTable
+          isAsset={isAsset}
+          coinToDetail={coinToDetail}
+          setCoinToDetail={setCoinToDetail}
+        />
       ) : (
         <Scrollbars autoHide className="tableScrollWrapper">
           {isAsset ? (

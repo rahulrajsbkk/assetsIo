@@ -203,10 +203,18 @@
       flex-direction: column;
       .breadCrumbs {
         display: flex;
-        .div {
+        .div,
+        .bread {
           margin-right: 10px;
           line-height: 1;
           font-size: 12px;
+          font-weight: 500;
+        }
+        .bread {
+          cursor: pointer;
+          &:hover {
+            font-weight: 700;
+          }
         }
         color: $primary-color;
       }

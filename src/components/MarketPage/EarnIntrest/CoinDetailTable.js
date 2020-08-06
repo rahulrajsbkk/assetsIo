@@ -1,12 +1,18 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
-function CoinDetailTable({ coinToDetail, isAsset }) {
+function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
   return (
     <div className="tableCoinDetail">
       <div className="breadCrumbs">
-        <div className="div">By {isAsset ? 'Asset' : 'Platform'}</div>
-        <div className="div">&gt;</div>
-        <div className="div">{coinToDetail.coinName}</div>
+        <div className="bread" onClick={() => setCoinToDetail(null)}>
+          By {isAsset ? 'Asset' : 'Platform'}
+        </div>
+        <div className="div">
+          <FontAwesomeIcon icon={faChevronRight} />
+        </div>
+        <div className="bread">{coinToDetail.coinName}</div>
       </div>
       <div className="coinDetail">
         <img src={coinToDetail.coinImage} alt="" />
