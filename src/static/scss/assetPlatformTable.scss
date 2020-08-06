@@ -3,7 +3,8 @@
   .assetPlatformTable {
     border: 1px solid #e7e7e7;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
-    flex: 0 0 60%;
+    flex: 0 0 53%;
+    max-height: 53%;
     margin-bottom: 30px;
     display: flex;
     flex-direction: column;
@@ -193,6 +194,99 @@
             }
           }
         }
+      }
+    }
+    .tableCoinDetail {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      .breadCrumbs {
+        display: flex;
+        .div {
+          margin-right: 10px;
+          line-height: 1;
+          font-size: 12px;
+        }
+        color: $primary-color;
+      }
+      .coinDetail {
+        display: flex;
+        align-items: center;
+        padding: 25px 20px;
+        img {
+          height: 30px;
+        }
+        .coinName {
+          font-size: 28px;
+          font-weight: bold;
+          margin-left: 10px;
+          color: $primary-color;
+        }
+        .btnDeposit,
+        .btnBuy {
+          cursor: pointer;
+          height: 90%;
+          width: 140px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 600;
+        }
+        .btnDeposit {
+          background: $primary-color;
+          color: white;
+          margin-left: auto;
+        }
+        .btnBuy {
+          border: $primary-color 1px solid;
+          color: $primary-color;
+          margin-left: 15px;
+        }
+      }
+      .lastPrice,
+      .lastIntrest {
+        flex: 1;
+        border: 1px solid #e7e7e7;
+        padding: 0 50px;
+        display: flex;
+        align-items: center;
+        .price {
+          flex: 0 0 40%;
+          max-width: 40%;
+          h2 {
+            font-size: 36px;
+            margin: 0;
+            color: $primary-color;
+            small {
+              font-size: 20px;
+              color: #3ea254;
+              &.true {
+                color: #ea0f0f;
+              }
+            }
+          }
+          .label {
+            font-size: 14px;
+            color: $primary-color;
+          }
+        }
+        .subSec {
+          flex: 0 0 20%;
+          max-width: 20%;
+          h3 {
+            font-size: 30px;
+            margin: 0;
+            color: $primary-color;
+          }
+          .label {
+            font-size: 14px;
+            color: $primary-color;
+          }
+        }
+      }
+      .lastPrice {
+        margin-bottom: 15px;
       }
     }
 

@@ -10,16 +10,21 @@ import AssetTable from './AssetTable';
 import PlatformTable from './PlatformTable';
 import fullScreenIcon from '../../../static/images/fullScreen.svg';
 import fullScreenIconExit from '../../../static/images/fullScreenExit.svg';
+import CoinDetailTable from './CoinDetailTable';
 
 function AssetPlatformTable({ coinList, searchTitle }) {
   const [isAsset, setIsAsset] = useState(true);
   const [dropDownOpen, setDropDownOpen] = useState(false);
   const [fullScreen, setFullScreen] = useState(false);
   const [coinSelect, setCoinSelect] = useState({});
+  const [coinToDetail, setCoinToDetail] = useState(null);
   const [search, setSearch] = useState('');
   useEffect(() => {
     if (coinList[0]) setCoinSelect(coinList[0]);
   }, [coinList]);
+  useEffect(() => {
+    setCoinToDetail(null);
+  }, [coinSelect, isAsset]);
   return (
     <div className={`assetPlatformTable ${fullScreen ? ' fullScreen' : ''}`}>
       <div className="assetTableControlls">
@@ -100,13 +105,20 @@ function AssetPlatformTable({ coinList, searchTitle }) {
           alt=""
         />
       </div>
-      <Scrollbars autoHide className="tableScrollWrapper">
-        {isAsset ? (
-          <AssetTable coinList={coinList} />
-        ) : (
-          <PlatformTable coinSelect={coinSelect} />
-        )}
-      </Scrollbars>
+      {coinToDetail ? (
+        <CoinDetailTable isAsset={isAsset} coinToDetail={coinToDetail} />
+      ) : (
+        <Scrollbars autoHide className="tableScrollWrapper">
+          {isAsset ? (
+            <AssetTable setCoinToDetail={setCoinToDetail} coinList={coinList} />
+          ) : (
+            <PlatformTable
+              setCoinToDetail={setCoinToDetail}
+              coinSelect={coinSelect}
+            />
+          )}
+        </Scrollbars>
+      )}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AssetTable({ coinList }) {
+function AssetTable({ coinList, setCoinToDetail }) {
   const amtFormatter = new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
@@ -19,7 +19,7 @@ function AssetTable({ coinList }) {
       </thead>
       <tbody className="tableContent">
         {coinList.map((coin, i) => (
-          <tr key={coin._id}>
+          <tr key={coin._id} onClick={() => setCoinToDetail(coin)}>
             <td className="rank">{i + 1}</td>
             <td className="coin">
               <div className="coin-name">

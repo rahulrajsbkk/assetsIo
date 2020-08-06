@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PlatformTable({ coinSelect }) {
+function PlatformTable({ coinSelect, setCoinToDetail }) {
   const amtFormatter = new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
@@ -18,7 +18,7 @@ function PlatformTable({ coinSelect }) {
         </tr>
       </thead>
       <tbody className="tableContent">
-        <tr>
+        <tr onClick={() => setCoinToDetail(coinSelect)}>
           <td className="rank">1</td>
           <td className="coin">
             <div className="coin-name">
@@ -33,7 +33,7 @@ function PlatformTable({ coinSelect }) {
           <td className="supply">Term Lock Up</td>
           <td className="chart"></td>
         </tr>
-        <tr>
+        <tr onClick={() => setCoinToDetail(coinSelect)}>
           <td className="rank">1</td>
           <td className="coin">
             <div className="coin-name">
@@ -48,7 +48,7 @@ function PlatformTable({ coinSelect }) {
           <td className="supply">Surety Deposit</td>
           <td className="chart"></td>
         </tr>
-        <tr>
+        <tr onClick={() => setCoinToDetail(coinSelect)}>
           <td className="rank">1</td>
           <td className="coin">
             <div className="coin-name">
@@ -63,7 +63,7 @@ function PlatformTable({ coinSelect }) {
           <td className="supply">Decentralized</td>
           <td className="chart"></td>
         </tr>
-        <tr>
+        <tr onClick={() => setCoinToDetail(coinSelect)}>
           <td className="rank">1</td>
           <td className="coin">
             <div className="coin-name">
@@ -78,7 +78,7 @@ function PlatformTable({ coinSelect }) {
           <td className="supply">None</td>
           <td className="chart"></td>
         </tr>
-        <tr>
+        <tr onClick={() => setCoinToDetail(coinSelect)}>
           <td className="rank">1</td>
           <td className="coin">
             <div className="coin-name">
