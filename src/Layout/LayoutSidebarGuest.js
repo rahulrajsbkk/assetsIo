@@ -20,7 +20,7 @@ function LayoutSidebarGuest({ active, countryName }) {
   };
   return (
     <>
-      <div className="side-bar d-flex flex-column">
+      <div key="guest" className="side-bar d-flex flex-column">
         <div className="profile d-flex">
           <img src={guest} alt="" />
           <div className="col my-auto">

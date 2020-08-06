@@ -8,6 +8,7 @@ import {
 import { Link, useHistory } from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars';
 
+import guest from '../static/images/guest.jpg';
 import iced from '../static/images/logo.svg';
 import card from '../static/images/sidebar-icons/card.svg';
 import deposit from '../static/images/sidebar-icons/deposit.svg';
@@ -38,14 +39,7 @@ function LayoutSidebar({ active, countryName }) {
   return (
     <div className="side-bar d-flex flex-column">
       <div className="profile d-flex">
-        <img
-          src={
-            profileImg
-              ? profileImg
-              : `https://api.adorable.io/avatars/100/${username}.png`
-          }
-          alt=""
-        />
+        <img src={profileImg ? profileImg : guest} alt="" />
         <div className="col my-auto">
           <h5>{name ? name : username}&nbsp;</h5>
           <h6>{countryName}</h6>

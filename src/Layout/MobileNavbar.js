@@ -3,6 +3,7 @@ import Axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 import { BankContext } from '../context/Context';
 import LoginWrapper from '../components/LoginModal/LoginWrapper';
+import guest from '../static/images/guest.jpg';
 
 function MobileNavbar({ active }) {
   const [navOpen, setNavOpen] = useState(false);
@@ -67,14 +68,7 @@ function MobileNavbar({ active }) {
         {navOpen ? (
           <div className="menu-open">
             <div className="profile">
-              <img
-                src={
-                  profileImg
-                    ? profileImg
-                    : `https://api.adorable.io/avatars/100/${username}.png`
-                }
-                alt=""
-              />
+              <img src={profileImg ? profileImg : guest} alt="" />
               <div className="user-info">
                 <div className="name">
                   {email ? (name ? name : username) : countryName}&nbsp;

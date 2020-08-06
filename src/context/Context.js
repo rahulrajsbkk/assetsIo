@@ -36,23 +36,24 @@ function BankContextProvider({ children }) {
   const [profileImg, setProfileImg] = useState('');
 
   useEffect(() => {
+    function getUserData() {
+      Axios.post('https://comms.globalxchange.com/get_affiliate_data_no_logs', {
+        email: email,
+      }).then((res) => {
+        const data = res.data[0];
+        if (data) {
+          setUsername(data.username);
+          setName(data.name);
+          setProfileImg(data.profile_img);
+        }
+      });
+    }
     if (email && idToken) {
       Axios.post('https://comms.globalxchange.com/coin/verifyToken', {
         email,
         token: idToken,
-      }).then((res) => (res.data.status ? '' : login('', '', '')));
+      }).then((res) => (res.data.status ? getUserData() : login('', '', '')));
     }
-
-    Axios.post('https://comms.globalxchange.com/get_affiliate_data_no_logs', {
-      email: email,
-    }).then((res) => {
-      const data = res.data[0];
-      if (data) {
-        setUsername(data.username);
-        setName(data.name);
-        setProfileImg(data.profile_img);
-      }
-    });
   }, [email, idToken]);
 
   const [toastShow, setToastShow] = useState(false);
