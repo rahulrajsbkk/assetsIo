@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
+  const [toHide, setToHide] = useState('');
   return (
     <div className="tableCoinDetail">
       <div className="breadCrumbs">
@@ -20,7 +21,10 @@ function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
         <div className="btnDeposit">Deposit {coinToDetail.coinSymbol}</div>
         <div className="btnBuy">Buy {coinToDetail.coinSymbol}</div>
       </div>
-      <div className="lastPrice">
+      <div
+        className={`lastPrice ${toHide === 'lastPrice' ? 'd-none' : ''}`}
+        onClick={() => setToHide('lastIntrest')}
+      >
         <div className="price">
           <h2>
             $1.01
@@ -41,7 +45,11 @@ function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
           <div className="label">Trade/Hold Ratio</div>
         </div>
       </div>
-      <div className="lastIntrest">
+
+      <div
+        className={`lastIntrest ${toHide === 'lastIntrest' ? 'd-none' : ''}`}
+        onClick={() => setToHide('lastPrice')}
+      >
         <div className="price">
           <h2>
             1.36%
