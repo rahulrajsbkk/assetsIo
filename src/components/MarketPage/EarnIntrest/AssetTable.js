@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import CountUp from 'react-countup';
 
 function AssetTable({ coinList, setCoinToDetail }) {
-  const amtFormatter = new Intl.NumberFormat('en-US', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
+  const [duration, setDuration] = useState(2);
+  const togleDuration = (duration) => {
+    setDuration(duration === 2 ? 2.1 : 2);
+  };
   return (
     <table className="asetPlatformTable">
       <thead className="tableHead">
@@ -27,9 +28,28 @@ function AssetTable({ coinList, setCoinToDetail }) {
                 {coin.coinName}
               </div>
             </td>
-            <td className="annRate">1.02%</td>
+            <td className="annRate">
+              <CountUp
+                onEnd={() => {
+                  setTimeout(() => {
+                    togleDuration(duration);
+                  }, 3000);
+                }}
+                duration={duration}
+                start={0}
+                end={1.02 || 0}
+                decimals={2}
+              />
+              %
+            </td>
             <td className={`dayChange ${0 > coin._24hrchange}`}>
-              {amtFormatter.format(coin._24hrchange)}%
+              <CountUp
+                duration={duration}
+                start={coin._24hrchange - 2 || 0}
+                end={coin._24hrchange || 0}
+                decimals={2}
+              />
+              %
             </td>
             <td className="supply">1,125,166.24 {coin.coinSymbol}</td>
             <td className="chart"></td>
