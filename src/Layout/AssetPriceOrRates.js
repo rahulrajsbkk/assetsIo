@@ -21,16 +21,16 @@ function AssetPriceOrRates({ isIndex }) {
     </svg>
   );
 
-  const formatPercent = (num) =>
-    new Intl.NumberFormat('en-US', {
-      maximumFractionDigits: 1,
-      minimumFractionDigits: 1,
-    }).format(num);
-  const formatNum = (num, prec) =>
-    new Intl.NumberFormat('en-US', {
-      maximumFractionDigits: prec,
-      minimumFractionDigits: prec,
-    }).format(num);
+  // const formatPercent = (num) =>
+  //   new Intl.NumberFormat('en-US', {
+  //     maximumFractionDigits: 1,
+  //     minimumFractionDigits: 1,
+  //   }).format(num);
+  // const formatNum = (num, prec) =>
+  //   new Intl.NumberFormat('en-US', {
+  //     maximumFractionDigits: prec,
+  //     minimumFractionDigits: prec,
+  //   }).format(num);
 
   const [tabItem, setTabItem] = useState('Interest Rates');
   useEffect(() => {

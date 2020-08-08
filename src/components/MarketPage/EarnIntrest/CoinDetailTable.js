@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import CountUp from 'react-countup';
 
 function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
   const [toHide, setToHide] = useState('');
@@ -27,21 +28,32 @@ function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
       >
         <div className="price">
           <h2>
-            $1.01
-            <small>(1.36%)</small>
+            $
+            <CountUp end={1.01 || 0} decimals={2} />
+            <small>
+              (<CountUp end={1.36 || 0} decimals={2} />
+              %)
+            </small>
           </h2>
           <div className="label">Last Price</div>
         </div>
         <div className="subSec">
-          <h3>316.35B</h3>
+          <h3>
+            <CountUp end={316.35 || 0} decimals={2} />B
+          </h3>
           <div className="label">Market Cap</div>
         </div>
         <div className="subSec">
-          <h3>25.16B</h3>
+          <h3>
+            <CountUp end={25.16 || 0} decimals={2} />B
+          </h3>
           <div className="label">24 Hr Volume</div>
         </div>
         <div className="subSec">
-          <h3>4:1</h3>
+          <h3>
+            <CountUp end={4 || 0} decimals={0} />
+            :<CountUp end={1 || 0} decimals={0} />
+          </h3>
           <div className="label">Trade/Hold Ratio</div>
         </div>
       </div>
@@ -52,21 +64,30 @@ function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
       >
         <div className="price">
           <h2>
-            1.36%
-            <small className="true">(1.36%)</small>
+            <CountUp end={1.36 || 0} decimals={2} />%
+            <small className="true">
+              (<CountUp end={1.36 || 0} decimals={2} />
+              %)
+            </small>
           </h2>
           <div className="label">Last Interest Rate</div>
         </div>
         <div className="subSec">
-          <h3>12.36%</h3>
+          <h3>
+            <CountUp end={12.36 || 0} decimals={2} />%
+          </h3>
           <div className="label">3 Month Bond</div>
         </div>
         <div className="subSec">
-          <h3>12.36%</h3>
+          <h3>
+            <CountUp end={12.36 || 0} decimals={2} />%
+          </h3>
           <div className="label">6 Month Bond</div>
         </div>
         <div className="subSec">
-          <h3>1.36 BTC</h3>
+          <h3>
+            <CountUp end={1.36 || 0} decimals={2} /> BTC
+          </h3>
           <div className="label">Supply</div>
         </div>
       </div>
