@@ -51,7 +51,15 @@ function AssetTable({ coinList, setCoinToDetail }) {
               />
               %
             </td>
-            <td className="supply">1,125,166.24 {coin.coinSymbol}</td>
+            <td className="supply">
+              <CountUp
+                duration={duration}
+                start={1125166.24 - 2 || 0}
+                end={1125166.24 || 0}
+                decimals={2}
+              />{' '}
+              {coin.coinSymbol}
+            </td>
             <td className="chart"></td>
           </tr>
         ))}

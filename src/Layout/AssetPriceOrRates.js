@@ -41,6 +41,11 @@ function AssetPriceOrRates({ isIndex }) {
     }
   }, [isIndex]);
 
+  const [duration, setDuration] = useState(2);
+  const togleDuration = (duration) => {
+    setDuration(duration === 2 ? 2.1 : 2);
+  };
+
   return (
     <>
       <div className="tab-inrest-asset">
@@ -70,12 +75,20 @@ function AssetPriceOrRates({ isIndex }) {
               <img className="coin-logo" src={btc} alt="" />
               <div className="rate">
                 <CountUp
+                  onEnd={() => {
+                    setTimeout(() => {
+                      togleDuration(duration);
+                    }, 3000);
+                  }}
+                  duration={duration}
                   end={(ratesRes[0] && ratesRes[0].tier1.rate) || 0}
                   decimals={1}
                 />
                 %
                 <small>
-                  (1.2%)
+                  (
+                  <CountUp duration={duration} end={1.2 || 0} decimals={1} />
+                  %)
                   {arrow}
                 </small>
               </div>
@@ -84,12 +97,15 @@ function AssetPriceOrRates({ isIndex }) {
               <img className="coin-logo" src={eth} alt="" />
               <div className="rate">
                 <CountUp
+                  duration={duration}
                   end={(ratesRes[1] && ratesRes[1].tier1.rate) || 0}
                   decimals={1}
                 />
                 %
                 <small>
-                  (1.2%)
+                  (
+                  <CountUp duration={duration} end={1.2 || 0} decimals={1} />
+                  %)
                   {arrow}
                 </small>
               </div>
@@ -98,12 +114,15 @@ function AssetPriceOrRates({ isIndex }) {
               <img className="coin-logo" src={usdt} alt="" />
               <div className="rate">
                 <CountUp
+                  duration={duration}
                   end={(ratesRes[2] && ratesRes[2].tier1.rate) || 0}
                   decimals={1}
                 />
                 %
                 <small>
-                  (1.2%)
+                  (
+                  <CountUp duration={duration} end={1.2 || 0} decimals={1} />
+                  %)
                   {arrow}
                 </small>
               </div>
@@ -112,11 +131,14 @@ function AssetPriceOrRates({ isIndex }) {
               <img className="coin-logo" src={xrp} alt="" />
               <div className="rate">
                 <CountUp
+                  duration={duration}
                   end={(ratesRes[3] && ratesRes[3].tier1.rate) || 0}
                   decimals={1}
                 />
                 <small>
-                  (1.2%)
+                  (
+                  <CountUp duration={duration} end={1.2 || 0} decimals={1} />
+                  %)
                   {arrow}
                 </small>
               </div>
@@ -125,12 +147,15 @@ function AssetPriceOrRates({ isIndex }) {
               <img className="coin-logo" src={btc} alt="" />
               <div className="rate">
                 <CountUp
+                  duration={duration}
                   end={(ratesRes[0] && ratesRes[0].tier1.rate) || 0}
                   decimals={1}
                 />
                 %
                 <small>
-                  (1.2%)
+                  (
+                  <CountUp duration={duration} end={1.2 || 0} decimals={1} />
+                  %)
                   {arrow}
                 </small>
               </div>
@@ -139,12 +164,15 @@ function AssetPriceOrRates({ isIndex }) {
               <img className="coin-logo" src={eth} alt="" />
               <div className="rate">
                 <CountUp
+                  duration={duration}
                   end={(ratesRes[1] && ratesRes[1].tier1.rate) || 0}
                   decimals={1}
                 />
                 %
                 <small>
-                  (1.2%)
+                  (
+                  <CountUp duration={duration} end={1.2 || 0} decimals={1} />
+                  %)
                   {arrow}
                 </small>
               </div>
@@ -153,12 +181,15 @@ function AssetPriceOrRates({ isIndex }) {
               <img className="coin-logo" src={usdt} alt="" />
               <div className="rate">
                 <CountUp
+                  duration={duration}
                   end={(ratesRes[2] && ratesRes[2].tier1.rate) || 0}
                   decimals={1}
                 />
                 %
                 <small>
-                  (1.2%)
+                  (
+                  <CountUp duration={duration} end={1.2 || 0} decimals={1} />
+                  %)
                   {arrow}
                 </small>
               </div>
@@ -167,11 +198,14 @@ function AssetPriceOrRates({ isIndex }) {
               <img className="coin-logo" src={xrp} alt="" />
               <div className="rate">
                 <CountUp
+                  duration={duration}
                   end={(ratesRes[3] && ratesRes[3].tier1.rate) || 0}
                   decimals={1}
                 />
                 <small>
-                  (1.2%)
+                  (
+                  <CountUp duration={duration} end={1.2 || 0} decimals={1} />
+                  %)
                   {arrow}
                 </small>
               </div>
@@ -184,10 +218,24 @@ function AssetPriceOrRates({ isIndex }) {
                 <img className="coin-logo mr-2" src={coin.coinImage} alt="" />
                 <div className="coin-name">{coin.coinName}</div>
                 <div className="rate">
-                  <CountUp end={coin.price.USD || 0} decimals={2} />
+                  <CountUp
+                    onEnd={() => {
+                      setTimeout(() => {
+                        togleDuration(duration);
+                      }, 3000);
+                    }}
+                    duration={duration}
+                    end={coin.price.USD || 0}
+                    decimals={2}
+                  />
                   <small className={`${coin._24hrchange < 0}`}>
-                    (<CountUp end={coin._24hrchange || 0} decimals={1} />)
-                    {arrow}
+                    (
+                    <CountUp
+                      duration={duration}
+                      end={coin._24hrchange || 0}
+                      decimals={1}
+                    />
+                    ){arrow}
                   </small>
                 </div>
               </div>
