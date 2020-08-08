@@ -43,9 +43,9 @@ function VaultCreateNewContract() {
             {coinList.map((coin) => (
               <div
                 className={`card ${
-                  selectedCard === '' || selectedCard === 'btc'
+                  selectedCard === '' || selectedCard === coin.coinName
                 }`}
-                onClick={() => setSelectedCard('btc')}
+                onClick={() => setSelectedCard(coin.coinName)}
               >
                 <img src={coin.coinImage} alt="" />
                 <div className="coin">{coin.coinName}</div>
