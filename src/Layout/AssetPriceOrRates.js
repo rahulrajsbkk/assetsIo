@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
+import CountUp from 'react-countup';
 
 import { BankContext } from '../context/Context';
 
@@ -68,9 +69,10 @@ function AssetPriceOrRates({ isIndex }) {
             <div className="coin">
               <img className="coin-logo" src={btc} alt="" />
               <div className="rate">
-                {ratesRes[0] && ratesRes[0].tier1.rate
-                  ? formatPercent(ratesRes[0].tier1.rate)
-                  : '0.0'}
+                <CountUp
+                  end={(ratesRes[0] && ratesRes[0].tier1.rate) || 0}
+                  decimals={1}
+                />
                 %
                 <small>
                   (1.2%)
@@ -81,9 +83,10 @@ function AssetPriceOrRates({ isIndex }) {
             <div className="coin">
               <img className="coin-logo" src={eth} alt="" />
               <div className="rate">
-                {ratesRes[1] && ratesRes[1].tier1.rate
-                  ? formatPercent(ratesRes[1].tier1.rate)
-                  : '0.0'}
+                <CountUp
+                  end={(ratesRes[1] && ratesRes[1].tier1.rate) || 0}
+                  decimals={1}
+                />
                 %
                 <small>
                   (1.2%)
@@ -94,9 +97,10 @@ function AssetPriceOrRates({ isIndex }) {
             <div className="coin">
               <img className="coin-logo" src={usdt} alt="" />
               <div className="rate">
-                {ratesRes[2] && ratesRes[2].tier1.rate
-                  ? formatPercent(ratesRes[2].tier1.rate)
-                  : '0.0'}
+                <CountUp
+                  end={(ratesRes[2] && ratesRes[2].tier1.rate) || 0}
+                  decimals={1}
+                />
                 %
                 <small>
                   (1.2%)
@@ -107,9 +111,10 @@ function AssetPriceOrRates({ isIndex }) {
             <div className="coin">
               <img className="coin-logo" src={xrp} alt="" />
               <div className="rate">
-                {ratesRes[3] && ratesRes[3].tier1.rate
-                  ? formatPercent(ratesRes[3].tier1.rate)
-                  : '0.0'}
+                <CountUp
+                  end={(ratesRes[3] && ratesRes[3].tier1.rate) || 0}
+                  decimals={1}
+                />
                 <small>
                   (1.2%)
                   {arrow}
@@ -119,9 +124,10 @@ function AssetPriceOrRates({ isIndex }) {
             <div className="coin">
               <img className="coin-logo" src={btc} alt="" />
               <div className="rate">
-                {ratesRes[0] && ratesRes[0].tier1.rate
-                  ? formatPercent(ratesRes[0].tier1.rate)
-                  : '0.0'}
+                <CountUp
+                  end={(ratesRes[0] && ratesRes[0].tier1.rate) || 0}
+                  decimals={1}
+                />
                 %
                 <small>
                   (1.2%)
@@ -132,9 +138,10 @@ function AssetPriceOrRates({ isIndex }) {
             <div className="coin">
               <img className="coin-logo" src={eth} alt="" />
               <div className="rate">
-                {ratesRes[1] && ratesRes[1].tier1.rate
-                  ? formatPercent(ratesRes[1].tier1.rate)
-                  : '0.0'}
+                <CountUp
+                  end={(ratesRes[1] && ratesRes[1].tier1.rate) || 0}
+                  decimals={1}
+                />
                 %
                 <small>
                   (1.2%)
@@ -145,9 +152,10 @@ function AssetPriceOrRates({ isIndex }) {
             <div className="coin">
               <img className="coin-logo" src={usdt} alt="" />
               <div className="rate">
-                {ratesRes[2] && ratesRes[2].tier1.rate
-                  ? formatPercent(ratesRes[2].tier1.rate)
-                  : '0.0'}
+                <CountUp
+                  end={(ratesRes[2] && ratesRes[2].tier1.rate) || 0}
+                  decimals={1}
+                />
                 %
                 <small>
                   (1.2%)
@@ -158,9 +166,10 @@ function AssetPriceOrRates({ isIndex }) {
             <div className="coin">
               <img className="coin-logo" src={xrp} alt="" />
               <div className="rate">
-                {ratesRes[3] && ratesRes[3].tier1.rate
-                  ? formatPercent(ratesRes[3].tier1.rate)
-                  : '0.0'}
+                <CountUp
+                  end={(ratesRes[3] && ratesRes[3].tier1.rate) || 0}
+                  decimals={1}
+                />
                 <small>
                   (1.2%)
                   {arrow}
@@ -175,9 +184,10 @@ function AssetPriceOrRates({ isIndex }) {
                 <img className="coin-logo mr-2" src={coin.coinImage} alt="" />
                 <div className="coin-name">{coin.coinName}</div>
                 <div className="rate">
-                  {formatNum(coin.price.USD, 2)}
+                  <CountUp end={coin.price.USD || 0} decimals={2} />
                   <small className={`${coin._24hrchange < 0}`}>
-                    ({formatPercent(coin._24hrchange)}){arrow}
+                    (<CountUp end={coin._24hrchange || 0} decimals={1} />)
+                    {arrow}
                   </small>
                 </div>
               </div>
