@@ -1,27 +1,47 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 import next from '../../../static/images/next-anim.svg';
 import { BankContext } from '../../../context/Context';
+import { VaultContext } from '../../../context/VaultContext';
 
 const validNumber = new RegExp(/^\d*\.?\d*$/);
 
 function VaultCreateNewContract() {
   const { coinList } = useContext(BankContext);
+  const {
+    coinContract,
+    setCoinContract,
+    setDaysToHold,
+    calculateRoi,
+  } = useContext(VaultContext);
   const usdAmountFormatter = new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
   const [duration, setDuration] = useState('');
   const [durationUnit, setDurationUnit] = useState('Days');
-  const [selectedCard, setSelectedCard] = useState('');
   const [durationDropDownOpen, setDurationDropDownOpen] = useState(false);
   const onDurationchange = (e) => {
     const { value } = e.target;
     if (value === '' || validNumber.test(value)) setDuration(value);
   };
+
+  useEffect(() => {
+    switch (durationUnit) {
+      case 'Weeks':
+        setDaysToHold(duration * 7);
+        break;
+      case 'Months':
+        setDaysToHold(duration * 30);
+        break;
+      default:
+        setDaysToHold(duration);
+        break;
+    }
+  }, [duration, durationUnit, setDaysToHold]);
 
   return (
     <div className="vault-new-contract">
@@ -42,10 +62,11 @@ function VaultCreateNewContract() {
           >
             {coinList.map((coin) => (
               <div
+                key={coin.coinSymbol}
                 className={`card ${
-                  selectedCard === '' || selectedCard === coin.coinName
+                  coinContract === '' || coinContract === coin.coinSymbol
                 }`}
-                onClick={() => setSelectedCard(coin.coinName)}
+                onClick={() => setCoinContract(coin.coinSymbol)}
               >
                 <img src={coin.coinImage} alt="" />
                 <div className="coin">{coin.coinName}</div>
@@ -92,7 +113,7 @@ function VaultCreateNewContract() {
               </div>
             </div>
           </div>
-          <div className="btn-calculate">
+          <div className="btn-calculate" onClick={calculateRoi}>
             <h5>
               Calculate ROI
               <img src={next} alt="" />
