@@ -1,0 +1,133 @@
+.dashboard {
+  .dashContracts {
+    height: 0;
+    flex: 1;
+    display: flex;
+    .chartSection {
+      flex: 0 0 65%;
+      max-width: 65%;
+      display: flex;
+      flex-direction: column;
+      .annualRate {
+        margin: 50px 0 0 50px;
+        font-size: 30px;
+        font-weight: bold;
+      }
+      .annualRatelabel {
+        margin-left: 50px;
+        font-size: 16px;
+        font-weight: 600;
+      }
+      .chart-wrapper {
+        margin-top: auto;
+        position: relative;
+        height: 85%;
+        .chart-curved {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          left: 0;
+        }
+      }
+    }
+    .detailings {
+      flex: 0 0 35%;
+      max-width: 35%;
+      position: relative;
+      border: 1px solid $primary-color;
+      padding: 40px;
+      font-family: 'Roboto', sans-serif;
+      line-height: 1;
+      color: $primary-color;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .headMain {
+        font-size: 25px;
+        font-weight: bold;
+        opacity: 0.2;
+        &.true {
+          opacity: 1;
+        }
+      }
+      .detailItem {
+        cursor: pointer;
+        opacity: 0.2;
+        margin: 4px 0;
+        display: flex;
+        justify-content: space-between;
+        .name,
+        .date {
+          font-size: 18px;
+          padding: 5px 0;
+        }
+        .valueNbtn {
+          border: 2px solid $primary-color;
+          width: 48%;
+          display: flex;
+          font-size: 15px;
+          font-weight: bold;
+          .value {
+            width: 60%;
+            padding: 0 15px;
+            background-color: $primary-color;
+            color: white;
+            display: flex;
+            align-items: center;
+            &.down {
+              background: #b72222;
+            }
+            &.up {
+              background: #00bd9a;
+            }
+          }
+          .btnView {
+            border-left: 2px solid $primary-color;
+            color: $primary-color;
+            padding: 0 14px;
+            background-color: white;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+          }
+        }
+        &.true {
+          opacity: 1;
+        }
+      }
+      .moreDetail {
+        position: absolute;
+        top: 100%;
+        left: -1px;
+        right: -1px;
+        height: 65px;
+        border: 1px solid $primary-color;
+        display: flex;
+        align-items: center;
+        .btnBtcUsd {
+          height: 100%;
+          opacity: 0.3;
+          width: 65px;
+          border-right: 1px solid #d3d3d3;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            height: 40px;
+            width: 40px;
+          }
+          &.true {
+            opacity: 1;
+          }
+        }
+        .value {
+          margin: 0 40px 0 auto;
+        }
+      }
+    }
+  }
+}
