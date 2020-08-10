@@ -108,6 +108,8 @@
         border: 1px solid $primary-color;
         display: flex;
         align-items: center;
+        z-index: 2;
+        background: white;
         .btnBtcUsd {
           height: 100%;
           opacity: 0.3;

@@ -27,7 +27,9 @@ function DashContracts() {
           className={`detailItem ${
             selectedDetail === '' || selectedDetail === 'deposit'
           }`}
-          onClick={() => setSelectedDetail('deposit')}
+          onClick={() =>
+            setSelectedDetail(selectedDetail === '' ? 'deposit' : '')
+          }
         >
           <div className="name">Deposit:</div>
           <div className="valueNbtn">
@@ -37,11 +39,7 @@ function DashContracts() {
             </div>
           </div>
         </div>
-        <div
-          className={`detailItem ${
-            selectedDetail === '' || selectedDetail === ''
-          }`}
-        >
+        <div className={`detailItem ${selectedDetail === ''}`}>
           <div className="name">Deposit Date:</div>
           <div className="date">March 21st 2020</div>
         </div>
@@ -56,7 +54,9 @@ function DashContracts() {
           className={`detailItem ${
             selectedDetail === '' || selectedDetail === 'redeem'
           }`}
-          onClick={() => setSelectedDetail('redeem')}
+          onClick={() => {
+            setSelectedDetail(selectedDetail === '' ? 'redeem' : '');
+          }}
         >
           <div className="name">Redemption:</div>
           <div className="valueNbtn">
@@ -85,7 +85,9 @@ function DashContracts() {
           className={`detailItem ${
             selectedDetail === '' || selectedDetail === 'term-annualised'
           }`}
-          onClick={() => setSelectedDetail('term-annualised')}
+          onClick={() => {
+            setSelectedDetail(selectedDetail === '' ? 'term-annualised' : '');
+          }}
         >
           <div className="name">Annualized Rate:</div>
           <div className="valueNbtn">
@@ -99,7 +101,9 @@ function DashContracts() {
           className={`detailItem ${
             selectedDetail === '' || selectedDetail === 'term-rate'
           }`}
-          onClick={() => setSelectedDetail('term-rate')}
+          onClick={() => {
+            setSelectedDetail(selectedDetail === '' ? 'term-rate' : '');
+          }}
         >
           <div className="name">Term Rate (3M):</div>
           <div className="valueNbtn">
@@ -113,7 +117,9 @@ function DashContracts() {
           className={`detailItem ${
             selectedDetail === '' || selectedDetail === 'term-profit'
           }`}
-          onClick={() => setSelectedDetail('term-profit')}
+          onClick={() => {
+            setSelectedDetail(selectedDetail === '' ? 'term-profit' : '');
+          }}
         >
           <div className="name">Fees From Profit:</div>
           <div className="valueNbtn">
@@ -127,7 +133,9 @@ function DashContracts() {
           className={`detailItem ${
             selectedDetail === '' || selectedDetail === 'term-earnings'
           }`}
-          onClick={() => setSelectedDetail('term-earnings')}
+          onClick={() => {
+            setSelectedDetail(selectedDetail === '' ? 'term-earnings' : '');
+          }}
         >
           <div className="name">Net Earnings:</div>
           <div className="valueNbtn">
@@ -141,7 +149,9 @@ function DashContracts() {
           className={`detailItem ${
             selectedDetail === '' || selectedDetail === 'term-daily'
           }`}
-          onClick={() => setSelectedDetail('term-daily')}
+          onClick={() => {
+            setSelectedDetail(selectedDetail === '' ? 'term-daily' : '');
+          }}
         >
           <div className="name">90 Daily Payments:</div>
           <div className="valueNbtn">
