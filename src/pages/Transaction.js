@@ -42,7 +42,9 @@ function Transaction({ match }) {
       <div className="head">
         <div className="vault-n-balance">
           <div className="vault">{coin} Vault</div>
-          <div className="balance">0.03211</div>
+          <div className="balance">
+            0.03211 <small>$23,135.31</small>
+          </div>
         </div>
         <div className="coin-select">
           {searchEnable ? (
