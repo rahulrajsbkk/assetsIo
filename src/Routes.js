@@ -18,8 +18,8 @@ function Routes() {
       <Route exact path="/">
         <>{width > 768 ? <IcedIndex /> : <IcedIndexMobile />}</>
       </Route>
-      <Route exact path="/transactions" component={Transaction} />
-      <Route exact path="/transactions/:type" component={Transaction} />
+      <Route exact path="/vault" component={Transaction} />
+      <Route exact path="/vault/:type" component={Transaction} />
       <Route exact path="/mobile-apps" component={MobileApps} />
       <Route exact path="/markets" component={Markets} />
     </Switch>

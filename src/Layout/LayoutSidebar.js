@@ -77,7 +77,7 @@ function LayoutSidebar({ active, countryName }) {
           }`}
           onClick={() => {
             setOpenSubMenu(!openSubMenu);
-            history.push('/transactions');
+            history.push('/vault');
             setTimeout(() => {
               scrollToBottom();
             }, 100);
@@ -85,7 +85,7 @@ function LayoutSidebar({ active, countryName }) {
         >
           <h5 className="d-flex py-3 menu-itm">
             <img src={card} alt="" />
-            <span className="my-auto">Transactions</span>
+            <span className="my-auto">Vault</span>
             <FontAwesomeIcon
               className="ml-auto"
               icon={openSubMenu ? faCaretUp : faCaretDown}
@@ -95,7 +95,7 @@ function LayoutSidebar({ active, countryName }) {
         {openSubMenu ? (
           <>
             <Link
-              to="/transactions/deposit"
+              to="/vault/deposit"
               className={`menu-itm submenu${
                 active === 'transactions-deposit' ? ' active' : ''
               }`}
@@ -106,7 +106,7 @@ function LayoutSidebar({ active, countryName }) {
               </h5>
             </Link>
             <Link
-              to="/transactions/withdraw"
+              to="/vault/withdraw"
               className={`menu-itm submenu${
                 active === 'transactions-withdraw' ? ' active' : ''
               }`}
