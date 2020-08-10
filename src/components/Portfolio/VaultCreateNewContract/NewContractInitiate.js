@@ -8,12 +8,12 @@ import usdt from '../../../static/images/coin-small/usdt.svg';
 import searchIcon from '../../../static/images/search.svg';
 import animCheverons from '../../../static/images/cheverons-right.svg';
 import { BankContext } from '../../../context/Context';
-import { VaultContext } from '../../../context/VaultContext';
+import { PortfolioContext } from '../../../context/PortfolioContext';
 
 const validNumber = new RegExp(/^\d*$/);
 function NewContractInitiate() {
   const { coinList } = useContext(BankContext);
-  const { initiate } = useContext(VaultContext);
+  const { initiate } = useContext(PortfolioContext);
   const [coin, setCoin] = useState('Bitcoin');
   const [coinObj, setCoinObj] = useState({});
   const [coinImg, setCoinImg] = useState(btc);

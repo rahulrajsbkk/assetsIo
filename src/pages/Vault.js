@@ -10,7 +10,7 @@ import eth from '../static/images/coin-small/eth.svg';
 import usdt from '../static/images/coin-small/usdt.svg';
 import searchIcon from '../static/images/search.svg';
 
-function Transaction({ match }) {
+function Vault({ match }) {
   const { coinList } = useContext(BankContext);
   const [coin, setCoin] = useState('Bitcoin');
   const [searchEnable, setSearchEnable] = useState(false);
@@ -35,10 +35,7 @@ function Transaction({ match }) {
     }
   }, [coinList, searchStr]);
   return (
-    <Layout
-      active={`transactions-${match.params.type}`}
-      className="transaction"
-    >
+    <Layout active={`Vaults-${match.params.type}`} className="Vault">
       <div className="head">
         <div className="vault-n-balance">
           <div className="vault">{coin} Vault</div>
@@ -136,7 +133,7 @@ function Transaction({ match }) {
           <FontAwesomeIcon className="ml-2" icon={faCaretDown} />
         </div>
         <div className="drop-select mr-3">
-          All Transactions
+          All Vaults
           <FontAwesomeIcon className="ml-2" icon={faCaretDown} />
         </div>
         <div className="drop-select mr-3">
@@ -144,41 +141,41 @@ function Transaction({ match }) {
           <FontAwesomeIcon className="ml-2" icon={faCaretDown} />
         </div>
         <div className="search ml-auto">
-          <input type="text" name="serch" placeholder="Search Transactions" />
+          <input type="text" name="serch" placeholder="Search Vaults" />
           <FontAwesomeIcon className="ml-2" icon={faSearch} />
         </div>
       </div>
 
       <Scrollbars
         autoHide
-        className="transaction-list"
-        renderView={(props) => <div {...props} className="transactions" />}
+        className="Vault-list"
+        renderView={(props) => <div {...props} className="Vaults" />}
       >
         <div className="day">Today</div>
-        <div className="transaction-itm">
+        <div className="Vault-itm">
           <img src="" alt="" />
           <div className="name-n-date mr-auto">
-            <div className="name">Name Of Transaction</div>
+            <div className="name">Name Of Vault</div>
             <div className="date">July 20th 2020 at 9:03 AM EST</div>
           </div>
           <div className="credit">0.0000</div>
           <div className="debit">0.0000</div>
           <div className="balance">0.0000</div>
         </div>
-        <div className="transaction-itm">
+        <div className="Vault-itm">
           <img src="" alt="" />
           <div className="name-n-date mr-auto">
-            <div className="name">Name Of Transaction</div>
+            <div className="name">Name Of Vault</div>
             <div className="date">July 20th 2020 at 9:03 AM EST</div>
           </div>
           <div className="credit">0.0000</div>
           <div className="debit">0.0000</div>
           <div className="balance">0.0000</div>
         </div>
-        <div className="transaction-itm">
+        <div className="Vault-itm">
           <img src="" alt="" />
           <div className="name-n-date mr-auto">
-            <div className="name">Name Of Transaction</div>
+            <div className="name">Name Of Vault</div>
             <div className="date">July 20th 2020 at 9:03 AM EST</div>
           </div>
           <div className="credit">0.0000</div>
@@ -186,30 +183,30 @@ function Transaction({ match }) {
           <div className="balance">0.0000</div>
         </div>
         <div className="day">Yesterday</div>
-        <div className="transaction-itm">
+        <div className="Vault-itm">
           <img src="" alt="" />
           <div className="name-n-date mr-auto">
-            <div className="name">Name Of Transaction</div>
+            <div className="name">Name Of Vault</div>
             <div className="date">July 20th 2020 at 9:03 AM EST</div>
           </div>
           <div className="credit">0.0000</div>
           <div className="debit">0.0000</div>
           <div className="balance">0.0000</div>
         </div>
-        <div className="transaction-itm">
+        <div className="Vault-itm">
           <img src="" alt="" />
           <div className="name-n-date mr-auto">
-            <div className="name">Name Of Transaction</div>
+            <div className="name">Name Of Vault</div>
             <div className="date">July 20th 2020 at 9:03 AM EST</div>
           </div>
           <div className="credit">0.0000</div>
           <div className="debit">0.0000</div>
           <div className="balance">0.0000</div>
         </div>
-        <div className="transaction-itm">
+        <div className="Vault-itm">
           <img src="" alt="" />
           <div className="name-n-date mr-auto">
-            <div className="name">Name Of Transaction</div>
+            <div className="name">Name Of Vault</div>
             <div className="date">July 20th 2020 at 9:03 AM EST</div>
           </div>
           <div className="credit">0.0000</div>
@@ -217,30 +214,30 @@ function Transaction({ match }) {
           <div className="balance">0.0000</div>
         </div>
         <div className="day">July 20th 2020</div>
-        <div className="transaction-itm">
+        <div className="Vault-itm">
           <img src="" alt="" />
           <div className="name-n-date mr-auto">
-            <div className="name">Name Of Transaction</div>
+            <div className="name">Name Of Vault</div>
             <div className="date">July 20th 2020 at 9:03 AM EST</div>
           </div>
           <div className="credit">0.0000</div>
           <div className="debit">0.0000</div>
           <div className="balance">0.0000</div>
         </div>
-        <div className="transaction-itm">
+        <div className="Vault-itm">
           <img src="" alt="" />
           <div className="name-n-date mr-auto">
-            <div className="name">Name Of Transaction</div>
+            <div className="name">Name Of Vault</div>
             <div className="date">July 20th 2020 at 9:03 AM EST</div>
           </div>
           <div className="credit">0.0000</div>
           <div className="debit">0.0000</div>
           <div className="balance">0.0000</div>
         </div>
-        <div className="transaction-itm">
+        <div className="Vault-itm">
           <img src="" alt="" />
           <div className="name-n-date mr-auto">
-            <div className="name">Name Of Transaction</div>
+            <div className="name">Name Of Vault</div>
             <div className="date">July 20th 2020 at 9:03 AM EST</div>
           </div>
           <div className="credit">0.0000</div>
@@ -252,4 +249,4 @@ function Transaction({ match }) {
   );
 }
 
-export default Transaction;
+export default Vault;

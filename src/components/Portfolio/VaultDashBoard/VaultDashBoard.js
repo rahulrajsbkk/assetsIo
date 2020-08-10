@@ -5,12 +5,12 @@ import React, { useContext } from 'react';
 import Lottie from 'react-lottie';
 
 import * as animationData from '../../../static/animations/cpu-loading.json';
-import { VaultContext } from '../../../context/VaultContext';
+import { PortfolioContext } from '../../../context/PortfolioContext';
 import DashTransaction from './DashTransaction';
 import DashContracts from './DashContracts';
 
 function VaultDashBoard() {
-  const { loading, dashTab, setDashTab } = useContext(VaultContext);
+  const { loading, dashTab, setDashTab } = useContext(PortfolioContext);
 
   const defaultOptions = {
     loop: true,

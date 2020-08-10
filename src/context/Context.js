@@ -34,6 +34,7 @@ function BankContextProvider({ children }) {
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [profileImg, setProfileImg] = useState('');
+  const [profileId, setProfileId] = useState('');
 
   useEffect(() => {
     function getUserData() {
@@ -45,6 +46,14 @@ function BankContextProvider({ children }) {
           setUsername(data.username);
           setName(data.name);
           setProfileImg(data.profile_img);
+        }
+      });
+      Axios.get(
+        `https://comms.globalxchange.com/user/details/get?email=${email}`
+      ).then((res) => {
+        const { data } = res;
+        if (data.status) {
+          setProfileId(data.ice_profile_id);
         }
       });
     }
@@ -101,6 +110,7 @@ function BankContextProvider({ children }) {
         profileImg,
         ratesRes,
         coinList,
+        profileId,
       }}
     >
       {children}

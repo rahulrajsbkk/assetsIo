@@ -6,7 +6,7 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import next from '../../../static/images/next-anim.svg';
 
 import { BankContext } from '../../../context/Context';
-import { VaultContext } from '../../../context/VaultContext';
+import { PortfolioContext } from '../../../context/PortfolioContext';
 
 const validNumber = new RegExp(/^\d*\.?\d*$/);
 
@@ -19,7 +19,7 @@ function NewContractComponent() {
     calculateRoi,
     dashTab,
     confirmContract,
-  } = useContext(VaultContext);
+  } = useContext(PortfolioContext);
   const usdAmountFormatter = new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,

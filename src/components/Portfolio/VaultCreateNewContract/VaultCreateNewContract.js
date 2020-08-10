@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Lottie from 'react-lottie';
 
 import * as animationData from '../../../static/animations/cpu-loading.json';
-import { VaultContext } from '../../../context/VaultContext';
+import { PortfolioContext } from '../../../context/PortfolioContext';
 import NewContractComponent from './NewContractComponent';
 import NewContractInitiate from './NewContractInitiate';
 
@@ -14,7 +14,7 @@ function VaultCreateNewContract() {
     className: 'carousel-status',
   };
 
-  const { loadingCnfrm, roiStep } = useContext(VaultContext);
+  const { loadingCnfrm, roiStep } = useContext(PortfolioContext);
 
   const steps = [<NewContractComponent />, <NewContractInitiate />];
 
