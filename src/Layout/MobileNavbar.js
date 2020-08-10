@@ -38,13 +38,13 @@ function MobileNavbar({ active }) {
     case 'portfolio':
       title = 'Portfolio';
       break;
-    case 'transactions-undefined':
+    case 'vaults-undefined':
       title = 'Vault';
       break;
-    case 'transactions-deposit':
+    case 'vaults-deposit':
       title = 'Deposit';
       break;
-    case 'transactions-withdraw':
+    case 'vaults-withdraw':
       title = 'Withdraw';
       break;
     default:
@@ -88,19 +88,19 @@ function MobileNavbar({ active }) {
               </Link>
               <Link
                 to="/vault"
-                className={`menu-itm ${active === 'transactions-undefined'}`}
+                className={`menu-itm ${active === 'vaults-undefined'}`}
               >
                 Transactions
               </Link>
               <Link
                 to="/vault/deposit"
-                className={`menu-itm ${active === 'transactions-deposit'}`}
+                className={`menu-itm ${active === 'vaults-deposit'}`}
               >
                 Deposit
               </Link>
               <Link
                 to="/vault/withdraw"
-                className={`menu-itm ${active === 'transactions-withdraw'}`}
+                className={`menu-itm ${active === 'vaults-withdraw'}`}
               >
                 Withdraw
               </Link>

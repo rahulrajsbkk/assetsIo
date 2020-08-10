@@ -72,9 +72,7 @@ function LayoutSidebar({ active, countryName }) {
           </h5>
         </Link>
         <div
-          className={`menu-itm${
-            active.includes('transactions') ? ' active' : ''
-          }`}
+          className={`menu-itm${active.includes('vaults') ? ' active' : ''}`}
           onClick={() => {
             setOpenSubMenu(!openSubMenu);
             history.push('/vault');
@@ -97,7 +95,7 @@ function LayoutSidebar({ active, countryName }) {
             <Link
               to="/vault/deposit"
               className={`menu-itm submenu${
-                active === 'transactions-deposit' ? ' active' : ''
+                active === 'vaults-deposit' ? ' active' : ''
               }`}
             >
               <h5 className="d-flex py-3 menu-itm">
@@ -108,7 +106,7 @@ function LayoutSidebar({ active, countryName }) {
             <Link
               to="/vault/withdraw"
               className={`menu-itm submenu${
-                active === 'transactions-withdraw' ? ' active' : ''
+                active === 'vaults-withdraw' ? ' active' : ''
               }`}
             >
               <h5 className="d-flex py-3 menu-itm">
