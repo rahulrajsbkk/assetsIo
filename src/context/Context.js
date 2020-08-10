@@ -53,7 +53,7 @@ function BankContextProvider({ children }) {
       ).then((res) => {
         const { data } = res;
         if (data.status) {
-          setProfileId(data.ice_profile_id);
+          setProfileId(data.user.ice_profile_id);
         }
       });
     }
@@ -98,7 +98,6 @@ function BankContextProvider({ children }) {
       }
     });
   }, []);
-
   return (
     <BankContext.Provider
       value={{
