@@ -1,8 +1,11 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { select, area, line, curveCardinal } from 'd3';
+
+const data = [20, 40, 70, 50, 90, 40];
+
 function DashContractsChart() {
   const svgRef = useRef();
-  const [data, setData] = useState([20, 40, 60, 50, 90, 40]);
+
   useEffect(() => {
     const svg = select(svgRef.current);
     const totalWidth = svg._groups[0][0].clientWidth;
@@ -31,22 +34,23 @@ function DashContractsChart() {
       .attr('d', (value) => myLine(value))
       .attr('fill', 'transparent')
       .attr('stroke', '#464B4E')
-      .attr('stroke-width', 2);
+      .attr('stroke-width', 3);
 
     svg
       .selectAll('points')
       .data(['', 40, '', '', 90, ''])
       .enter()
-      .append('circle')
+      .append('ellipse')
       .attr('fill', '#464B4E')
       .attr('stroke', '#464B4E')
-      .attr('r', 10)
+      .attr('rx', 15)
+      .attr('ry', 10)
       .attr('transform', function (d, i) {
         return `translate( ${
           i * (totalWidth / (data.length - 1))
         } , ${totalHeight - ratio * d + 20} )`;
       });
-  }, [data]);
+  }, []);
   return (
     <div className="chart-wrapper">
       <svg className="chart-curved" ref={svgRef} />

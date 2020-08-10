@@ -66,8 +66,7 @@ function VaultDashBoard() {
             />
           </div>
         ) : (
-          // <>{objContent[dashTab]}</>
-          <DashContracts />
+          <>{objContent[dashTab]}</>
         )}
       </div>
     </div>

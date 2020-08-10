@@ -1,0 +1,421 @@
+.loading-anim {
+  border-top: 1px solid $vault-border-color;
+  height: 0;
+  flex: 1;
+  > div {
+    height: 100% !important;
+    width: 100% !important;
+  }
+}
+.vault-new-contract {
+  border-top: 0.5px solid $vault-border-color;
+  flex: 0 0 45%;
+  max-height: 45%;
+  display: flex;
+  flex-direction: column;
+  .head {
+    font-weight: 700;
+    color: #464b4e;
+    font-size: 24px;
+    line-height: 1;
+    padding: 20px 60px;
+    border-bottom: 0.5px solid $vault-border-color;
+  }
+  .content-steps {
+    flex-grow: 1;
+    display: flex;
+    .step-one {
+      flex: 0 0 50%;
+      max-width: 50%;
+      border-right: 0.5px solid $vault-border-color;
+      padding: 40px 60px;
+      display: flex;
+      flex-direction: column;
+      h5 {
+        color: #464b4e;
+        font-size: 24px;
+        font-weight: 600;
+      }
+      .scroll-view {
+        display: flex;
+        align-items: center;
+        .card {
+          min-width: 150px;
+          opacity: 0.2;
+          padding: 30px 10px;
+          flex: 1;
+          margin-right: 30px;
+          align-items: center;
+          img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
+          }
+          .coin {
+            color: #9b9b9b;
+            font-size: 14px;
+            margin-bottom: 5px;
+          }
+          .value {
+            color: #828282;
+            font-size: 20px;
+          }
+          &.true {
+            opacity: 1;
+          }
+        }
+      }
+    }
+    .step-two {
+      flex: 0 0 50%;
+      max-width: 50%;
+      display: flex;
+      flex-direction: column;
+      .period-hold {
+        padding: 40px 60px;
+        flex: 1px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        h5 {
+          color: #464b4e;
+          font-size: 24px;
+          font-weight: 600;
+        }
+        .days {
+          border: 0.5px solid $vault-border-color;
+          border-radius: 8px;
+          height: 60px;
+          width: 90%;
+          display: flex;
+          input {
+            flex: 1;
+            width: 0;
+            background: none;
+            border: none;
+            padding: 0 50px;
+            font-size: 24px;
+          }
+          .btn-days-wrapper {
+            width: 140px;
+            height: 58px;
+            position: relative;
+            .btn-days {
+              border-radius: 0 8px 8px 0;
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              background: $primary-color;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              padding: 0 20px;
+              h5 {
+                cursor: pointer;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                height: 58px;
+                font-size: 20px;
+                color: white;
+                margin: 0;
+              }
+              h6 {
+                cursor: pointer;
+                display: none;
+                width: 100%;
+                align-items: center;
+                justify-content: space-between;
+                height: 35px;
+                font-size: 19px;
+                color: white;
+                margin: 0;
+              }
+              &.true {
+                border-radius: 0 8px 8px 8px;
+                h5 {
+                  margin-bottom: -5px;
+                }
+                h6 {
+                  display: flex;
+                }
+              }
+            }
+          }
+        }
+      }
+      .btn-calculate {
+        background-color: $primary-color;
+        padding: 20px 0;
+        h5 {
+          display: flex;
+          color: white;
+          text-align: center;
+          font-size: 24px;
+          font-weight: 600;
+          line-height: 1;
+          margin: 0;
+          justify-content: center;
+          align-items: center;
+          img {
+            margin-left: 15px;
+            height: 24px;
+          }
+        }
+      }
+    }
+  }
+}
+.newContractInitiate {
+  height: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  .head {
+    border-top: 1px solid $vault-border-color;
+    padding: 10px 20px;
+    display: flex;
+    .vaultUsing {
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      font-size: 28px;
+      font-weight: bold;
+      color: $primary-color;
+      margin-left: 20px;
+      img {
+        height: 20px;
+        margin-left: 30px;
+      }
+    }
+    .coin-select {
+      display: flex;
+      margin-left: auto;
+      .coin-wrap {
+        height: 60px;
+        width: 60px;
+        border-radius: 6px;
+        border: 1px solid $vault-border-color;
+        margin-left: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 40px;
+          height: 40px;
+        }
+        &.true {
+          background-color: $primary-color;
+          img {
+            filter: brightness(0) invert(1);
+          }
+        }
+      }
+      .search-wrapper {
+        margin-left: 15px;
+        height: 60px;
+        width: 60px;
+        transition: all 0.4s ease;
+        position: relative;
+        .serch-n-result {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 1;
+          transition: all 0.4s ease;
+          border-radius: 6px;
+          min-height: 60px;
+          max-height: 360px;
+          overflow: auto;
+          background: rgba(216, 216, 216, 0.5);
+          display: flex;
+          flex-direction: column;
+          .search-icon {
+            margin: 15px;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+          }
+          .search {
+            height: 56px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: white;
+            input {
+              border: none;
+              background: none;
+              height: 100%;
+              width: 0;
+              flex-grow: 1;
+              font-size: 20px;
+              padding: 0 20px;
+            }
+            .serch-close {
+              color: $primary-color;
+              cursor: pointer;
+              padding: 0 14px 0 0;
+              height: 100%;
+              font-size: 40px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+          .search-res {
+            padding: 0 25px;
+            height: 56px;
+            min-height: 56px;
+            border-top: 1px solid #f2f2f2;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            .search-coin {
+              width: 30px;
+              height: 30px;
+            }
+            .coin,
+            .value {
+              font-size: 18px;
+              font-weight: 600;
+            }
+            .coin {
+              margin-left: 10px;
+            }
+            .value {
+              margin-left: auto;
+            }
+            .change {
+              margin-left: 5px;
+              font-size: 10px;
+              color: #3ea254;
+              &.true {
+                color: #e50914;
+              }
+            }
+          }
+        }
+        &.true {
+          width: 350px;
+          .serch-n-result {
+            background-color: white;
+            border: 1px solid rgba(70, 75, 78, 0.5);
+            width: 350px;
+          }
+        }
+      }
+    }
+  }
+  .contractContent {
+    height: 0;
+    flex: 1;
+    display: flex;
+    .costNCount,
+    .toCheckOut {
+      flex: 0 0 50%;
+      max-width: 50%;
+      border-top: 1px solid $vault-border-color;
+    }
+    .costNCount {
+      padding: 60px 105px;
+      .costOfContract {
+        display: flex;
+        align-items: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: $primary-color;
+        input {
+          margin: 0 10px;
+          width: 40px;
+          height: 40px;
+          font-size: 22px;
+          text-align: center;
+          background: none;
+          border: 1px solid $vault-border-color;
+        }
+      }
+      .coinDetail {
+        margin-top: 10%;
+        height: 90px;
+        width: 100%;
+        border: 1px solid $vault-border-color;
+        padding: 0 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        img {
+          height: 40px;
+        }
+        .value {
+          color: #b3b3b3;
+          font-size: 30px;
+          font-weight: bold;
+        }
+      }
+    }
+    .toCheckOut {
+      border-left: 1px solid $vault-border-color;
+      display: flex;
+      flex-direction: column;
+      .coinDetailWrap {
+        flex: 1;
+        padding: 60px 105px;
+        .title {
+          font-size: 25px;
+          font-weight: bold;
+          color: $primary-color;
+          margin-bottom: 40px;
+          white-space: nowrap;
+          overflow: auto;
+        }
+        .coinDetail {
+          height: 90px;
+          width: 100%;
+          border: 1px solid $vault-border-color;
+          padding: 0 40px;
+          display: flex;
+          align-items: center;
+          img {
+            height: 33px;
+            margin-right: 10px;
+          }
+          .name {
+            color: $primary-color;
+            font-size: 30px;
+            font-weight: bold;
+            margin-right: auto;
+          }
+          .value {
+            color: #b3b3b3;
+            font-size: 30px;
+            font-weight: bold;
+          }
+        }
+      }
+      .btn-initiate {
+        background-color: $primary-color;
+        padding: 20px 0;
+        h5 {
+          display: flex;
+          color: white;
+          text-align: center;
+          font-size: 24px;
+          font-weight: 600;
+          line-height: 1;
+          margin: 0;
+          justify-content: center;
+          align-items: center;
+          img {
+            margin-left: 15px;
+            height: 24px;
+          }
+        }
+      }
+    }
+  }
+}

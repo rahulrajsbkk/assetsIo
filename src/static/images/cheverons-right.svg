@@ -1,0 +1,60 @@
+<svg
+          viewBox="0 0 56 19"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            opacity="0.3"
+            d="M11.5819 9.16291L2.15243 18.3059L0.284785 16.4943L7.84531 9.16291L0.286089 1.83023L2.15243 0.0199203L11.5819 9.16291Z"
+            fill="#464b4e"
+          >
+            <animate
+              attributeName="opacity"
+              begin="0.6s"
+              from="0.3"
+              to="1"
+              dur="1s"
+              repeatCount="indefinite"
+            />
+          </path>
+          <path
+            opacity="0.4"
+            d="M25.9178 9.16291L16.4884 18.3059L14.6207 16.4943L22.1812 9.16291L14.622 1.83023L16.4884 0.0199203L25.9178 9.16291Z"
+            fill="#464b4e"
+           >
+            <animate
+              attributeName="opacity"
+              begin="0.4s"
+              from="0.3"
+              to="1"
+              dur="1s"
+              repeatCount="indefinite"
+            />
+          </path>
+          <path
+            opacity="0.6"
+            d="M41.5577 9.16291L32.1283 18.3059L30.2606 16.4943L37.8211 9.16291L30.2619 1.83023L32.1283 0.0199203L41.5577 9.16291Z"
+            fill="#464b4e"
+          >
+            <animate
+              attributeName="opacity"
+              from="0.3"
+              to="1"
+              dur="1s"
+              repeatCount="indefinite"
+            />
+          </path>
+          <path
+            opacity="0.8"
+            d="M55.8948 9.16291L46.4653 18.3059L44.5977 16.4943L52.1582 9.16291L44.599 1.83023L46.4653 0.0199203L55.8948 9.16291Z"
+            fill="#464b4e"
+          >
+            <animate
+              attributeName="opacity"
+              from="0.3"
+              to="1"
+              dur="1s"
+              repeatCount="indefinite"
+            />
+          </path>
+        </svg>
