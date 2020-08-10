@@ -5,7 +5,6 @@ import { VaultContext } from '../../context/VaultContext';
 import { FormatCurrency, YesterdayToday } from '../../utils/FunctionTools';
 
 function VaultTransactionTable({ credit, debit }) {
-  console.log('credit,debit :>> ', credit, debit);
   const { vaultTxns, coinSelected } = useContext(VaultContext);
   let date = '';
   return (

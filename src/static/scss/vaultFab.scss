@@ -1,0 +1,105 @@
+.fabBtn {
+  background: $primary-color;
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  bottom: 40px;
+  right: 60px;
+  z-index: 4;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fab-animation-reverse 0.4s ease-out forwards;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    border-radius: 4px;
+    background: #fff;
+  }
+
+  &::before {
+    width: 3px;
+    height: 22px;
+  }
+
+  &::after {
+    width: 22px;
+    height: 3px;
+  }
+  &.true {
+    animation: fab-animation 0.4s ease-out forwards;
+  }
+}
+.fabMenu {
+  position: fixed;
+  z-index: 3;
+  bottom: 110px;
+  right: 130px;
+  background: white;
+  border-radius: 5px;
+  border: 0.5px solid $primary-color;
+  min-height: 200px;
+  min-width: 250px;
+  padding: 40px 50px;
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .menuItm {
+    margin: 20px 0;
+    cursor: pointer;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+.fabOverLay {
+  background: rgba(0, 0, 0, 0.57);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+@keyframes fab-animation {
+  0% {
+    transform: rotate(0) scale(1);
+  }
+  20% {
+    transform: rotate(60deg) scale(0.93);
+  }
+  55% {
+    transform: rotate(35deg) scale(0.97);
+  }
+  80% {
+    transform: rotate(48deg) scale(0.94);
+  }
+  100% {
+    transform: rotate(45deg) scale(0.95);
+  }
+}
+
+@keyframes fab-animation-reverse {
+  0% {
+    transform: rotate(45deg) scale(0.95);
+  }
+  20% {
+    transform: rotate(-15deg);
+  }
+  55% {
+    transform: rotate(10deg);
+  }
+  80% {
+    transform: rotate(-3deg);
+  }
+  100% {
+    transform: rotate(0) scale(1);
+  }
+}
