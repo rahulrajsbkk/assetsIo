@@ -188,16 +188,16 @@
           }
         }
         @include xxxl {
-          zoom: 0.8;
+          zoom: 0.75;
         }
         @include xxl {
-          zoom: 0.7;
+          zoom: 0.65;
         }
         @include xl {
-          zoom: 0.6;
+          zoom: 0.55;
         }
         @include lg {
-          zoom: 0.5;
+          zoom: 0.45;
         }
       }
     }
