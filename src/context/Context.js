@@ -76,6 +76,7 @@ function BankContextProvider({ children }) {
   };
 
   const [ratesRes, setRatesRes] = useState([]);
+  const [liquidRates, setLiquidRates] = useState([]);
   useEffect(() => {
     Axios.get(
       'https://comms.globalxchange.com/coin/vault/earnings/getinterestrates'
@@ -83,6 +84,14 @@ function BankContextProvider({ children }) {
       const { data } = res;
       if (data.status) {
         setRatesRes(data.rates);
+      }
+    });
+    Axios.get(
+      'https://comms.globalxchange.com/coin/iced/get/liquid/interest'
+    ).then((res) => {
+      const { data } = res;
+      if (data.status) {
+        setLiquidRates(data.interest_rates);
       }
     });
   }, []);
@@ -98,6 +107,15 @@ function BankContextProvider({ children }) {
       }
     });
   }, []);
+
+  const [coinListObject, setCoinListObject] = useState({});
+  useEffect(() => {
+    let coinObj = {};
+    coinList.forEach((coin) => {
+      coinObj[coin.coinSymbol] = coin;
+    });
+    setCoinListObject(coinObj);
+  }, [coinList]);
   return (
     <BankContext.Provider
       value={{
@@ -110,6 +128,8 @@ function BankContextProvider({ children }) {
         ratesRes,
         coinList,
         profileId,
+        liquidRates,
+        coinListObject,
       }}
     >
       {children}

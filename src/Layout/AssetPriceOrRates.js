@@ -4,13 +4,8 @@ import CountUp from 'react-countup';
 
 import { BankContext } from '../context/Context';
 
-import btc from '../static/images/vault-methods/bitcoin.svg';
-import eth from '../static/images/vault-methods/ethereum.svg';
-import xrp from '../static/images/vault-methods/ripple.svg';
-import usdt from '../static/images/vault-methods/tether.svg';
-
 function AssetPriceOrRates({ isIndex }) {
-  const { ratesRes, coinList } = useContext(BankContext);
+  const { coinListObject, coinList, liquidRates } = useContext(BankContext);
 
   const arrow = (
     <svg viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -20,17 +15,6 @@ function AssetPriceOrRates({ isIndex }) {
       />
     </svg>
   );
-
-  // const formatPercent = (num) =>
-  //   new Intl.NumberFormat('en-US', {
-  //     maximumFractionDigits: 1,
-  //     minimumFractionDigits: 1,
-  //   }).format(num);
-  // const formatNum = (num, prec) =>
-  //   new Intl.NumberFormat('en-US', {
-  //     maximumFractionDigits: prec,
-  //     minimumFractionDigits: prec,
-  //   }).format(num);
 
   const [tabItem, setTabItem] = useState('Interest Rates');
   useEffect(() => {
@@ -45,7 +29,7 @@ function AssetPriceOrRates({ isIndex }) {
   const togleDuration = (duration) => {
     setDuration(duration === 2 ? 2.1 : 2);
   };
-
+  console.log('coinListObject :>> ', coinListObject);
   return (
     <>
       <div className="tab-inrest-asset">
@@ -69,147 +53,43 @@ function AssetPriceOrRates({ isIndex }) {
         renderThumbHorizontal={() => <div />}
         renderView={(props) => <div {...props} className="rates-list" />}
       >
-        {tabItem === 'Interest Rates' ? (
+        {coinListObject && tabItem === 'Interest Rates' ? (
           <>
-            <div className="coin">
-              <img className="coin-logo" src={btc} alt="" />
-              <div className="rate">
-                <CountUp
-                  onEnd={() => {
-                    setTimeout(() => {
-                      togleDuration(duration);
-                    }, 3000);
-                  }}
-                  duration={duration}
-                  end={(ratesRes[0] && ratesRes[0].tier1.rate) || 0}
-                  decimals={1}
+            {liquidRates.map((rateCoin) => (
+              <div className="coin">
+                <img
+                  className="coin-logo mr-2"
+                  src={
+                    coinListObject[rateCoin.coin] &&
+                    coinListObject[rateCoin.coin].coinImage
+                  }
+                  alt=""
                 />
-                %
-                <small>
-                  (
-                  <CountUp duration={duration} end={1.2 || 0} decimals={1} />
-                  %)
-                  {arrow}
-                </small>
+                <div className="coin-name">
+                  {coinListObject[rateCoin.coin] &&
+                    coinListObject[rateCoin.coin].coinName}
+                </div>
+                <div className="rate">
+                  <CountUp
+                    onEnd={() => {
+                      setTimeout(() => {
+                        togleDuration(duration);
+                      }, 3000);
+                    }}
+                    duration={duration}
+                    end={rateCoin.interest_rate * 365 || 0}
+                    decimals={1}
+                  />
+                  %
+                  <small>
+                    (
+                    <CountUp duration={duration} end={1.2 || 0} decimals={1} />
+                    %)
+                    {arrow}
+                  </small>
+                </div>
               </div>
-            </div>
-            <div className="coin">
-              <img className="coin-logo" src={eth} alt="" />
-              <div className="rate">
-                <CountUp
-                  duration={duration}
-                  end={(ratesRes[1] && ratesRes[1].tier1.rate) || 0}
-                  decimals={1}
-                />
-                %
-                <small>
-                  (
-                  <CountUp duration={duration} end={1.2 || 0} decimals={1} />
-                  %)
-                  {arrow}
-                </small>
-              </div>
-            </div>
-            <div className="coin">
-              <img className="coin-logo" src={usdt} alt="" />
-              <div className="rate">
-                <CountUp
-                  duration={duration}
-                  end={(ratesRes[2] && ratesRes[2].tier1.rate) || 0}
-                  decimals={1}
-                />
-                %
-                <small>
-                  (
-                  <CountUp duration={duration} end={1.2 || 0} decimals={1} />
-                  %)
-                  {arrow}
-                </small>
-              </div>
-            </div>
-            <div className="coin">
-              <img className="coin-logo" src={xrp} alt="" />
-              <div className="rate">
-                <CountUp
-                  duration={duration}
-                  end={(ratesRes[3] && ratesRes[3].tier1.rate) || 0}
-                  decimals={1}
-                />
-                <small>
-                  (
-                  <CountUp duration={duration} end={1.2 || 0} decimals={1} />
-                  %)
-                  {arrow}
-                </small>
-              </div>
-            </div>
-            <div className="coin">
-              <img className="coin-logo" src={btc} alt="" />
-              <div className="rate">
-                <CountUp
-                  duration={duration}
-                  end={(ratesRes[0] && ratesRes[0].tier1.rate) || 0}
-                  decimals={1}
-                />
-                %
-                <small>
-                  (
-                  <CountUp duration={duration} end={1.2 || 0} decimals={1} />
-                  %)
-                  {arrow}
-                </small>
-              </div>
-            </div>
-            <div className="coin">
-              <img className="coin-logo" src={eth} alt="" />
-              <div className="rate">
-                <CountUp
-                  duration={duration}
-                  end={(ratesRes[1] && ratesRes[1].tier1.rate) || 0}
-                  decimals={1}
-                />
-                %
-                <small>
-                  (
-                  <CountUp duration={duration} end={1.2 || 0} decimals={1} />
-                  %)
-                  {arrow}
-                </small>
-              </div>
-            </div>
-            <div className="coin">
-              <img className="coin-logo" src={usdt} alt="" />
-              <div className="rate">
-                <CountUp
-                  duration={duration}
-                  end={(ratesRes[2] && ratesRes[2].tier1.rate) || 0}
-                  decimals={1}
-                />
-                %
-                <small>
-                  (
-                  <CountUp duration={duration} end={1.2 || 0} decimals={1} />
-                  %)
-                  {arrow}
-                </small>
-              </div>
-            </div>
-            <div className="coin">
-              <img className="coin-logo" src={xrp} alt="" />
-              <div className="rate">
-                <CountUp
-                  duration={duration}
-                  end={(ratesRes[3] && ratesRes[3].tier1.rate) || 0}
-                  decimals={1}
-                />
-                <small>
-                  (
-                  <CountUp duration={duration} end={1.2 || 0} decimals={1} />
-                  %)
-                  {arrow}
-                </small>
-              </div>
-            </div>
+            ))}
           </>
         ) : (
           <>
