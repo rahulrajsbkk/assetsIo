@@ -12,21 +12,29 @@ import fullScreenIcon from '../../../static/images/fullScreen.svg';
 import fullScreenIconExit from '../../../static/images/fullScreenExit.svg';
 import CoinDetailTable from './CoinDetailTable';
 
-function AssetPlatformTable({ coinList, searchTitle }) {
+function AssetPlatformTable({
+  coinList,
+  searchTitle,
+  coinToDetail,
+  setCoinToDetail,
+}) {
   const [isAsset, setIsAsset] = useState(true);
   const [dropDownOpen, setDropDownOpen] = useState(false);
   const [fullScreen, setFullScreen] = useState(false);
   const [coinSelect, setCoinSelect] = useState({});
-  const [coinToDetail, setCoinToDetail] = useState(null);
   const [search, setSearch] = useState('');
   useEffect(() => {
     if (coinList[0]) setCoinSelect(coinList[0]);
   }, [coinList]);
   useEffect(() => {
     setCoinToDetail(null);
-  }, [coinSelect, isAsset]);
+  }, [coinSelect, isAsset, setCoinToDetail]);
   return (
-    <div className={`assetPlatformTable ${fullScreen ? ' fullScreen' : ''}`}>
+    <div
+      className={`assetPlatformTable ${coinToDetail === null} ${
+        fullScreen ? ' fullScreen' : ''
+      }`}
+    >
       <div className="assetTableControlls">
         <div className={`bt-asset ${isAsset}`} onClick={() => setIsAsset(true)}>
           By Asset

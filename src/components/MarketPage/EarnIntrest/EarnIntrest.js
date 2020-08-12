@@ -9,7 +9,7 @@ function EarnIntrest({ title }) {
   const [assetTab, setAssetTab] = useState('');
   const [filterList, setFilterList] = useState([]);
   const [searchTitle, setSearchTitle] = useState('Stable Coins');
-
+  const [coinToDetail, setCoinToDetail] = useState(null);
   useEffect(() => {
     switch (assetTab) {
       case 'stableCoin':
@@ -32,8 +32,13 @@ function EarnIntrest({ title }) {
   return (
     <div className="earn-intrest">
       <EarnIntrestControll title={title} setAssetTab={setAssetTab} />
-      <AssetPlatformTable coinList={filterList} searchTitle={searchTitle} />
-      <AnalyticsEarn />
+      <AssetPlatformTable
+        coinList={filterList}
+        searchTitle={searchTitle}
+        coinToDetail={coinToDetail}
+        setCoinToDetail={setCoinToDetail}
+      />
+      {coinToDetail !== null ? <AnalyticsEarn /> : ''}
     </div>
   );
 }
