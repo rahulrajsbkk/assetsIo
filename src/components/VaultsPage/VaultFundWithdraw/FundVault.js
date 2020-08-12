@@ -2,16 +2,21 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect, useContext } from 'react';
-// import Lottie from 'react-lottie';
+import Lottie from 'react-lottie';
 import Axios from 'axios';
 import SelectCoin from './Fund/SelectCoin/SelectCoin';
 import SetAmount from './Fund/SetAmount/SetAmount';
-// import * as animationData from '../../static/animation/teris_cl_blue.json';
+import * as animationData from '../../../static/animations/cpu-loading.json';
 import { BankContext } from '../../../context/Context';
 
-function FundVault({ fundOrWithdraw, openModal, setOpenModal }) {
+function FundVault({
+  fundOrWithdraw = 'Deposit',
+  openModal,
+  setOpenModal,
+  isDeposit,
+}) {
   const [transCoin, setTransCoin] = useState('');
-  const { email } = useContext(BankContext);
+  const { email, coinListObject } = useContext(BankContext);
   const [coinObject, setCoinObject] = useState({
     sym: '$',
     symbol: 'USD',
@@ -24,40 +29,38 @@ function FundVault({ fundOrWithdraw, openModal, setOpenModal }) {
     ETH: 0,
     USDT: 0,
   });
-  // const defaultOptions = {
-  //   loop: true,
-  //   autoplay: true,
-  //   animationData: animationData.default,
-  //   rendererSettings: {
-  //     preserveAspectRatio: 'xMidYMid slice',
-  //   },
-  // };
-  const [loading, setLoading] = useState(false);
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData.default,
+  };
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
-    Axios.get(
-      `https://comms.globalxchange.com/coin/vault/coins_data?email=${email}`
-    )
-      .then((res) => {
-        if (res.data.status) {
-          const coin = res.data.coins;
-          const priceObj = {};
-          coin.forEach((value) => {
-            priceObj[value.coinSymbol] = {
-              coinValue: value.coinValue,
-              value: value.coinValueUSD,
-              sym: value.symbol,
-              symbol: value.coinSymbol,
-              price: value.price.USD,
-            };
-          });
-          setPrice(priceObj);
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [email]);
+    if (coinListObject && coinListObject.USD)
+      Axios.get(
+        `https://comms.globalxchange.com/coin/vault/coins_data?email=${email}`
+      )
+        .then((res) => {
+          if (res.data.status) {
+            const coin = res.data.coins;
+            const priceObj = {};
+            coin.forEach((value) => {
+              priceObj[value.coinSymbol] = {
+                coinValue: value.coinValue,
+                value: value.coinValueUSD,
+                sym: value.symbol,
+                symbol: value.coinSymbol,
+                price: coinListObject[value.coinSymbol].price.USD,
+              };
+            });
+            setPrice(priceObj);
+          }
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+  }, [email, coinListObject]);
 
   return (
     <div className={`deposit-modal ${openModal ? '' : 'd-none'}`}>
@@ -68,12 +71,14 @@ function FundVault({ fundOrWithdraw, openModal, setOpenModal }) {
         onClick={() => setOpenModal(false)}
       />
       <div className="deposit-card">
+        <div className="title">{fundOrWithdraw}</div>
         {loading ? (
           <div className="m-auto">
-            {/* <Lottie options={defaultOptions} height={150} width={150} /> */}
+            <Lottie options={defaultOptions} height={150} width={150} />
           </div>
         ) : transCoin === '' || !isCoinSelected ? (
           <SelectCoin
+            isDeposit={isDeposit}
             setCoinObject={setCoinObject}
             setIsCoinSelected={setIsCoinSelected}
             price={price}
@@ -88,7 +93,7 @@ function FundVault({ fundOrWithdraw, openModal, setOpenModal }) {
             price={price}
             transCoin={transCoin}
             setTransCoin={setTransCoin}
-            fundOrWithdraw={fundOrWithdraw}
+            isDeposit={isDeposit}
           />
         )}
       </div>

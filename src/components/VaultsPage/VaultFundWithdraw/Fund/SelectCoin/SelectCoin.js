@@ -109,6 +109,7 @@ function SelectCoin({
   transCoin,
   fundOrWithdraw,
   setTransCoin,
+  isDeposit,
 }) {
   const [tab, setTab] = useState('Crypto');
   const [searchStr, setSearchStr] = useState('');
@@ -161,10 +162,16 @@ function SelectCoin({
         </div>
       </div>
       <div className="asset-list">
-        {searchList.map((item) => {
-          if (price && price[item.symbol] && price[item.symbol].value > 0) {
+        {searchList
+          .filter(
+            (item) =>
+              (price && price[item.symbol] && price[item.symbol].value > 0) ||
+              !isDeposit
+          )
+          .map((item) => {
             return (
               <AssetItem
+                key={item.symbol}
                 img={item.img}
                 name={item.name}
                 crypto={item.crypto}
@@ -176,9 +183,7 @@ function SelectCoin({
                 setTransCoin={setTransCoin}
               />
             );
-          }
-          return <></>;
-        })}
+          })}
       </div>
       {transCoin === '' ? (
         <h4 className="deposit-footer">Select The Vault</h4>

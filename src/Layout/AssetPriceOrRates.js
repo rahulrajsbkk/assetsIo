@@ -29,7 +29,6 @@ function AssetPriceOrRates({ isIndex }) {
   const togleDuration = (duration) => {
     setDuration(duration === 2 ? 2.1 : 2);
   };
-  console.log('coinListObject :>> ', coinListObject);
   return (
     <>
       <div className="tab-inrest-asset">
@@ -56,7 +55,7 @@ function AssetPriceOrRates({ isIndex }) {
         {coinListObject && tabItem === 'Interest Rates' ? (
           <>
             {liquidRates.map((rateCoin) => (
-              <div className="coin">
+              <div className="coin" key={rateCoin.coin}>
                 <img
                   className="coin-logo mr-2"
                   src={

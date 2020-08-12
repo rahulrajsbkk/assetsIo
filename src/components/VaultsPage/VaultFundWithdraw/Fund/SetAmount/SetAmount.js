@@ -3,69 +3,71 @@
 /* eslint-disable indent */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext, useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid/dist';
 import Axios from 'axios';
-// import Lottie from 'react-lottie';
+import jwt from 'jsonwebtoken';
+import Lottie from 'react-lottie';
+import * as animationData from '../../../../../static/animations/cpu-loading.json';
 import { BankContext } from '../../../../../context/Context';
-// import bets from '../../../static/images/logo-b-blue.svg';
-// import vault from '../../../static/images/vault.svg';
-// import * as animationData from '../../../static/animation/wallet-coin.json';
+import { VaultContext } from '../../../../../context/VaultContext';
 
-function SetAmount({ fundOrWithdraw, coinObject, price, transCoin }) {
-  // eslint-disable-next-line object-curly-newline
-  const { email, idToken, name, rates } = useContext(BankContext);
-
-  const [ratesWithUsd, setRatesWithUsd] = useState({
-    BTC: 9295.91,
-    ETH: 198.2,
-    GXT: 1.07028,
-    USDT: 1.001,
-    LTC: 42.93,
-    XRP: 0.2011,
-    XMR: 64.64,
-    USD: 1,
-  });
-  useEffect(() => {
-    setRatesWithUsd({ ...rates, USD: 1 });
-  }, [rates]);
+function SetAmount({ coinObject, price, transCoin, isDeposit }) {
+  const { email, idToken, name, profileId, tostShowOn } = useContext(
+    BankContext
+  );
+  const { updateBalance } = useContext(VaultContext);
 
   const [depositAsset, setDepositAsset] = useState('');
-  // const defaultOptions = {
-  //   loop: true,
-  //   autoplay: true,
-  //   animationData: animationData.default,
-  //   rendererSettings: {
-  //     preserveAspectRatio: 'xMidYMid slice',
-  //   },
-  // };
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData.default,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  };
 
   const [loading, setLoading] = useState(false);
   const [messageobj, setMessage] = useState('');
   const depositWithdraw = () => {
-    const config = {
-      headers: {
-        email,
-        token: idToken,
-      },
+    const key = 'HUBQTVce7cUde4F';
+    const obj = {
+      email,
+      token: idToken,
+      app_code: 'ice',
+      profile_id: profileId,
+      value: parseFloat(selectedCoinAmount), // amount to debit
+      coin: transCoin,
+      identifier: uuidv4(),
+      credit_from: isDeposit ? 'Fund Iced From GX Vault' : '',
+      payment_for: isDeposit ? '' : 'Withdraw To GX Vault From Iced',
     };
+    let encoded = jwt.sign(obj, key, { algorithm: 'HS512' });
+
     Axios.post(
-      'https://betsapi.globalxchange.io/topup_bets_vault',
+      `https://comms.globalxchange.com/coin/vault/service/${
+        isDeposit ? 'credit' : 'debit'
+      }`,
       {
-        email,
-        source_coin: transCoin.toLowerCase(), // vault of gxnitrous
-        dest_coin: 'btc', // vault of bets
-        amount: parseFloat(depositAsset / price.BTC.price), // amount of destination coin
-      },
-      config
+        data: encoded,
+      }
     )
       .then((res) => {
-        // console.log('depositWithdraw :>> ', res.data);
-        setMessage(res.data);
-        // message.info(res.data.payload);
+        const { data } = res;
+        setMessage(data);
+        if (data.status) {
+          tostShowOn('Transactin Succes');
+        }
       })
       .catch((err) => {
-        console.log('depositWithdraw :>> ', err);
-
-        setMessage({ status: false, message: 'Something Went Wrong' });
+        setMessage({
+          status: false,
+          message: err.message ? err.err : 'Something Went Wrong',
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+        updateBalance();
       });
   };
   const [selectedCoinAmount, setSelectedCoinAmount] = useState('');
@@ -119,8 +121,7 @@ function SetAmount({ fundOrWithdraw, coinObject, price, transCoin }) {
       {loading ? (
         <div className="d-flex flex-column" style={{ height: 300 }}>
           {loading && messageobj === '' ? (
-            // <Lottie options={defaultOptions} height={300} width={150} />
-            ''
+            <Lottie options={defaultOptions} height={150} width={150} />
           ) : (
             <>
               {messageobj.status ? (
@@ -129,8 +130,17 @@ function SetAmount({ fundOrWithdraw, coinObject, price, transCoin }) {
                     Congratulations
                   </h3>
                   <h4 className="text-white text-center mx-4 mb-auto">
-                    ${depositAsset}
-                    &nbsp;Has Been Deposited Into Your Bets Account
+                    {isDeposit ? (
+                      <>
+                        ${depositAsset}
+                        &nbsp;Has Been Deposited Into Your Iced Account
+                      </>
+                    ) : (
+                      <>
+                        ${depositAsset}
+                        &nbsp;Has Been Withdrawn From Your Iced Account
+                      </>
+                    )}
                   </h4>
                 </>
               ) : (
@@ -241,7 +251,7 @@ function SetAmount({ fundOrWithdraw, coinObject, price, transCoin }) {
                   {coinObject.symbol}
                 </h5>
                 <h5>
-                  {formatNum(coinObject.price / ratesWithUsd.BTC, 'BTC')}
+                  {/* {formatNum(coinObject.price / ratesWithUsd.BTC, 'BTC')} */}
                   &nbsp; BTC
                 </h5>
               </div>
@@ -262,7 +272,7 @@ function SetAmount({ fundOrWithdraw, coinObject, price, transCoin }) {
               setLoading(true);
             }}
           >
-            {fundOrWithdraw}
+            {isDeposit ? 'Deposit' : 'Withdraw'}
           </div>
         </div>
       )}
