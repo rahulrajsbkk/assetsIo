@@ -228,6 +228,9 @@
     }
   }
   .page-content {
+    @media (max-height: 1050px) {
+      zoom: 0.95;
+    }
     @include xxxl {
       zoom: 0.8;
       .side-bar {
