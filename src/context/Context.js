@@ -121,6 +121,7 @@ function BankContextProvider({ children }) {
       value={{
         login,
         email,
+        token: idToken,
         tostShowOn,
         username,
         name,

@@ -5,7 +5,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid/dist';
 import Axios from 'axios';
-import jwt from 'jsonwebtoken';
 import Lottie from 'react-lottie';
 import * as animationData from '../../../../../static/animations/cpu-loading.json';
 import { BankContext } from '../../../../../context/Context';
@@ -13,11 +12,9 @@ import { VaultContext } from '../../../../../context/VaultContext';
 import logo from '../../../../../static/images/logo.svg';
 
 function SetAmount({ coinObject, price, transCoin, isDeposit }) {
-  const { email, idToken, name, profileId, tostShowOn } = useContext(
-    BankContext
-  );
-  const { updateBalance } = useContext(VaultContext);
-
+  const { email, token, name, profileId, tostShowOn } = useContext(BankContext);
+  const { updateBalance, coinSelected } = useContext(VaultContext);
+  console.log('coinSelected :>> ', coinSelected);
   const [depositAsset, setDepositAsset] = useState('');
   const defaultOptions = {
     loop: true,
@@ -28,36 +25,40 @@ function SetAmount({ coinObject, price, transCoin, isDeposit }) {
     },
   };
 
+  console.log('price :>> ', price);
+
   const [loading, setLoading] = useState(false);
   const [messageobj, setMessage] = useState('');
   const depositWithdraw = () => {
-    const key = 'HUBQTVce7cUde4F';
-    const obj = {
-      email,
-      token: idToken,
+    const data = {
+      email: email,
+      token: token,
+      amount: parseFloat(
+        isDeposit
+          ? (selectedCoinAmount * price[transCoin].price) /
+              price[coinSelected.coinSymbol].price
+          : selectedCoinAmount
+      ), // amount you need to be credited in SUbVAult:GXVAult
+      from_coin: isDeposit ? transCoin : coinSelected.coinSymbol, // coin from GXVAULT:SUBVAULT
+      to_coin: isDeposit ? coinSelected.coinSymbol : transCoin, // to COIN in SUBVAULT:GXVAULT
+      identifier: uuidv4(), // unique Identifier
       app_code: 'ice',
       profile_id: profileId,
-      value: parseFloat(selectedCoinAmount), // amount to debit
-      coin: transCoin,
-      identifier: uuidv4(),
-      credit_from: isDeposit ? 'Fund Iced From GX Vault' : '',
-      payment_for: isDeposit ? '' : 'Withdraw To GX Vault From Iced',
     };
-    let encoded = jwt.sign(obj, key, { algorithm: 'HS512' });
 
     Axios.post(
       `https://comms.globalxchange.com/coin/vault/service/${
-        isDeposit ? 'credit' : 'debit'
-      }`,
-      {
-        data: encoded,
-      }
+        isDeposit ? 'fund' : 'withdraw'
+      }/gx`,
+      data
     )
       .then((res) => {
         const { data } = res;
         setMessage(data);
         if (data.status) {
           tostShowOn('Transactin Succes');
+        } else {
+          tostShowOn(data.message);
         }
       })
       .catch((err) => {
@@ -65,6 +66,7 @@ function SetAmount({ coinObject, price, transCoin, isDeposit }) {
           status: false,
           message: err.message ? err.err : 'Something Went Wrong',
         });
+        tostShowOn(err.message ? err.err : 'Something Went Wrong');
       })
       .finally(() => {
         setLoading(false);
@@ -166,7 +168,7 @@ function SetAmount({ coinObject, price, transCoin, isDeposit }) {
                 <div className="flex-grow-1 my-auto">
                   <h4>
                     <span>{name}</span>
-                    &apos;s
+                    &apos;s&nbsp;
                     {transCoin.toUpperCase()}
                     &nbsp;Vault
                   </h4>
@@ -175,6 +177,7 @@ function SetAmount({ coinObject, price, transCoin, isDeposit }) {
                       price[transCoin.toUpperCase()].coinValue,
                       price[transCoin.toUpperCase()].symbol
                     )}
+                    &nbsp;
                     {price[transCoin.toUpperCase()].symbol}
                   </h6>
                 </div>
@@ -187,10 +190,10 @@ function SetAmount({ coinObject, price, transCoin, isDeposit }) {
               <div className="d-flex">
                 <img src={logo} alt="" className="icon" />
                 <div className="flex-grow-1 my-auto">
-                  <h4>Iced {transCoin} &nbsp;Account</h4>
+                  <h4>Iced {coinSelected.coinSymbol} &nbsp;Account</h4>
                   <h6>
-                    {formatNum(0, { transCoin })}
-                    &nbsp; {transCoin}
+                    {formatNum(coinSelected.coinValue, coinSelected.coinSymbol)}
+                    &nbsp; {coinSelected.coinSymbol}
                   </h6>
                 </div>
               </div>
@@ -241,17 +244,21 @@ function SetAmount({ coinObject, price, transCoin, isDeposit }) {
                   &nbsp; BTC
                 </h6>
               </div>
-              {/* <div className="d-flex justify-content-between mt-4">
+              <div className="d-flex justify-content-between mt-4">
                 <h5>
                   {coinObject.sym.length > 1 ? '' : coinObject.sym}
                   1.00&nbsp;
                   {coinObject.symbol}
                 </h5>
                 <h5>
-                  {formatNum(1, { transCoin })}
-                  &nbsp; {transCoin}
+                  {formatNum(
+                    price[transCoin].price /
+                      price[coinSelected.coinSymbol].price,
+                    coinSelected.coinSymbol
+                  )}
+                  &nbsp; {coinSelected.coinSymbol}
                 </h5>
-              </div> */}
+              </div>
               <div className="d-flex justify-content-between my-4">
                 <h5>Proccesing Time</h5>
                 <h5>Instant</h5>
