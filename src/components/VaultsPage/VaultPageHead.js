@@ -111,6 +111,7 @@ function VaultPageHead() {
                     key={coin.coinName}
                     onClick={() => {
                       setCoinSelected(coin);
+                      setCoin('');
                       setSearchEnable(!searchEnable);
                     }}
                   >
