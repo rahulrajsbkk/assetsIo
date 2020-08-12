@@ -10,6 +10,7 @@ import Lottie from 'react-lottie';
 import * as animationData from '../../../../../static/animations/cpu-loading.json';
 import { BankContext } from '../../../../../context/Context';
 import { VaultContext } from '../../../../../context/VaultContext';
+import logo from '../../../../../static/images/logo.svg';
 
 function SetAmount({ coinObject, price, transCoin, isDeposit }) {
   const { email, idToken, name, profileId, tostShowOn } = useContext(
@@ -184,16 +185,12 @@ function SetAmount({ coinObject, price, transCoin, isDeposit }) {
             <p className="mb-2">To</p>
             <div className="border-wrap d-flex">
               <div className="d-flex">
-                <img
-                  src="https://cryptolottery.com/static/media/logo-b-blue.0a211fe4.svg"
-                  alt=""
-                  className="icon"
-                />
+                <img src={logo} alt="" className="icon" />
                 <div className="flex-grow-1 my-auto">
-                  <h4>Bets BTC &nbsp;Account</h4>
+                  <h4>Iced {transCoin} &nbsp;Account</h4>
                   <h6>
-                    {formatNum(0, 'BTC')}
-                    &nbsp; BTC
+                    {formatNum(0, { transCoin })}
+                    &nbsp; {transCoin}
                   </h6>
                 </div>
               </div>
@@ -244,17 +241,17 @@ function SetAmount({ coinObject, price, transCoin, isDeposit }) {
                   &nbsp; BTC
                 </h6>
               </div>
-              <div className="d-flex justify-content-between mt-4">
+              {/* <div className="d-flex justify-content-between mt-4">
                 <h5>
                   {coinObject.sym.length > 1 ? '' : coinObject.sym}
                   1.00&nbsp;
                   {coinObject.symbol}
                 </h5>
                 <h5>
-                  {/* {formatNum(coinObject.price / ratesWithUsd.BTC, 'BTC')} */}
-                  &nbsp; BTC
+                  {formatNum(1, { transCoin })}
+                  &nbsp; {transCoin}
                 </h5>
-              </div>
+              </div> */}
               <div className="d-flex justify-content-between my-4">
                 <h5>Proccesing Time</h5>
                 <h5>Instant</h5>
