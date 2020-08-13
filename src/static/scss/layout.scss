@@ -5,7 +5,7 @@
   .side-bar {
     flex: 0 0 22%;
     max-width: 22%;
-    border-right: 0.5px solid #e7e7e7;
+    border-right: 0.5px solid $vault-border-color;
     background: white;
     position: sticky;
     top: 0;
@@ -101,8 +101,8 @@
     .tab-inrest-asset {
       margin-top: auto;
       display: flex;
-      border: 1px #e7e7e7;
-      border-style: solid none solid none;
+      border: 1px $vault-border-color;
+      border-style: solid none none none;
       margin-bottom: -1px;
       .tab-itm {
         cursor: pointer;
@@ -151,7 +151,7 @@
           height: 100px;
           display: flex;
           padding: 35px 50px;
-          border-top: 0.5px solid #e7e7e7;
+          border-top: 0.5px solid $vault-border-color;
           align-items: center;
           .coin-logo {
             margin: auto;
