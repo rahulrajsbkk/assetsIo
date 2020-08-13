@@ -156,29 +156,28 @@
           .coin-logo {
             margin: auto;
             margin-left: 0;
-            height: 23px;
+            height: 20px;
           }
           .coin-name {
-            font-size: 19px;
+            font-size: 17px;
           }
           .rate {
             margin: auto;
             margin-right: 0;
             text-align: center;
-            font-size: 19px;
+            font-size: 17px;
             small {
-              font-size: 12px;
+              font-size: 10px;
               color: #3ea154;
               margin-top: auto;
               svg {
                 margin-left: 4px;
-                height: 16px;
+                height: 11px;
               }
               &.true {
                 color: #da3a3a;
                 svg {
                   transform: scale(-1);
-                  height: 16px;
                   path {
                     fill: #da3a3a;
                   }
