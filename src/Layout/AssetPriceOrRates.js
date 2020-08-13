@@ -36,7 +36,7 @@ function AssetPriceOrRates({ isIndex }) {
           className={`tab-itm ${tabItem === 'Interest Rates'}`}
           onClick={() => setTabItem('Interest Rates')}
         >
-          Interest Rates
+          Liquid Rates
         </div>
         <div
           className={`tab-itm ${tabItem === 'Asset Prices'}`}
