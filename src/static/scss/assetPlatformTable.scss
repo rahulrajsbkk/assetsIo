@@ -150,15 +150,18 @@
         width: 100%;
         .tableHead {
           tr {
-            background: rgba(231, 231, 231, 0.27);
             th {
+              z-index: 1;
               top: 0;
               position: sticky;
-              background: rgb(231, 231, 231);
+              background: rgb(251, 251, 251);
               font-size: 12px;
               padding: 6px 0;
               &:first-child {
                 padding-left: 50px;
+              }
+              &:last-child {
+                text-align: center;
               }
             }
           }
@@ -193,7 +196,16 @@
               &.supply {
               }
               &.chart {
-                min-width: 150px;
+                height: 100px;
+                width: 280px;
+                position: relative;
+                .chartIn {
+                  position: absolute;
+                  top: 3px;
+                  bottom: 3px;
+                  left: 6px;
+                  right: 6px;
+                }
               }
               &:first-child {
                 padding-left: 50px;

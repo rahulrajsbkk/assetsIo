@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CountUp from 'react-countup';
+import AssetTableChart from './AssetTableChart';
 
 function PlatformTable({ coinSelect, setCoinToDetail }) {
   const [duration, setDuration] = useState(2);
@@ -51,7 +52,11 @@ function PlatformTable({ coinSelect, setCoinToDetail }) {
             %
           </td>
           <td className="supply">Term Lock Up</td>
-          <td className="chart"></td>
+          <td className="chart">
+            <div className="chartIn">
+              <AssetTableChart />
+            </div>
+          </td>
         </tr>
         <tr onClick={() => setCoinToDetail(coinSelect)}>
           <td className="rank">1</td>
@@ -80,7 +85,11 @@ function PlatformTable({ coinSelect, setCoinToDetail }) {
             %
           </td>
           <td className="supply">Surety Deposit</td>
-          <td className="chart"></td>
+          <td className="chart">
+            <div className="chartIn">
+              <AssetTableChart />
+            </div>
+          </td>
         </tr>
         <tr onClick={() => setCoinToDetail(coinSelect)}>
           <td className="rank">1</td>
@@ -109,7 +118,11 @@ function PlatformTable({ coinSelect, setCoinToDetail }) {
             %
           </td>
           <td className="supply">Decentralized</td>
-          <td className="chart"></td>
+          <td className="chart">
+            <div className="chartIn">
+              <AssetTableChart />
+            </div>
+          </td>
         </tr>
         <tr onClick={() => setCoinToDetail(coinSelect)}>
           <td className="rank">1</td>
@@ -138,7 +151,11 @@ function PlatformTable({ coinSelect, setCoinToDetail }) {
             %
           </td>
           <td className="supply">None</td>
-          <td className="chart"></td>
+          <td className="chart">
+            <div className="chartIn">
+              <AssetTableChart />
+            </div>
+          </td>
         </tr>
         <tr onClick={() => setCoinToDetail(coinSelect)}>
           <td className="rank">1</td>
@@ -167,7 +184,11 @@ function PlatformTable({ coinSelect, setCoinToDetail }) {
             %
           </td>
           <td className="supply">Trading Volume</td>
-          <td className="chart"></td>
+          <td className="chart">
+            <div className="chartIn">
+              <AssetTableChart />
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>

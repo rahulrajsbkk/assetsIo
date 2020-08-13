@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CountUp from 'react-countup';
+import AssetTableChart from './AssetTableChart';
 
 function AssetTable({ coinList, setCoinToDetail }) {
   const [duration, setDuration] = useState(2);
@@ -60,7 +61,11 @@ function AssetTable({ coinList, setCoinToDetail }) {
               />{' '}
               {coin.coinSymbol}
             </td>
-            <td className="chart"></td>
+            <td className="chart">
+              <div className="chartIn">
+                <AssetTableChart />
+              </div>
+            </td>
           </tr>
         ))}
       </tbody>
