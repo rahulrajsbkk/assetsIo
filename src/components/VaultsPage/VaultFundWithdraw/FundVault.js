@@ -35,6 +35,7 @@ function FundVault({
     animationData: animationData.default,
   };
   const [loading, setLoading] = useState(true);
+  const [priceList, setPriceList] = useState([]);
   useEffect(() => {
     setLoading(true);
     if (coinListObject && coinListObject.USD)
@@ -44,6 +45,7 @@ function FundVault({
         .then((res) => {
           if (res.data.status) {
             const coin = res.data.coins;
+            setPriceList(coin);
             const priceObj = {};
             coin.forEach((value) => {
               priceObj[value.coinSymbol] = {
@@ -85,6 +87,7 @@ function FundVault({
             transCoin={transCoin}
             setTransCoin={setTransCoin}
             fundOrWithdraw={fundOrWithdraw}
+            priceList={priceList}
           />
         ) : (
           <SetAmount

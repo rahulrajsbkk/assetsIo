@@ -4,104 +4,6 @@
 import React, { useState, useEffect } from 'react';
 import AssetItem from './AssetItem';
 
-const btc = 'https://cryptolottery.com/static/media/btc.7d6ba19c.svg';
-const eth = 'https://cryptolottery.com/static/media/eth.ff7418b5.svg';
-const usdt = 'https://cryptolottery.com/static/media/usdt.1ad4bba3.svg';
-const usd = 'https://cryptolottery.com/static/media/usd.71652581.svg';
-
-const list = [
-  {
-    img: btc,
-    symbol: 'BTC',
-    name: 'Bitcoin',
-    crypto: 'Crypto',
-  },
-  {
-    img: eth,
-    symbol: 'ETH',
-    name: 'Ethereum',
-    crypto: 'Crypto',
-  },
-  {
-    img: usdt,
-    symbol: 'USDT',
-    name: 'Tether',
-    crypto: 'Crypto',
-  },
-  {
-    img: usd,
-    symbol: 'USD',
-    name: 'US Dollar',
-    crypto: 'Vault',
-  },
-  {
-    img: usd,
-    symbol: 'INR',
-    name: 'Indian Rupee',
-    crypto: 'Vault',
-  },
-  {
-    img: usd,
-    symbol: 'GBP',
-    name: 'British Pound',
-    crypto: 'Vault',
-  },
-  {
-    img: usd,
-    symbol: 'CAD',
-    name: 'Canadian Dollar',
-    crypto: 'Vault',
-  },
-  {
-    img: usd,
-    symbol: 'AUD',
-    name: 'Australian Dollar',
-    crypto: 'Vault',
-  },
-  {
-    img: usd,
-    symbol: 'EUR',
-    name: 'Euro',
-    crypto: 'Vault',
-  },
-  {
-    img: usd,
-    symbol: 'CNY',
-    name: 'Chinese Yuan',
-    crypto: 'Vault',
-  },
-  {
-    img: usd,
-    symbol: 'JPY',
-    name: 'Japanese yen',
-    crypto: 'Vault',
-  },
-  {
-    img: usd,
-    symbol: 'AED',
-    name: 'UAE Dirham',
-    crypto: 'Vault',
-  },
-  {
-    img: usd,
-    symbol: 'MXN',
-    name: 'Mexican Peso',
-    crypto: 'Vault',
-  },
-  {
-    img: usd,
-    symbol: 'ARS',
-    name: 'Argentine Peso',
-    crypto: 'Vault',
-  },
-  {
-    img: usd,
-    symbol: 'COP',
-    name: 'Colombian Peso',
-    crypto: 'Vault',
-  },
-];
-
 function SelectCoin({
   setCoinObject,
   setIsCoinSelected,
@@ -109,22 +11,26 @@ function SelectCoin({
   transCoin,
   fundOrWithdraw,
   setTransCoin,
+  priceList,
   isDeposit,
 }) {
   const [tab, setTab] = useState('Crypto');
   const [searchStr, setSearchStr] = useState('');
 
-  const [searchList, setSearchList] = useState(list);
+  const [searchList, setSearchList] = useState(priceList);
 
   useEffect(() => {
     setSearchList(
-      list.filter(
+      priceList.filter(
         (listItm) =>
-          listItm.name.toLowerCase().includes(searchStr.toLowerCase()) &&
-          listItm.crypto === tab
+          (listItm.coinName.toLowerCase().includes(searchStr.toLowerCase()) ||
+            listItm.coinSymbol
+              .toLowerCase()
+              .includes(searchStr.toLowerCase())) &&
+          listItm.asset_type === tab
       )
     );
-  }, [searchStr, tab]);
+  }, [searchStr, tab, priceList]);
 
   return (
     <div className="select-coin">
@@ -155,7 +61,7 @@ function SelectCoin({
           role="button"
           className={`tab-itm col-6 ${tab === 'Vault' ? 'active' : ''}`}
           onClick={() => {
-            setTab('Vault');
+            setTab('Fiat');
           }}
         >
           Fiat
@@ -163,21 +69,17 @@ function SelectCoin({
       </div>
       <div className="asset-list">
         {searchList
-          .filter(
-            (item) =>
-              (price && price[item.symbol] && price[item.symbol].value > 0) ||
-              !isDeposit
-          )
+          .filter((item) => item.coinValueUSD > 0 || !isDeposit)
           .map((item) => {
             return (
               <AssetItem
-                key={item.symbol}
-                img={item.img}
-                name={item.name}
+                key={item.coinSymbol}
+                img={item.coinImage}
+                name={item.coinName}
                 crypto={item.crypto}
-                price={price[item.symbol].value}
-                coinObject={price[item.symbol]}
-                symbol={item.symbol}
+                price={item.coinValueUSD}
+                coinObject={price[item.coinSymbol]}
+                symbol={item.coinSymbol}
                 setCoinObject={setCoinObject}
                 transCoin={transCoin}
                 setTransCoin={setTransCoin}
