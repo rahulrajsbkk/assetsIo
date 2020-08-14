@@ -12,8 +12,8 @@ import { PortfolioContext } from '../../../context/PortfolioContext';
 
 const validNumber = new RegExp(/^\d*$/);
 function NewContractInitiate() {
-  const { coinList } = useContext(BankContext);
-  const { initiate } = useContext(PortfolioContext);
+  const { coinList, coinListObject } = useContext(BankContext);
+  const { initiate, contractPreview } = useContext(PortfolioContext);
   const [coin, setCoin] = useState('Bitcoin');
   const [coinObj, setCoinObj] = useState({});
   const [coinImg, setCoinImg] = useState(btc);
@@ -49,7 +49,6 @@ function NewContractInitiate() {
       maximumFractionDigits: prec,
       minimumFractionDigits: prec,
     }).format(num);
-  const btcVal = 2.69;
   const getPrec = () => {
     if (
       coinObj &&
@@ -68,7 +67,6 @@ function NewContractInitiate() {
     });
     setRates(ratesObj);
   }, [coinList]);
-  console.log('coinObj :>> ', coinObj);
   return (
     <div className="newContractInitiate">
       <div className="head">
@@ -182,11 +180,19 @@ function NewContractInitiate() {
                 if (validNumber.test(e.target.value)) setCount(e.target.value);
               }}
             />
-            <span> Bitcoin Contract</span>
+            <span>
+              {' '}
+              {coinListObject[contractPreview.coin].coinName} Contract
+            </span>
           </div>
           <div className="coinDetail">
-            <img src={btcWide} alt="" />
-            <div className="value">{formatNum(btcVal * count, 4)}</div>
+            <img src={coinListObject[contractPreview.coin].coinImage} alt="" />
+            <div className="name">
+              {coinListObject[contractPreview.coin].coinName}
+            </div>
+            <div className="value">
+              {formatNum(contractPreview.contractCost * count, 4)}
+            </div>
           </div>
         </div>
         <div className="toCheckOut">
@@ -199,7 +205,10 @@ function NewContractInitiate() {
                 {formatNum(
                   coinObj &&
                     coinObj.coinSymbol &&
-                    (btcVal * rates.BTC * count) / rates[coinObj.coinSymbol],
+                    (contractPreview.contractCost *
+                      rates[contractPreview.coin] *
+                      count) /
+                      rates[coinObj.coinSymbol],
                   getPrec()
                 )}
               </div>

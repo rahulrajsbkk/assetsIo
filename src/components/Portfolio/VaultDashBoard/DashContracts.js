@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
+import moment from 'moment';
+
 import DashContractsChart from './DashContractsChart';
 import btcIcon from '../../../static/images/usd-btc/btc.svg';
 import usdIcon from '../../../static/images/usd-btc/usd.svg';
+import { PortfolioContext } from '../../../context/PortfolioContext';
+import { BankContext } from '../../../context/Context';
+import { FormatCurrency } from '../../../utils/FunctionTools';
 
 function DashContracts() {
+  const { contractPreview } = useContext(PortfolioContext);
+  const { coinListObject } = useContext(BankContext);
   const [selectedDetail, setSelectedDetail] = useState('');
-  const [valueShow, setValueShow] = useState('btc');
+  const { coin = 'USD' } = contractPreview;
+  const [previewValueNative, setPreviewValueNative] = useState(0);
+  const [valueShow, setValueShow] = useState(coin);
+  const rate = coinListObject[contractPreview.coin].price.USD || 1;
   return (
     <div className="dashContracts">
       <div className="chartSection">
@@ -27,21 +37,26 @@ function DashContracts() {
           className={`detailItem ${
             selectedDetail === '' || selectedDetail === 'deposit'
           }`}
-          onClick={() =>
-            setSelectedDetail(selectedDetail === '' ? 'deposit' : '')
-          }
+          onClick={() => {
+            setSelectedDetail(selectedDetail === '' ? 'deposit' : '');
+            setPreviewValueNative(contractPreview.contractCost);
+          }}
         >
           <div className="name">Deposit:</div>
           <div className="valueNbtn">
-            <div className="value">$40,000.00</div>
+            <div className="value">
+              ${FormatCurrency(contractPreview.contractCost * rate)}
+            </div>
             <div className="btnView">
-              BTC <FontAwesomeIcon icon={faEye} />
+              {coin} <FontAwesomeIcon icon={faEye} />
             </div>
           </div>
         </div>
         <div className={`detailItem ${selectedDetail === ''}`}>
           <div className="name">Deposit Date:</div>
-          <div className="date">March 21st 2020</div>
+          <div className="date">
+            {moment(contractPreview.start_timestamp).format('MMMM Do YYYY')}
+          </div>
         </div>
         <div
           className={`headMain ${
@@ -56,13 +71,16 @@ function DashContracts() {
           }`}
           onClick={() => {
             setSelectedDetail(selectedDetail === '' ? 'redeem' : '');
+            setPreviewValueNative(contractPreview.redemptionAmount);
           }}
         >
           <div className="name">Redemption:</div>
           <div className="valueNbtn">
-            <div className="value">$40,000.00</div>
+            <div className="value">
+              ${FormatCurrency(contractPreview.redemptionAmount * rate)}
+            </div>
             <div className="btnView">
-              BTC <FontAwesomeIcon icon={faEye} />
+              {coin} <FontAwesomeIcon icon={faEye} />
             </div>
           </div>
         </div>
@@ -72,7 +90,11 @@ function DashContracts() {
           }`}
         >
           <div className="name">Redemption Date:</div>
-          <div className="date">March 21st 2020</div>
+          <div className="date">
+            {moment(contractPreview.redemption_timestamp).format(
+              'MMMM Do YYYY'
+            )}
+          </div>
         </div>
         <div
           className={`headMain ${
@@ -93,7 +115,7 @@ function DashContracts() {
           <div className="valueNbtn">
             <div className="value">24.00%</div>
             <div className="btnView">
-              BTC <FontAwesomeIcon icon={faEye} />
+              {coin} <FontAwesomeIcon icon={faEye} />
             </div>
           </div>
         </div>
@@ -109,7 +131,7 @@ function DashContracts() {
           <div className="valueNbtn">
             <div className="value">8.00%</div>
             <div className="btnView">
-              BTC <FontAwesomeIcon icon={faEye} />
+              {coin} <FontAwesomeIcon icon={faEye} />
             </div>
           </div>
         </div>
@@ -125,7 +147,7 @@ function DashContracts() {
           <div className="valueNbtn">
             <div className="value down">$513.93</div>
             <div className="btnView">
-              BTC <FontAwesomeIcon icon={faEye} />
+              {coin} <FontAwesomeIcon icon={faEye} />
             </div>
           </div>
         </div>
@@ -141,7 +163,7 @@ function DashContracts() {
           <div className="valueNbtn">
             <div className="value up">$2,134.34</div>
             <div className="btnView">
-              BTC <FontAwesomeIcon icon={faEye} />
+              {coin} <FontAwesomeIcon icon={faEye} />
             </div>
           </div>
         </div>
@@ -157,28 +179,28 @@ function DashContracts() {
           <div className="valueNbtn">
             <div className="value up">$24,46</div>
             <div className="btnView">
-              BTC <FontAwesomeIcon icon={faEye} />
+              {coin} <FontAwesomeIcon icon={faEye} />
             </div>
           </div>
         </div>
         {selectedDetail ? (
           <div className="moreDetail">
             <div
-              className={`btnBtcUsd ${valueShow === 'btc'}`}
-              onClick={() => setValueShow('btc')}
+              className={`btnBtcUsd ${valueShow === coin}`}
+              onClick={() => setValueShow(coin)}
             >
               <img src={btcIcon} alt="" />
             </div>
             <div
-              className={`btnBtcUsd ${valueShow === 'usd'}`}
-              onClick={() => setValueShow('usd')}
+              className={`btnBtcUsd ${valueShow === 'USD'}`}
+              onClick={() => setValueShow('USD')}
             >
               <img src={usdIcon} alt="" />
             </div>
             <h4 className="value">
-              {valueShow === 'btc'
-                ? 0.0034567
-                : `$${(0.0034567 * 11644).toFixed(2)}`}
+              {valueShow === coin
+                ? FormatCurrency(previewValueNative, coin)
+                : `$${FormatCurrency(previewValueNative * rate, 'USD')}`}
             </h4>
           </div>
         ) : (

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
@@ -15,36 +15,25 @@ function NewContractComponent() {
   const {
     coinContract,
     setCoinContract,
-    setDaysToHold,
     calculateRoi,
     dashTab,
     confirmContract,
+    duration,
+    setDuration,
+    durationUnit,
+    setDurationUnit,
   } = useContext(PortfolioContext);
   const usdAmountFormatter = new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
-  const [duration, setDuration] = useState('');
-  const [durationUnit, setDurationUnit] = useState('Days');
+
   const [durationDropDownOpen, setDurationDropDownOpen] = useState(false);
   const onDurationchange = (e) => {
     const { value } = e.target;
     if (value === '' || validNumber.test(value)) setDuration(value);
   };
 
-  useEffect(() => {
-    switch (durationUnit) {
-      case 'Weeks':
-        setDaysToHold(duration * 7);
-        break;
-      case 'Months':
-        setDaysToHold(duration * 30);
-        break;
-      default:
-        setDaysToHold(duration);
-        break;
-    }
-  }, [duration, durationUnit, setDaysToHold]);
   return (
     <div className="vault-new-contract">
       <div className="head">Create A New Ice Contract</div>
