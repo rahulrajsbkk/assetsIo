@@ -9,6 +9,7 @@ function VaultContextProvider({ children }) {
   const [coinBalanceList, setCoinBalanceList] = useState([]);
   const [vaultTxns, setVaultTxns] = useState([]);
   const [coinSelected, setCoinSelected] = useState({});
+  const [coinAddress, setCoinAddress] = useState({});
   function updateBalance() {
     Axios.post('https://comms.globalxchange.com/coin/vault/service/coins/get', {
       app_code: 'ice',
@@ -20,6 +21,18 @@ function VaultContextProvider({ children }) {
         (coin) => coin.coinSymbol === 'BTC'
       );
       setCoinSelected(btcArray[0]);
+    });
+    Axios.post(
+      'https://comms.globalxchange.com/coin/vault/service/balances/get',
+      {
+        app_code: 'ice',
+        profile_id: profileId,
+      }
+    ).then((res) => {
+      const { data } = res;
+      if (data.status) {
+        setCoinAddress(data.vault.coinAddress);
+      }
     });
     Axios.post('https://comms.globalxchange.com/coin/vault/service/txns/get', {
       app_code: 'ice',
@@ -43,6 +56,7 @@ function VaultContextProvider({ children }) {
         setCoinSelected,
         vaultTxns,
         updateBalance,
+        coinAddress,
       }}
     >
       {children}
