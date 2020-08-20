@@ -1,12 +1,47 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDotCircle } from '@fortawesome/free-solid-svg-icons';
 import { select, area, curveCardinal } from 'd3';
 import DonutChart from '../../DonutChart/Index';
+import { PortfolioContext } from '../../../context/PortfolioContext';
+import { BankContext } from '../../../context/Context';
+import { FormatCurrency } from '../../../utils/FunctionTools';
 
 const data = [0, 45, 35, 60, 75, 55, 49, 80];
 function DashTransaction() {
   const svgRef = useRef();
+
+  const { portfolioSelected, setPortfolioSelected, icedContracts } = useContext(
+    PortfolioContext
+  );
+  const { coinList, email, coinListObject } = useContext(BankContext);
+
+  const [totalLiquid, setTotalLiquid] = useState(0);
+  useEffect(() => {
+    let totalUsdValue = 0.00000000000000000000000000000000000000001; //To Bypass Divide By Zero Error
+    coinList.forEach((coin) => {
+      totalUsdValue += coin.coinValueUSD;
+    });
+    setTotalLiquid(totalUsdValue);
+  }, [coinList]);
+  console.log('coinListObject[BTC]', coinListObject['BTC']);
+  const [totalPooled, setTotalPooled] = useState(0);
+  useEffect(() => {
+    let totalUsdValue = 0.00000000000000000000000000000000000000001; //To Bypass Divide By Zero Error
+    icedContracts.forEach((coin) => {
+      if (
+        coinListObject &&
+        coinListObject['BTC'] &&
+        coinListObject['BTC'].price &&
+        coinListObject['BTC'].price.USD &&
+        coin.email === email
+      ) {
+        totalUsdValue += coin.contract_amount * coinListObject['BTC'].price.USD;
+      }
+    });
+    setTotalPooled(totalUsdValue);
+  }, [icedContracts, coinListObject]);
+
   useEffect(() => {
     const svg = select(svgRef.current);
     const totalWidth = svg._groups[0][0].clientWidth;
@@ -26,17 +61,17 @@ function DashTransaction() {
       .attr('d', (value) => myArea(value))
       .attr('fill', 'url(#grad1)')
       .attr('stroke', 'none');
-  }, []);
+  }, [totalLiquid, totalPooled]);
   const [segment, setSegment] = useState(null);
 
   const chartData = [
     {
-      value: 1,
+      value: totalLiquid,
       color: '#464B4E',
       name: 'Liquid',
     },
     {
-      value: 1,
+      value: totalPooled,
       color: '#8B8B8B',
       name: 'Pooled',
     },
@@ -51,8 +86,14 @@ function DashTransaction() {
           className="total"
           // onClick={() => setChartData(totalDataChart)}
         >
-          <h6>Total Portfolio</h6>
-          <h4>$1,606.00</h4>
+          <h6>{portfolioSelected} Portfolio</h6>
+          <h4>
+            $
+            {FormatCurrency(
+              totalLiquid * (portfolioSelected !== 'Liquid') +
+                totalPooled * (portfolioSelected !== 'Pooled')
+            )}
+          </h4>
         </div>
         <div className="chart-section">
           <div className="chart">
@@ -66,10 +107,10 @@ function DashTransaction() {
             <DonutChart
               pieData={chartData}
               onMouseOver={(segmentIndex) => {
-                setSegment(segmentIndex);
+                if (portfolioSelected === 'Total') setSegment(segmentIndex);
               }}
               onMouseOut={() => {
-                setSegment(null);
+                if (portfolioSelected === 'Total') setSegment(null);
               }}
               segment={segment}
             />
@@ -97,29 +138,55 @@ function DashTransaction() {
               }}
             >
               <div className="indicator">
-                <h6 className="my-3 d-flex">
+                <h6
+                  className={`my-3 d-flex ${
+                    portfolioSelected === 'Pooled' ? 'inactive' : ''
+                  }`}
+                  onClick={() => {
+                    if (portfolioSelected === 'Liquid') {
+                      setPortfolioSelected('Total');
+                      setSegment(null);
+                    } else {
+                      setPortfolioSelected('Liquid');
+                      setSegment(0);
+                    }
+                  }}
+                >
                   <FontAwesomeIcon
                     className="my-auto"
                     icon={faDotCircle}
                     style={{ color: '#464B4E' }}
                   />
-                  <h6 className="m-0">
+                  <span className="m-0">
                     Liquid&nbsp;
                     <br />
-                    <span>(100.0%)</span>
-                  </h6>
+                    <small>(100.0%)</small>
+                  </span>
                 </h6>
-                <h6 className="my-3 d-flex">
+                <h6
+                  className={`my-3 d-flex ${
+                    portfolioSelected === 'Liquid' ? 'inactive' : ''
+                  }`}
+                  onClick={() => {
+                    if (portfolioSelected === 'Pooled') {
+                      setPortfolioSelected('Total');
+                      setSegment(null);
+                    } else {
+                      setPortfolioSelected('Pooled');
+                      setSegment(1);
+                    }
+                  }}
+                >
                   <FontAwesomeIcon
                     className="my-auto"
                     icon={faDotCircle}
                     style={{ color: '#8B8B8B' }}
                   />
-                  <h6 className="m-0">
+                  <span className="m-0">
                     Pooled&nbsp;
                     <br />
-                    <span>(0.0%)</span>
-                  </h6>
+                    <small>(0.0%)</small>
+                  </span>
                 </h6>
               </div>
             </div>

@@ -96,18 +96,23 @@
             .view {
               display: flex;
               .indicator {
+                cursor: pointer;
                 margin: auto;
                 h6 {
                   font-size: 20px;
                   font-weight: 500;
-                  span {
+                  small {
                     font-size: 14px;
                     font-weight: 600;
                   }
                   svg {
                     margin: 0 10px 0 0;
                   }
+                  &.inactive{
+                    opacity: .4;
+                  }
                 }
+               
                 @include xl {
                   margin-left: 30px;
                   h6 {

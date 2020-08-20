@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 
 import next from '../../../static/images/next-anim.svg';
-import btcWide from '../../../static/images/vault-methods/bitcoin.svg';
 import btc from '../../../static/images/coin-small/btc.svg';
 import eth from '../../../static/images/coin-small/eth.svg';
 import usdt from '../../../static/images/coin-small/usdt.svg';

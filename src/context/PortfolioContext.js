@@ -15,6 +15,7 @@ function PortfolioContextProvider({ children }) {
   const [roiStep, setRoiStep] = useState(0);
   const [dashTab, setDashTab] = useState('Dashboard');
   const [contractPreview, setContractPreview] = useState({});
+  const [portfolioSelected, setPortfolioSelected] = useState('Total');
 
   useEffect(() => {
     switch (durationUnit) {
@@ -90,6 +91,19 @@ function PortfolioContextProvider({ children }) {
       setRoiStep(1);
     }, 2000);
   };
+
+  const [icedContracts, setIcedContracts] = useState([]);
+  useEffect(() => {
+    Axios.get(
+      `https://comms.globalxchange.com/coin/iced/contract/get?email=${email}`
+    ).then((res) => {
+      const { data } = res;
+      if (data.status) {
+        setIcedContracts(data.icedContracts);
+      }
+    });
+  }, []);
+
   return (
     <PortfolioContext.Provider
       value={{
@@ -110,6 +124,9 @@ function PortfolioContextProvider({ children }) {
         setDuration,
         durationUnit,
         setDurationUnit,
+        portfolioSelected,
+        setPortfolioSelected,
+        icedContracts,
       }}
     >
       {children}
