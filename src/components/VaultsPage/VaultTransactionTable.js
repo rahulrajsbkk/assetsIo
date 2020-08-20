@@ -17,7 +17,7 @@ function VaultTransactionTable({ credit, debit }) {
         vaultTxns
           .filter(
             (txn) =>
-              txn.cus_native_code === coinSelected.coinSymbol &&
+              txn.coin === coinSelected.coinSymbol &&
               (txn.deposit !== credit || txn.deposit === debit)
           )
           .map((txn) => {
@@ -43,19 +43,13 @@ function VaultTransactionTable({ credit, debit }) {
                     </div>
                   </div>
                   <div className="credit">
-                    {FormatCurrency(
-                      txn.deposit && txn.native_value,
-                      txn.cus_native_code
-                    )}
+                    {FormatCurrency(txn.deposit && txn.amount, txn.coin)}
                   </div>
                   <div className="debit">
-                    {FormatCurrency(
-                      !txn.deposit && txn.native_value,
-                      txn.cus_native_code
-                    )}
+                    {FormatCurrency(txn.withdraw && txn.amount, txn.coin)}
                   </div>
                   <div className="balance">
-                    {FormatCurrency(txn.updated_balance, txn.cus_native_code)}
+                    {FormatCurrency(txn.updated_balance, txn.coin)}
                   </div>
                 </div>
               </>

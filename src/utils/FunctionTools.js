@@ -4,7 +4,7 @@ export function FormatNumber(value, prec) {
   return new Intl.NumberFormat('en-US', {
     maximumFractionDigits: prec,
     minimumFractionDigits: prec,
-  }).format(value);
+  }).format(isNaN(value) ? 0 : value);
 }
 
 export function FormatCurrency(value, coin = 'USD') {
