@@ -5,7 +5,7 @@ import { select, area, curveCardinal } from 'd3';
 import DonutChart from '../../DonutChart/Index';
 import { PortfolioContext } from '../../../context/PortfolioContext';
 import { BankContext } from '../../../context/Context';
-import { FormatCurrency } from '../../../utils/FunctionTools';
+import { FormatCurrency, FormatNumber } from '../../../utils/FunctionTools';
 
 const data = [0, 45, 35, 60, 75, 55, 49, 80];
 function DashTransaction() {
@@ -160,7 +160,14 @@ function DashTransaction() {
                   <span className="m-0">
                     Liquid&nbsp;
                     <br />
-                    <small>(100.0%)</small>
+                    <small>
+                      (
+                      {FormatNumber(
+                        (totalLiquid / (totalLiquid + totalPooled)) * 100,
+                        1
+                      )}
+                      )
+                    </small>
                   </span>
                 </h6>
                 <h6
@@ -185,7 +192,14 @@ function DashTransaction() {
                   <span className="m-0">
                     Pooled&nbsp;
                     <br />
-                    <small>(0.0%)</small>
+                    <small>
+                      (
+                      {FormatNumber(
+                        (totalPooled / (totalLiquid + totalPooled)) * 100,
+                        1
+                      )}
+                      )
+                    </small>
                   </span>
                 </h6>
               </div>
