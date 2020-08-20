@@ -40,7 +40,7 @@ function DashTransaction() {
       }
     });
     setTotalPooled(totalUsdValue);
-  }, [icedContracts, coinListObject]);
+  }, [icedContracts, coinListObject, email]);
 
   useEffect(() => {
     const svg = select(svgRef.current);

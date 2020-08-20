@@ -102,7 +102,7 @@ function PortfolioContextProvider({ children }) {
         setIcedContracts(data.icedContracts);
       }
     });
-  }, []);
+  }, [email]);
 
   return (
     <PortfolioContext.Provider
