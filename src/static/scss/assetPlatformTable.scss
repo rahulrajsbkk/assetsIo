@@ -274,6 +274,60 @@
                 padding-left: 50px;
               }
             }
+            &.true{
+              border-bottom:  none;
+            }
+          }
+          .detailRow{
+            position: relative;
+            td{
+              height: 200px;
+              width: 100%;
+              .bondDetail{
+                height: 100%;
+                width: 100%;
+                display: flex;
+                // background: cyan;
+                .btns{
+                  padding-left: 50px;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  .btn-daily{
+                    cursor: pointer;
+                    width: 100%;
+                    border: 1px solid $primary-color;
+                    padding: 2px 20px;
+                    margin: 1px 0;
+                    opacity: .3;
+                    &.true{
+                      opacity: 1;
+                    }
+                  }
+                }
+                .rateNPower{
+                  padding: 0 4%;
+                  flex-grow: 1;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: center;
+                  .value{
+                    color: #3EA254;
+                    font-size: 25px;
+                    font-weight: bold;
+                  }
+                  .label{
+                    color: $primary-color;
+                    font-size: 16px;
+                  }
+                }
+                .chartWrap{
+                  margin: 10px ;
+                  flex:0 0 40%;
+                  position: relative;
+                }
+              }
+            }
           }
         }
       }
