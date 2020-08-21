@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import Axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { BankContext } from '../../../context/Context';
@@ -7,11 +8,40 @@ import { IndexContext } from '../../../context/IndexContext';
 import AssetTableChart from '../EarnIntrest/AssetTableChart';
 
 function BondsListTable() {
-  const { coinListObject } = useContext(BankContext);
+  const { coinListObject, tostShowOn } = useContext(BankContext);
   const { conractsObj } = useContext(IndexContext);
   const [days, setDays] = useState('');
   const [contract, setContract] = useState({});
   const [dailyOrTotal, setDailyOrTotal] = useState('Daily');
+  const [calcDays, setCalcDays] = useState(1);
+  const [contractPreview, setContractPreview] = useState({});
+
+  useEffect(() => {
+    if (dailyOrTotal === 'Daily') {
+      setCalcDays(days);
+    } else {
+      setCalcDays(1);
+    }
+  }, [days, dailyOrTotal]);
+
+  const calculateRoi = (key) => {
+    Axios.post('https://comms.globalxchange.com/coin/iced/contract/create', {
+      coin: key,
+      days: days,
+      simulate: true,
+    })
+      .then((res) => {
+        const { data } = res;
+        if (data.status) {
+          setContractPreview(data);
+        } else {
+          tostShowOn(data.message);
+        }
+        console.log('data :>> ', data);
+      })
+      .finally(() => {});
+  };
+
   return (
     <table className="asetPlatformTable">
       <thead className="tableHead">
@@ -64,7 +94,13 @@ function BondsListTable() {
                     defaultValue=""
                     onChange={(e) => setDays(e.target.value)}
                   />
-                  <div className="btn-go" onClick={() => setContract(value)}>
+                  <div
+                    className="btn-go"
+                    onClick={() => {
+                      setContract(value);
+                      calculateRoi(key);
+                    }}
+                  >
                     <FontAwesomeIcon icon={faPaperPlane} />
                   </div>
                 </div>
@@ -89,11 +125,18 @@ function BondsListTable() {
                       </div>
                     </div>
                     <div className="rateNPower">
-                      <div className="value">0.12%</div>
+                      <div className="value">
+                        {FormatNumber(contractPreview.interestRate, 2)}%
+                      </div>
                       <div className="label">{dailyOrTotal} Interest Rate</div>
                     </div>
                     <div className="rateNPower">
-                      <div className="value">0.005</div>
+                      <div className="value">
+                        {FormatNumber(
+                          contractPreview.earningPower / calcDays,
+                          5
+                        )}
+                      </div>
                       <div className="label">{dailyOrTotal} Earning Power</div>
                     </div>
                     <div className="chartWrap">
