@@ -33,10 +33,10 @@ function MobileFooter({ menuSelected, setTitle, setMenuSelected }) {
         <div className="tab-name">Borrow</div>
       </div>
       <div
-        className={`footer-itm ${menuSelected === 'earn-history'}`}
+        className={`footer-itm ${menuSelected === 'bonds-tab'}`}
         onClick={() => {
           try {
-            setMenuSelected('earn-history');
+            setMenuSelected('bonds-tab');
             setTitle('Earn Interest');
           } catch (error) {}
         }}

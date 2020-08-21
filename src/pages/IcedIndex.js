@@ -7,6 +7,8 @@ import HistoricalRates from '../components/MarketPage/HistoricalRates/Historical
 import Loans from '../components/MarketPage/Loans/Loans';
 import Collateral from '../components/MarketPage/Collateral/Collateral';
 import useWindowDimensions from '../utils/WindowSize';
+import BondsContent from '../components/MarketPage/BondsContent/BondsContent';
+import IndexContextProvider from '../context/IndexContext';
 
 function IcedIndex() {
   const [title, setTitle] = useState('Earn Interest');
@@ -14,17 +16,16 @@ function IcedIndex() {
   const { width } = useWindowDimensions();
   function getPageContent(tab) {
     switch (tab) {
-      case 'earn-history':
+      case 'bonds-tab':
         return (
           <>
-            <HistoricalRates title={title} />
+            <BondsContent title={title} />
           </>
         );
       case 'borrow-intrest':
         return (
           <>
-            <EarnIntrest title={title} />
-            {/* <LoansCard /> */}
+            <HistoricalRates title={title} />
           </>
         );
       case 'borrow-history':
@@ -55,66 +56,68 @@ function IcedIndex() {
   }
 
   return (
-    <Layout
-      active="index"
-      className="icedIndex"
-      menuSelected={menuSelected}
-      setTitle={setTitle}
-      setMenuSelected={setMenuSelected}
-    >
-      {width > 768 ? (
-        <div className="tab">
-          <div
-            className={`tab-itm ${menuSelected === 'earn-intrest'}`}
-            onClick={() => {
-              setMenuSelected('earn-intrest');
-              setTitle('Earn Interest');
-            }}
-          >
-            Lend
+    <IndexContextProvider>
+      <Layout
+        active="index"
+        className="icedIndex"
+        menuSelected={menuSelected}
+        setTitle={setTitle}
+        setMenuSelected={setMenuSelected}
+      >
+        {width > 768 ? (
+          <div className="tab">
+            <div
+              className={`tab-itm ${menuSelected === 'earn-intrest'}`}
+              onClick={() => {
+                setMenuSelected('earn-intrest');
+                setTitle('Earn Interest');
+              }}
+            >
+              Earn
+            </div>
+            <div
+              className={`tab-itm ${menuSelected === 'bonds-tab'}`}
+              onClick={() => {
+                setMenuSelected('bonds-tab');
+                setTitle('Earn Interest');
+              }}
+            >
+              Bonds
+            </div>
+            <div
+              className={`tab-itm ${menuSelected === 'borrow-intrest'}`}
+              onClick={() => {
+                setMenuSelected('borrow-intrest');
+                setTitle('Borrow');
+              }}
+            >
+              Indicies
+            </div>
+            <div
+              className={`tab-itm ${menuSelected === 'loan'}`}
+              onClick={() => {
+                setMenuSelected('loan');
+                setTitle('Loans');
+              }}
+            >
+              Loans
+            </div>
+            <div
+              className={`tab-itm ${menuSelected === 'collateral'}`}
+              onClick={() => {
+                setMenuSelected('collateral');
+                setTitle('COLLATERAL');
+              }}
+            >
+              Ice Mechine
+            </div>
           </div>
-          <div
-            className={`tab-itm ${menuSelected === 'borrow-intrest'}`}
-            onClick={() => {
-              setMenuSelected('borrow-intrest');
-              setTitle('Borrow');
-            }}
-          >
-            Borrow
-          </div>
-          <div
-            className={`tab-itm ${menuSelected === 'earn-history'}`}
-            onClick={() => {
-              setMenuSelected('earn-history');
-              setTitle('Earn Interest');
-            }}
-          >
-            Bonds
-          </div>
-          <div
-            className={`tab-itm ${menuSelected === 'loan'}`}
-            onClick={() => {
-              setMenuSelected('loan');
-              setTitle('Loans');
-            }}
-          >
-            Loans
-          </div>
-          <div
-            className={`tab-itm ${menuSelected === 'collateral'}`}
-            onClick={() => {
-              setMenuSelected('collateral');
-              setTitle('COLLATERAL');
-            }}
-          >
-            Collareral
-          </div>
-        </div>
-      ) : (
-        ''
-      )}
-      <div className="content-section">{getPageContent(menuSelected)}</div>
-    </Layout>
+        ) : (
+          ''
+        )}
+        <div className="content-section">{getPageContent(menuSelected)}</div>
+      </Layout>
+    </IndexContextProvider>
   );
 }
 

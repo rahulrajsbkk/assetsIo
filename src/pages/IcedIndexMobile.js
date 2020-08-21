@@ -11,7 +11,7 @@ function IcedIndexMobile() {
   const [menuSelected, setMenuSelected] = useState('earn-intrest');
   function getPageContent(tab) {
     switch (tab) {
-      case 'earn-history':
+      case 'bonds-tab':
         return (
           <>
             <HistoricalRates title={title} />
