@@ -1,11 +1,6 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCaretDown,
-  faCaretUp,
-  faLock,
-} from '@fortawesome/free-solid-svg-icons';
-import { Link, useHistory } from 'react-router-dom';
+import { faCaretDown, faLock } from '@fortawesome/free-solid-svg-icons';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 import allPlatforms from '../static/images/allPlatforms.svg';
@@ -14,7 +9,6 @@ import { BankContext } from '../context/Context';
 import LoginWrapper from '../components/LoginModal/LoginWrapper';
 
 function LayoutSidebarCoins({ countryName }) {
-  const history = useHistory();
   const {
     email,
     login,

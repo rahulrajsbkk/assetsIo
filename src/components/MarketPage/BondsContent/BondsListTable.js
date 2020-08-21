@@ -37,7 +37,6 @@ function BondsListTable() {
         } else {
           tostShowOn(data.message);
         }
-        console.log('data :>> ', data);
       })
       .finally(() => {});
   };

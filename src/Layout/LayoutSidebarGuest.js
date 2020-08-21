@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars';
 
-import allPlatforms from '../static/images/world.png';
 import iced from '../static/images/logo.svg';
 import guest from '../static/images/guest.jpg';
 import portfolio from '../static/images/sidebar-icons/portfolio.svg';
