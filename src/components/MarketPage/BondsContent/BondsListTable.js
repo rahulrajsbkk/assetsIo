@@ -8,7 +8,9 @@ import { IndexContext } from '../../../context/IndexContext';
 import AssetTableChart from '../EarnIntrest/AssetTableChart';
 
 function BondsListTable() {
-  const { coinListObject, tostShowOn } = useContext(BankContext);
+  const { coinListObject, tostShowOn, convertCoin, defaultCoin } = useContext(
+    BankContext
+  );
   const { conractsObj } = useContext(IndexContext);
   const [days, setDays] = useState('');
   const [contract, setContract] = useState({});
@@ -73,7 +75,8 @@ function BondsListTable() {
                 </div>
               </td>
               <td className="">
-                {FormatCurrency(value.amount, key)} {key}
+                {convertCoin(value.amount, key)}{' '}
+                {defaultCoin.coin ? defaultCoin.coin : key}
               </td>
               <td className="dayChange false">
                 {FormatNumber(value.base_velocity, 2)}%

@@ -3,6 +3,7 @@ import Axios from 'axios';
 import Toast from '../components/Toast/Toast';
 
 import allPlatforms from '../static/images/allPlatforms.svg';
+import { FormatCurrency } from '../utils/FunctionTools';
 
 export const BankContext = createContext();
 
@@ -125,6 +126,17 @@ function BankContextProvider({ children }) {
     name: 'Default Coin',
     img: allPlatforms,
   });
+  const convertCoin = (amount, coin) => {
+    if (defaultCoin.coin && defaultCoin.coin !== null) {
+      return FormatCurrency(
+        (amount * coinListObject[coin].price.USD) /
+          coinListObject[defaultCoin.coin].price.USD,
+        defaultCoin.coin
+      );
+    } else {
+      return FormatCurrency(amount, coin);
+    }
+  };
   return (
     <BankContext.Provider
       value={{
@@ -144,6 +156,7 @@ function BankContextProvider({ children }) {
         setOpenDefaultCoinSidebar,
         defaultCoin,
         setDefaultCoin,
+        convertCoin,
       }}
     >
       {children}
