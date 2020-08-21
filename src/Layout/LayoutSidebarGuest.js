@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars';
 
+import allPlatforms from '../static/images/world.png';
 import iced from '../static/images/logo.svg';
 import guest from '../static/images/guest.jpg';
 import portfolio from '../static/images/sidebar-icons/portfolio.svg';
 import appstore from '../static/images/sidebar-icons/appstore.svg';
 import LoginWrapper from '../components/LoginModal/LoginWrapper';
 import AssetPriceOrRates from './AssetPriceOrRates';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { BankContext } from '../context/Context';
 
-function LayoutSidebarGuest({ active, countryName }) {
+function LayoutSidebarGuest({ active }) {
+  const {
+    openDefaultCoinSidebar,
+    setOpenDefaultCoinSidebar,
+    defaultCoin,
+  } = useContext(BankContext);
   const history = useHistory();
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [onLoginPage, setOnLoginPage] = useState('');
@@ -25,7 +34,16 @@ function LayoutSidebarGuest({ active, countryName }) {
           <img src={guest} alt="" />
           <div className="col my-auto">
             <h5>Guest&nbsp;</h5>
-            <h6>{countryName}</h6>
+            <div
+              className="currencySelect"
+              onClick={() => setOpenDefaultCoinSidebar(!openDefaultCoinSidebar)}
+            >
+              <img src={defaultCoin.img} alt="" />
+              <h6>
+                {defaultCoin.name}
+                <FontAwesomeIcon icon={faCaretDown} />
+              </h6>
+            </div>
           </div>
         </div>
         <Scrollbars

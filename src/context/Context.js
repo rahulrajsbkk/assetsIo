@@ -2,6 +2,8 @@ import React, { createContext, useEffect, useState } from 'react';
 import Axios from 'axios';
 import Toast from '../components/Toast/Toast';
 
+import allPlatforms from '../static/images/allPlatforms.svg';
+
 export const BankContext = createContext();
 
 function BankContextProvider({ children }) {
@@ -116,6 +118,13 @@ function BankContextProvider({ children }) {
     });
     setCoinListObject(coinObj);
   }, [coinList]);
+
+  const [openDefaultCoinSidebar, setOpenDefaultCoinSidebar] = useState(false);
+  const [defaultCoin, setDefaultCoin] = useState({
+    coin: null,
+    name: 'Default Coin',
+    img: allPlatforms,
+  });
   return (
     <BankContext.Provider
       value={{
@@ -131,6 +140,10 @@ function BankContextProvider({ children }) {
         profileId,
         liquidRates,
         coinListObject,
+        openDefaultCoinSidebar,
+        setOpenDefaultCoinSidebar,
+        defaultCoin,
+        setDefaultCoin,
       }}
     >
       {children}

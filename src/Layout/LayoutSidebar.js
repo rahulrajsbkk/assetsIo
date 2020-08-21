@@ -20,7 +20,15 @@ import AssetPriceOrRates from './AssetPriceOrRates';
 
 function LayoutSidebar({ active, countryName }) {
   const history = useHistory();
-  const { login, username, name, profileImg } = useContext(BankContext);
+  const {
+    login,
+    username,
+    name,
+    profileImg,
+    setOpenDefaultCoinSidebar,
+    openDefaultCoinSidebar,
+    defaultCoin,
+  } = useContext(BankContext);
   const [openSubMenu, setOpenSubMenu] = useState(false);
 
   const menuEndRef = useRef(null);
@@ -42,7 +50,16 @@ function LayoutSidebar({ active, countryName }) {
         <img src={profileImg ? profileImg : guest} alt="" />
         <div className="col my-auto">
           <h5>{name ? name : username}&nbsp;</h5>
-          <h6>{countryName}</h6>
+          <div
+            className="currencySelect"
+            onClick={() => setOpenDefaultCoinSidebar(!openDefaultCoinSidebar)}
+          >
+            <img src={defaultCoin.img} alt="" />
+            <h6>
+              {defaultCoin.name}
+              <FontAwesomeIcon icon={faCaretDown} />
+            </h6>
+          </div>
         </div>
       </div>
       <Scrollbars

@@ -5,9 +5,10 @@ import { BankContext } from '../context/Context';
 import LayoutSidebar from './LayoutSidebar';
 import LayoutSidebarGuest from './LayoutSidebarGuest';
 import Axios from 'axios';
+import LayoutSidebarCoins from './LayoutSidebarCoins';
 
 function Layout({ children, active, className }) {
-  const { email } = useContext(BankContext);
+  const { email, openDefaultCoinSidebar } = useContext(BankContext);
   const [countryName, setCountryName] = useState('');
   useEffect(() => {
     Axios.get('https://ipapi.co/country_name/')
@@ -21,7 +22,9 @@ function Layout({ children, active, className }) {
   }, []);
   return (
     <div className="d-flex transaction-layout">
-      {email ? (
+      {openDefaultCoinSidebar ? (
+        <LayoutSidebarCoins />
+      ) : email ? (
         <LayoutSidebar countryName={countryName} active={active} />
       ) : (
         <LayoutSidebarGuest countryName={countryName} active={active} />

@@ -25,11 +25,29 @@
         margin-bottom: 6px;
         font-weight: bold;
       }
-      h6 {
+      .currencySelect {
+        cursor: pointer;
         color: #637282;
+        border: 1px solid $vault-border-color;
+        padding: 3px 6px;
         font-weight: normal;
         line-height: 1;
         margin: 0;
+        display: flex;
+        align-items: center;
+        img{
+          background: none;
+          height: 16px;
+          width: 16px;
+          margin-right: 6px;
+        }
+        h6{
+          font-size: 14px;
+          flex-grow: 1;
+          display: flex;
+          justify-content: space-between;
+          margin: 0;
+        }
       }
       @include xxxl {
         zoom: 0.95;
@@ -198,6 +216,35 @@
         @include lg {
           zoom: 0.45;
         }
+      }
+    }
+    .setNewCurency{
+      margin-top: 50px;
+      border: 1px $vault-border-color;
+      border-style: solid none solid none;
+      padding: 10px 50px;
+      font-weight: bold;
+    }
+    .defCoinList{
+      flex-grow: 1;
+      .coins-list{
+        display: flex;
+        flex-direction: column;
+        .coin {
+          cursor: pointer;
+          height: 100px;
+          display: flex;
+          padding: 35px 50px;
+          border-top: 0.5px solid $vault-border-color;
+          align-items: center;
+          .coin-logo {
+            margin: auto;
+            margin-left: 0;
+            height: 20px;
+          }
+          .coin-name {
+            font-size: 17px;
+          }}
       }
     }
     .logout {

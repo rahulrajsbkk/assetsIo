@@ -43,7 +43,9 @@ function BondsListTable() {
                   {coinListObject[key].coinName}
                 </div>
               </td>
-              <td className="">{FormatCurrency(value.amount, key)}</td>
+              <td className="">
+                {FormatCurrency(value.amount, key)} {key}
+              </td>
               <td className="dayChange false">
                 {FormatNumber(value.base_velocity, 2)}%
               </td>
