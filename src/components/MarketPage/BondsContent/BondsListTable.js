@@ -57,8 +57,8 @@ function BondsListTable() {
           <th>Asset</th>
           <th>Contract Cost</th>
           <th>Base Rate</th>
+          <th>Rate Velocity</th>
           <th>Acceleration</th>
-          <th>Compression</th>
           <th className="text-left">Estimated Days</th>
         </tr>
       </thead>
@@ -102,20 +102,26 @@ function BondsListTable() {
               <td className="dayChange false">
                 <CountUp
                   duration={duration}
+                  start={value.base_compression_rate - 2 || 0}
+                  end={value.base_compression_rate || 0}
+                  decimals={3}
+                />
+                %
+              </td>
+              <td className="dayChange false">
+                <CountUp
+                  duration={duration}
                   start={value.base_velocity - 2 || 0}
                   end={value.base_velocity || 0}
                   decimals={2}
                 />
                 %
               </td>
-              <td className="dayChange false">
-                {FormatNumber(value.acceleration, 2)}%
-              </td>
               <td className="dayChange true">
                 <CountUp
                   duration={duration}
-                  start={value.base_compression_rate - 2 || 0}
-                  end={value.base_compression_rate || 0}
+                  start={value.acceleration - 2 || 0}
+                  end={-value.acceleration || 0}
                   decimals={2}
                 />
                 %
