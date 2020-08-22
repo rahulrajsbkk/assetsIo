@@ -20,10 +20,12 @@ function DashTransaction() {
   useEffect(() => {
     let totalUsdValue = 0.00000000000000000000000000000000000000001; //To Bypass Divide By Zero Error
     coinList.forEach((coin) => {
+      console.log('coin', coin);
       totalUsdValue += coin.coinValueUSD;
     });
     setTotalLiquid(totalUsdValue);
   }, [coinList]);
+  console.log('totalLiquid', totalLiquid);
   console.log('coinListObject[BTC]', coinListObject['BTC']);
   const [totalPooled, setTotalPooled] = useState(0);
   useEffect(() => {
@@ -31,12 +33,12 @@ function DashTransaction() {
     icedContracts.forEach((coin) => {
       if (
         coinListObject &&
-        coinListObject['BTC'] &&
-        coinListObject['BTC'].price &&
-        coinListObject['BTC'].price.USD &&
-        coin.email === email
+        coinListObject[coin._id] &&
+        coinListObject[coin._id].price &&
+        coinListObject[coin._id].price.USD
       ) {
-        totalUsdValue += coin.contract_amount * coinListObject['BTC'].price.USD;
+        totalUsdValue +=
+          coin.contract_amount * coinListObject[coin._id].price.USD;
       }
     });
     setTotalPooled(totalUsdValue);
@@ -99,7 +101,7 @@ function DashTransaction() {
           <div className="chart">
             <div className="chart-name">
               <h6 className="m-auto text-center">
-                Bitcoin
+                Total
                 <br />
                 Vault
               </h6>

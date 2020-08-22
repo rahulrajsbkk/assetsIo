@@ -110,19 +110,33 @@ function BankContextProvider({ children }) {
     });
   }, []);
 
-  const [coinList, setCoiList] = useState([]);
+  const [coinList, setCoinList] = useState([]);
   useEffect(() => {
     Axios.post('https://comms.globalxchange.com/coin/vault/service/coins/get', {
       app_code: 'ice',
+      profile_id: profileId,
     }).then((res) => {
       const { data } = res;
       if (data.status) {
         const { coins_data } = data;
         coins_data.sort(GetSortOrder('type'));
-        setCoiList(coins_data);
+        setCoinList(coins_data);
       }
     });
-  }, []);
+  }, [profileId]);
+
+  const [icedContracts, setIcedContracts] = useState([]);
+  useEffect(() => {
+    Axios.get(
+      `https://comms.globalxchange.com/coin/iced/contract/get?email=${email}`
+    ).then((res) => {
+      const { data } = res;
+      if (data.status) {
+        const { icedContracts } = data;
+        setIcedContracts(icedContracts);
+      }
+    });
+  }, [email]);
 
   const [coinListObject, setCoinListObject] = useState({});
   useEffect(() => {
@@ -169,6 +183,7 @@ function BankContextProvider({ children }) {
         defaultCoin,
         setDefaultCoin,
         convertCoin,
+        icedContracts,
       }}
     >
       {children}
