@@ -109,7 +109,7 @@ function IcedIndex() {
                 setTitle('COLLATERAL');
               }}
             >
-              Ice Mechine
+              Ice Machine
             </div>
           </div>
         ) : (
