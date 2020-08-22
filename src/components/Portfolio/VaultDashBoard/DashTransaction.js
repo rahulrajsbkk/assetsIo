@@ -92,8 +92,8 @@ function DashTransaction() {
           <h4>
             $
             {FormatCurrency(
-              totalLiquid * (portfolioSelected !== 'Liquid') +
-                totalPooled * (portfolioSelected !== 'Pooled')
+              totalLiquid * (portfolioSelected !== 'Pooled') +
+                totalPooled * (portfolioSelected !== 'Liquid')
             )}
           </h4>
         </div>
