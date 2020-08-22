@@ -2,22 +2,22 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  .tab {
-    height: 70px;
-    display: flex;
-    .tab-itm {
-      cursor: pointer;
-      flex: 1;
-      border-bottom: 2px solid #e7e7e7;
-      font-size: 19px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      &.true {
-        border-color: $primary-color;
-      }
-    }
-  }
+  // .tab {
+  //   height: 70px;
+  //   display: flex;
+  //   .tab-itm {
+  //     cursor: pointer;
+  //     flex: 1;
+  //     border-bottom: 2px solid #e7e7e7;
+  //     font-size: 19px;
+  //     display: flex;
+  //     justify-content: center;
+  //     align-items: center;
+  //     &.true {
+  //       border-color: $primary-color;
+  //     }
+  //   }
+  // }
   .contentSectionMobile {
     flex: 1;
     display: flex;

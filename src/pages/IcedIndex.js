@@ -86,28 +86,28 @@ function IcedIndex() {
             </div>
             <div
               className={`tab-itm ${menuSelected === 'borrow-intrest'}`}
-              onClick={() => {
-                setMenuSelected('borrow-intrest');
-                setTitle('Borrow');
-              }}
+              // onClick={() => {
+              //   setMenuSelected('borrow-intrest');
+              //   setTitle('Borrow');
+              // }}
             >
               Indicies
             </div>
             <div
               className={`tab-itm ${menuSelected === 'loan'}`}
-              onClick={() => {
-                setMenuSelected('loan');
-                setTitle('Loans');
-              }}
+              // onClick={() => {
+              //   setMenuSelected('loan');
+              //   setTitle('Loans');
+              // }}
             >
               Loans
             </div>
             <div
               className={`tab-itm ${menuSelected === 'collateral'}`}
-              onClick={() => {
-                setMenuSelected('collateral');
-                setTitle('COLLATERAL');
-              }}
+              // onClick={() => {
+              //   setMenuSelected('collateral');
+              //   setTitle('COLLATERAL');
+              // }}
             >
               Ice Machine
             </div>
