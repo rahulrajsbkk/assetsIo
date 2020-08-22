@@ -35,13 +35,13 @@ function EarnIntrestControll({ setAssetTab }) {
           </div>
         </div>
         <div
-          className={`tab-item ${tabSelected === 'indices'}`}
-          onClick={() => setTabSelected('indices')}
+          className={`tab-item ${tabSelected === 'iced assets'}`}
+          onClick={() => setTabSelected('iced assets')}
         >
           <img className="coin-img" src={indices} alt="" />
           <div className="text-content">
-            <h5>Indices</h5>
-            <h6>Basket Of Assets</h6>
+            <h5>Iced Assets</h5>
+            <h6>Assets Stablized In Ice</h6>
           </div>
         </div>
       </div>

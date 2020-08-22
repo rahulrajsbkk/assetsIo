@@ -20,9 +20,9 @@ function BondsContent({ title }) {
         setFilterList(coinList.filter((coin) => coin.asset_type === 'Crypto'));
         setSearchTitle('Crypto Currency');
         break;
-      case 'indices':
+      case 'iced assets':
         setFilterList([]);
-        setSearchTitle('Indices');
+        setSearchTitle('Iced Assets');
         break;
       default:
         setFilterList([]);
