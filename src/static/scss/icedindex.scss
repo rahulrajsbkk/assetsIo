@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   .tab {
-    height: 70px;
+    height: 60px;
     display: flex;
     .tab-itm {
       cursor: pointer;
@@ -14,7 +14,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      opacity: .25;
       &.true {
+        opacity: 1;
         font-size: 20px;
         border-color: $primary-color;
       }
