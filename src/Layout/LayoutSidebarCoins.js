@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faLock } from '@fortawesome/free-solid-svg-icons';
 import { Scrollbars } from 'react-custom-scrollbars';
@@ -22,7 +22,23 @@ function LayoutSidebarCoins({ countryName }) {
     openDefaultCoinSidebar,
   } = useContext(BankContext);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
-  console.log('coinList', coinList);
+  const [coinListSorted, setCoinListSorted] = useState(coinList);
+  useEffect(() => {
+    if (coinList) {
+      const coinsOrder = ['USD', 'CAD', 'GBP', 'INR', 'EUR'];
+      const arr = coinList;
+      const sortedArr = [];
+      coinsOrder.forEach((symbol) => {
+        let index;
+        arr.forEach((coin, i) => {
+          console.log('coin.coinSymbol', coin.coinSymbol);
+          if (coin.coinSymbol === symbol) index = i;
+        });
+        sortedArr.push(...arr.splice(index, 1));
+        setCoinListSorted(sortedArr.concat(arr));
+      });
+    }
+  }, [coinList]);
   return (
     <>
       <div className="side-bar d-flex flex-column">
@@ -45,6 +61,7 @@ function LayoutSidebarCoins({ countryName }) {
         <div className="setNewCurency">Set New Display Currency</div>
         <Scrollbars
           autoHide
+          renderThumbHorizontal={() => <div />}
           renderView={(props) => <div {...props} className="coins-list" />}
           className="defCoinList"
         >
@@ -63,7 +80,7 @@ function LayoutSidebarCoins({ countryName }) {
             <img className="coin-logo mr-2" src={allPlatforms} alt="" />
             <div className="coin-name">Default Currency</div>
           </div>
-          {coinList.map((coin) => (
+          {coinListSorted.map((coin) => (
             <div
               className="coin"
               key={coin.coinName}
