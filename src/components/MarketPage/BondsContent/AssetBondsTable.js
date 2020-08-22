@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faSearch,
-  faCaretDown,
-  faCaretUp,
-} from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import BondsAssetTable from './BondsAssetTable';
 import fullScreenIcon from '../../../static/images/fullScreen.svg';
 import fullScreenIconExit from '../../../static/images/fullScreenExit.svg';
@@ -51,19 +47,16 @@ function AssetBondsTable({
             className="platform-select"
             onClick={() => setDropDownOpen(!dropDownOpen)}
           >
-            <div className="btn-togle">
+            <div className="btn-togle px-4">
               <img src={allPlatformIcon} alt="" />
               {'All Platforms'}
             </div>
-            <span className="platform">1 Offering</span>
-            <FontAwesomeIcon icon={dropDownOpen ? faCaretUp : faCaretDown} />
             {dropDownOpen ? (
               <div className="menu">
                 {/* {coinList.map((coin) => ( */}
-                <div className="btn-togle" onClick={() => {}}>
+                <div className="btn-togle px-4" onClick={() => {}}>
                   <img src={allPlatformIcon} alt="" />
                   {'All Platforms'}
-                  <span className="platform">1 Offering</span>
                 </div>
                 {/* ))} */}
               </div>
