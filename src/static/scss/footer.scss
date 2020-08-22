@@ -1,0 +1,28 @@
+.footer-main{
+    height: 50px;
+    background-color: $primary-color;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    svg{
+        margin-left: 20px;
+        cursor: pointer;
+    }
+    .text{
+        margin-left: 20px;
+        font-weight: bold;
+    }
+    .btnGetStarted{
+        cursor: pointer;    
+        margin-right: 100px;
+        margin-left: auto;
+        height: 70%;
+        padding: 0 2%;
+        background-color: white;
+        color:  $primary-color;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+  }

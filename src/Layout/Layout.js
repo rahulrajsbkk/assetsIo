@@ -6,9 +6,18 @@ import LayoutSidebar from './LayoutSidebar';
 import LayoutSidebarGuest from './LayoutSidebarGuest';
 import Axios from 'axios';
 import LayoutSidebarCoins from './LayoutSidebarCoins';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import LoginWrapper from '../components/LoginModal/LoginWrapper';
 
 function Layout({ children, active, className }) {
-  const { email, openDefaultCoinSidebar } = useContext(BankContext);
+  const {
+    email,
+    openDefaultCoinSidebar,
+    footerShow,
+    setFooterShow,
+  } = useContext(BankContext);
+  const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [countryName, setCountryName] = useState('');
   useEffect(() => {
     Axios.get('https://ipapi.co/country_name/')
@@ -21,16 +30,52 @@ function Layout({ children, active, className }) {
       });
   }, []);
   return (
-    <div className="d-flex transaction-layout">
-      {openDefaultCoinSidebar ? (
-        <LayoutSidebarCoins />
-      ) : email ? (
-        <LayoutSidebar countryName={countryName} active={active} />
+    <>
+      <div className="d-flex transaction-layout">
+        {openDefaultCoinSidebar ? (
+          <LayoutSidebarCoins />
+        ) : email ? (
+          <LayoutSidebar countryName={countryName} active={active} />
+        ) : (
+          <LayoutSidebarGuest countryName={countryName} active={active} />
+        )}
+        <div className={`page-content ${className}`}>{children}</div>
+      </div>
+      {!email && footerShow ? (
+        <footer className="footer-main">
+          <FontAwesomeIcon
+            icon={faTimes}
+            onClick={() => setFooterShow(false)}
+          />
+          <div className="text">
+            Grow Your Crypto Porfolio By Turning Your Your Coins Into Fixed
+            Income Assets.
+          </div>
+          <div
+            className="btnGetStarted"
+            onClick={() => {
+              setLoginModalOpen(true);
+            }}
+          >
+            Get Started For Free
+          </div>
+        </footer>
       ) : (
-        <LayoutSidebarGuest countryName={countryName} active={active} />
+        ''
       )}
-      <div className={`page-content ${className}`}>{children}</div>
-    </div>
+      {loginModalOpen ? (
+        <LoginWrapper
+          onClose={() => {
+            setLoginModalOpen(false);
+          }}
+          onLogin={() => {
+            setLoginModalOpen(false);
+          }}
+        />
+      ) : (
+        ''
+      )}
+    </>
   );
 }
 

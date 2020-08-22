@@ -163,6 +163,9 @@ function BankContextProvider({ children }) {
       return amount;
     }
   };
+
+  const [footerShow, setFooterShow] = useState(true);
+
   return (
     <BankContext.Provider
       value={{
@@ -184,6 +187,8 @@ function BankContextProvider({ children }) {
         setDefaultCoin,
         convertCoin,
         icedContracts,
+        footerShow,
+        setFooterShow,
       }}
     >
       {children}
