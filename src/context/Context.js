@@ -39,6 +39,17 @@ function BankContextProvider({ children }) {
   const [profileImg, setProfileImg] = useState('');
   const [profileId, setProfileId] = useState('');
 
+  function GetSortOrder(prop) {
+    return function (a, b) {
+      if (a[prop] > b[prop]) {
+        return 1;
+      } else if (a[prop] < b[prop]) {
+        return -1;
+      }
+      return 0;
+    };
+  }
+
   useEffect(() => {
     function getUserData() {
       Axios.post('https://comms.globalxchange.com/get_affiliate_data_no_logs', {
@@ -94,7 +105,8 @@ function BankContextProvider({ children }) {
     ).then((res) => {
       const { data } = res;
       if (data.status) {
-        setLiquidRates(data.interest_rates);
+        const { interest_rates } = data;
+        setLiquidRates(interest_rates);
       }
     });
   }, []);
@@ -106,7 +118,9 @@ function BankContextProvider({ children }) {
     }).then((res) => {
       const { data } = res;
       if (data.status) {
-        setCoiList(data.coins_data);
+        const { coins_data } = data;
+        coins_data.sort(GetSortOrder('type'));
+        setCoiList(coins_data);
       }
     });
   }, []);

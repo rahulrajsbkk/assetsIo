@@ -124,12 +124,12 @@ function BondsListTable() {
                   end={-value.acceleration || 0}
                   decimals={2}
                 />
-                %
               </td>
               <td className="estimatedDays">
                 <div className="estimatedDaysIn">
                   <input
                     type="number"
+                    placeholder="0"
                     step="1"
                     min="1"
                     defaultValue=""
