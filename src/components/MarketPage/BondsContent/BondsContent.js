@@ -37,6 +37,7 @@ function BondsContent({ title }) {
         searchTitle={searchTitle}
         coinToDetail={coinToDetail}
         setCoinToDetail={setCoinToDetail}
+        assetTab={assetTab}
       />
       {coinToDetail !== null ? <AnalyticsEarn /> : ''}
     </div>

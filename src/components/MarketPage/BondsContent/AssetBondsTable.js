@@ -17,6 +17,7 @@ function AssetBondsTable({
   searchTitle,
   coinToDetail,
   setCoinToDetail,
+  assetTab,
 }) {
   const [isAsset, setIsAsset] = useState(true);
   const [dropDownOpen, setDropDownOpen] = useState(false);
@@ -129,7 +130,7 @@ function AssetBondsTable({
             coinList={coinList}
           />
         ) : (
-          <BondsListTable />
+          <BondsListTable assetTab={assetTab} />
         )}
       </Scrollbars>
     </div>

@@ -3,7 +3,6 @@ import Axios from 'axios';
 import Toast from '../components/Toast/Toast';
 
 import allPlatforms from '../static/images/allPlatforms.svg';
-import { FormatCurrency } from '../utils/FunctionTools';
 
 export const BankContext = createContext();
 

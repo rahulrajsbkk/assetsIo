@@ -245,9 +245,10 @@
                   .estimatedDaysIn{
                   height: 34px;
                   display: flex;
-                  width: 70%;
+                  width: 65%;
                   border: 1px solid $primary-color;
                   input{
+                    padding: 0 15px;
                     width: 0;
                     flex-grow: 1;
                     border: none;
