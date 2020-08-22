@@ -128,13 +128,12 @@ function BankContextProvider({ children }) {
   });
   const convertCoin = (amount, coin) => {
     if (defaultCoin.coin && defaultCoin.coin !== null) {
-      return FormatCurrency(
+      return (
         (amount * coinListObject[coin].price.USD) /
-          coinListObject[defaultCoin.coin].price.USD,
-        defaultCoin.coin
+        coinListObject[defaultCoin.coin].price.USD
       );
     } else {
-      return FormatCurrency(amount, coin);
+      return amount;
     }
   };
   return (

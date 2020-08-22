@@ -1,9 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
+import CountUp from 'react-countup';
 import Axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { BankContext } from '../../../context/Context';
-import { FormatCurrency, FormatNumber } from '../../../utils/FunctionTools';
+import { FormatNumber } from '../../../utils/FunctionTools';
 import { IndexContext } from '../../../context/IndexContext';
 import AssetTableChart from '../EarnIntrest/AssetTableChart';
 
@@ -17,6 +18,11 @@ function BondsListTable() {
   const [dailyOrTotal, setDailyOrTotal] = useState('Daily');
   const [calcDays, setCalcDays] = useState(1);
   const [contractPreview, setContractPreview] = useState({});
+
+  const [duration, setDuration] = useState(2);
+  const togleDuration = (duration) => {
+    setDuration(duration === 2 ? 2.1 : 2);
+  };
 
   useEffect(() => {
     if (dailyOrTotal === 'Daily') {
@@ -75,17 +81,44 @@ function BondsListTable() {
                 </div>
               </td>
               <td className="">
-                {convertCoin(value.amount, key)}{' '}
+                <CountUp
+                  onEnd={() => {
+                    setTimeout(() => {
+                      togleDuration(duration);
+                    }, 3000);
+                  }}
+                  duration={duration}
+                  start={0}
+                  end={convertCoin(value.amount, key) || 0}
+                  decimals={
+                    (defaultCoin.coin ? defaultCoin.coin : key) === 'ETH' ||
+                    (defaultCoin.coin ? defaultCoin.coin : key) === 'BTC'
+                      ? 4
+                      : 2
+                  }
+                />{' '}
                 {defaultCoin.coin ? defaultCoin.coin : key}
               </td>
               <td className="dayChange false">
-                {FormatNumber(value.base_velocity, 2)}%
+                <CountUp
+                  duration={duration}
+                  start={value.base_velocity - 2 || 0}
+                  end={value.base_velocity || 0}
+                  decimals={2}
+                />
+                %
               </td>
               <td className="dayChange false">
                 {FormatNumber(value.acceleration, 2)}%
               </td>
               <td className="dayChange true">
-                {FormatNumber(value.base_compression_rate, 2)}
+                <CountUp
+                  duration={duration}
+                  start={value.base_compression_rate - 2 || 0}
+                  end={value.base_compression_rate || 0}
+                  decimals={2}
+                />
+                %
               </td>
               <td className="estimatedDays">
                 <div className="estimatedDaysIn">
@@ -128,16 +161,26 @@ function BondsListTable() {
                     </div>
                     <div className="rateNPower">
                       <div className="value">
-                        {FormatNumber(contractPreview.interestRate, 2)}%
+                        <CountUp
+                          duration={duration}
+                          start={contractPreview.interestRate - 2 || 0}
+                          end={contractPreview.interestRate || 0}
+                          decimals={2}
+                        />
+                        %
                       </div>
                       <div className="label">{dailyOrTotal} Interest Rate</div>
                     </div>
                     <div className="rateNPower">
                       <div className="value">
-                        {FormatNumber(
-                          contractPreview.earningPower / calcDays,
-                          5
-                        )}
+                        <CountUp
+                          duration={duration}
+                          start={
+                            contractPreview.earningPower / calcDays - 0.02 || 0
+                          }
+                          end={contractPreview.earningPower / calcDays || 0}
+                          decimals={5}
+                        />
                       </div>
                       <div className="label">{dailyOrTotal} Earning Power</div>
                     </div>
