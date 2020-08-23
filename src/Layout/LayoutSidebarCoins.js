@@ -170,7 +170,9 @@ function LayoutSidebarCoins({ active }) {
             setTabItem={setTabItem}
             defTab={
               <div
-                className={`tab-itm order-1 ${tabItem === 'Interest Rates'}`}
+                className={`tab-itm title order-1 ${
+                  tabItem === 'Interest Rates'
+                }`}
                 onClick={() => setTabItem('Interest Rates')}
               >
                 Set New Display Currency
@@ -181,7 +183,9 @@ function LayoutSidebarCoins({ active }) {
           <>
             <div className="tab-inrest-asset">
               <div
-                className={`tab-itm order-1 ${tabItem === 'Interest Rates'}`}
+                className={`tab-itm title order-1 ${
+                  tabItem === 'Interest Rates'
+                }`}
                 onClick={() => setTabItem('Interest Rates')}
               >
                 Set New Display Currency

@@ -133,6 +133,10 @@
           opacity: 1;
           border-color: $primary-color;
         }
+        &.title {
+          justify-content: start;
+          padding-left: 50px;
+        }
         &.settings {
           opacity: 1;
           width: 54px;
