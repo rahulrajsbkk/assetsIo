@@ -10,6 +10,7 @@
     position: sticky;
     top: 0;
     left: 0;
+    max-height: 100vh;
     .profile {
       padding: 60px 50px 0 50px;
       img {
@@ -52,12 +53,29 @@
           margin: 0;
         }
       }
+      @include xxxl {
+        zoom: 0.95;
+        .side-bar {
+          .rate-list-wrapper {
+            max-height: 50%;
+          }
         }
+      }
+      @include xxl {
+        zoom: 0.85;
+      }
+      @include xl {
+        zoom: 0.75;
+      }
+      @include lg {
+        zoom: 0.65;
+      }
+    }
 
     .menu-scrl {
-      height: 240px !important;
+      flex: 1;
+      height: unset !important;
       margin-top: 3rem !important;  
-      margin-bottom: auto;
       .menu-side {
         padding: 0 50px;
         justify-content: center;
@@ -108,7 +126,7 @@
       display: flex;
       border: 1px $vault-border-color;
       border-style: solid none none none;
-      height: 55px;
+      margin-bottom: -1px;
       .tab-itm {
         cursor: pointer;
         flex: 0 0 50%;
@@ -122,11 +140,29 @@
           border-color: $primary-color;
         }
       }
+      @include xxxl {
+        zoom: 0.9;
+        .side-bar {
+          .rate-list-wrapper {
+            max-height: 50%;
           }
+        }
+      }
+      @include xxl {
+        zoom: 0.8;
+      }
+      @include xl {
+        zoom: 0.7;
+      }
+      @include lg {
+        zoom: 0.6;
+      }
+    }
     .rate-list-wrapper {
-      height: 320px;
-      max-height: 320px;
+      margin-top: auto;
+      flex: 0 0 48%;
       .rates-list {
+        margin-top: -1px;
         display: flex;
         flex-direction: column;
         position: absolute;
@@ -135,7 +171,7 @@
         right: 0;
         overflow-y: auto;
         .coin {
-          flex: 0 0 33.33%;
+          height: 100px;
           display: flex;
           padding: 35px 50px;
           border-top: 0.5px solid $vault-border-color;
@@ -173,6 +209,18 @@
             }
           }
         }
+        @include xxxl {
+          zoom: 0.75;
+        }
+        @include xxl {
+          zoom: 0.65;
+        }
+        @include xl {
+          zoom: 0.55;
+        }
+        @include lg {
+          zoom: 0.45;
+        }
       }
     }
     .setNewCurency{
@@ -181,6 +229,18 @@
       border-style: solid none solid none;
       padding: 10px 50px;
       font-weight: bold;
+      @include xxxl {
+        zoom: 0.75;
+      }
+      @include xxl {
+        zoom: 0.65;
+      }
+      @include xl {
+        zoom: 0.55;
+      }
+      @include lg {
+        zoom: 0.45;
+      }
     }
     .defCoinList{
       flex-grow: 1;
@@ -203,6 +263,18 @@
             font-size: 17px;
           }}
       }
+      @include xxxl {
+        zoom: 0.75;
+      }
+      @include xxl {
+        zoom: 0.65;
+      }
+      @include xl {
+        zoom: 0.55;
+      }
+      @include lg {
+        zoom: 0.45;
+      }
     }
     .logout {
       height: 55px;
@@ -218,23 +290,18 @@
         margin: auto;
         text-align: center;
       }
-    }
-    @include xxxl {
-      zoom: 0.8;
-      .side-bar {
-        .rate-list-wrapper {
-          max-height: 50%;
-        }
+      @include xxxl {
+        zoom: 0.8;
       }
-    }
-    @include xxl {
-      zoom: 0.7;
-    }
-    @include xl {
-      zoom: 0.6;
-    }
-    @include lg {
-      zoom: 0.5;
+      @include xxl {
+        zoom: 0.7;
+      }
+      @include xl {
+        zoom: 0.6;
+      }
+      @include lg {
+        zoom: 0.5;
+      }
     }
   }
   .page-content {

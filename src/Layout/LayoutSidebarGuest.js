@@ -70,7 +70,7 @@ function LayoutSidebarGuest({ active }) {
           >
             <h5 className="d-flex py-3 menu-itm">
               <img src={portfolio} alt="" />
-              <span className="my-auto">Portfolio</span>
+              <span className="my-auto">Iced Vault</span>
             </h5>
           </div>
           <Link
@@ -85,16 +85,6 @@ function LayoutSidebarGuest({ active }) {
         </Scrollbars>
 
         <AssetPriceOrRates isIndex={active === 'index'} />
-        <div
-          onClick={() => {
-            setLoginModalOpen(true);
-          }}
-          role="button"
-          tabIndex="0"
-          className="logout"
-        >
-          <h5>Get Started</h5>
-        </div>
       </div>
       {loginModalOpen ? (
         <LoginWrapper
