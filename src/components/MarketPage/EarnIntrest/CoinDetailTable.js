@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import CountUp from 'react-countup';
+import { BankContext } from '../../../context/Context';
 
 function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
+  const { updateInterval } = useContext(BankContext);
   const [toHide, setToHide] = useState('');
   const [duration, setDuration] = useState(3);
   const togleDuration = (duration) => {
@@ -35,9 +37,10 @@ function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
             $
             <CountUp
               onEnd={() => {
-                setTimeout(() => {
-                  togleDuration(duration);
-                }, 3000);
+                if (updateInterval)
+                  setTimeout(() => {
+                    togleDuration(duration);
+                  }, updateInterval * 1000);
               }}
               duration={duration}
               start={0}

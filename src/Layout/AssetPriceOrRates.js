@@ -6,7 +6,9 @@ import { BankContext } from '../context/Context';
 import SidebarSettings from './SidebarSettings';
 
 function AssetPriceOrRates({ isIndex }) {
-  const { coinListObject, coinList, liquidRates } = useContext(BankContext);
+  const { coinListObject, coinList, liquidRates, updateInterval } = useContext(
+    BankContext
+  );
 
   const arrow = (
     <svg viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,9 +87,10 @@ function AssetPriceOrRates({ isIndex }) {
                     <div className="rate">
                       <CountUp
                         onEnd={() => {
-                          setTimeout(() => {
-                            togleDuration(duration);
-                          }, 3000);
+                          if (updateInterval)
+                            setTimeout(() => {
+                              togleDuration(duration);
+                            }, updateInterval * 1000);
                         }}
                         duration={duration}
                         end={rateCoin.interest_rate * 365 || 0}
@@ -121,9 +124,10 @@ function AssetPriceOrRates({ isIndex }) {
                     <div className="rate">
                       <CountUp
                         onEnd={() => {
-                          setTimeout(() => {
-                            togleDuration(duration);
-                          }, 3000);
+                          if (updateInterval)
+                            setTimeout(() => {
+                              togleDuration(duration);
+                            }, updateInterval * 1000);
                         }}
                         duration={duration}
                         end={coin.price.USD || 0}

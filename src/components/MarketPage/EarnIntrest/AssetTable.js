@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import CountUp from 'react-countup';
 import AssetTableChart from './AssetTableChart';
+import { BankContext } from '../../../context/Context';
 
 function AssetTable({ coinList, setCoinToDetail }) {
+  const { updateInterval } = useContext(BankContext);
   const [duration, setDuration] = useState(2);
   const togleDuration = (duration) => {
     setDuration(duration === 2 ? 2.1 : 2);
@@ -32,9 +34,10 @@ function AssetTable({ coinList, setCoinToDetail }) {
             <td className="annRate">
               <CountUp
                 onEnd={() => {
-                  setTimeout(() => {
-                    togleDuration(duration);
-                  }, 3000);
+                  if (updateInterval)
+                    setTimeout(() => {
+                      togleDuration(duration);
+                    }, updateInterval * 1000);
                 }}
                 duration={duration}
                 start={0}

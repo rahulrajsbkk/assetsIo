@@ -8,9 +8,13 @@ import { IndexContext } from '../../../context/IndexContext';
 import AssetTableChart from '../EarnIntrest/AssetTableChart';
 
 function BondsListTable({ assetTab }) {
-  const { coinListObject, tostShowOn, convertCoin, defaultCoin } = useContext(
-    BankContext
-  );
+  const {
+    coinListObject,
+    tostShowOn,
+    convertCoin,
+    defaultCoin,
+    updateInterval,
+  } = useContext(BankContext);
   const { conractsObj } = useContext(IndexContext);
   const [days, setDays] = useState('');
   const [contract, setContract] = useState({});
@@ -98,9 +102,10 @@ function BondsListTable({ assetTab }) {
                   <td className="">
                     <CountUp
                       onEnd={() => {
-                        setTimeout(() => {
-                          togleDuration(duration);
-                        }, 3000);
+                        if (updateInterval)
+                          setTimeout(() => {
+                            togleDuration(duration);
+                          }, updateInterval * 1000);
                       }}
                       duration={duration}
                       start={0}
