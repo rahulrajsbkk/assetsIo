@@ -175,10 +175,10 @@ function BankContextProvider({ children }) {
   const [onConfirm, setOnConfirm] = useState(() => {});
   const [modalText, setModalText] = useState('');
 
-  const populateModal = (text, onClose, onConfirm) => {
+  const populateModal = (text, onCloseParam, onConfirmParam) => {
     setOpenModal(true);
-    setOnClose(onClose);
-    setOnConfirm(onConfirm);
+    setOnClose(() => onCloseParam);
+    setOnConfirm(() => onConfirmParam);
     setModalText(text);
   };
 

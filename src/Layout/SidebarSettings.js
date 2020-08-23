@@ -8,7 +8,9 @@ import { BankContext } from '../context/Context';
 
 function SidebarSettings({ tabItem, setTabItem, defTab }) {
   const [step, setStep] = useState(0);
-  const { updateInterval, setUpdateInterval } = useContext(BankContext);
+  const { updateInterval, setUpdateInterval, populateModal } = useContext(
+    BankContext
+  );
 
   const stepsComponent = [
     <>
@@ -19,17 +21,53 @@ function SidebarSettings({ tabItem, setTabItem, defTab }) {
       <div className="settingsMenu">Time Machine</div>
     </>,
     <>
-      <div className="settingsMenu" onClick={() => setUpdateInterval(0)}>
+      <div
+        className="settingsMenu"
+        onClick={() =>
+          populateModal(
+            'Confirm Update Of Data Refresh Manually',
+            () => {},
+            () => setUpdateInterval(0)
+          )
+        }
+      >
         Manual{updateInterval === 0 ? <img src={selectedIcon} alt="" /> : ''}
       </div>
-      <div className="settingsMenu" onClick={() => setUpdateInterval(5)}>
+      <div
+        className="settingsMenu"
+        onClick={() =>
+          populateModal(
+            'Confirm Update Of Data Refresh Frequency To Ever 5 Seconds',
+            () => {},
+            () => setUpdateInterval(5)
+          )
+        }
+      >
         5 Seconds{updateInterval === 5 ? <img src={selectedIcon} alt="" /> : ''}
       </div>
-      <div className="settingsMenu" onClick={() => setUpdateInterval(10)}>
+      <div
+        className="settingsMenu"
+        onClick={() =>
+          populateModal(
+            'Confirm Update Of Data Refresh Frequency To Ever 10 Seconds',
+            () => {},
+            () => setUpdateInterval(10)
+          )
+        }
+      >
         10 Seconds
         {updateInterval === 10 ? <img src={selectedIcon} alt="" /> : ''}
       </div>
-      <div className="settingsMenu" onClick={() => setUpdateInterval(15)}>
+      <div
+        className="settingsMenu"
+        onClick={() =>
+          populateModal(
+            'Confirm Update Of Data Refresh Frequency To Ever 15 Seconds',
+            () => {},
+            () => setUpdateInterval(15)
+          )
+        }
+      >
         15 Seconds
         {updateInterval === 15 ? <img src={selectedIcon} alt="" /> : ''}
       </div>
