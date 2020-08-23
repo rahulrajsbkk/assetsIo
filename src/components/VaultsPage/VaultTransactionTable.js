@@ -36,9 +36,9 @@ function VaultTransactionTable({ credit, debit }) {
               <>
                 {sameDay()}
                 <div className="vaults-itm">
-                  <img src="" alt="" />
+                  <img src={coinSelected && coinSelected.coinImage} alt="" />
                   <div className="name-n-date mr-auto">
-                    <div className="name">{txn.pid}</div>
+                    <div className="name">{txn.pid || txn.reason}</div>
                     <div className="date">
                       {moment().format('MMMM Do YYYY [at] h:mm:ss A zz')}
                     </div>
