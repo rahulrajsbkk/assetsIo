@@ -3,6 +3,7 @@ import Axios from 'axios';
 import Toast from '../components/Toast/Toast';
 
 import allPlatforms from '../static/images/allPlatforms.svg';
+import ModalConfirm from '../components/ModalConfirm/ModalConfirm';
 
 export const BankContext = createContext();
 
@@ -168,6 +169,19 @@ function BankContextProvider({ children }) {
 
   const [updateInterval, setUpdateInterval] = useState(5);
 
+  // Modal Variables
+  const [openModal, setOpenModal] = useState(false);
+  const [onClose, setOnClose] = useState(() => {});
+  const [onConfirm, setOnConfirm] = useState(() => {});
+  const [modalText, setModalText] = useState('');
+
+  const populateModal = (text, onClose, onConfirm) => {
+    setOpenModal(true);
+    setOnClose(onClose);
+    setOnConfirm(onConfirm);
+    setModalText(text);
+  };
+
   return (
     <BankContext.Provider
       value={{
@@ -193,9 +207,20 @@ function BankContextProvider({ children }) {
         setFooterShow,
         updateInterval,
         setUpdateInterval,
+        populateModal,
       }}
     >
       {children}
+      {openModal ? (
+        <ModalConfirm
+          onClose={onClose}
+          onConfirm={onConfirm}
+          text={modalText}
+          setOpenModal={setOpenModal}
+        />
+      ) : (
+        ''
+      )}
       <Toast show={toastShow} message={toastMessage} />
     </BankContext.Provider>
   );

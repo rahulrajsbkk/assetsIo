@@ -1,0 +1,74 @@
+.modalConfirm {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  .overlayClose {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.65);
+  }
+  .modalContent {
+    margin: auto;
+    z-index: 1;
+    width: 40%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    .head {
+      height: 60px;
+      background-color: $primary-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        filter: brightness(0) invert(1);
+        height: 60%;
+      }
+      h5 {
+        margin: 0;
+        line-height: 1;
+        font-weight: bold;
+        color: white;
+        font-size: 35px;
+      }
+    }
+    .contents {
+      padding: 60px;
+      .text {
+        text-align: center;
+        font-size: 30px;
+        margin-bottom: 40px;
+      }
+      .buttons {
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        .btn-confirm,
+        .btn-cancel {
+          cursor: pointer;
+          width: 25%;
+          margin: 0 15px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-weight: bold;
+        }
+        .btn-confirm {
+          border: 1px solid $primary-color;
+          background: $primary-color;
+          color: white;
+        }
+        .btn-cancel {
+          border: 1px solid $primary-color;
+          background: white;
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}
