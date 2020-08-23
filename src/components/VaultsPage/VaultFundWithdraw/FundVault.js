@@ -97,6 +97,7 @@ function FundVault({
             transCoin={transCoin}
             setTransCoin={setTransCoin}
             isDeposit={isDeposit}
+            setOpenModal={setOpenModal}
           />
         )}
       </div>

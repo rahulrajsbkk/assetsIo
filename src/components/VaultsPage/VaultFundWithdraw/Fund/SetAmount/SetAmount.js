@@ -11,7 +11,7 @@ import { BankContext } from '../../../../../context/Context';
 import { VaultContext } from '../../../../../context/VaultContext';
 import logo from '../../../../../static/images/logo.svg';
 
-function SetAmount({ coinObject, price, transCoin, isDeposit }) {
+function SetAmount({ coinObject, price, transCoin, isDeposit, setOpenModal }) {
   const { email, token, name, profileId, tostShowOn } = useContext(BankContext);
   const { updateBalance, coinSelected } = useContext(VaultContext);
   console.log('coinSelected :>> ', coinSelected);
@@ -24,8 +24,6 @@ function SetAmount({ coinObject, price, transCoin, isDeposit }) {
       preserveAspectRatio: 'xMidYMid slice',
     },
   };
-
-  console.log('price :>> ', price);
 
   const [loading, setLoading] = useState(false);
   const [messageobj, setMessage] = useState('');
@@ -56,7 +54,8 @@ function SetAmount({ coinObject, price, transCoin, isDeposit }) {
         const { data } = res;
         setMessage(data);
         if (data.status) {
-          tostShowOn('Transactin Succes');
+          tostShowOn('Transaction Succes');
+          setOpenModal(false);
         } else {
           tostShowOn(data.message);
         }
@@ -122,37 +121,10 @@ function SetAmount({ coinObject, price, transCoin, isDeposit }) {
   return (
     <>
       {loading ? (
-        <div className="d-flex flex-column" style={{ height: 300 }}>
-          {loading && messageobj === '' ? (
+        <div className="d-flex flex-column flex-grow-1">
+          <div className="m-auto">
             <Lottie options={defaultOptions} height={150} width={150} />
-          ) : (
-            <>
-              {messageobj.status ? (
-                <>
-                  <h3 className="text-white text-center mx-4 mt-auto">
-                    Congratulations
-                  </h3>
-                  <h4 className="text-white text-center mx-4 mb-auto">
-                    {isDeposit ? (
-                      <>
-                        ${depositAsset}
-                        &nbsp;Has Been Deposited Into Your Iced Account
-                      </>
-                    ) : (
-                      <>
-                        ${depositAsset}
-                        &nbsp;Has Been Withdrawn From Your Iced Account
-                      </>
-                    )}
-                  </h4>
-                </>
-              ) : (
-                <h4 className="text-white text-center mx-4 my-auto">
-                  {messageobj.message}
-                </h4>
-              )}
-            </>
-          )}
+          </div>
         </div>
       ) : (
         <div className="set-amount">
@@ -224,49 +196,6 @@ function SetAmount({ coinObject, price, transCoin, isDeposit }) {
               />
             </div>
           </div>
-          {transCoin.toLowerCase() !== 'btc' ? (
-            <div className="m-4 coin-detail">
-              <div className="d-flex justify-content-between mt-4">
-                <h5>Available To Deposit</h5>
-                <h5>
-                  {formatNum(
-                    price[transCoin.toUpperCase()].coinValue,
-                    price[transCoin.toUpperCase()].symbol
-                  )}
-                  &nbsp;
-                  {price[transCoin.toUpperCase()].symbol}
-                </h5>
-              </div>
-              <div className="d-flex justify-content-between">
-                <h6>Funds On Hold</h6>
-                <h6>
-                  {formatNum(0, 'BTC')}
-                  &nbsp; BTC
-                </h6>
-              </div>
-              <div className="d-flex justify-content-between mt-4">
-                <h5>
-                  {coinObject.sym.length > 1 ? '' : coinObject.sym}
-                  1.00&nbsp;
-                  {coinObject.symbol}
-                </h5>
-                <h5>
-                  {formatNum(
-                    price[transCoin].price /
-                      price[coinSelected.coinSymbol].price,
-                    coinSelected.coinSymbol
-                  )}
-                  &nbsp; {coinSelected.coinSymbol}
-                </h5>
-              </div>
-              <div className="d-flex justify-content-between my-4">
-                <h5>Proccesing Time</h5>
-                <h5>Instant</h5>
-              </div>
-            </div>
-          ) : (
-            ''
-          )}
           <div
             role="button"
             tabIndex={0}
