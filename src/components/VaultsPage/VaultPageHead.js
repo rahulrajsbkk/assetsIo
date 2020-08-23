@@ -59,7 +59,7 @@ function VaultPageHead() {
         ) : (
           <>
             <div
-              className={`coin-wrap ${
+              className={`coin-wrap order-2 ${
                 coinSelected && coinSelected.coinSymbol === 'BTC'
               }`}
               onClick={() => setCoin('BTC')}
@@ -67,24 +67,37 @@ function VaultPageHead() {
               <img src={btc} alt="" />
             </div>
             <div
-              className={`coin-wrap ${
+              className={`coin-wrap order-3 ${
                 coinSelected && coinSelected.coinSymbol === 'ETH'
               }`}
               onClick={() => setCoin('ETH')}
             >
               <img src={eth} alt="" />
             </div>
-            <div
-              className={`coin-wrap ${
-                coinSelected && coinSelected.coinSymbol === 'USDT'
-              }`}
-              onClick={() => setCoin('USDT')}
-            >
-              <img src={usdt} alt="" />
-            </div>
+            {coinSelected &&
+            (coinSelected.coinSymbol === 'BTC' ||
+              coinSelected.coinSymbol === 'ETH' ||
+              coinSelected.coinSymbol === 'USDT') ? (
+              <div
+                className={`coin-wrap order-4 ${
+                  coinSelected && coinSelected.coinSymbol === 'USDT'
+                }`}
+                onClick={() => setCoin('USDT')}
+              >
+                <img src={usdt} alt="" />
+              </div>
+            ) : (
+              <div className={`coin-wrap order-1 true`}>
+                <img
+                  style={{ filter: 'none' }}
+                  src={coinSelected && coinSelected.coinImage}
+                  alt=""
+                />
+              </div>
+            )}
           </>
         )}
-        <div className={`search-wrapper  ${searchEnable}`}>
+        <div className={`search-wrapper order-0  ${searchEnable}`}>
           <div className="serch-n-result">
             {searchEnable ? (
               <>
