@@ -11,6 +11,7 @@ function VaultTransactionTable({ credit, debit }) {
     <Scrollbars
       autoHide
       className="vaults-list"
+      renderThumbHorizontal={() => <div />}
       renderView={(props) => <div {...props} className="vaultsView" />}
     >
       {coinSelected &&
