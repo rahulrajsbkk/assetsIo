@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import CountUp from 'react-countup';
-
+import settingsIcon from '../static/images/sidebar-icons/settings.svg';
 import { BankContext } from '../context/Context';
+import SidebarSettings from './SidebarSettings';
 
 function AssetPriceOrRates({ isIndex }) {
   const { coinListObject, coinList, liquidRates } = useContext(BankContext);
@@ -17,11 +18,14 @@ function AssetPriceOrRates({ isIndex }) {
   );
 
   const [tabItem, setTabItem] = useState('Interest Rates');
+  const [orderClass, setOrderClass] = useState('order-1');
   useEffect(() => {
     if (isIndex) {
       setTabItem('Asset Prices');
+      setOrderClass('order-0');
     } else {
       setTabItem('Interest Rates');
+      setOrderClass('order-1');
     }
   }, [isIndex]);
 
@@ -31,97 +35,117 @@ function AssetPriceOrRates({ isIndex }) {
   };
   return (
     <>
-      <div className="tab-inrest-asset">
-        <div
-          className={`tab-itm ${tabItem === 'Interest Rates'}`}
-          onClick={() => setTabItem('Interest Rates')}
-        >
-          Liquid Rates
-        </div>
-        <div
-          className={`tab-itm ${tabItem === 'Asset Prices'}`}
-          onClick={() => setTabItem('Asset Prices')}
-        >
-          Asset Prices
-        </div>
-      </div>
-      <Scrollbars
-        className="rate-list-wrapper"
-        autoHide
-        renderTrackHorizontal={() => <div />}
-        renderThumbHorizontal={() => <div />}
-        renderView={(props) => <div {...props} className="rates-list" />}
-      >
-        {coinListObject && tabItem === 'Interest Rates' ? (
-          <>
-            {liquidRates.map((rateCoin) => (
-              <div className="coin" key={rateCoin.coin}>
-                <img
-                  className="coin-logo mr-2"
-                  src={
-                    coinListObject[rateCoin.coin] &&
-                    coinListObject[rateCoin.coin].coinImage
-                  }
-                  alt=""
-                />
-                <div className="coin-name">
-                  {coinListObject[rateCoin.coin] &&
-                    coinListObject[rateCoin.coin].coinName}
-                </div>
-                <div className="rate">
-                  <CountUp
-                    onEnd={() => {
-                      setTimeout(() => {
-                        togleDuration(duration);
-                      }, 3000);
-                    }}
-                    duration={duration}
-                    end={rateCoin.interest_rate * 365 || 0}
-                    decimals={1}
-                  />
-                  %
-                  <small>
-                    (
-                    <CountUp duration={duration} end={1.2 || 0} decimals={1} />
-                    %)
-                    {arrow}
-                  </small>
-                </div>
-              </div>
-            ))}
-          </>
-        ) : (
-          <>
-            {coinList.map((coin) => (
-              <div className="coin" key={coin.coinName}>
-                <img className="coin-logo mr-2" src={coin.coinImage} alt="" />
-                <div className="coin-name">{coin.coinName}</div>
-                <div className="rate">
-                  <CountUp
-                    onEnd={() => {
-                      setTimeout(() => {
-                        togleDuration(duration);
-                      }, 3000);
-                    }}
-                    duration={duration}
-                    end={coin.price.USD || 0}
-                    decimals={2}
-                  />
-                  <small className={`${coin._24hrchange < 0}`}>
-                    (
-                    <CountUp
-                      duration={duration}
-                      end={coin._24hrchange || 0}
-                      decimals={1}
+      {tabItem === 'Settings' ? (
+        <SidebarSettings tabItem={tabItem} setTabItem={setTabItem} />
+      ) : (
+        <>
+          <div className="tab-inrest-asset">
+            <div
+              className={`tab-itm order-1 ${tabItem === 'Interest Rates'}`}
+              onClick={() => setTabItem('Interest Rates')}
+            >
+              Liquid Rates
+            </div>
+            <div
+              className={`tab-itm ${tabItem === 'Asset Prices'} ${orderClass}`}
+              onClick={() => setTabItem('Asset Prices')}
+            >
+              Asset Prices
+            </div>
+            <div
+              className={`tab-itm settings order-3 ${tabItem === 'Settings'}`}
+              onClick={() => setTabItem('Settings')}
+            >
+              <img src={settingsIcon} alt="" />
+            </div>
+          </div>
+          <Scrollbars
+            className="rate-list-wrapper"
+            autoHide
+            renderTrackHorizontal={() => <div />}
+            renderThumbHorizontal={() => <div />}
+            renderView={(props) => <div {...props} className="rates-list" />}
+          >
+            {coinListObject && tabItem === 'Interest Rates' ? (
+              <>
+                {liquidRates.map((rateCoin) => (
+                  <div className="coin" key={rateCoin.coin}>
+                    <img
+                      className="coin-logo mr-2"
+                      src={
+                        coinListObject[rateCoin.coin] &&
+                        coinListObject[rateCoin.coin].coinImage
+                      }
+                      alt=""
                     />
-                    ){arrow}
-                  </small>
-                </div>
-              </div>
-            ))}
-          </>
-        )}
-      </Scrollbars>
+                    <div className="coin-name">
+                      {coinListObject[rateCoin.coin] &&
+                        coinListObject[rateCoin.coin].coinName}
+                    </div>
+                    <div className="rate">
+                      <CountUp
+                        onEnd={() => {
+                          setTimeout(() => {
+                            togleDuration(duration);
+                          }, 3000);
+                        }}
+                        duration={duration}
+                        end={rateCoin.interest_rate * 365 || 0}
+                        decimals={1}
+                      />
+                      %
+                      <small>
+                        (
+                        <CountUp
+                          duration={duration}
+                          end={1.2 || 0}
+                          decimals={1}
+                        />
+                        %)
+                        {arrow}
+                      </small>
+                    </div>
+                  </div>
+                ))}
+              </>
+            ) : (
+              <>
+                {coinList.map((coin) => (
+                  <div className="coin" key={coin.coinName}>
+                    <img
+                      className="coin-logo mr-2"
+                      src={coin.coinImage}
+                      alt=""
+                    />
+                    <div className="coin-name">{coin.coinName}</div>
+                    <div className="rate">
+                      <CountUp
+                        onEnd={() => {
+                          setTimeout(() => {
+                            togleDuration(duration);
+                          }, 3000);
+                        }}
+                        duration={duration}
+                        end={coin.price.USD || 0}
+                        decimals={2}
+                      />
+                      <small className={`${coin._24hrchange < 0}`}>
+                        (
+                        <CountUp
+                          duration={duration}
+                          end={coin._24hrchange || 0}
+                          decimals={1}
+                        />
+                        ){arrow}
+                      </small>
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
+          </Scrollbars>
+        </>
+      )}
     </>
   );
 }

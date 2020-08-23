@@ -27,7 +27,7 @@
       }
       .currencySelect {
         display: inline-block;
-        width: fit-content; 
+        width: fit-content;
         min-width: 75%;
         cursor: pointer;
         color: #637282;
@@ -38,13 +38,13 @@
         margin: 0;
         display: flex;
         align-items: center;
-        img{
+        img {
           background: none;
           height: 16px;
           width: 16px;
           margin-right: 6px;
         }
-        h6{
+        h6 {
           font-size: 14px;
           flex-grow: 1;
           display: flex;
@@ -52,11 +52,11 @@
           margin: 0;
         }
       }
-        }
+    }
 
     .menu-scrl {
       height: 240px !important;
-      margin-top: 3rem !important;  
+      margin-top: 3rem !important;
       margin-bottom: auto;
       .menu-side {
         padding: 0 50px;
@@ -110,19 +110,43 @@
       border-style: solid none none none;
       height: 55px;
       .tab-itm {
+        position: relative;
         cursor: pointer;
-        flex: 0 0 50%;
-        max-width: 50%;
+        width: 0;
+        flex: 1;
         display: flex;
         justify-content: center;
+        align-items: center;
         padding: 14px 6px;
         border-bottom: 2px solid $vault-border-color;
         font-size: 14px;
+        opacity: 0.25;
+        .backIcon {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 30px;
+          margin: auto;
+          font-size: 18px;
+        }
         &.true {
+          opacity: 1;
           border-color: $primary-color;
         }
-      }
+        &.settings {
+          opacity: 1;
+          width: 54px;
+          min-width: 54px;
+          max-width: 54px;
+          &.true {
+            background: $primary-color;
+            img {
+              filter: brightness(0) invert(1);
+            }
           }
+        }
+      }
+    }
     .rate-list-wrapper {
       height: 320px;
       max-height: 320px;
@@ -175,21 +199,47 @@
         }
       }
     }
-    .setNewCurency{
+    .settings-wrapper {
+      .settings-list {
+        .settingsMenu {
+          cursor: pointer;
+          position: relative;
+          flex: 0 0 33.33%;
+          padding: 0 50px;
+          border-bottom: 1px solid $vault-border-color;
+          display: flex;
+          color: $primary-color;
+          align-items: center;
+          font-size: 18px;
+          font-weight: bold;
+          img {
+            height: 20px;
+            width: 20px;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 40px;
+          }
+        }
+      }
+    }
+    .setNewCurency {
       margin-top: 50px;
       border: 1px $vault-border-color;
       border-style: solid none solid none;
       padding: 10px 50px;
       font-weight: bold;
     }
-    .defCoinList{
-      flex-grow: 1;
-      .coins-list{
+    .defCoinList {
+      height: 320px;
+      max-height: 320px;
+      .coins-list {
         display: flex;
         flex-direction: column;
         .coin {
+          flex: 0 0 33.33%;
           cursor: pointer;
-          height: 100px;
           display: flex;
           padding: 35px 50px;
           border-top: 0.5px solid $vault-border-color;
@@ -201,7 +251,8 @@
           }
           .coin-name {
             font-size: 17px;
-          }}
+          }
+        }
       }
     }
     .logout {

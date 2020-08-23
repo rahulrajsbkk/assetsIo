@@ -166,6 +166,8 @@ function BankContextProvider({ children }) {
 
   const [footerShow, setFooterShow] = useState(true);
 
+  const [updateInterval, setUpdateInterval] = useState(5);
+
   return (
     <BankContext.Provider
       value={{
@@ -189,6 +191,8 @@ function BankContextProvider({ children }) {
         icedContracts,
         footerShow,
         setFooterShow,
+        updateInterval,
+        setUpdateInterval,
       }}
     >
       {children}

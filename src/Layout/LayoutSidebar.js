@@ -1,24 +1,18 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
+import React, { useContext, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCaretDown,
-  faCaretUp,
-  faLock,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faLock } from '@fortawesome/free-solid-svg-icons';
 import { Link, useHistory } from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 import guest from '../static/images/guest.jpg';
 import iced from '../static/images/logo.svg';
 import card from '../static/images/sidebar-icons/card.svg';
-import deposit from '../static/images/sidebar-icons/deposit.svg';
 import portfolio from '../static/images/sidebar-icons/portfolio.svg';
-import withdraw from '../static/images/sidebar-icons/withdraw.svg';
 import appstore from '../static/images/sidebar-icons/appstore.svg';
 import { BankContext } from '../context/Context';
 import AssetPriceOrRates from './AssetPriceOrRates';
 
-function LayoutSidebar({ active, countryName }) {
+function LayoutSidebar({ active }) {
   const history = useHistory();
   const {
     login,
@@ -29,7 +23,6 @@ function LayoutSidebar({ active, countryName }) {
     openDefaultCoinSidebar,
     defaultCoin,
   } = useContext(BankContext);
-  const [openSubMenu, setOpenSubMenu] = useState(false);
 
   const menuEndRef = useRef(null);
 
@@ -91,58 +84,23 @@ function LayoutSidebar({ active, countryName }) {
         <div
           className={`menu-itm${active.includes('vaults') ? ' active' : ''}`}
           onClick={() => {
-            setOpenSubMenu(!openSubMenu);
             history.push('/vault');
-            setTimeout(() => {
-              scrollToBottom();
-            }, 100);
           }}
         >
           <h5 className="d-flex py-3 menu-itm">
             <img src={card} alt="" />
             <span className="my-auto">Vault</span>
-            <FontAwesomeIcon
-              className="ml-auto"
-              icon={openSubMenu ? faCaretUp : faCaretDown}
-            />
           </h5>
         </div>
-        {openSubMenu ? (
-          <>
-            <Link
-              to="/vault/deposit"
-              className={`menu-itm submenu${
-                active === 'vaults-deposit' ? ' active' : ''
-              }`}
-            >
-              <h5 className="d-flex py-3 menu-itm">
-                <img src={deposit} alt="" />
-                <span className="my-auto">Deposit</span>
-              </h5>
-            </Link>
-            <Link
-              to="/vault/withdraw"
-              className={`menu-itm submenu${
-                active === 'vaults-withdraw' ? ' active' : ''
-              }`}
-            >
-              <h5 className="d-flex py-3 menu-itm">
-                <img src={withdraw} alt="" />
-                <span className="my-auto">Withdraw</span>
-              </h5>
-            </Link>
-          </>
-        ) : (
-          <Link
-            to="/mobile-apps"
-            className={`menu-itm${active === 'mobileApps' ? ' active' : ''}`}
-          >
-            <h5 className="d-flex py-3 menu-itm">
-              <img src={appstore} alt="" />
-              <span className="my-auto">Mobile Apps</span>
-            </h5>
-          </Link>
-        )}
+        <Link
+          to="/mobile-apps"
+          className={`menu-itm${active === 'mobileApps' ? ' active' : ''}`}
+        >
+          <h5 className="d-flex py-3 menu-itm">
+            <img src={appstore} alt="" />
+            <span className="my-auto">Mobile Apps</span>
+          </h5>
+        </Link>
         <div ref={menuEndRef} className="spacer" />
       </Scrollbars>
       <AssetPriceOrRates isIndex={active === 'index'} />
