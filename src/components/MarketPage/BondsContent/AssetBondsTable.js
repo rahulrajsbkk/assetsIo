@@ -46,7 +46,7 @@ function AssetBondsTable({
         </div>
         <div
           className={`bt-asset ${!isAsset}`}
-          onClick={() => setIsAsset(false)}
+          // onClick={() => setIsAsset(false)}
         >
           {!isAsset ? 'By Bond For ' : 'By Bond '}
           <div
