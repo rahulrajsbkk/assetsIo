@@ -10,37 +10,43 @@ function VaultContextProvider({ children }) {
   const [vaultTxns, setVaultTxns] = useState([]);
   const [coinSelected, setCoinSelected] = useState({});
   const [coinAddress, setCoinAddress] = useState({});
-  function updateBalance() {
-    Axios.post('https://comms.globalxchange.com/coin/vault/service/coins/get', {
-      app_code: 'ice',
-      profile_id: profileId,
-    }).then((res) => {
-      const { data } = res;
-      setCoinBalanceList(data.coins_data);
-      const btcArray = data.coins_data.filter(
-        (coin) => coin.coinSymbol === 'BTC'
-      );
-      setCoinSelected(btcArray[0]);
-    });
-    Axios.post(
+  const [loading, setLoading] = useState(true);
+  async function updateBalance() {
+    setLoading(true);
+    const resOne = await Axios.post(
+      'https://comms.globalxchange.com/coin/vault/service/coins/get',
+      {
+        app_code: 'ice',
+        profile_id: profileId,
+      }
+    );
+    const dataOne = resOne.data;
+    setCoinBalanceList(dataOne.coins_data);
+    const btcArray = dataOne.coins_data.filter(
+      (coin) => coin.coinSymbol === 'BTC'
+    );
+    setCoinSelected(btcArray[0]);
+    const resTwo = await Axios.post(
       'https://comms.globalxchange.com/coin/vault/service/balances/get',
       {
         app_code: 'ice',
         profile_id: profileId,
       }
-    ).then((res) => {
-      const { data } = res;
-      if (data.status) {
-        setCoinAddress(data.vault.coinAddress);
+    );
+    const dataTWO = resTwo.data;
+    if (dataTWO.status) {
+      setCoinAddress(dataTWO.vault.coinAddress);
+    }
+    const resThree = await Axios.post(
+      'https://comms.globalxchange.com/coin/vault/service/txns/get',
+      {
+        app_code: 'ice',
+        profile_id: profileId,
       }
-    });
-    Axios.post('https://comms.globalxchange.com/coin/vault/service/txns/get', {
-      app_code: 'ice',
-      profile_id: profileId,
-    }).then((res) => {
-      const { data } = res;
-      if (data.status) setVaultTxns(data.txns);
-    });
+    );
+    const dataThree = resThree.data;
+    if (dataThree.status) setVaultTxns(dataThree.txns);
+    setLoading(false);
   }
   useEffect(() => {
     if (profileId) {
@@ -57,6 +63,7 @@ function VaultContextProvider({ children }) {
         vaultTxns,
         updateBalance,
         coinAddress,
+        loading,
       }}
     >
       {children}

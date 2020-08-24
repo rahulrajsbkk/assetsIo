@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import moment from 'moment';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { VaultContext } from '../../context/VaultContext';
 import { FormatCurrency, YesterdayToday } from '../../utils/FunctionTools';
 
 function VaultTransactionTable({ credit, debit }) {
-  const { vaultTxns, coinSelected } = useContext(VaultContext);
+  const { vaultTxns, coinSelected, loading } = useContext(VaultContext);
   let date = '';
   return (
     <Scrollbars
@@ -14,7 +15,17 @@ function VaultTransactionTable({ credit, debit }) {
       renderThumbHorizontal={() => <div />}
       renderView={(props) => <div {...props} className="vaultsView" />}
     >
-      {coinSelected &&
+      {loading ? (
+        <>
+          <Skeleton height={40} width={250} />
+          <Skeleton height={50} count={4} />
+          <Skeleton height={40} width={250} />
+          <Skeleton height={50} count={4} />
+          <Skeleton height={40} width={250} />
+          <Skeleton height={50} count={4} />
+        </>
+      ) : (
+        coinSelected &&
         vaultTxns
           .filter(
             (txn) =>
@@ -55,7 +66,8 @@ function VaultTransactionTable({ credit, debit }) {
                 </div>
               </>
             );
-          })}
+          })
+      )}
     </Scrollbars>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import Skeleton from 'react-loading-skeleton';
 import btc from '../../static/images/coin-small/btc.svg';
 import eth from '../../static/images/coin-small/eth.svg';
 import usdt from '../../static/images/coin-small/usdt.svg';
@@ -7,9 +8,12 @@ import { VaultContext } from '../../context/VaultContext';
 import { FormatCurrency } from '../../utils/FunctionTools';
 
 function VaultPageHead() {
-  const { coinBalanceList, coinSelected, setCoinSelected } = useContext(
-    VaultContext
-  );
+  const {
+    coinBalanceList,
+    coinSelected,
+    setCoinSelected,
+    loading,
+  } = useContext(VaultContext);
   const [coin, setCoin] = useState('BTC');
   const [searchEnable, setSearchEnable] = useState(false);
   const [searchStr, setSearchStr] = useState('');
@@ -40,21 +44,32 @@ function VaultPageHead() {
     <div className="head">
       <div className="vault-n-balance">
         <div className="vault">
-          {coinSelected && coinSelected.coinName} Vault
+          {loading ? (
+            <Skeleton width={150} />
+          ) : (
+            <>{coinSelected && coinSelected.coinName} Vault</>
+          )}
         </div>
         <div className="balance">
-          {coinSelected &&
-            FormatCurrency(
-              coinSelected.coinValue,
-              coinSelected.coinSymbol
-            )}{' '}
+          {loading ? (
+            <Skeleton width={250} />
+          ) : (
+            coinSelected &&
+            FormatCurrency(coinSelected.coinValue, coinSelected.coinSymbol)
+          )}{' '}
           <small>
-            ${coinSelected && FormatCurrency(coinSelected.coinValueUSD)}
+            {loading ? (
+              ''
+            ) : (
+              <>${coinSelected && FormatCurrency(coinSelected.coinValueUSD)}</>
+            )}
           </small>
         </div>
       </div>
       <div className="coin-select">
-        {searchEnable ? (
+        {loading ? (
+          <Skeleton width={250} height={60} />
+        ) : searchEnable ? (
           ''
         ) : (
           <>
@@ -97,60 +112,70 @@ function VaultPageHead() {
             )}
           </>
         )}
-        <div className={`search-wrapper order-0  ${searchEnable}`}>
-          <div className="serch-n-result">
-            {searchEnable ? (
-              <>
-                <div className="search">
-                  <input
-                    type="text"
-                    value={searchStr}
-                    onChange={(e) => setSearchStr(e.target.value)}
-                    placeholder="Search Iced Vaults"
-                  />
-                  <span
-                    className="serch-close"
-                    onClick={() => {
-                      setSearchEnable(!searchEnable);
-                      setSearchStr('');
-                    }}
-                  >
-                    ×
-                  </span>
-                </div>
-                {searchResult.map((coin) => (
-                  <div
-                    className="search-res"
-                    key={coin.coinName}
-                    onClick={() => {
-                      setCoinSelected(coin);
-                      setCoin('');
-                      setSearchEnable(!searchEnable);
-                    }}
-                  >
-                    <img src={coin.coinImage} alt="" className="search-coin" />
-                    <div className="coin">{coin.coinName}</div>
-                    <div className="value">
-                      ${FormatCurrency(coin.price.USD)}
-                      <small className={`change ${coin._24hrchange < 0}`}>
-                        ({FormatCurrency(coin._24hrchange)}%)
-                      </small>
-                    </div>
-                  </div>
-                ))}
-              </>
-            ) : (
-              <img
-                className="search-icon"
-                src={searchIcon}
-                alt=""
-                onClick={() => {
-                  setSearchEnable(!searchEnable);
-                }}
-              />
-            )}
+        {loading ? (
+          <div className="ml-2">
+            <Skeleton width={60} height={60} />
           </div>
-        </div>
+        ) : (
+          <div className={`search-wrapper order-0  ${searchEnable}`}>
+            <div className="serch-n-result">
+              {searchEnable ? (
+                <>
+                  <div className="search">
+                    <input
+                      type="text"
+                      value={searchStr}
+                      onChange={(e) => setSearchStr(e.target.value)}
+                      placeholder="Search Iced Vaults"
+                    />
+                    <span
+                      className="serch-close"
+                      onClick={() => {
+                        setSearchEnable(!searchEnable);
+                        setSearchStr('');
+                      }}
+                    >
+                      ×
+                    </span>
+                  </div>
+                  {searchResult.map((coin) => (
+                    <div
+                      className="search-res"
+                      key={coin.coinName}
+                      onClick={() => {
+                        setCoinSelected(coin);
+                        setCoin('');
+                        setSearchEnable(!searchEnable);
+                      }}
+                    >
+                      <img
+                        src={coin.coinImage}
+                        alt=""
+                        className="search-coin"
+                      />
+                      <div className="coin">{coin.coinName}</div>
+                      <div className="value">
+                        ${FormatCurrency(coin.price.USD)}
+                        <small className={`change ${coin._24hrchange < 0}`}>
+                          ({FormatCurrency(coin._24hrchange)}%)
+                        </small>
+                      </div>
+                    </div>
+                  ))}
+                </>
+              ) : (
+                <img
+                  className="search-icon"
+                  src={searchIcon}
+                  alt=""
+                  onClick={() => {
+                    setSearchEnable(!searchEnable);
+                  }}
+                />
+              )}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
