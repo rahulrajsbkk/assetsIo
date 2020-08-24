@@ -5,10 +5,12 @@ import CountUp from 'react-countup';
 import { BankContext } from '../../../context/Context';
 import FundVault from '../../VaultsPage/VaultFundWithdraw/FundVault';
 import { VaultContext } from '../../../context/VaultContext';
+import { IndexContext } from '../../../context/IndexContext';
 
 function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
   const { email, updateInterval, coinData } = useContext(BankContext);
   const { setCoinSelected } = useContext(VaultContext);
+  const { conractsObj } = useContext(IndexContext);
   const [toHide, setToHide] = useState('');
   const [duration, setDuration] = useState(3);
   const [depositModal, setDepositModal] = useState(false);
@@ -141,37 +143,67 @@ function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
           <h3>
             <CountUp
               duration={duration}
-              start={10.36}
-              end={12.36 || 0}
+              start={
+                (conractsObj &&
+                  conractsObj[coinToDetail.coinSymbol] &&
+                  conractsObj[coinToDetail.coinSymbol].base_compression_rate -
+                    2) ||
+                0
+              }
+              end={
+                (conractsObj &&
+                  conractsObj[coinToDetail.coinSymbol] &&
+                  conractsObj[coinToDetail.coinSymbol].base_compression_rate) ||
+                0
+              }
               decimals={2}
             />
             %
           </h3>
-          <div className="label">3 Month Bond</div>
+          <div className="label">Base Rate</div>
         </div>
         <div className="subSec">
           <h3>
             <CountUp
               duration={duration}
-              start={10.36}
-              end={12.36 || 0}
+              start={
+                (conractsObj &&
+                  conractsObj[coinToDetail.coinSymbol] &&
+                  conractsObj[coinToDetail.coinSymbol].base_velocity - 2) ||
+                0
+              }
+              end={
+                (conractsObj &&
+                  conractsObj[coinToDetail.coinSymbol] &&
+                  conractsObj[coinToDetail.coinSymbol].base_velocity) ||
+                0
+              }
               decimals={2}
             />
             %
           </h3>
-          <div className="label">6 Month Bond</div>
+          <div className="label">Velocity</div>
         </div>
         <div className="subSec">
           <h3>
             <CountUp
               duration={duration}
-              start={0}
-              end={1.36 || 0}
+              start={
+                (conractsObj &&
+                  conractsObj[coinToDetail.coinSymbol] &&
+                  conractsObj[coinToDetail.coinSymbol].acceleration - 2) ||
+                0
+              }
+              end={
+                (conractsObj &&
+                  conractsObj[coinToDetail.coinSymbol] &&
+                  -conractsObj[coinToDetail.coinSymbol].acceleration) ||
+                0
+              }
               decimals={2}
             />{' '}
-            BTC
           </h3>
-          <div className="label">Supply</div>
+          <div className="label">Acceleration</div>
         </div>
       </div>
       <FundVault
