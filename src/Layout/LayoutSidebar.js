@@ -1,6 +1,4 @@
 import React, { useContext, useRef, useEffect } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown, faLock } from '@fortawesome/free-solid-svg-icons';
 import { Link, useHistory } from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars';
 
@@ -48,10 +46,7 @@ function LayoutSidebar({ active }) {
             onClick={() => setOpenDefaultCoinSidebar(!openDefaultCoinSidebar)}
           >
             <img src={defaultCoin.img} alt="" />
-            <h6>
-              {defaultCoin.name}
-              <FontAwesomeIcon icon={faCaretDown} />
-            </h6>
+            <h6>{defaultCoin.name}</h6>
           </div>
         </div>
       </div>
@@ -104,17 +99,6 @@ function LayoutSidebar({ active }) {
         <div ref={menuEndRef} className="spacer" />
       </Scrollbars>
       <AssetPriceOrRates isIndex={active === 'index'} />
-      <div
-        onClick={() => login()}
-        role="button"
-        tabIndex="0"
-        className="logout"
-      >
-        <h5>
-          <FontAwesomeIcon icon={faLock} className="mr-2" />
-          Logout
-        </h5>
-      </div>
     </div>
   );
 }
