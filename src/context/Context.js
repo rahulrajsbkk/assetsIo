@@ -194,6 +194,25 @@ function BankContextProvider({ children }) {
   // To Populate List In Sidebar
   const [contentSideBar, setContentSideBar] = useState({});
 
+  // Coin Data For Coin Detail
+  const [coinData, setCoinData] = useState({});
+
+  useEffect(() => {
+    Axios.get('https://comms.globalxchange.com/coin/vault/get/all/coins').then(
+      (res) => {
+        const { data } = res;
+        if (data.status) {
+          let coinObj = {};
+          data.coins.forEach((coin) => {
+            coinObj[coin.coinSymbol] = coin;
+          });
+          setCoinData(coinObj);
+        }
+      }
+    );
+    return () => {};
+  }, []);
+
   return (
     <BankContext.Provider
       value={{
@@ -223,6 +242,7 @@ function BankContextProvider({ children }) {
         populateModal,
         contentSideBar,
         setContentSideBar,
+        coinData,
       }}
     >
       {children}

@@ -7,7 +7,7 @@ import FundVault from '../../VaultsPage/VaultFundWithdraw/FundVault';
 import { VaultContext } from '../../../context/VaultContext';
 
 function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
-  const { email, updateInterval } = useContext(BankContext);
+  const { email, updateInterval, coinData } = useContext(BankContext);
   const { setCoinSelected } = useContext(VaultContext);
   const [toHide, setToHide] = useState('');
   const [duration, setDuration] = useState(3);
@@ -58,7 +58,7 @@ function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
               }}
               duration={duration}
               start={0}
-              end={1.01 || 0}
+              end={coinData[coinToDetail.coinSymbol].usd_price || 0}
               decimals={2}
             />
             <small>
@@ -66,7 +66,7 @@ function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
               <CountUp
                 start={0}
                 duration={duration}
-                end={1.36 || 0}
+                end={coinData[coinToDetail.coinSymbol]._24hrchange || 0}
                 decimals={2}
               />
               %)
@@ -79,7 +79,7 @@ function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
             <CountUp
               start={314.35}
               duration={duration}
-              end={316.35 || 0}
+              end={coinData[coinToDetail.coinSymbol].market_cap || 0}
               decimals={2}
             />
             B
@@ -91,17 +91,17 @@ function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
             <CountUp
               duration={duration}
               start={23.16}
-              end={25.16 || 0}
+              end={coinData[coinToDetail.coinSymbol].volume_24hr || 0}
               decimals={2}
             />
             B
           </h3>
           <div className="label">24 Hr Volume</div>
         </div>
-        <div className="subSec">
+        <div className="subSec" style={{ opacity: 0.3 }}>
           <h3>
-            <CountUp duration={duration} end={4 || 0} decimals={0} />
-            :<CountUp duration={duration} end={1 || 0} decimals={0} />
+            <CountUp duration={duration} end={0} decimals={0} />
+            :<CountUp duration={duration} end={0} decimals={1} />
           </h3>
           <div className="label">Trade/Hold Ratio</div>
         </div>
