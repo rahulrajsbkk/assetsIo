@@ -182,6 +182,9 @@ function BankContextProvider({ children }) {
     setModalText(text);
   };
 
+  // To Populate List In Sidebar
+  const [contentSideBar, setContentSideBar] = useState({});
+
   return (
     <BankContext.Provider
       value={{
@@ -208,6 +211,8 @@ function BankContextProvider({ children }) {
         updateInterval,
         setUpdateInterval,
         populateModal,
+        contentSideBar,
+        setContentSideBar,
       }}
     >
       {children}

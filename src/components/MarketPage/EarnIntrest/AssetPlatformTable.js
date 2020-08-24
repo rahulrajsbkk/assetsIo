@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -12,6 +12,7 @@ import fullScreenIcon from '../../../static/images/fullScreen.svg';
 import fullScreenIconExit from '../../../static/images/fullScreenExit.svg';
 import CoinDetailTable from './CoinDetailTable';
 import VaultContextProvider from '../../../context/VaultContext';
+import { BankContext } from '../../../context/Context';
 
 function AssetPlatformTable({
   coinList,
@@ -19,8 +20,8 @@ function AssetPlatformTable({
   coinToDetail,
   setCoinToDetail,
 }) {
+  const { setContentSideBar } = useContext(BankContext);
   const [isAsset, setIsAsset] = useState(true);
-  const [dropDownOpen, setDropDownOpen] = useState(false);
   const [fullScreen, setFullScreen] = useState(false);
   const [coinSelect, setCoinSelect] = useState({});
   const [search, setSearch] = useState('');
@@ -30,6 +31,30 @@ function AssetPlatformTable({
   useEffect(() => {
     setCoinToDetail(null);
   }, [coinSelect, isAsset, setCoinToDetail]);
+  useEffect(() => {
+    return () => {
+      setContentSideBar({});
+    };
+  }, []);
+
+  const platformList = (
+    <>
+      {coinList.map((coin) => (
+        <div
+          className="coin"
+          key={coin.coinSymbol}
+          onClick={() => {
+            setCoinSelect(coin);
+            setContentSideBar({});
+          }}
+        >
+          <img className="coin-logo mr-2" src={coin.coinImage} alt="" />
+          <div className="coin-name">{coin.coinSymbol}</div>
+        </div>
+      ))}
+    </>
+  );
+
   return (
     <div
       className={`assetPlatformTable ${coinToDetail === null} ${
@@ -47,28 +72,21 @@ function AssetPlatformTable({
           {!isAsset ? 'By Platform For ' : 'By Platform '}
           <div
             className="platform-select px-3"
-            onClick={() => setDropDownOpen(!dropDownOpen)}
+            onClick={() => {
+              setContentSideBar({
+                head: (
+                  <div className="tab-itm order-1 true title">
+                    Select Platform
+                  </div>
+                ),
+                content: platformList,
+              });
+            }}
           >
-            <div className="btn-togle px-4">
+            <div className="btn-togle mx-auto">
               <img src={coinSelect.coinImage} alt="" />
               {coinSelect.coinSymbol}
             </div>
-            <FontAwesomeIcon icon={dropDownOpen ? faCaretUp : faCaretDown} />
-            {dropDownOpen ? (
-              <div className="menu">
-                {coinList.map((coin) => (
-                  <div
-                    className="btn-togle"
-                    onClick={() => setCoinSelect(coin)}
-                  >
-                    <img src={coin.coinImage} alt="" />
-                    {coin.coinSymbol}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              ''
-            )}
           </div>
         </div>
         <label className="searchWrapper">

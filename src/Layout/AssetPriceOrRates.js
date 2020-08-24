@@ -6,9 +6,13 @@ import { BankContext } from '../context/Context';
 import SidebarSettings from './SidebarSettings';
 
 function AssetPriceOrRates({ isIndex }) {
-  const { coinListObject, coinList, liquidRates, updateInterval } = useContext(
-    BankContext
-  );
+  const {
+    coinListObject,
+    coinList,
+    liquidRates,
+    updateInterval,
+    contentSideBar,
+  } = useContext(BankContext);
 
   const arrow = (
     <svg viewBox="0 0 9 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,22 +42,34 @@ function AssetPriceOrRates({ isIndex }) {
   return (
     <>
       {tabItem === 'Settings' ? (
-        <SidebarSettings tabItem={tabItem} setTabItem={setTabItem} />
+        <SidebarSettings
+          defTab={contentSideBar && contentSideBar.head}
+          tabItem={tabItem}
+          setTabItem={setTabItem}
+        />
       ) : (
         <>
           <div className="tab-inrest-asset">
-            <div
-              className={`tab-itm order-1 ${tabItem === 'Interest Rates'}`}
-              onClick={() => setTabItem('Interest Rates')}
-            >
-              Liquid Rates
-            </div>
-            <div
-              className={`tab-itm ${tabItem === 'Asset Prices'} ${orderClass}`}
-              onClick={() => setTabItem('Asset Prices')}
-            >
-              Asset Prices
-            </div>
+            {contentSideBar && contentSideBar.head ? (
+              contentSideBar.head
+            ) : (
+              <>
+                <div
+                  className={`tab-itm order-1 ${tabItem === 'Interest Rates'}`}
+                  onClick={() => setTabItem('Interest Rates')}
+                >
+                  Liquid Rates
+                </div>
+                <div
+                  className={`tab-itm ${
+                    tabItem === 'Asset Prices'
+                  } ${orderClass}`}
+                  onClick={() => setTabItem('Asset Prices')}
+                >
+                  Asset Prices
+                </div>
+              </>
+            )}
             <div
               className={`tab-itm settings order-3 ${tabItem === 'Settings'}`}
               onClick={() => setTabItem('Settings')}
@@ -68,7 +84,9 @@ function AssetPriceOrRates({ isIndex }) {
             renderThumbHorizontal={() => <div />}
             renderView={(props) => <div {...props} className="rates-list" />}
           >
-            {coinListObject && tabItem === 'Interest Rates' ? (
+            {contentSideBar && contentSideBar.content ? (
+              contentSideBar.content
+            ) : coinListObject && tabItem === 'Interest Rates' ? (
               <>
                 {liquidRates.map((rateCoin) => (
                   <div className="coin" key={rateCoin.coin}>

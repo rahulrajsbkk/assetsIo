@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -7,6 +7,7 @@ import fullScreenIcon from '../../../static/images/fullScreen.svg';
 import fullScreenIconExit from '../../../static/images/fullScreenExit.svg';
 import BondsListTable from './BondsListTable';
 import allPlatformIcon from '../../../static/images/allPlatforms.svg';
+import { BankContext } from '../../../context/Context';
 
 function AssetBondsTable({
   coinList,
@@ -15,8 +16,8 @@ function AssetBondsTable({
   setCoinToDetail,
   assetTab,
 }) {
+  const { setContentSideBar } = useContext(BankContext);
   const [isAsset, setIsAsset] = useState(true);
-  const [dropDownOpen, setDropDownOpen] = useState(false);
   const [fullScreen, setFullScreen] = useState(false);
   const [coinSelect, setCoinSelect] = useState({});
   const [search, setSearch] = useState('');
@@ -28,6 +29,11 @@ function AssetBondsTable({
   useEffect(() => {
     setCoinToDetail(null);
   }, [coinSelect, isAsset, setCoinToDetail]);
+  useEffect(() => {
+    return () => {
+      setContentSideBar({});
+    };
+  }, []);
   return (
     <div
       className={`assetPlatformTable ${coinToDetail === null} ${
@@ -45,24 +51,35 @@ function AssetBondsTable({
           {!isAsset ? 'By Bond For ' : 'By Bond '}
           <div
             className="platform-select"
-            onClick={() => setDropDownOpen(!dropDownOpen)}
+            onClick={() => {
+              setContentSideBar({
+                head: (
+                  <div className="tab-itm order-1 true title">
+                    Select Platform
+                  </div>
+                ),
+                content: (
+                  <div
+                    className="coin"
+                    onClick={() => {
+                      setContentSideBar({});
+                    }}
+                  >
+                    <img
+                      className="coin-logo mr-2"
+                      src={allPlatformIcon}
+                      alt=""
+                    />
+                    <div className="coin-name">{'All Platforms'}</div>
+                  </div>
+                ),
+              });
+            }}
           >
-            <div className="btn-togle px-4">
+            <div className="btn-togle mx-auto">
               <img src={allPlatformIcon} alt="" />
               {'All Platforms'}
             </div>
-            {dropDownOpen ? (
-              <div className="menu">
-                {/* {coinList.map((coin) => ( */}
-                <div className="btn-togle px-4" onClick={() => {}}>
-                  <img src={allPlatformIcon} alt="" />
-                  {'All Platforms'}
-                </div>
-                {/* ))} */}
-              </div>
-            ) : (
-              ''
-            )}
           </div>
         </div>
         <div className="onlyFiat">

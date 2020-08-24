@@ -130,7 +130,7 @@ function SidebarSettings({ tabItem, setTabItem, defTab }) {
         )}
         <div
           className={`tab-itm settings order-2 ${tabItem === 'Settings'}`}
-          onClick={() => setTabItem('Settings')}
+          onClick={() => setTabItem(tabItem === 'Settings' ? '' : 'Settings')}
         >
           <img src={settingsIcon} alt="" />
         </div>
