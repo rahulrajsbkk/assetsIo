@@ -11,6 +11,7 @@ import PlatformTable from './PlatformTable';
 import fullScreenIcon from '../../../static/images/fullScreen.svg';
 import fullScreenIconExit from '../../../static/images/fullScreenExit.svg';
 import CoinDetailTable from './CoinDetailTable';
+import VaultContextProvider from '../../../context/VaultContext';
 
 function AssetPlatformTable({
   coinList,
@@ -112,11 +113,13 @@ function AssetPlatformTable({
         />
       </div>
       {coinToDetail ? (
-        <CoinDetailTable
-          isAsset={isAsset}
-          coinToDetail={coinToDetail}
-          setCoinToDetail={setCoinToDetail}
-        />
+        <VaultContextProvider>
+          <CoinDetailTable
+            isAsset={isAsset}
+            coinToDetail={coinToDetail}
+            setCoinToDetail={setCoinToDetail}
+          />
+        </VaultContextProvider>
       ) : (
         <Scrollbars autoHide className="tableScrollWrapper">
           {isAsset ? (

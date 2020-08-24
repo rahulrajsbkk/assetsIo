@@ -3,11 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import CountUp from 'react-countup';
 import { BankContext } from '../../../context/Context';
+import FundVault from '../../VaultsPage/VaultFundWithdraw/FundVault';
+import { VaultContext } from '../../../context/VaultContext';
 
 function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
-  const { updateInterval } = useContext(BankContext);
+  const { email, updateInterval } = useContext(BankContext);
+  const { setCoinSelected } = useContext(VaultContext);
   const [toHide, setToHide] = useState('');
   const [duration, setDuration] = useState(3);
+  const [depositModal, setDepositModal] = useState(false);
   const togleDuration = (duration) => {
     setDuration(duration === 2 ? 2.1 : 2);
   };
@@ -25,7 +29,17 @@ function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
       <div className="coinDetail">
         <img src={coinToDetail.coinImage} alt="" />
         <div className="coinName">{coinToDetail.coinName}</div>
-        <div className="btnDeposit">Deposit {coinToDetail.coinSymbol}</div>
+        <div
+          className="btnDeposit"
+          onClick={() => {
+            if (email) {
+              setCoinSelected(coinToDetail);
+              setDepositModal(true);
+            }
+          }}
+        >
+          Deposit {coinToDetail.coinSymbol}
+        </div>
         <div className="btnBuy">Buy {coinToDetail.coinSymbol}</div>
       </div>
       <div
@@ -156,6 +170,13 @@ function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
           <div className="label">Supply</div>
         </div>
       </div>
+      <FundVault
+        key={`${depositModal}`}
+        fundOrWithdraw={'Deposit'}
+        isDeposit={true}
+        openModal={depositModal}
+        setOpenModal={setDepositModal}
+      />
     </div>
   );
 }
