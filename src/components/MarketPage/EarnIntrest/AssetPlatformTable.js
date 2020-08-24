@@ -52,7 +52,6 @@ function AssetPlatformTable({
               <img src={coinSelect.coinImage} alt="" />
               {coinSelect.coinSymbol}
             </div>
-            <span className="platform">2 Platforms</span>
             <FontAwesomeIcon icon={dropDownOpen ? faCaretUp : faCaretDown} />
             {dropDownOpen ? (
               <div className="menu">
@@ -63,7 +62,6 @@ function AssetPlatformTable({
                   >
                     <img src={coin.coinImage} alt="" />
                     {coin.coinSymbol}
-                    <span className="platform">2 Platforms</span>
                   </div>
                 ))}
               </div>

@@ -8,9 +8,13 @@ import { BankContext } from '../context/Context';
 
 function SidebarSettings({ tabItem, setTabItem, defTab }) {
   const [step, setStep] = useState(0);
-  const { updateInterval, setUpdateInterval, populateModal } = useContext(
-    BankContext
-  );
+  const {
+    email,
+    login,
+    updateInterval,
+    setUpdateInterval,
+    populateModal,
+  } = useContext(BankContext);
 
   const stepsComponent = [
     <>
@@ -19,6 +23,22 @@ function SidebarSettings({ tabItem, setTabItem, defTab }) {
       </div>
       <div className="settingsMenu">Resize</div>
       <div className="settingsMenu">Time Machine</div>
+      {email ? (
+        <div
+          className="settingsMenu"
+          onClick={() => {
+            populateModal(
+              'Are You Sure To Logout Of This System',
+              () => {},
+              () => login()
+            );
+          }}
+        >
+          Logout
+        </div>
+      ) : (
+        ''
+      )}
     </>,
     <>
       <div

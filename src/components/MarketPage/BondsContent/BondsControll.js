@@ -20,7 +20,7 @@ function BondsControll({ setAssetTab }) {
           <img className="coin-img" src={usdt} alt="" />
           <div className="text-content">
             <h5>StableCoins</h5>
-            <h6>Digital Assets Pegged To A Analog Asset</h6>
+            <h6>Digital Assets Pegged To An Analog Asset</h6>
           </div>
         </div>
         <div
