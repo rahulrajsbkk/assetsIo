@@ -1,11 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 import settingsIcon from '../static/images/sidebar-icons/settings.svg';
 import selectIcon from '../static/images/sidebar-icons/selected.svg';
-import guest from '../static/images/logoWtBg.png';
+import logo from '../static/images/logoWtBg.png';
+import guest from '../static/images/guest.jpg';
 import card from '../static/images/sidebar-icons/card.svg';
 import iced from '../static/images/logo.svg';
 import portfolio from '../static/images/sidebar-icons/portfolio.svg';
@@ -63,7 +62,7 @@ function LayoutSidebarCoins({ active }) {
     <>
       <div className="side-bar d-flex flex-column">
         <div className="profile d-flex">
-          <img src={profileImg ? profileImg : guest} alt="" />
+          <img src={email ? profileImg || guest : logo} alt="" />
           <div className="col my-auto">
             <h5>{email ? (name ? name : username) : 'Guest'}&nbsp;</h5>
             <div
@@ -71,10 +70,7 @@ function LayoutSidebarCoins({ active }) {
               onClick={() => setOpenDefaultCoinSidebar(!openDefaultCoinSidebar)}
             >
               <img src={defaultCoin.img} alt="" />
-              <h6>
-                {defaultCoin.name}
-                <FontAwesomeIcon icon={faCaretDown} />
-              </h6>
+              <h6>{defaultCoin.name}</h6>
             </div>
           </div>
         </div>

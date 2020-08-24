@@ -8,8 +8,6 @@ import portfolio from '../static/images/sidebar-icons/portfolio.svg';
 import appstore from '../static/images/sidebar-icons/appstore.svg';
 import LoginWrapper from '../components/LoginModal/LoginWrapper';
 import AssetPriceOrRates from './AssetPriceOrRates';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { BankContext } from '../context/Context';
 
 function LayoutSidebarGuest({ active }) {
@@ -38,10 +36,7 @@ function LayoutSidebarGuest({ active }) {
               onClick={() => setOpenDefaultCoinSidebar(!openDefaultCoinSidebar)}
             >
               <img src={defaultCoin.img} alt="" />
-              <h6>
-                {defaultCoin.name}
-                <FontAwesomeIcon icon={faCaretDown} />
-              </h6>
+              <h6>{defaultCoin.name}</h6>
             </div>
           </div>
         </div>
