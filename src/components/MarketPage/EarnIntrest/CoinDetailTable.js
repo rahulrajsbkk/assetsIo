@@ -79,7 +79,9 @@ function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
             <CountUp
               start={314.35}
               duration={duration}
-              end={coinData[coinToDetail.coinSymbol].market_cap || 0}
+              end={
+                coinData[coinToDetail.coinSymbol].market_cap / 1000000000 || 0
+              }
               decimals={2}
             />
             B
@@ -91,7 +93,9 @@ function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
             <CountUp
               duration={duration}
               start={23.16}
-              end={coinData[coinToDetail.coinSymbol].volume_24hr || 0}
+              end={
+                coinData[coinToDetail.coinSymbol].volume_24hr / 1000000000 || 0
+              }
               decimals={2}
             />
             B
