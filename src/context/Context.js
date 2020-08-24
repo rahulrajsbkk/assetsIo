@@ -148,6 +148,15 @@ function BankContextProvider({ children }) {
     setCoinListObject(coinObj);
   }, [coinList]);
 
+  const [liquidRatesObject, setLiquidRatesObject] = useState({});
+  useEffect(() => {
+    let coinObj = {};
+    liquidRates.forEach((coin) => {
+      coinObj[coin.coin] = coin;
+    });
+    setLiquidRatesObject(coinObj);
+  }, [liquidRates]);
+
   const [openDefaultCoinSidebar, setOpenDefaultCoinSidebar] = useState(false);
   const [defaultCoin, setDefaultCoin] = useState({
     coin: null,
@@ -199,6 +208,7 @@ function BankContextProvider({ children }) {
         coinList,
         profileId,
         liquidRates,
+        liquidRatesObject,
         coinListObject,
         openDefaultCoinSidebar,
         setOpenDefaultCoinSidebar,

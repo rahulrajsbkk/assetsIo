@@ -4,7 +4,7 @@ import AssetTableChart from '../EarnIntrest/AssetTableChart';
 import { BankContext } from '../../../context/Context';
 
 function BondsAssetTable({ coinList, setCoinToDetail }) {
-  const { updateInterval } = useContext(BankContext);
+  const { updateInterval, liquidRatesObject } = useContext(BankContext);
   const [duration, setDuration] = useState(2);
   const togleDuration = (duration) => {
     setDuration(duration === 2 ? 2.1 : 2);
@@ -15,7 +15,7 @@ function BondsAssetTable({ coinList, setCoinToDetail }) {
         <tr>
           <th>Rank</th>
           <th>Name</th>
-          <th>Annual Rate</th>
+          <th>Daily Rate</th>
           <th>24Hr Change</th>
           <th>Supply</th>
           <th>Chart</th>
@@ -41,8 +41,13 @@ function BondsAssetTable({ coinList, setCoinToDetail }) {
                 }}
                 duration={duration}
                 start={0}
-                end={1.02 || 0}
-                decimals={2}
+                end={
+                  (liquidRatesObject &&
+                    liquidRatesObject[coin.coinSymbol] &&
+                    liquidRatesObject[coin.coinSymbol].interest_rate) ||
+                  0
+                }
+                decimals={4}
               />
               %
             </td>
