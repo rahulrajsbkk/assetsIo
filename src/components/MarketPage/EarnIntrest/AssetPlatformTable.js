@@ -46,10 +46,10 @@ function AssetPlatformTable({
         >
           {!isAsset ? 'By Platform For ' : 'By Platform '}
           <div
-            className="platform-select"
+            className="platform-select px-3"
             onClick={() => setDropDownOpen(!dropDownOpen)}
           >
-            <div className="btn-togle">
+            <div className="btn-togle px-4">
               <img src={coinSelect.coinImage} alt="" />
               {coinSelect.coinSymbol}
             </div>

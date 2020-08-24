@@ -243,6 +243,7 @@
         flex-direction: column;
         .coin {
           flex: 0 0 33.33%;
+          position: relative;
           cursor: pointer;
           display: flex;
           padding: 35px 50px;
@@ -255,6 +256,15 @@
           }
           .coin-name {
             font-size: 17px;
+          }
+          .select {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 20px;
+            margin: auto;
+            height: 25px;
+            width: 25px;
           }
         }
       }

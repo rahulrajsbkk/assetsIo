@@ -1,9 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 import settingsIcon from '../static/images/sidebar-icons/settings.svg';
+import selectIcon from '../static/images/sidebar-icons/selected.svg';
 import guest from '../static/images/logoWtBg.png';
 import card from '../static/images/sidebar-icons/card.svg';
 import iced from '../static/images/logo.svg';
@@ -29,7 +30,6 @@ function LayoutSidebarCoins({ active }) {
   } = useContext(BankContext);
   const history = useHistory();
   const [loginModalOpen, setLoginModalOpen] = useState(false);
-  const [coinListSorted, setCoinListSorted] = useState(coinList);
   const [onLoginPage, setOnLoginPage] = useState('');
   const [tabItem, setTabItem] = useState('Interest Rates');
 
@@ -41,22 +41,24 @@ function LayoutSidebarCoins({ active }) {
     }
   };
 
-  useEffect(() => {
-    if (coinList) {
-      const coinsOrder = ['USD', 'CAD', 'GBP', 'INR', 'EUR'];
-      const arr = coinList;
-      const sortedArr = [];
-      coinsOrder.forEach((symbol) => {
-        let index;
-        arr.forEach((coin, i) => {
-          console.log('coin.coinSymbol', coin.coinSymbol);
-          if (coin.coinSymbol === symbol) index = i;
-        });
-        sortedArr.push(...arr.splice(index, 1));
-        setCoinListSorted(sortedArr.concat(arr));
-      });
-    }
-  }, [coinList]);
+  const coinListSorted = coinList;
+
+  // useEffect(() => {
+  //   if (coinList) {
+  //     const coinsOrder = ['USD', 'CAD', 'GBP', 'INR', 'EUR'];
+  //     const arr = coinList;
+  //     const sortedArr = [];
+  //     coinsOrder.forEach((symbol) => {
+  //       let index;
+  //       arr.forEach((coin, i) => {
+  //         console.log('coin.coinSymbol', coin.coinSymbol);
+  //         if (coin.coinSymbol === symbol) index = i;
+  //       });
+  //       sortedArr.push(...arr.splice(index, 1));
+  //       setCoinListSorted(sortedArr.concat(arr));
+  //     });
+  //   }
+  // }, [coinList]);
   return (
     <>
       <div className="side-bar d-flex flex-column">
@@ -217,24 +219,40 @@ function LayoutSidebarCoins({ active }) {
               >
                 <img className="coin-logo mr-2" src={allPlatforms} alt="" />
                 <div className="coin-name">Default Currency</div>
+                {defaultCoin.coin === null ? (
+                  <img className="select" src={selectIcon} alt="" />
+                ) : (
+                  ''
+                )}
               </div>
-              {coinListSorted.map((coin) => (
-                <div
-                  className="coin"
-                  key={coin.coinName}
-                  onClick={() => {
-                    setDefaultCoin({
-                      coin: coin.coinSymbol,
-                      name: coin.coinName,
-                      img: coin.coinImage,
-                    });
-                    setOpenDefaultCoinSidebar(false);
-                  }}
-                >
-                  <img className="coin-logo mr-2" src={coin.coinImage} alt="" />
-                  <div className="coin-name">{coin.coinName}</div>
-                </div>
-              ))}
+              {coinListSorted
+                .filter((coin) => coin.coinSymbol === 'USD')
+                .map((coin) => (
+                  <div
+                    className="coin"
+                    key={coin.coinName}
+                    onClick={() => {
+                      setDefaultCoin({
+                        coin: coin.coinSymbol,
+                        name: coin.coinName,
+                        img: coin.coinImage,
+                      });
+                      setOpenDefaultCoinSidebar(false);
+                    }}
+                  >
+                    <img
+                      className="coin-logo mr-2"
+                      src={coin.coinImage}
+                      alt=""
+                    />
+                    <div className="coin-name">{coin.coinName}</div>
+                    {defaultCoin.coin === coin.coinSymbol ? (
+                      <img className="select" src={selectIcon} alt="" />
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                ))}
             </Scrollbars>
           </>
         )}
