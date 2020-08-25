@@ -3,6 +3,7 @@ import ReactPlayer from 'react-player';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { IndexContext } from '../../../context/IndexContext';
 import Axios from 'axios';
+import { IsValidURL } from '../../../utils/FunctionTools';
 
 function AnalyticsEarn() {
   const [selected, setSelected] = useState({});
@@ -52,17 +53,17 @@ function AnalyticsEarn() {
           </div>
         </div>
         <div className="palyerWrapper">
-          {videoUrl ? (
+          {videoUrl &&
+          IsValidURL(videoUrl) &&
+          selected &&
+          selected.formData &&
+          selected.formData.Videothumbnail ? (
             <ReactPlayer
-              light={
-                selected &&
-                selected.formData &&
-                selected.formData.Videothumbnail
-              }
+              light={selected.formData.Videothumbnail}
               width="100%"
               height="100%"
               url={videoUrl}
-              config={{ forceVideo: true }}
+              playing
             />
           ) : (
             ''

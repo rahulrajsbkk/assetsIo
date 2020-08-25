@@ -129,10 +129,6 @@
           margin: auto;
           font-size: 18px;
         }
-        &.true {
-          opacity: 1;
-          border-color: $primary-color;
-        }
         &.title {
           justify-content: start;
           padding-left: 50px;
@@ -142,12 +138,17 @@
           width: 54px;
           min-width: 54px;
           max-width: 54px;
+          border-color: #e7e7e740;
           &.true {
             background: $primary-color;
             img {
               filter: brightness(0) invert(1);
             }
           }
+        }
+        &.true {
+          opacity: 1;
+          border-color: $primary-color;
         }
       }
     }
@@ -166,7 +167,7 @@
           flex: 0 0 33.33%;
           display: flex;
           padding: 35px 50px;
-          border-top: 0.5px solid $vault-border-color;
+          border-bottom: 0.5px solid $vault-border-color;
           align-items: center;
           .coin-logo {
             margin: auto;

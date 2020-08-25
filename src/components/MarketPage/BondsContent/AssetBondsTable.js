@@ -48,7 +48,7 @@ function AssetBondsTable({
         </div>
         <div
           className={`bt-asset ${!isAsset}`}
-          // onClick={() => setIsAsset(false)}
+          onClick={() => setIsAsset(false)}
         >
           {!isAsset ? 'By Bond For ' : 'By Bond '}
           <div
@@ -83,16 +83,6 @@ function AssetBondsTable({
               {'All Platforms'}
             </div>
           </div>
-        </div>
-        <div className="onlyFiat">
-          <span>Only Fiat</span>
-          <div
-            className={`switch ${onlyFiat}`}
-            onClick={() => setOnlyFiat(!onlyFiat)}
-          >
-            <div className="switchControll"></div>
-          </div>
-          <span>Both</span>
         </div>
         <label className="searchWrapper">
           <input
