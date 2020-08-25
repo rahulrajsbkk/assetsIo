@@ -7,7 +7,13 @@ import FundVault from '../../VaultsPage/VaultFundWithdraw/FundVault';
 import { VaultContext } from '../../../context/VaultContext';
 import { IndexContext } from '../../../context/IndexContext';
 
-function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
+function CoinDetailTable({
+  coinToDetail,
+  isAsset,
+  setCoinToDetail,
+  stepOne,
+  root,
+}) {
   const { email, updateInterval, coinData } = useContext(BankContext);
   const { setCoinSelected } = useContext(VaultContext);
   const { conractsObj } = useContext(IndexContext);
@@ -20,6 +26,18 @@ function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
   return (
     <div className="tableCoinDetail">
       <div className="breadCrumbs">
+        <div className="bread" onClick={() => setCoinToDetail(null)}>
+          {root}
+        </div>
+        <div className="div">
+          <FontAwesomeIcon icon={faChevronRight} />
+        </div>
+        <div className="bread" onClick={() => setCoinToDetail(null)}>
+          {stepOne}
+        </div>
+        <div className="div">
+          <FontAwesomeIcon icon={faChevronRight} />
+        </div>
         <div className="bread" onClick={() => setCoinToDetail(null)}>
           By {isAsset ? 'Asset' : 'Platform'}
         </div>

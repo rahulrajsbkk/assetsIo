@@ -141,6 +141,8 @@ function AssetBondsTable({
             isAsset={isAsset}
             coinToDetail={coinToDetail}
             setCoinToDetail={setCoinToDetail}
+            stepOne={searchTitle}
+            root={'Bonds'}
           />
         </VaultContextProvider>
       ) : (

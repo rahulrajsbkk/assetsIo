@@ -136,6 +136,8 @@ function AssetPlatformTable({
             isAsset={isAsset}
             coinToDetail={coinToDetail}
             setCoinToDetail={setCoinToDetail}
+            stepOne={searchTitle}
+            root={'Earn'}
           />
         </VaultContextProvider>
       ) : (
