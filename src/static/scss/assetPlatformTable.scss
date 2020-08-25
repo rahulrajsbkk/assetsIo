@@ -144,18 +144,18 @@
         margin: auto 7% auto 0;
       }
     }
-    .onlyFiat{
+    .onlyFiat {
       padding: 0 20px;
       height: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-right: 1px solid #E7E7E7;
-      span{
+      border-right: 1px solid #e7e7e7;
+      span {
         font-size: 11px;
         font-weight: bold;
       }
-      .switch{
+      .switch {
         cursor: pointer;
         height: 20px;
         width: 40px;
@@ -166,13 +166,13 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        .switchControll{
+        .switchControll {
           height: 14px;
           width: 14px;
           border-radius: 7px;
           background: $primary-color;
         }
-        &.true{
+        &.true {
           justify-content: flex-start;
         }
       }
@@ -240,14 +240,14 @@
                   right: 6px;
                 }
               }
-              &.estimatedDays{
-                  width: 200px;
-                  .estimatedDaysIn{
+              &.estimatedDays {
+                width: 200px;
+                .estimatedDaysIn {
                   height: 34px;
                   display: flex;
                   width: 65%;
                   border: 1px solid $primary-color;
-                  input{
+                  input {
                     padding: 0 15px;
                     width: 0;
                     flex-grow: 1;
@@ -255,7 +255,7 @@
                     background: none;
                     -moz-appearance: textfield;
                   }
-                  .btn-go{
+                  .btn-go {
                     height: 100%;
                     width: 34px;
                     background-color: $primary-color;
@@ -275,56 +275,56 @@
                 padding-left: 50px;
               }
             }
-            &.true{
-              border-bottom:  none;
+            &.true {
+              border-bottom: none;
             }
           }
-          .detailRow{
+          .detailRow {
             position: relative;
-            td{
+            td {
               height: 200px;
               width: 100%;
-              .bondDetail{
+              .bondDetail {
                 height: 100%;
                 width: 100%;
                 display: flex;
                 // background: cyan;
-                .btns{
+                .btns {
                   padding-left: 50px;
                   display: flex;
                   flex-direction: column;
                   justify-content: center;
-                  .btn-daily{
+                  .btn-daily {
                     cursor: pointer;
                     width: 100%;
                     border: 1px solid $primary-color;
                     padding: 2px 20px;
                     margin: 1px 0;
-                    opacity: .3;
-                    &.true{
+                    opacity: 0.3;
+                    &.true {
                       opacity: 1;
                     }
                   }
                 }
-                .rateNPower{
+                .rateNPower {
                   padding: 0 4%;
                   flex-grow: 1;
                   display: flex;
                   flex-direction: column;
                   justify-content: center;
-                  .value{
-                    color: #3EA254;
+                  .value {
+                    color: #3ea254;
                     font-size: 25px;
                     font-weight: bold;
                   }
-                  .label{
+                  .label {
                     color: $primary-color;
                     font-size: 16px;
                   }
                 }
-                .chartWrap{
-                  margin: 10px ;
-                  flex:0 0 40%;
+                .chartWrap {
+                  margin: 10px;
+                  flex: 0 0 40%;
                   position: relative;
                 }
               }
@@ -456,26 +456,54 @@
   .analyticsEarn {
     border: 1px solid #e7e7e7;
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
+    height: 0;
     flex-grow: 1;
     display: flex;
     .menu {
       flex: 0 0 25%;
       border-right: 1px solid #e7e7e7;
-      padding: 20px 40px;
+      position: relative;
+      .view {
+        padding: 20px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        .menu-itm {
+          flex: 0 0 20%;
+          cursor: pointer;
+          color: #464b4e;
+          font-size: 16px;
+          margin-left: 10px;
+          opacity: 0.5;
+          &.true {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0;
+            opacity: 1;
+          }
+        }
+      }
+    }
+    .content {
       display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      .menu-itm {
-        cursor: pointer;
-        color: #464b4e;
-        font-size: 16px;
-        margin-left: 10px;
-        opacity: 0.5;
-        &.true {
-          font-size: 26px;
+      .textContent {
+        flex: 1;
+        padding: 50px;
+        h6 {
+          font-size: 22px;
           font-weight: bold;
-          margin: 0;
-          opacity: 1;
+        }
+        .textDetail {
+          font-size: 18px;
+        }
+      }
+      .palyerWrapper {
+        min-width: 320px;
+        flex: 0 0;
+        border-left: 1px solid $vault-border-color;
+        .react-player__preview {
+          background-size: contain !important;
+          background-repeat: no-repeat !important;
         }
       }
     }

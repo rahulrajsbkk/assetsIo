@@ -1,42 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import ReactPlayer from 'react-player';
+import { Scrollbars } from 'react-custom-scrollbars';
+import { IndexContext } from '../../../context/IndexContext';
+import Axios from 'axios';
 
 function AnalyticsEarn() {
-  const [selected, setSelected] = useState('Drawdown');
+  const [selected, setSelected] = useState({});
+  const { defenitionsList } = useContext(IndexContext);
+
+  useEffect(() => {
+    setSelected(defenitionsList[0]);
+  }, [defenitionsList]);
+
+  const [videoUrl, setVideoUrl] = useState('');
+
+  useEffect(() => {
+    Axios.post(
+      'https://vod-backend.globalxchange.io/get_user_profiled_video_stream_link',
+      {
+        video_id: selected && selected.formData && selected.formData.Video,
+      }
+    ).then((res) => {
+      setVideoUrl(res.data);
+    });
+  }, [selected]);
   return (
     <div className="analyticsEarn">
-      <div className="menu">
-        <div
-          className={`menu-itm ${selected === 'Drawdown'}`}
-          onClick={() => setSelected('Drawdown')}
-        >
-          Drawdown
+      <Scrollbars
+        autoHide
+        className="menu"
+        renderView={(props) => <div {...props} className="view" />}
+      >
+        {defenitionsList.map((def) => (
+          <div
+            key={def.Key}
+            className={`menu-itm ${selected === def}`}
+            onClick={() => {
+              setSelected(def);
+              setVideoUrl('');
+            }}
+          >
+            {def.formData.Title}
+          </div>
+        ))}
+      </Scrollbars>
+      <div className="content">
+        <div className="textContent">
+          <h6>{selected && selected.formData && selected.formData.Subtitle}</h6>
+          <div className="textDetail">
+            {selected && selected.formData && selected.formData.Description}
+          </div>
         </div>
-        <div
-          className={`menu-itm ${selected === 'Bond Risk'}`}
-          onClick={() => setSelected('Bond Risk')}
-        >
-          Bond Risk
-        </div>
-        <div
-          className={`menu-itm ${selected === 'Alpha Analysis'}`}
-          onClick={() => setSelected('Alpha Analysis')}
-        >
-          Alpha Analysis
-        </div>
-        <div
-          className={`menu-itm ${selected === 'News'}`}
-          onClick={() => setSelected('News')}
-        >
-          News
-        </div>
-        <div
-          className={`menu-itm ${selected === 'Supply/Demman'}`}
-          onClick={() => setSelected('Supply/Demman')}
-        >
-          Supply/Demman
+        <div className="palyerWrapper">
+          {videoUrl ? (
+            <ReactPlayer
+              light={
+                selected &&
+                selected.formData &&
+                selected.formData.Videothumbnail
+              }
+              width="100%"
+              height="100%"
+              url={videoUrl}
+              config={{ forceVideo: true }}
+            />
+          ) : (
+            ''
+          )}
         </div>
       </div>
-      <div className="content"></div>
     </div>
   );
 }
