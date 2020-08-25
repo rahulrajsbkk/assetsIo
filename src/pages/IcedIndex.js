@@ -55,6 +55,13 @@ function IcedIndex() {
     }
   }
 
+  const details = [
+    'Indicies Will Allow You To Create Your Own Index Funds In A Matter Of Seconds. Tap Into The Biggest Trends In The World Without The Risk Of Choosing The Right Asset. ',
+    'Assets.io Has Created The Ice Protocol Which Enables Your To Digitalize Any Asset. Once Your Have Turned Your Assets Into Iced Assets, They Can Now Be Used As An Instrument On The Platform ',
+    'The IceMachine Is The Interface To The IcedProtocol. It Allows Your To Interact WIth The Smart Contract & Lay The Abstraction Parameters For You Newly Created Iced Asset',
+  ];
+  const [detailIndex, setDetailIndex] = useState(null);
+
   return (
     <IndexContextProvider>
       <Layout
@@ -90,6 +97,8 @@ function IcedIndex() {
               //   setMenuSelected('borrow-intrest');
               //   setTitle('Borrow');
               // }}
+              onMouseEnter={() => setDetailIndex(0)}
+              onMouseLeave={() => setDetailIndex(null)}
             >
               Indicies
             </div>
@@ -99,6 +108,8 @@ function IcedIndex() {
               //   setMenuSelected('loan');
               //   setTitle('Loans');
               // }}
+              onMouseEnter={() => setDetailIndex(1)}
+              onMouseLeave={() => setDetailIndex(null)}
             >
               Assets
             </div>
@@ -108,6 +119,8 @@ function IcedIndex() {
               //   setMenuSelected('collateral');
               //   setTitle('COLLATERAL');
               // }}
+              onMouseEnter={() => setDetailIndex(2)}
+              onMouseLeave={() => setDetailIndex(null)}
             >
               Ice Machine
             </div>
@@ -115,7 +128,19 @@ function IcedIndex() {
         ) : (
           ''
         )}
-        <div className="content-section">{getPageContent(menuSelected)}</div>
+        <div className="content-section">
+          {getPageContent(menuSelected)}
+          {details[detailIndex] ? (
+            <div className={`overlayComingSoon det-${detailIndex + 3}`}>
+              <div className="detail">
+                <div className="detailText">{details[detailIndex]}</div>
+                <div className="btComingSoon">Coming Soon!</div>
+              </div>
+            </div>
+          ) : (
+            ''
+          )}
+        </div>
       </Layout>
     </IndexContextProvider>
   );
