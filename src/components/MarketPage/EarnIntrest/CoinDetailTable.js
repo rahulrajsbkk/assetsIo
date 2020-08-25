@@ -40,7 +40,7 @@ function CoinDetailTable({ coinToDetail, isAsset, setCoinToDetail }) {
             }
           }}
         >
-          Deposit {coinToDetail.coinSymbol}
+          Earn {coinToDetail.coinSymbol}
         </div>
         <div className="btnBuy">Buy {coinToDetail.coinSymbol}</div>
       </div>

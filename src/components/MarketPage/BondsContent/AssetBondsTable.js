@@ -8,6 +8,8 @@ import fullScreenIconExit from '../../../static/images/fullScreenExit.svg';
 import BondsListTable from './BondsListTable';
 import allPlatformIcon from '../../../static/images/allPlatforms.svg';
 import { BankContext } from '../../../context/Context';
+import VaultContextProvider from '../../../context/VaultContext';
+import CoinDetailTable from '../EarnIntrest/CoinDetailTable';
 
 function AssetBondsTable({
   coinList,
@@ -133,16 +135,26 @@ function AssetBondsTable({
           alt=""
         />
       </div>
-      <Scrollbars autoHide className="tableScrollWrapper">
-        {isAsset ? (
-          <BondsAssetTable
+      {coinToDetail ? (
+        <VaultContextProvider>
+          <CoinDetailTable
+            isAsset={isAsset}
+            coinToDetail={coinToDetail}
             setCoinToDetail={setCoinToDetail}
-            coinList={coinList}
           />
-        ) : (
-          <BondsListTable assetTab={assetTab} />
-        )}
-      </Scrollbars>
+        </VaultContextProvider>
+      ) : (
+        <Scrollbars autoHide className="tableScrollWrapper">
+          {isAsset ? (
+            <BondsAssetTable
+              setCoinToDetail={setCoinToDetail}
+              coinList={coinList}
+            />
+          ) : (
+            <BondsListTable assetTab={assetTab} />
+          )}
+        </Scrollbars>
+      )}
     </div>
   );
 }
