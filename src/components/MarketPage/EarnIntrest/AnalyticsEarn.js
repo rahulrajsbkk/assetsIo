@@ -64,6 +64,7 @@ function AnalyticsEarn() {
               height="100%"
               url={videoUrl}
               playing
+              controls
             />
           ) : (
             ''

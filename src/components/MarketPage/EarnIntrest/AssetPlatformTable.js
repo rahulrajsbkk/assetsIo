@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faSearch,
-  faCaretDown,
-  faCaretUp,
-} from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import AssetTable from './AssetTable';
 import PlatformTable from './PlatformTable';
 import fullScreenIcon from '../../../static/images/fullScreen.svg';
@@ -35,7 +31,7 @@ function AssetPlatformTable({
     return () => {
       setContentSideBar({});
     };
-  }, []);
+  }, [setContentSideBar]);
 
   const platformList = (
     <>

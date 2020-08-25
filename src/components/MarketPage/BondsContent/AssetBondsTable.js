@@ -24,7 +24,6 @@ function AssetBondsTable({
   const [coinSelect, setCoinSelect] = useState({});
   const [search, setSearch] = useState('');
 
-  const [onlyFiat, setOnlyFiat] = useState(true);
   useEffect(() => {
     if (coinList[0]) setCoinSelect(coinList[0]);
   }, [coinList]);
@@ -35,7 +34,7 @@ function AssetBondsTable({
     return () => {
       setContentSideBar({});
     };
-  }, []);
+  }, [setContentSideBar]);
   return (
     <div
       className={`assetPlatformTable ${coinToDetail === null} ${

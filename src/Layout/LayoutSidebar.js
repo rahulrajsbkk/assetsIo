@@ -13,7 +13,6 @@ import AssetPriceOrRates from './AssetPriceOrRates';
 function LayoutSidebar({ active }) {
   const history = useHistory();
   const {
-    login,
     username,
     name,
     profileImg,
