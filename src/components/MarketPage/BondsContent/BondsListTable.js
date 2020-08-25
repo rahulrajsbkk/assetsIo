@@ -35,7 +35,7 @@ function BondsListTable({ assetTab }) {
       case 'cryptoCoin':
         setAssetType('Crypto');
         break;
-      case 'iced assets':
+      case 'fiat currencies':
         setAssetType('Iced');
         break;
       default:
