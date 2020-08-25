@@ -100,7 +100,7 @@ function IcedIndex() {
               //   setTitle('Loans');
               // }}
             >
-              Loans
+              Assets
             </div>
             <div
               className={`tab-itm ${menuSelected === 'collateral'}`}

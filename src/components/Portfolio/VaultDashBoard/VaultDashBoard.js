@@ -39,19 +39,19 @@ function VaultDashBoard() {
           </div>
           <div
             className={`tab-itm ${dashTab === 'Mortgages' ? 'active' : ''}`}
-            onClick={() => setDashTab('Mortgages')}
+            // onClick={() => setDashTab('Mortgages')}
           >
             <h5>Mortgages</h5>
           </div>
           <div
             className={`tab-itm ${dashTab === 'Co-Investing' ? 'active' : ''}`}
-            onClick={() => setDashTab('Co-Investing')}
+            // onClick={() => setDashTab('Co-Investing')}
           >
             <h5>Co-Investing</h5>
           </div>
           <div
             className={`tab-itm ${dashTab === 'Profile' ? 'active' : ''}`}
-            onClick={() => setDashTab('Profile')}
+            // onClick={() => setDashTab('Profile')}
           >
             <h5>Profile</h5>
           </div>
