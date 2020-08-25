@@ -3,7 +3,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 
 import settingsIcon from '../static/images/sidebar-icons/settings.svg';
 import selectIcon from '../static/images/sidebar-icons/selected.svg';
-import logo from '../static/images/logoWtBg.png';
+import logo from '../static/images/logoWtBg.svg';
 import guest from '../static/images/guest.jpg';
 import card from '../static/images/sidebar-icons/card.svg';
 import iced from '../static/images/logo.svg';

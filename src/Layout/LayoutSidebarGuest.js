@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars';
 
 import iced from '../static/images/logo.svg';
-import guest from '../static/images/logoWtBg.png';
+import guest from '../static/images/logoWtBg.svg';
 import portfolio from '../static/images/sidebar-icons/portfolio.svg';
 import appstore from '../static/images/sidebar-icons/appstore.svg';
 import LoginWrapper from '../components/LoginModal/LoginWrapper';
