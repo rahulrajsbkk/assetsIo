@@ -6,6 +6,7 @@ import { BankContext } from '../../../context/Context';
 import FundVault from '../../VaultsPage/VaultFundWithdraw/FundVault';
 import { VaultContext } from '../../../context/VaultContext';
 import { IndexContext } from '../../../context/IndexContext';
+import LoginWrapper from '../../LoginModal/LoginWrapper';
 
 function CoinDetailTable({
   coinToDetail,
@@ -20,9 +21,12 @@ function CoinDetailTable({
   const [toHide, setToHide] = useState('');
   const [duration, setDuration] = useState(3);
   const [depositModal, setDepositModal] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
+
   const togleDuration = (duration) => {
     setDuration(duration === 2 ? 2.1 : 2);
   };
+
   return (
     <div className="tableCoinDetail">
       <div className="breadCrumbs">
@@ -52,9 +56,11 @@ function CoinDetailTable({
         <div
           className="btnDeposit"
           onClick={() => {
+            setCoinSelected(coinToDetail);
             if (email) {
-              setCoinSelected(coinToDetail);
               setDepositModal(true);
+            } else {
+              setLoginModal(true);
             }
           }}
         >
@@ -231,6 +237,18 @@ function CoinDetailTable({
         openModal={depositModal}
         setOpenModal={setDepositModal}
       />
+      {loginModal ? (
+        <LoginWrapper
+          onClose={() => {
+            setLoginModal(false);
+          }}
+          onLogin={() => {
+            setDepositModal(true);
+          }}
+        />
+      ) : (
+        ''
+      )}
     </div>
   );
 }
