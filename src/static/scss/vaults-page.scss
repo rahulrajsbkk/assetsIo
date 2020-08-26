@@ -151,18 +151,56 @@
     display: flex;
     .drop-select,
     .search {
+      position: relative;
       padding: 0 20px;
       display: flex;
+      flex-direction: column;
       border: 1px solid $vault-border-color;
       color: $primary-color;
       border-radius: 6px;
-      justify-content: center;
-      align-items: center;
-      // font-size: 12px;
+      .content {
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &.transaction {
+          width: 230px;
+        }
+        &.direction {
+          width: 140px;
+        }
+      }
+      .menu {
+        z-index: 5;
+        position: absolute;
+        top: calc(100% - 2px);
+        margin-left: -1px;
+        margin-right: -2px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        left: 0;
+        right: 0;
+        border-radius: 0 0 6px 6px;
+        border: 1px solid $vault-border-color;
+        border-top: none;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        .menuItem {
+          cursor: pointer;
+          height: 39px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+      }
     }
     .search {
       input {
-        height: 100%;
+        height: 40px;
         width: 200px;
         border: none;
         background: none;

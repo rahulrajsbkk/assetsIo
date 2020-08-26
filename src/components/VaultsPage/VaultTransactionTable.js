@@ -6,7 +6,13 @@ import { VaultContext } from '../../context/VaultContext';
 import { FormatCurrency, YesterdayToday } from '../../utils/FunctionTools';
 
 function VaultTransactionTable({ credit, debit }) {
-  const { vaultTxns, coinSelected, loading } = useContext(VaultContext);
+  const {
+    vaultTxns,
+    coinSelected,
+    loading,
+    menuTwo,
+    dateSelected,
+  } = useContext(VaultContext);
   let date = '';
   return (
     <Scrollbars
@@ -30,7 +36,16 @@ function VaultTransactionTable({ credit, debit }) {
           .filter(
             (txn) =>
               txn.coin === coinSelected.coinSymbol &&
-              (txn.deposit !== credit || txn.deposit === debit)
+              (menuTwo.key === 'all'
+                ? true
+                : menuTwo.key === 'credit'
+                ? txn.deposit
+                : !txn.deposit) &&
+              (txn.deposit !== credit || txn.deposit === debit) &&
+              (dateSelected
+                ? moment(txn.timestamp).format('MMDDYYYY') ===
+                  moment(dateSelected.timestamp).format('MMDDYYYY')
+                : true)
           )
           .map((txn) => {
             console.log('txn :>> ', txn);

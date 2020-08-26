@@ -54,6 +54,16 @@ function VaultContextProvider({ children }) {
     }
     // eslint-disable-next-line
   }, [profileId]);
+
+  // For Vault Filter Conrolls
+
+  const [menuTwo, setMenuTwo] = useState({
+    key: 'all',
+    value: 'All Directions',
+  });
+
+  const [dateSelected, setDateSelected] = useState(null);
+
   return (
     <VaultContext.Provider
       value={{
@@ -64,6 +74,10 @@ function VaultContextProvider({ children }) {
         updateBalance,
         coinAddress,
         loading,
+        menuTwo,
+        setMenuTwo,
+        dateSelected,
+        setDateSelected,
       }}
     >
       {children}
