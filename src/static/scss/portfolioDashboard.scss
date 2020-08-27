@@ -153,8 +153,10 @@
         display: flex;
         align-items: center;
         h6 {
+          line-height: 1;
+          margin: 0;
           margin-left: 90px;
-          font-size: 30px;
+          font-size: 24px;
           font-weight: 600;
           color: white;
         }
@@ -163,8 +165,9 @@
           margin-right: 40px;
           display: flex;
           .btnAsset {
-            height: 50px;
+            height: 40px;
             width: 170px;
+            font-size: 14px;
             border: 1px solid white;
             margin-right: 20px;
             display: flex;

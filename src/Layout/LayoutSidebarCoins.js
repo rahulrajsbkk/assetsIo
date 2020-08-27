@@ -6,6 +6,7 @@ import selectIcon from '../static/images/sidebar-icons/selected.svg';
 import logo from '../static/images/logoWtBg.svg';
 import guest from '../static/images/guest.jpg';
 import card from '../static/images/sidebar-icons/card.svg';
+import earnings from '../static/images/sidebar-icons/earnings.svg';
 import iced from '../static/images/logo.svg';
 import portfolio from '../static/images/sidebar-icons/portfolio.svg';
 import appstore from '../static/images/sidebar-icons/appstore.svg';
@@ -112,6 +113,12 @@ function LayoutSidebarCoins({ active }) {
                 <span className="my-auto">Vault</span>
               </h5>
             </Link>
+            <div className={`menu-itm${false ? ' active' : ''}`}>
+              <h5 className="d-flex py-3 menu-itm">
+                <img src={earnings} alt="" />
+                <span className="my-auto">Earnings</span>
+              </h5>
+            </div>
             <Link
               to="/mobile-apps"
               className={`menu-itm${active === 'mobileApps' ? ' active' : ''}`}

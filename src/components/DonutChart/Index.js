@@ -21,6 +21,7 @@ const Arc = ({
     />
   </g>
 );
+
 // eslint-disable-next-line object-curly-newline
 const DonutChart = ({ onMouseOver, onMouseOut, pieData, segment }) => {
   const innerRadius = 130;
@@ -30,6 +31,7 @@ const DonutChart = ({ onMouseOver, onMouseOut, pieData, segment }) => {
     .value((d) => d.value)
     .sort(null);
   const createArc = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
+
   const colors = d3.scaleOrdinal(d3.schemeCategory10);
   const data = createPie(pieData);
 

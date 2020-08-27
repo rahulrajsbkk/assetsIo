@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-function PortfolioDashCardsList() {
-  const [selectedCard, setSelectedCard] = useState(null);
+function PortfolioDashCardsList({ selectedCard, setSelectedCard }) {
   if (selectedCard)
     return (
       <div className="cardsSection detail">

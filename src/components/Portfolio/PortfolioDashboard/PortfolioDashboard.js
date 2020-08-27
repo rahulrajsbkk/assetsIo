@@ -21,7 +21,6 @@ function PortfolioDashboard() {
   useEffect(() => {
     let totalUsdValue = 0.00000000000000000000000000000000000000001; //To Bypass Divide By Zero Error
     coinList.forEach((coin) => {
-      console.log('coin', coin);
       totalUsdValue += coin.coinValueUSD;
     });
     setTotalLiquid(totalUsdValue);
@@ -57,6 +56,8 @@ function PortfolioDashboard() {
       name: 'Pooled',
     },
   ];
+
+  const [selectedCard, setSelectedCard] = useState(null);
 
   return (
     <div className="portfolioDashboard">
@@ -100,7 +101,7 @@ function PortfolioDashboard() {
             </h4>
           </div>
           <div className="chart-section">
-            <div className="chart">
+            <div className="chart" onClick={() => setSelectedCard(null)}>
               <div className="chartLogo">
                 <img src={assetLogo} alt="" />
               </div>
@@ -144,7 +145,9 @@ function PortfolioDashboard() {
                         (
                         {FormatNumber(
                           (totalLiquid / (totalLiquid + totalPooled)) * 100,
-                          1
+                          (totalLiquid / (totalLiquid + totalPooled)) * 100 < 10
+                            ? 2
+                            : 1
                         )}
                         )
                       </small>
@@ -176,7 +179,9 @@ function PortfolioDashboard() {
                         (
                         {FormatNumber(
                           (totalPooled / (totalLiquid + totalPooled)) * 100,
-                          1
+                          (totalPooled / (totalLiquid + totalPooled)) * 100 < 10
+                            ? 2
+                            : 1
                         )}
                         )
                       </small>
@@ -187,7 +192,10 @@ function PortfolioDashboard() {
             </div>
           </div>
         </div>
-        <PortfolioDashCardsList />
+        <PortfolioDashCardsList
+          selectedCard={selectedCard}
+          setSelectedCard={setSelectedCard}
+        />
       </div>
       <PortfolioGrowAssets />
     </div>

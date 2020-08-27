@@ -5,6 +5,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import guest from '../static/images/guest.jpg';
 import iced from '../static/images/logo.svg';
 import card from '../static/images/sidebar-icons/card.svg';
+import earnings from '../static/images/sidebar-icons/earnings.svg';
 import portfolio from '../static/images/sidebar-icons/portfolio.svg';
 import appstore from '../static/images/sidebar-icons/appstore.svg';
 import { BankContext } from '../context/Context';
@@ -84,6 +85,12 @@ function LayoutSidebar({ active }) {
           <h5 className="d-flex py-3 menu-itm">
             <img src={card} alt="" />
             <span className="my-auto">Vault</span>
+          </h5>
+        </div>
+        <div className={`menu-itm${false ? ' active' : ''}`}>
+          <h5 className="d-flex py-3 menu-itm">
+            <img src={earnings} alt="" />
+            <span className="my-auto">Earnings</span>
           </h5>
         </div>
         <Link
