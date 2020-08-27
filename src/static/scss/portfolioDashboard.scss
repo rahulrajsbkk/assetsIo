@@ -77,6 +77,9 @@
               width: 45%;
             }
           }
+          &:hover {
+            transform: scale(1.02);
+          }
         }
         .cards-list {
           .view {
@@ -400,5 +403,14 @@
         padding-left: 90px;
       }
     }
+  }
+}
+
+@keyframes example {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(359);
   }
 }
