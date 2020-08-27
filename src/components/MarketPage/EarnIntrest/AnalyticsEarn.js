@@ -4,10 +4,12 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import { IndexContext } from '../../../context/IndexContext';
 import Axios from 'axios';
 import { IsValidURL } from '../../../utils/FunctionTools';
+import { BankContext } from '../../../context/Context';
 
 function AnalyticsEarn() {
   const [selected, setSelected] = useState({});
   const { defenitionsList } = useContext(IndexContext);
+  const { email } = useContext(BankContext);
   const playerWrapper = useRef();
 
   useEffect(() => {
@@ -31,7 +33,7 @@ function AnalyticsEarn() {
     <div className="analyticsEarn">
       <Scrollbars
         autoHide
-        className="menu"
+        className={`menu ${!email}`}
         renderView={(props) => <div {...props} className="view" />}
       >
         {defenitionsList.map((def) => (

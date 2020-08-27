@@ -131,8 +131,15 @@ function IcedIndex() {
         <div className="content-section">
           {getPageContent(menuSelected)}
           {details[detailIndex] ? (
-            <div className={`overlayComingSoon det-${detailIndex + 3}`}>
-              <div className="detail">
+            <div
+              className={`overlayComingSoon det-${detailIndex + 3}`}
+              onMouseEnter={() => setDetailIndex(detailIndex)}
+            >
+              <div
+                className="detail"
+                onMouseEnter={() => setDetailIndex(detailIndex)}
+                onMouseLeave={() => setDetailIndex(null)}
+              >
                 <div className="detailText">{details[detailIndex]}</div>
                 <div className="btComingSoon">Coming Soon!</div>
               </div>

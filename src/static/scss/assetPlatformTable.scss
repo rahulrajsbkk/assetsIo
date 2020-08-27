@@ -483,6 +483,9 @@
           }
         }
       }
+      &.true {
+        zoom: 0.9;
+      }
     }
     .content {
       display: flex;

@@ -116,8 +116,8 @@ function PortfolioDashboard() {
                 segment={segment}
               />
             </div>
-            <div className="cards-list">
-              <div className="view">
+            <div className="cards-list d-flex">
+              <div className="view my-auto">
                 <div className="indicator">
                   <h6
                     className={`my-3 d-flex ${
@@ -149,7 +149,7 @@ function PortfolioDashboard() {
                             ? 2
                             : 1
                         )}
-                        )
+                        %)
                       </small>
                     </span>
                   </h6>
@@ -183,7 +183,7 @@ function PortfolioDashboard() {
                             ? 2
                             : 1
                         )}
-                        )
+                        %)
                       </small>
                     </span>
                   </h6>
