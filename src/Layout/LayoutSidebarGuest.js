@@ -41,7 +41,7 @@ function LayoutSidebarGuest({ active }) {
           </div>
         </div>
         <Scrollbars
-          className="mt-4 menu-scrl"
+          className="menu-scrl"
           autoHide
           renderTrackHorizontal={() => <div />}
           renderThumbHorizontal={() => <div />}

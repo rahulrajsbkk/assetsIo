@@ -55,9 +55,7 @@
     }
 
     .menu-scrl {
-      height: 240px !important;
-      margin-top: 3rem !important;
-      margin-bottom: auto;
+      margin: 3rem 0;
       .menu-side {
         padding: 0 50px;
         justify-content: center;
@@ -71,7 +69,8 @@
           width: 100%;
         }
         .menu-itm {
-          flex: 0 0 33.333%;
+          // flex: 0 0 33.333%;
+          margin: 0.6rem 0;
           cursor: pointer;
           text-decoration: none !important;
           h5 {

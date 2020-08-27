@@ -77,7 +77,7 @@ function LayoutSidebarCoins({ active }) {
         </div>
         {email ? (
           <Scrollbars
-            className="mt-4 menu-scrl"
+            className="menu-scrl"
             autoHide
             renderTrackHorizontal={() => <div />}
             renderThumbHorizontal={() => <div />}
@@ -131,7 +131,7 @@ function LayoutSidebarCoins({ active }) {
           </Scrollbars>
         ) : (
           <Scrollbars
-            className="mt-4 menu-scrl"
+            className="menu-scrl"
             autoHide
             renderTrackHorizontal={() => <div />}
             renderThumbHorizontal={() => <div />}
