@@ -8,9 +8,9 @@
   }
 }
 .vault-new-contract {
-  border-top: 0.5px solid $vault-border-color;
   flex: 0 0 45%;
   max-height: 45%;
+  border-top: 0.5px solid $vault-border-color;
   display: flex;
   flex-direction: column;
   .head {
@@ -322,7 +322,10 @@
       border-top: 1px solid $vault-border-color;
     }
     .costNCount {
-      padding: 60px 105px;
+      padding: 0 105px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       .costOfContract {
         display: flex;
         align-items: center;
@@ -373,7 +376,10 @@
       flex-direction: column;
       .coinDetailWrap {
         flex: 1;
-        padding: 60px 105px;
+        padding: 0 105px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         .title {
           font-size: 25px;
           font-weight: bold;

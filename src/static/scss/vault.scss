@@ -108,11 +108,11 @@
                   svg {
                     margin: 0 10px 0 0;
                   }
-                  &.inactive{
-                    opacity: .4;
+                  &.inactive {
+                    opacity: 0.4;
                   }
                 }
-               
+
                 @include xl {
                   margin-left: 30px;
                   h6 {

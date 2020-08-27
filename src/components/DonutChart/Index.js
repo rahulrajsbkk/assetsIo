@@ -23,7 +23,7 @@ const Arc = ({
 );
 // eslint-disable-next-line object-curly-newline
 const DonutChart = ({ onMouseOver, onMouseOut, pieData, segment }) => {
-  const innerRadius = 120;
+  const innerRadius = 130;
   const outerRadius = 150;
   const createPie = d3
     .pie()
