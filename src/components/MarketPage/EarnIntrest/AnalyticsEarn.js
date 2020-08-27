@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import ReactPlayer from 'react-player';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { IndexContext } from '../../../context/IndexContext';
@@ -8,6 +8,7 @@ import { IsValidURL } from '../../../utils/FunctionTools';
 function AnalyticsEarn() {
   const [selected, setSelected] = useState({});
   const { defenitionsList } = useContext(IndexContext);
+  const playerWrapper = useRef();
 
   useEffect(() => {
     setSelected(defenitionsList[0]);
@@ -25,6 +26,7 @@ function AnalyticsEarn() {
       setVideoUrl(res.data);
     });
   }, [selected]);
+
   return (
     <div className="analyticsEarn">
       <Scrollbars
@@ -52,7 +54,18 @@ function AnalyticsEarn() {
             {selected && selected.formData && selected.formData.Description}
           </div>
         </div>
-        <div className="palyerWrapper">
+        <div
+          className="palyerWrapper"
+          ref={playerWrapper}
+          style={{
+            width:
+              playerWrapper.current &&
+              playerWrapper.current.clientHeight * 1.76,
+            minWidth:
+              playerWrapper.current &&
+              playerWrapper.current.clientHeight * 1.76,
+          }}
+        >
           {videoUrl &&
           IsValidURL(videoUrl) &&
           selected &&
