@@ -101,99 +101,104 @@
         }
       }
     }
-    .tab-inrest-asset {
-      margin-top: auto;
+    .assetPriceWrapper {
+      flex: 0 0 40%;
       display: flex;
-      border: 1px $vault-border-color;
-      border-style: solid none none none;
-      height: 55px;
-      .tab-itm {
-        position: relative;
-        cursor: pointer;
-        width: 0;
-        flex: 1;
+      flex-direction: column;
+      .tab-inrest-asset {
+        margin-top: auto;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 14px 6px;
-        border-bottom: 2px solid $vault-border-color;
-        font-size: 14px;
-        opacity: 0.25;
-        .backIcon {
-          position: absolute;
-          top: 0;
-          bottom: 0;
-          left: 30px;
-          margin: auto;
-          font-size: 18px;
-        }
-        &.title {
-          justify-content: start;
-          padding-left: 50px;
-        }
-        &.settings {
-          opacity: 1;
-          width: 54px;
-          min-width: 54px;
-          max-width: 54px;
-          border-color: #e7e7e740;
-          &.true {
-            background: $primary-color;
-            img {
-              filter: brightness(0) invert(1);
+        border: 1px $vault-border-color;
+        border-style: solid none none none;
+        height: 65px;
+        .tab-itm {
+          position: relative;
+          cursor: pointer;
+          width: 0;
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 14px 6px;
+          border-bottom: 2px solid $vault-border-color;
+          font-size: 14px;
+          opacity: 0.25;
+          .backIcon {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 30px;
+            margin: auto;
+            font-size: 18px;
+          }
+          &.title {
+            justify-content: start;
+            padding-left: 50px;
+          }
+          &.settings {
+            opacity: 1;
+            width: 54px;
+            min-width: 54px;
+            max-width: 54px;
+            border-color: #e7e7e740;
+            &.true {
+              background: $primary-color;
+              img {
+                filter: brightness(0) invert(1);
+              }
             }
           }
-        }
-        &.true {
-          opacity: 1;
-          border-color: $primary-color;
+          &.true {
+            opacity: 1;
+            border-color: $primary-color;
+          }
         }
       }
-    }
-    .rate-list-wrapper {
-      height: 320px;
-      max-height: 320px;
-      .rates-list {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        overflow-y: auto;
-        .coin {
-          flex: 0 0 33.33%;
+      .rate-list-wrapper {
+        height: 0 !important;
+        flex-grow: 1;
+        .rates-list {
           display: flex;
-          padding: 35px 50px;
-          border-bottom: 0.5px solid $vault-border-color;
-          align-items: center;
-          .coin-logo {
-            margin: auto;
-            margin-left: 0;
-            height: 20px;
-          }
-          .coin-name {
-            font-size: 17px;
-          }
-          .rate {
-            margin: auto;
-            margin-right: 0;
-            text-align: center;
-            font-size: 17px;
-            small {
-              font-size: 10px;
-              color: #3ea154;
-              margin-top: auto;
-              svg {
-                margin-left: 4px;
-                height: 11px;
-              }
-              &.true {
-                color: #da3a3a;
+          flex-direction: column;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          overflow-y: auto;
+          .coin {
+            flex: 0 0 33.33%;
+            display: flex;
+            padding: 35px 50px;
+            border-bottom: 0.5px solid $vault-border-color;
+            align-items: center;
+            .coin-logo {
+              margin: auto;
+              margin-left: 0;
+              height: 20px;
+            }
+            .coin-name {
+              font-size: 17px;
+            }
+            .rate {
+              margin: auto;
+              margin-right: 0;
+              text-align: center;
+              font-size: 17px;
+              small {
+                font-size: 10px;
+                color: #3ea154;
+                margin-top: auto;
                 svg {
-                  transform: scale(-1);
-                  path {
-                    fill: #da3a3a;
+                  margin-left: 4px;
+                  height: 11px;
+                }
+                &.true {
+                  color: #da3a3a;
+                  svg {
+                    transform: scale(-1);
+                    path {
+                      fill: #da3a3a;
+                    }
                   }
                 }
               }

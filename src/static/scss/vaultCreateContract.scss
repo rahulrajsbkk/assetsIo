@@ -194,8 +194,8 @@
       display: flex;
       margin-left: auto;
       .coin-wrap {
-        height: 60px;
-        width: 60px;
+        height: 45px;
+        width: 45px;
         border-radius: 6px;
         border: 1px solid $vault-border-color;
         margin-left: 15px;
@@ -203,8 +203,8 @@
         justify-content: center;
         align-items: center;
         img {
-          width: 40px;
-          height: 40px;
+          width: 28px;
+          height: 28px;
         }
         &.true {
           background-color: $primary-color;
@@ -215,8 +215,8 @@
       }
       .search-wrapper {
         margin-left: 15px;
-        height: 60px;
-        width: 60px;
+        height: 45px;
+        width: 45px;
         transition: all 0.4s ease;
         position: relative;
         .serch-n-result {
@@ -227,20 +227,20 @@
           z-index: 1;
           transition: all 0.4s ease;
           border-radius: 6px;
-          min-height: 60px;
+          min-height: 45px;
           max-height: 360px;
           overflow: auto;
           background: rgba(216, 216, 216, 0.5);
           display: flex;
           flex-direction: column;
           .search-icon {
-            margin: 15px;
-            width: 30px;
-            height: 30px;
+            margin: 10px;
+            width: 25px;
+            height: 25px;
             cursor: pointer;
           }
           .search {
-            height: 56px;
+            height: 45px;
             display: flex;
             justify-content: center;
             align-items: center;

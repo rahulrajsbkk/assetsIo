@@ -147,7 +147,7 @@
     display: flex;
     flex-direction: column;
     .head {
-      height: 90px;
+      height: 65px;
       display: flex;
       border-bottom: 1px solid $vault-border-color;
       .textNBtns {
@@ -187,8 +187,8 @@
       }
       .btnShowHide {
         cursor: pointer;
-        height: 90px;
-        width: 90px;
+        height: 65px;
+        width: 65px;
         background: white;
         color: $primary-color;
         display: flex;
@@ -391,7 +391,7 @@
       display: none;
     }
     &.true {
-      flex: 0 0 45%;
+      flex: 0 0 40%;
       .content-steps {
         display: flex;
       }

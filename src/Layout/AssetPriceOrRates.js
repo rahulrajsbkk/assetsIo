@@ -48,7 +48,7 @@ function AssetPriceOrRates({ isIndex }) {
           setTabItem={setTabItem}
         />
       ) : (
-        <>
+        <div className="assetPriceWrapper">
           <div className="tab-inrest-asset">
             {contentSideBar && contentSideBar.head ? (
               contentSideBar.head
@@ -166,7 +166,7 @@ function AssetPriceOrRates({ isIndex }) {
               </>
             )}
           </Scrollbars>
-        </>
+        </div>
       )}
     </>
   );
