@@ -4,6 +4,8 @@ import Toast from '../components/Toast/Toast';
 
 import allPlatforms from '../static/images/allPlatforms.svg';
 import ModalConfirm from '../components/ModalConfirm/ModalConfirm';
+import { IsValidURL } from '../utils/FunctionTools';
+import ReactPlayer from 'react-player';
 
 export const BankContext = createContext();
 
@@ -49,6 +51,30 @@ function BankContextProvider({ children }) {
       return 0;
     };
   }
+
+  const [firstLoad, setFirstLoad] = useState(true);
+  const [videoPlaying, setVideoPlaying] = useState(true);
+  const [videoUrl, setVideoUrl] = useState('');
+
+  useEffect(() => {
+    Axios.get(
+      'https://storeapi.apimachine.com/dynamic/Globalxchangetoken/Openingvide?key=4c69ba17-af5c-4a5c-a495-9a762aba1142'
+    ).then((res) => {
+      const { data } = res;
+      let links = {};
+      if (data.success) {
+        links = data.data.filter((obj) => obj.Key === 'assets.io')[0].formData;
+      }
+      Axios.post(
+        'https://vod-backend.globalxchange.io/get_user_profiled_video_stream_link',
+        {
+          video_id: links.desktop,
+        }
+      ).then((res) => {
+        setVideoUrl(res.data);
+      });
+    });
+  }, []);
 
   useEffect(() => {
     function getUserData() {
@@ -246,6 +272,31 @@ function BankContextProvider({ children }) {
       }}
     >
       {children}
+      {videoPlaying ? (
+        <div className="firstVideo">
+          {firstLoad ? (
+            <div className="loaderWrapper">
+              <div className="loader">Loading...</div>
+            </div>
+          ) : (
+            ''
+          )}
+          {videoUrl && IsValidURL(videoUrl) ? (
+            <ReactPlayer
+              width="100%"
+              height="100%"
+              url={videoUrl}
+              onReady={() => setFirstLoad(false)}
+              onEnded={() => setVideoPlaying(false)}
+              playing
+            />
+          ) : (
+            ''
+          )}
+        </div>
+      ) : (
+        ''
+      )}
       {openModal ? (
         <ModalConfirm
           onClose={onClose}
