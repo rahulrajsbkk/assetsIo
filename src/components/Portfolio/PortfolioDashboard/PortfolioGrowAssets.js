@@ -22,6 +22,7 @@ function PortfolioGrowAssets() {
   const steps = [<NewContractComponent />, <NewContractInitiate />];
 
   const [growAsset, setGrowAsset] = useState('');
+  const [title, setTitle] = useState('Welcome To The Ice Machine');
 
   function getContent(growAsset) {
     switch (growAsset) {
@@ -37,12 +38,15 @@ function PortfolioGrowAssets() {
             )}
           </>
         );
-      default:
+      case '':
         return (
           <div className="buttonsList">
             <div
               className="btnAsset"
-              onClick={() => setGrowAsset('createAsset')}
+              onClick={() => {
+                setGrowAsset('createAsset');
+                setTitle('');
+              }}
             >
               Create An Asset
             </div>
@@ -50,19 +54,24 @@ function PortfolioGrowAssets() {
               className="btnAsset"
               onClick={() => {
                 setGrowAsset('iceAsset');
-                setShowGrowAssets(true);
+                setTitle('');
               }}
             >
               Ice An Asset
             </div>
             <div
               className="btnAsset"
-              onClick={() => setGrowAsset('createIndex')}
+              onClick={() => {
+                setGrowAsset('createIndex');
+                setTitle('');
+              }}
             >
               Create An Index
             </div>
           </div>
         );
+      default:
+        return <></>;
     }
   }
 
@@ -70,7 +79,7 @@ function PortfolioGrowAssets() {
     <div className={`growAssets ${showGrowAssets}`}>
       <div className={`head ${showGrowAssets}`}>
         <div className="textNBtns">
-          <h6>Click Here To Grow Your Assets</h6>
+          <h6>{showGrowAssets ? title : 'Click Here To Grow Your Assets'}</h6>
           <div
             className={`btnsAsset ${
               growAsset === '' && showGrowAssets ? 'd-none' : ''
@@ -78,7 +87,10 @@ function PortfolioGrowAssets() {
           >
             <div
               className="btnAsset"
-              onClick={() => setGrowAsset('createAsset')}
+              onClick={() => {
+                setGrowAsset('createAsset');
+                setTitle('Create An Asset');
+              }}
             >
               Create An Asset
             </div>
@@ -89,13 +101,17 @@ function PortfolioGrowAssets() {
               onClick={() => {
                 setGrowAsset('iceAsset');
                 setShowGrowAssets(true);
+                setTitle('Ice An Asset');
               }}
             >
               Ice An Asset
             </div>
             <div
               className="btnAsset"
-              onClick={() => setGrowAsset('createIndex')}
+              onClick={() => {
+                setGrowAsset('createIndex');
+                setTitle('Create An Index');
+              }}
             >
               Create An Index
             </div>
@@ -106,6 +122,7 @@ function PortfolioGrowAssets() {
           onClick={() => {
             setGrowAsset('');
             setShowGrowAssets(!showGrowAssets);
+            setTitle('Welcome To The Ice Machine');
           }}
         >
           <FontAwesomeIcon icon={showGrowAssets ? faCaretDown : faCaretUp} />

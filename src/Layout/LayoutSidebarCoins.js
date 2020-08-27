@@ -84,7 +84,7 @@ function LayoutSidebarCoins({ active }) {
           >
             <div className="spacer" />
             <Link
-              to="/"
+              to="/index"
               className={`menu-itm${active === 'index' ? ' active' : ''}`}
             >
               <h5 className="d-flex py-3 menu-itm">
