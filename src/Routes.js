@@ -9,6 +9,7 @@ import IcedIndex from './pages/IcedIndex';
 import useWindowDimensions from './utils/WindowSize';
 import IcedIndexMobile from './pages/IcedIndexMobile';
 import { BankContext } from './context/Context';
+import Earnings from './pages/Earnings';
 
 function Routes() {
   const { width } = useWindowDimensions();
@@ -32,6 +33,7 @@ function Routes() {
         </>
       </Route>
       <Route exact path="/vault" component={Vault} />
+      <Route exact path="/earning" component={Earnings} />
       <Route exact path="/vault/:type" component={Vault} />
       <Route exact path="/mobile-apps" component={MobileApps} />
       <Route exact path="/markets" component={Markets} />
