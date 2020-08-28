@@ -8,10 +8,10 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-regular-svg-icons';
 import * as animationData from '../../static/animations/cpu-loading.json';
-import { VaultContext } from '../../context/VaultContext';
+import { EarningsContext } from '../../context/EarningsContext';
 
 function DepositCrypto({ openModal, setOpenModal }) {
-  const { coinAddress, coinSelected } = useContext(VaultContext);
+  const { coinAddress, coinSelected } = useContext(EarningsContext);
   const onCopy = () => {
     // setWalletAddressCopy('Copied To Clipboard');
     // setTimeout(() => {

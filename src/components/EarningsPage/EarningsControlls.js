@@ -7,9 +7,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
 import Skeleton from 'react-loading-skeleton';
-import { VaultContext } from '../../context/VaultContext';
+import { EarningsContext } from '../../context/EarningsContext';
 
-function VaultControlls() {
+function EarningsControlls() {
   const {
     loading,
     vaultTxns,
@@ -17,7 +17,7 @@ function VaultControlls() {
     setMenuTwo,
     dateSelected,
     setDateSelected,
-  } = useContext(VaultContext);
+  } = useContext(EarningsContext);
   const [dateList, setDateList] = useState([]);
   const [searchStr, setSearchStr] = useState('');
 
@@ -117,74 +117,14 @@ function VaultControlls() {
   return (
     <div className="controlls">
       <div className={'drop-select mr-3' + (loading ? ' p-0' : '')}>
-        <div
-          className="content transaction"
-          onClick={() => setMenuOneOpen(!menuOneOpen)}
-        >
-          {loading ? (
-            <Skeleton width={230} height={40} />
-          ) : (
-            <>
-              {menuOne.value}
-              <FontAwesomeIcon className="ml-2" icon={faCaretDown} />
-            </>
-          )}
+        <div className="content" onClick={() => setMenuOneOpen(!menuOneOpen)}>
+          {loading ? <Skeleton width={230} height={40} /> : <>Liquid</>}
         </div>
-        {menuOneOpen ? (
-          <div className="menu">
-            {menuOneList
-              .filter((menu) => menu.key !== menuOne.key)
-              .map((menu) => (
-                <div
-                  key={menu.value}
-                  className="menuItem"
-                  onClick={() => {
-                    setMenuOne(menu);
-                    setMenuOneOpen(false);
-                  }}
-                >
-                  {menu.value}
-                </div>
-              ))}
-          </div>
-        ) : (
-          ''
-        )}
       </div>
       <div className={'drop-select mr-3' + (loading ? ' p-0' : '')}>
-        <div
-          className="content direction"
-          onClick={() => setMenuTwoOpen(!menuTwoOpen)}
-        >
-          {loading ? (
-            <Skeleton width={140} height={40} />
-          ) : (
-            <>
-              {menuTwo.value}
-              <FontAwesomeIcon className="ml-2" icon={faCaretDown} />
-            </>
-          )}
+        <div className="content" onClick={() => setMenuTwoOpen(!menuTwoOpen)}>
+          {loading ? <Skeleton width={140} height={40} /> : <>Bonds</>}
         </div>
-        {menuTwoOpen ? (
-          <div className="menu">
-            {menuTwoList
-              .filter((menu) => menu.key !== menuTwo.key)
-              .map((menu) => (
-                <div
-                  key={menu.value}
-                  className="menuItem"
-                  onClick={() => {
-                    setMenuTwo(menu);
-                    setMenuTwoOpen(false);
-                  }}
-                >
-                  {menu.value}
-                </div>
-              ))}
-          </div>
-        ) : (
-          ''
-        )}
       </div>
       <div className={'search ml-auto' + (loading ? ' p-0' : '')}>
         <div className="content">
@@ -244,4 +184,4 @@ function VaultControlls() {
   );
 }
 
-export default VaultControlls;
+export default EarningsControlls;

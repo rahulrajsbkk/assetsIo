@@ -1,25 +1,23 @@
 import React from 'react';
 
-import VaultContextProvider from '../context/VaultContext';
 import Layout from '../Layout/Index';
 import EarningPageHead from '../components/EarningsPage/EarningsPageHead';
-import VaultTransactionTable from '../components/VaultsPage/VaultTransactionTable';
-import VaultControlls from '../components/VaultsPage/VaultControlls';
-import VaultFab from '../components/VaultsPage/VaultFab';
+import EarningsContextProvider from '../context/EarningsContext';
+import EarningsTransactionTable from '../components/EarningsPage/EarningsTransactionTable';
+import EarningsControlls from '../components/EarningsPage/EarningsControlls';
 
 function Earnings({ match }) {
   return (
-    <VaultContextProvider>
+    <EarningsContextProvider>
       <Layout active={`vaults-${match.params.type}`} className="vaults">
         <EarningPageHead />
-        <VaultControlls />
-        <VaultTransactionTable
+        <EarningsControlls />
+        <EarningsTransactionTable
           credit={!(match.params.type === 'deposit')}
           debit={!(match.params.type === 'withdraw')}
         />
-        <VaultFab />
       </Layout>
-    </VaultContextProvider>
+    </EarningsContextProvider>
   );
 }
 

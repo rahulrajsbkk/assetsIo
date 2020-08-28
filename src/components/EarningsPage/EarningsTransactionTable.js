@@ -2,17 +2,17 @@ import React, { useContext } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import moment from 'moment';
 import { Scrollbars } from 'react-custom-scrollbars';
-import { VaultContext } from '../../context/VaultContext';
 import { FormatCurrency, YesterdayToday } from '../../utils/FunctionTools';
+import { EarningsContext } from '../../context/EarningsContext';
 
-function VaultTransactionTable({ credit, debit }) {
+function EarningsTransactionTable({ credit, debit }) {
   const {
-    vaultTxns,
     coinSelected,
     loading,
     menuTwo,
     dateSelected,
-  } = useContext(VaultContext);
+    earnTransactions,
+  } = useContext(EarningsContext);
   let date = '';
   return (
     <Scrollbars
@@ -32,7 +32,7 @@ function VaultTransactionTable({ credit, debit }) {
         </>
       ) : (
         coinSelected &&
-        vaultTxns
+        earnTransactions
           .filter(
             (txn) =>
               txn.coin === coinSelected.coinSymbol &&
@@ -70,13 +70,19 @@ function VaultTransactionTable({ credit, debit }) {
                     </div>
                   </div>
                   <div className="credit">
-                    {FormatCurrency(txn.deposit && txn.amount, txn.coin)}
+                    {FormatCurrency(
+                      txn.deposit && txn.earned_interest,
+                      txn.coin
+                    )}
                   </div>
                   <div className="debit">
-                    {FormatCurrency(txn.withdraw && txn.amount, txn.coin)}
+                    {FormatCurrency(
+                      txn.withdraw && txn.earned_interest,
+                      txn.coin
+                    )}
                   </div>
                   <div className="balance">
-                    {FormatCurrency(txn.updated_balance, txn.coin)}
+                    {FormatCurrency(txn.updated_interest, txn.coin)}
                   </div>
                 </div>
               </>
@@ -87,4 +93,4 @@ function VaultTransactionTable({ credit, debit }) {
   );
 }
 
-export default VaultTransactionTable;
+export default EarningsTransactionTable;

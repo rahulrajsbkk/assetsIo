@@ -4,8 +4,8 @@ import btc from '../../static/images/coin-small/btc.svg';
 import eth from '../../static/images/coin-small/eth.svg';
 import usdt from '../../static/images/coin-small/usdt.svg';
 import searchIcon from '../../static/images/search.svg';
-import { VaultContext } from '../../context/VaultContext';
 import { FormatCurrency } from '../../utils/FunctionTools';
+import { EarningsContext } from '../../context/EarningsContext';
 
 function EarningsPageHead() {
   const {
@@ -13,7 +13,8 @@ function EarningsPageHead() {
     coinSelected,
     setCoinSelected,
     loading,
-  } = useContext(VaultContext);
+    liquidEarningBalances,
+  } = useContext(EarningsContext);
   const [coin, setCoin] = useState('BTC');
   const [searchEnable, setSearchEnable] = useState(false);
   const [searchStr, setSearchStr] = useState('');
@@ -55,13 +56,23 @@ function EarningsPageHead() {
             <Skeleton width={250} />
           ) : (
             coinSelected &&
-            FormatCurrency(coinSelected.coinValue, coinSelected.coinSymbol)
+            FormatCurrency(
+              liquidEarningBalances[coinSelected.coinSymbol],
+              coinSelected.coinSymbol
+            )
           )}{' '}
           <small>
             {loading ? (
               ''
             ) : (
-              <>${coinSelected && FormatCurrency(coinSelected.coinValueUSD)}</>
+              <>
+                $
+                {coinSelected &&
+                  FormatCurrency(
+                    liquidEarningBalances[coinSelected.coinSymbol] *
+                      coinSelected.price.USD
+                  )}
+              </>
             )}
           </small>
         </div>
@@ -143,8 +154,7 @@ function EarningsPageHead() {
                       className="search-res"
                       key={coin.coinName}
                       onClick={() => {
-                        setCoinSelected(coin);
-                        setCoin('');
+                        setCoin(coin.coinSymbol);
                         setSearchEnable(!searchEnable);
                       }}
                     >
