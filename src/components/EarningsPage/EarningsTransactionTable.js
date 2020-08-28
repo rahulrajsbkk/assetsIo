@@ -6,13 +6,9 @@ import { FormatCurrency, YesterdayToday } from '../../utils/FunctionTools';
 import { EarningsContext } from '../../context/EarningsContext';
 
 function EarningsTransactionTable({ credit, debit }) {
-  const {
-    coinSelected,
-    loading,
-    menuTwo,
-    dateSelected,
-    earnTransactions,
-  } = useContext(EarningsContext);
+  const { coinSelected, loading, dateSelected, earnTransactions } = useContext(
+    EarningsContext
+  );
   let date = '';
   return (
     <Scrollbars
@@ -36,11 +32,6 @@ function EarningsTransactionTable({ credit, debit }) {
           .filter(
             (txn) =>
               txn.coin === coinSelected.coinSymbol &&
-              (menuTwo.key === 'all'
-                ? true
-                : menuTwo.key === 'credit'
-                ? txn.deposit
-                : !txn.deposit) &&
               (txn.deposit !== credit || txn.deposit === debit) &&
               (dateSelected
                 ? moment(txn.timestamp).format('MMDDYYYY') ===

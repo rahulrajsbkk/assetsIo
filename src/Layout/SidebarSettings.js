@@ -106,7 +106,7 @@ function SidebarSettings({ tabItem, setTabItem, defTab }) {
   ];
 
   return (
-    <>
+    <div className="assetPriceWrapper">
       <div className="tab-inrest-asset">
         {stepTitle[step] ? (
           <>{stepTitle[step]}</>
@@ -146,7 +146,7 @@ function SidebarSettings({ tabItem, setTabItem, defTab }) {
       >
         {stepsComponent[step]}
       </Scrollbars>
-    </>
+    </div>
   );
 }
 

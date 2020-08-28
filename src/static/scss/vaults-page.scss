@@ -198,12 +198,88 @@
         }
       }
     }
+    .drop-select {
+      cursor: pointer;
+      &.true {
+        background: $primary-color;
+        color: white;
+      }
+    }
     .search {
       input {
         height: 40px;
         width: 200px;
         border: none;
         background: none;
+      }
+    }
+  }
+  .assetApps {
+    margin-top: 20px;
+    width: 100%;
+    flex: 0 0 110px;
+    height: 110px !important;
+    .view {
+      display: flex;
+      padding: 4px 0;
+      padding-bottom: 50px;
+      .appIcon {
+        position: relative;
+        height: 100%;
+        min-width: 60px;
+        max-width: 60px;
+        border: 1px solid #e7e7e7;
+        border-radius: 8px;
+        margin-right: 15px;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+        font-weight: 600;
+        color: $primary-color;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+        .appTooltip {
+          display: none;
+          position: absolute;
+          min-width: 70px;
+          height: 26px;
+          justify-content: center;
+          align-items: center;
+          font-size: 10px;
+          padding: 0 8px;
+          top: calc(100% + 10px);
+          background: white;
+          border: 1px solid $vault-border-color;
+          &::before {
+            content: '';
+            position: absolute;
+            top: -9px;
+            width: 0;
+            height: 0;
+            border-left: 9px solid transparent;
+            border-right: 9px solid transparent;
+            border-bottom: 9px solid $vault-border-color;
+          }
+          &::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid white;
+          }
+        }
+        &:hover {
+          .appTooltip {
+            display: flex;
+          }
+        }
       }
     }
   }

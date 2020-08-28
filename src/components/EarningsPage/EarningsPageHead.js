@@ -6,15 +6,16 @@ import usdt from '../../static/images/coin-small/usdt.svg';
 import searchIcon from '../../static/images/search.svg';
 import { FormatCurrency } from '../../utils/FunctionTools';
 import { EarningsContext } from '../../context/EarningsContext';
+import { BankContext } from '../../context/Context';
 
 function EarningsPageHead() {
   const {
-    coinBalanceList,
     coinSelected,
     setCoinSelected,
     loading,
     liquidEarningBalances,
   } = useContext(EarningsContext);
+  const { coinList } = useContext(BankContext);
   const [coin, setCoin] = useState('BTC');
   const [searchEnable, setSearchEnable] = useState(false);
   const [searchStr, setSearchStr] = useState('');
@@ -23,24 +24,24 @@ function EarningsPageHead() {
   useEffect(() => {
     if (coin) {
       setCoinSelected(
-        coinBalanceList.filter((coinOb) => coinOb.coinSymbol === coin)[0]
+        coinList.filter((coinOb) => coinOb.coinSymbol === coin)[0]
       );
     }
-  }, [coin, setCoinSelected, coinBalanceList]);
+  }, [coin, setCoinSelected, coinList]);
 
   useEffect(() => {
     if (!searchStr) {
       setSearchResult([]);
     } else {
       setSearchResult(
-        coinBalanceList.filter(
+        coinList.filter(
           (coin) =>
             coin.coinName.toLowerCase().includes(searchStr.toLowerCase()) ||
             coin.coinSymbol.toLowerCase().includes(searchStr.toLowerCase())
         )
       );
     }
-  }, [coinBalanceList, searchStr]);
+  }, [coinList, searchStr]);
   return (
     <div className="head">
       <div className="vault-n-balance">

@@ -36,5 +36,5 @@ export function IsValidURL(str) {
       '(\\#[-a-z\\d_]*)?$',
     'i'
   ); // fragment locator
-  return urlRegex.test(str);
+  return urlRegex.test(str) ? str : false;
 }

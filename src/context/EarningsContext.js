@@ -5,60 +5,28 @@ import Axios from 'axios';
 export const EarningsContext = createContext();
 
 function EarningsContextProvider({ children }) {
-  const { profileId, email } = useContext(BankContext);
-  const [coinBalanceList, setCoinBalanceList] = useState([]);
-  const [vaultTxns, setVaultTxns] = useState([]);
+  const { email, coinList } = useContext(BankContext);
   const [coinSelected, setCoinSelected] = useState({});
-  const [coinAddress, setCoinAddress] = useState({});
   const [loading, setLoading] = useState(true);
-  async function updateBalance() {
-    setLoading(true);
-    const resOne = await Axios.post(
-      'https://comms.globalxchange.com/coin/vault/service/coins/get',
-      {
-        app_code: 'ice',
-        profile_id: profileId,
-      }
-    );
-    const dataOne = resOne.data;
-    setCoinBalanceList(dataOne.coins_data);
-    const btcArray = dataOne.coins_data.filter(
-      (coin) => coin.coinSymbol === 'BTC'
-    );
+  const [liquidOrBond, setLiquidOrBond] = useState('Liquid');
+  const [appSelected, setAppSelected] = useState(null);
+
+  useEffect(() => {
+    const btcArray = coinList.filter((coin) => coin.coinSymbol === 'BTC');
     setCoinSelected(btcArray[0]);
-    setLoading(true);
-    const resTwo = await Axios.post(
-      'https://comms.globalxchange.com/coin/vault/service/balances/get',
-      {
-        app_code: 'ice',
-        profile_id: profileId,
-      }
-    );
-    const dataTWO = resTwo.data;
-    if (dataTWO.status) {
-      setCoinAddress(dataTWO.vault.coinAddress);
-    }
-    setLoading(true);
-    const resThree = await Axios.post(
-      'https://comms.globalxchange.com/coin/vault/service/txns/get',
-      {
-        app_code: 'ice',
-        profile_id: profileId,
-      }
-    );
-    const dataThree = resThree.data;
-    if (dataThree.status) setVaultTxns(dataThree.txns);
-    setLoading(false);
-  }
+  }, [coinList]);
 
   const [liquidEarningBalances, setLiquidEarningBalances] = useState({});
   useEffect(() => {
     setLoading(true);
     Axios.get(
-      `https://comms.globalxchange.com/coin/vault/service/user/app/interest/balances/get?app_code=instacrypto&email=${email}`
+      `https://comms.globalxchange.com/coin/vault/service/user/app/interest/balances/get?email=${email}${
+        appSelected ? `&app_code=${appSelected}` : ''
+      }`
     )
       .then((res) => {
         const { data } = res;
+        console.log('data.result', data.result);
         if (
           data.status &&
           data.result &&
@@ -66,59 +34,77 @@ function EarningsContextProvider({ children }) {
           data.result[0].balances &&
           data.result[0].balances[0]
         ) {
-          setLiquidEarningBalances(data.result[0].balances[0].liquid_balances);
+          setLiquidEarningBalances(
+            appSelected
+              ? data.result[0].balances.filter(
+                  (bal) => bal.app_code === appSelected
+                )[0].liquid_balances
+              : data.result[0].balances[0].liquid_balances
+          );
         }
       })
       .finally(() => {
         setLoading(false);
       });
-  }, [email]);
+  }, [email, appSelected]);
 
   const [earnTransactions, setEarnTransactions] = useState([]);
   useEffect(() => {
+    setLoading(true);
     if (email && coinSelected && coinSelected.coinSymbol)
       Axios.get(
-        `https://comms.globalxchange.com/coin/vault/service/user/app/interest/logs/get?email=${email}&app_code=instacrypto&coin=${coinSelected.coinSymbol}`
-      ).then((res) => {
-        const { data } = res;
-        if (data.status && data.logs && data.logs[0]) {
-          setEarnTransactions(data.logs[0].logs);
-        }
-      });
-  }, [email, coinSelected]);
+        `https://comms.globalxchange.com/coin/vault/service/user/app/interest/logs/get?&email=${email}&coin=${
+          coinSelected.coinSymbol
+        }${appSelected ? `&app_code=${appSelected}` : ''}`
+      )
+        .then((res) => {
+          const { data } = res;
+          console.log('data.logs', data.logs);
+          if (data.status && data.logs && data.logs[0]) {
+            setEarnTransactions(
+              appSelected
+                ? data.logs[0].logs.filter(
+                    (bal) => bal.app_code === appSelected
+                  )
+                : data.logs[0].logs
+            );
+          }
+        })
+        .finally(() => setLoading(false));
+  }, [email, coinSelected, appSelected]);
 
+  const [userApps, setUserApps] = useState([]);
   useEffect(() => {
-    if (profileId) {
-      updateBalance();
-    }
-    // eslint-disable-next-line
-  }, [profileId]);
-
-  // For Vault Filter Conrolls
-
-  const [menuTwo, setMenuTwo] = useState({
-    key: 'all',
-    value: 'All Directions',
-  });
+    Axios.get(
+      `https://comms.globalxchange.com/gxb/apps/registered/user?email=${email}`
+    ).then((res) => {
+      const { data } = res;
+      if (data.status) {
+        setUserApps(data.userApps);
+      }
+    });
+    return () => {};
+  }, [email]);
 
   const [dateSelected, setDateSelected] = useState(null);
 
   return (
     <EarningsContext.Provider
       value={{
-        coinBalanceList,
+        coinList,
         coinSelected,
         setCoinSelected,
-        vaultTxns,
-        updateBalance,
-        coinAddress,
         loading,
-        menuTwo,
-        setMenuTwo,
         dateSelected,
         setDateSelected,
         liquidEarningBalances,
         earnTransactions,
+
+        liquidOrBond,
+        setLiquidOrBond,
+        userApps,
+        appSelected,
+        setAppSelected,
       }}
     >
       {children}

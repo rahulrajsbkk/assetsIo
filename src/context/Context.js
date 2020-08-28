@@ -272,7 +272,7 @@ function BankContextProvider({ children }) {
       }}
     >
       {children}
-      {videoPlaying ? (
+      {/* {videoPlaying ? (
         <div className="firstVideo">
           {!(videoUrl && IsValidURL(videoUrl)) ? (
             firstLoad ? (
@@ -296,7 +296,7 @@ function BankContextProvider({ children }) {
         </div>
       ) : (
         ''
-      )}
+      )} */}
       {openModal ? (
         <ModalConfirm
           onClose={onClose}
