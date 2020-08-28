@@ -274,24 +274,24 @@ function BankContextProvider({ children }) {
       {children}
       {videoPlaying ? (
         <div className="firstVideo">
-          {firstLoad ? (
-            <div className="loaderWrapper">
-              <div className="loader">Loading...</div>
-            </div>
+          {!(videoUrl && IsValidURL(videoUrl)) ? (
+            firstLoad ? (
+              <div className="loaderWrapper">
+                <div className="loader">Loading...</div>
+              </div>
+            ) : (
+              ''
+            )
           ) : (
-            ''
-          )}
-          {videoUrl && IsValidURL(videoUrl) ? (
             <ReactPlayer
               width="100%"
               height="100%"
               url={videoUrl}
               onReady={() => setFirstLoad(false)}
               onEnded={() => setVideoPlaying(false)}
-              playing
+              playing={true}
+              controls
             />
-          ) : (
-            ''
           )}
         </div>
       ) : (
