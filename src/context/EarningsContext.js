@@ -76,15 +76,16 @@ function EarningsContextProvider({ children }) {
 
   const [earnTransactions, setEarnTransactions] = useState([]);
   useEffect(() => {
-    Axios.get(
-      `https://comms.globalxchange.com/coin/vault/service/user/app/interest/logs/get?email=${email}&app_code=instacrypto&coin=${coinSelected.coinSymbol}`
-    ).then((res) => {
-      const { data } = res;
-      if (data.status && data.logs && data.logs[0]) {
-        setEarnTransactions(data.logs[0].logs);
-      }
-    });
-  }, [email, coinSelected.coinSymbol]);
+    if (email && coinSelected && coinSelected.coinSymbol)
+      Axios.get(
+        `https://comms.globalxchange.com/coin/vault/service/user/app/interest/logs/get?email=${email}&app_code=instacrypto&coin=${coinSelected.coinSymbol}`
+      ).then((res) => {
+        const { data } = res;
+        if (data.status && data.logs && data.logs[0]) {
+          setEarnTransactions(data.logs[0].logs);
+        }
+      });
+  }, [email, coinSelected]);
 
   useEffect(() => {
     if (profileId) {
