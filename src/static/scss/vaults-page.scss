@@ -280,6 +280,9 @@
             display: flex;
           }
         }
+        &.true {
+          border-color: $primary-color;
+        }
       }
     }
   }

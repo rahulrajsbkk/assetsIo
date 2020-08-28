@@ -153,7 +153,7 @@ function EarningsControlls() {
               className={`appIcon ${appSelected === app.app_code}`}
               onClick={() => setAppSelected(app.app_code)}
             >
-              <img src={IsValidURL(app.app_icon) || assetLogo} />
+              <img src={IsValidURL(app.app_icon) || assetLogo} alt="" />
               <div className="appTooltip">{app.app_code}</div>
             </div>
           ))}
