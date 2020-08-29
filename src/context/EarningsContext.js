@@ -26,21 +26,51 @@ function EarningsContextProvider({ children }) {
     )
       .then((res) => {
         const { data } = res;
-        console.log('data.result', data.result);
         if (
           data.status &&
           data.result &&
           data.result[0] &&
-          data.result[0].balances &&
-          data.result[0].balances[0]
+          data.result[0].balances
         ) {
-          setLiquidEarningBalances(
-            appSelected
-              ? data.result[0].balances.filter(
-                  (bal) => bal.app_code === appSelected
-                )[0].liquid_balances
-              : data.result[0].balances[0].liquid_balances
-          );
+          let coins = {
+            AED: 0,
+            ARS: 0,
+            AUD: 0,
+            BTC: 0,
+            CAD: 0,
+            CNY: 0,
+            COP: 0,
+            DGP: 0,
+            DOGE: 0,
+            EOS: 0,
+            ETH: 0,
+            EUR: 0,
+            EWT: 0,
+            GBP: 0,
+            GXT: 0,
+            IDR: 0,
+            INR: 0,
+            JPY: 0,
+            JST: 0,
+            LTC: 0,
+            MXN: 0,
+            MyGXT: 0,
+            SEF: 0,
+            TRX: 0,
+            USD: 0,
+            USDT: 0,
+            XRP: 0,
+          };
+          data.result[0].balances.forEach((app) => {
+            for (const coinSymbol in app.liquid_balances) {
+              coins = {
+                ...coins,
+                [coinSymbol]:
+                  app.liquid_balances[coinSymbol] + coins[coinSymbol],
+              };
+            }
+            setLiquidEarningBalances(coins);
+          });
         }
       })
       .finally(() => {
@@ -62,11 +92,7 @@ function EarningsContextProvider({ children }) {
           console.log('data.logs', data.logs);
           if (data.status && data.logs && data.logs[0]) {
             setEarnTransactions(
-              appSelected
-                ? data.logs[0].logs.filter(
-                    (bal) => bal.app_code === appSelected
-                  )
-                : data.logs[0].logs
+              data.logs[0].logs.filter((bal) => bal.app_code === appSelected)
             );
           }
         })
