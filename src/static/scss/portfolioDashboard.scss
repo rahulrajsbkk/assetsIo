@@ -140,6 +140,35 @@
           font-weight: 500;
           font-size: 24px;
         }
+        .vaultList {
+          height: 0;
+          flex-grow: 1;
+          .vault-list {
+            display: flex;
+            flex-direction: column;
+            .coin {
+              display: flex;
+              flex: 0 0 100px;
+              align-items: center;
+              background: #ffffff;
+              border: 1px solid rgba(70, 75, 78, 0.22);
+              margin-bottom: 20px;
+              padding: 0 60px;
+              .coin-logo {
+                height: 50px;
+                width: 50px;
+              }
+              .coin-name,
+              .rate {
+                font-size: 24px;
+                font-weight: bold;
+              }
+              .rate {
+                margin-left: auto;
+              }
+            }
+          }
+        }
       }
     }
   }

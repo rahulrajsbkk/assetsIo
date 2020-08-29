@@ -5,7 +5,7 @@ import { BankContext } from './Context';
 export const PortfolioContext = createContext();
 
 function PortfolioContextProvider({ children }) {
-  const { email, token, tostShowOn } = useContext(BankContext);
+  const { email, token, tostShowOn, profileId } = useContext(BankContext);
   const [loading, setLoading] = useState(false);
   const [loadingCnfrm, setLoadingCnfrm] = useState(false);
   const [coinContract, setCoinContract] = useState('');
@@ -104,6 +104,36 @@ function PortfolioContextProvider({ children }) {
     });
   }, [email]);
 
+  const [coinBalanceList, setCoinBalanceList] = useState([]);
+  const [fiatBalance, setFiatBalance] = useState(0);
+  const [cryptoBalance, setCryptoBalance] = useState(0);
+  const getBalances = async () => {
+    const resOne = await Axios.post(
+      'https://comms.globalxchange.com/coin/vault/service/coins/get',
+      {
+        app_code: 'ice',
+        profile_id: profileId,
+      }
+    );
+    const dataOne = resOne.data;
+    setCoinBalanceList(dataOne.coins_data);
+    let cryptoBalance = 0;
+    let fiatBalance = 0;
+    dataOne.coins_data.forEach((coin) => {
+      if (coin.type === 'fiat') {
+        fiatBalance += coin.coinValueUSD;
+      } else if (coin.type === 'crypto') {
+        cryptoBalance += coin.coinValueUSD;
+      }
+    });
+    setFiatBalance(fiatBalance);
+    setCryptoBalance(cryptoBalance);
+  };
+
+  useEffect(() => {
+    getBalances();
+  }, [profileId]);
+
   return (
     <PortfolioContext.Provider
       value={{
@@ -127,6 +157,9 @@ function PortfolioContextProvider({ children }) {
         portfolioSelected,
         setPortfolioSelected,
         icedContracts,
+        coinBalanceList,
+        fiatBalance,
+        cryptoBalance,
       }}
     >
       {children}
