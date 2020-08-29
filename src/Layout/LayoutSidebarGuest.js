@@ -53,7 +53,7 @@ function LayoutSidebarGuest({ active }) {
           >
             <h5 className="d-flex py-3 menu-itm">
               <img src={iced} alt="" />
-              <span className="my-auto">Iced Index</span>
+              <span className="my-auto">Index</span>
             </h5>
           </Link>
           <div

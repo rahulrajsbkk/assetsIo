@@ -64,7 +64,7 @@ function LayoutSidebar({ active }) {
         >
           <h5 className="d-flex py-3 menu-itm">
             <img src={iced} alt="" />
-            <span className="my-auto">Iced Index</span>
+            <span className="my-auto">Index</span>
           </h5>
         </Link>
         <Link
@@ -87,7 +87,10 @@ function LayoutSidebar({ active }) {
             <span className="my-auto">Vault</span>
           </h5>
         </div>
-        <Link to="/earning" className={`menu-itm${false ? ' active' : ''}`}>
+        <Link
+          to="/earning"
+          className={`menu-itm${active === 'earn' ? ' active' : ''}`}
+        >
           <h5 className="d-flex py-3 menu-itm">
             <img src={earnings} alt="" />
             <span className="my-auto">Earnings</span>

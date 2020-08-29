@@ -9,7 +9,7 @@ import EarningsControlls from '../components/EarningsPage/EarningsControlls';
 function Earnings({ match }) {
   return (
     <EarningsContextProvider>
-      <Layout active={`vaults-${match.params.type}`} className="vaults">
+      <Layout active="earn" className="vaults">
         <EarningPageHead />
         <EarningsControlls />
         <EarningsTransactionTable
