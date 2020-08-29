@@ -104,30 +104,55 @@ function PortfolioContextProvider({ children }) {
     });
   }, [email]);
 
-  const [coinBalanceList, setCoinBalanceList] = useState([]);
   const [fiatBalance, setFiatBalance] = useState(0);
   const [cryptoBalance, setCryptoBalance] = useState(0);
+  const [userApps, setUserApps] = useState([]);
+  const [appBalances, setAppBalances] = useState({});
   const getBalances = async () => {
-    const resOne = await Axios.post(
-      'https://comms.globalxchange.com/coin/vault/service/coins/get',
-      {
-        app_code: 'ice',
-        profile_id: profileId,
-      }
+    const res = await Axios.get(
+      `https://comms.globalxchange.com/gxb/apps/registered/user?email=${email}`
     );
-    const dataOne = resOne.data;
-    setCoinBalanceList(dataOne.coins_data);
-    let cryptoBalance = 0;
-    let fiatBalance = 0;
-    dataOne.coins_data.forEach((coin) => {
-      if (coin.type === 'fiat') {
-        fiatBalance += coin.coinValueUSD;
-      } else if (coin.type === 'crypto') {
-        cryptoBalance += coin.coinValueUSD;
-      }
-    });
-    setFiatBalance(fiatBalance);
-    setCryptoBalance(cryptoBalance);
+    const { data } = res;
+    if (data.status) {
+      setUserApps(data.userApps);
+    }
+    console.log('data.userApps', data.userApps);
+    const obj = {};
+    let totalFiat = 0;
+    let totalCrypto = 0;
+    for (const index in data.userApps) {
+      const appCode = data.userApps[index].app_code;
+      const proId = data.userApps[index].profile_id;
+      const resOne = await Axios.post(
+        'https://comms.globalxchange.com/coin/vault/service/coins/get',
+        {
+          app_code: appCode,
+          profile_id: proId,
+        }
+      );
+      console.log('resOne', resOne);
+      const dataOne = resOne.data;
+      let cryptoBalance = 0;
+      let fiatBalance = 0;
+      dataOne.coins_data.forEach((coin) => {
+        if (coin.type === 'fiat') {
+          fiatBalance += coin.coinValueUSD;
+        } else if (coin.type === 'crypto') {
+          cryptoBalance += coin.coinValueUSD;
+        }
+      });
+      totalCrypto += cryptoBalance;
+      totalFiat += fiatBalance;
+      obj[appCode] = {
+        coins_data: dataOne.coins_data,
+        cryptoBalance,
+        fiatBalance,
+        totalBalance: cryptoBalance + fiatBalance,
+      };
+    }
+    setAppBalances(obj);
+    setFiatBalance(totalFiat);
+    setCryptoBalance(totalCrypto);
   };
 
   useEffect(() => {
@@ -157,9 +182,10 @@ function PortfolioContextProvider({ children }) {
         portfolioSelected,
         setPortfolioSelected,
         icedContracts,
-        coinBalanceList,
         fiatBalance,
         cryptoBalance,
+        userApps,
+        appBalances,
       }}
     >
       {children}

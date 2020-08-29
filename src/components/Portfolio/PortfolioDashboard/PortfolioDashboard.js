@@ -58,6 +58,7 @@ function PortfolioDashboard() {
   ];
 
   const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedApp, setSelectedApp] = useState(null);
 
   return (
     <div className="portfolioDashboard">
@@ -101,7 +102,16 @@ function PortfolioDashboard() {
             </h4>
           </div>
           <div className="chart-section">
-            <div className="chart" onClick={() => setSelectedCard(null)}>
+            <div
+              className="chart"
+              onClick={() => {
+                if (selectedCard && selectedApp) {
+                  setSelectedApp(null);
+                } else {
+                  setSelectedCard(null);
+                }
+              }}
+            >
               <div className="chartLogo">
                 <img src={assetLogo} alt="" />
               </div>
@@ -195,6 +205,8 @@ function PortfolioDashboard() {
         <PortfolioDashCardsList
           selectedCard={selectedCard}
           setSelectedCard={setSelectedCard}
+          selectedApp={selectedApp}
+          setSelectedApp={setSelectedApp}
         />
       </div>
       <PortfolioGrowAssets />
