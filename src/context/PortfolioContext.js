@@ -78,7 +78,6 @@ function PortfolioContextProvider({ children }) {
         } else {
           tostShowOn(data.message);
         }
-        console.log('data :>> ', data);
       })
       .finally(() => {
         setLoading(false);
@@ -116,7 +115,6 @@ function PortfolioContextProvider({ children }) {
     if (data.status) {
       setUserApps(data.userApps);
     }
-    console.log('data.userApps', data.userApps);
     const obj = {};
     let totalFiat = 0;
     let totalCrypto = 0;
@@ -130,7 +128,6 @@ function PortfolioContextProvider({ children }) {
           profile_id: proId,
         }
       );
-      console.log('resOne', resOne);
       const dataOne = resOne.data;
       let cryptoBalance = 0;
       let fiatBalance = 0;

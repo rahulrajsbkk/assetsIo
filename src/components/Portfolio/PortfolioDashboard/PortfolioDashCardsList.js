@@ -20,7 +20,6 @@ function PortfolioDashCardsList({
   const togleDuration = (duration) => {
     setDuration(duration === 2 ? 2.1 : 2);
   };
-  console.log('appBalances', appBalances);
   if (selectedApp)
     return (
       <div className="cardsSection detail">
@@ -33,28 +32,30 @@ function PortfolioDashCardsList({
           renderThumbHorizontal={() => <div />}
           renderView={(props) => <div {...props} className="vault-list" />}
         >
-          {appBalances[selectedApp].coins_data
-            .filter((coin) => selectedCard.toLowerCase().includes(coin.type))
-            .map((coin) => (
-              <div className="coin" key={coin.coinSymbol}>
-                <img className="coin-logo mr-2" src={coin.coinImage} alt="" />
-                <div className="coin-name">{coin.coinName}</div>
-                <div className="rate">
-                  $
-                  <CountUp
-                    onEnd={() => {
-                      if (updateInterval)
-                        setTimeout(() => {
-                          togleDuration(duration);
-                        }, updateInterval * 1000);
-                    }}
-                    duration={duration}
-                    end={coin.coinValueUSD}
-                    decimals={2}
-                  />
+          {appBalances &&
+            appBalances[selectedApp] &&
+            appBalances[selectedApp].coins_data
+              .filter((coin) => selectedCard.toLowerCase().includes(coin.type))
+              .map((coin) => (
+                <div className="coin" key={coin.coinSymbol}>
+                  <img className="coin-logo mr-2" src={coin.coinImage} alt="" />
+                  <div className="coin-name">{coin.coinName}</div>
+                  <div className="rate">
+                    $
+                    <CountUp
+                      onEnd={() => {
+                        if (updateInterval)
+                          setTimeout(() => {
+                            togleDuration(duration);
+                          }, updateInterval * 1000);
+                      }}
+                      duration={duration}
+                      end={coin.coinValueUSD}
+                      decimals={2}
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
         </Scrollbars>
       </div>
     );
@@ -63,42 +64,52 @@ function PortfolioDashCardsList({
       <div className="cardsSection detail">
         <h3>{selectedCard}</h3>
         <h6>Here Are All Your Vaults</h6>
-        <Scrollbars
-          className="vaultList"
-          autoHide
-          renderTrackHorizontal={() => <div />}
-          renderThumbHorizontal={() => <div />}
-          renderView={(props) => <div {...props} className="vault-list" />}
-        >
-          {userApps.map((app) => (
-            <div
-              className="coin"
-              key={app.app_code}
-              onClick={() => setSelectedApp(app.app_code)}
-            >
-              <img className="coin-logo mr-2" src={logo} alt="" />
-              <div className="coin-name">{app.app_code}</div>
-              <div className="rate">
-                $
-                <CountUp
-                  onEnd={() => {
-                    if (updateInterval)
-                      setTimeout(() => {
-                        togleDuration(duration);
-                      }, updateInterval * 1000);
-                  }}
-                  duration={duration}
-                  end={
-                    selectedCard === 'Cryptocurrency'
-                      ? appBalances[app.app_code].cryptoBalance
-                      : appBalances[app.app_code].fiatBalance
-                  }
-                  decimals={2}
-                />
-              </div>
-            </div>
-          ))}
-        </Scrollbars>
+        {selectedCard === 'Cryptocurrency' ||
+        selectedCard === 'Fiat Currency' ? (
+          <Scrollbars
+            className="vaultList"
+            autoHide
+            renderTrackHorizontal={() => <div />}
+            renderThumbHorizontal={() => <div />}
+            renderView={(props) => <div {...props} className="vault-list" />}
+          >
+            {appBalances &&
+              userApps.map((app) => (
+                <div
+                  className="coin"
+                  key={app.app_code}
+                  onClick={() => setSelectedApp(app.app_code)}
+                >
+                  <img className="coin-logo mr-2" src={logo} alt="" />
+                  <div className="coin-name">{app.app_code}</div>
+                  <div className="rate">
+                    $
+                    {appBalances[app.app_code] ? (
+                      <CountUp
+                        onEnd={() => {
+                          if (updateInterval)
+                            setTimeout(() => {
+                              togleDuration(duration);
+                            }, updateInterval * 1000);
+                        }}
+                        duration={duration}
+                        end={
+                          selectedCard === 'Cryptocurrency'
+                            ? appBalances[app.app_code].cryptoBalance
+                            : appBalances[app.app_code].fiatBalance
+                        }
+                        decimals={2}
+                      />
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                </div>
+              ))}
+          </Scrollbars>
+        ) : (
+          ''
+        )}{' '}
       </div>
     );
   return (
