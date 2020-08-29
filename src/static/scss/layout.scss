@@ -106,7 +106,6 @@
       display: flex;
       flex-direction: column;
       .tab-inrest-asset {
-        margin-top: auto;
         display: flex;
         border: 1px $vault-border-color;
         border-style: solid none none none;
@@ -288,44 +287,20 @@
         text-align: center;
       }
     }
-    @include xxxl {
-      zoom: 0.8;
-      .side-bar {
-        .rate-list-wrapper {
-          max-height: 50%;
-        }
-      }
-    }
-    @include xxl {
-      zoom: 0.7;
-    }
-    @include xl {
-      zoom: 0.6;
-    }
-    @include lg {
-      zoom: 0.5;
-    }
   }
-  .page-content {
-    @media (max-height: 1050px) {
-      zoom: 0.95;
-    }
-    @include xxxl {
-      zoom: 0.8;
-      .side-bar {
-        .rate-list-wrapper {
-          max-height: 50%;
-        }
-      }
-    }
-    @include xxl {
-      zoom: 0.7;
-    }
-    @include xl {
-      zoom: 0.6;
-    }
-    @include lg {
-      zoom: 0.5;
-    }
+  @media (max-height: 1050px) {
+    zoom: 0.95;
+  }
+  @include xxxl {
+    zoom: 0.8;
+  }
+  @include xxl {
+    zoom: 0.7;
+  }
+  @include xl {
+    zoom: 0.6;
+  }
+  @include lg {
+    zoom: 0.5;
   }
 }
