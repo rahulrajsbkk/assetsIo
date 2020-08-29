@@ -66,7 +66,19 @@ function CoinDetailTable({
         >
           Earn {coinToDetail.coinSymbol}
         </div>
-        <div className="btnBuy">Buy {coinToDetail.coinSymbol}</div>
+        <div
+          className="btnBuy"
+          onClick={() => {
+            setCoinSelected(coinToDetail);
+            if (email) {
+              // setDepositModal(true);
+            } else {
+              setLoginModal(true);
+            }
+          }}
+        >
+          Buy {coinToDetail.coinSymbol}
+        </div>
       </div>
       <div
         className={`lastPrice ${toHide === 'lastPrice' ? 'd-none' : ''}`}
