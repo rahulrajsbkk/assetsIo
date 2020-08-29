@@ -90,9 +90,9 @@ function EarningsContextProvider({ children }) {
         .then((res) => {
           const { data } = res;
           console.log('data.logs', data.logs);
-          if (data.status && data.logs && data.logs[0]) {
+          if (data.status) {
             setEarnTransactions(
-              data.logs[0].logs.filter((bal) => bal.app_code === appSelected)
+              data.logs && data.logs[0] ? data.logs[0].logs : []
             );
           }
         })
