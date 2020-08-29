@@ -186,77 +186,83 @@ function LayoutSidebarCoins({ active }) {
           />
         ) : (
           <>
-            <div className="tab-inrest-asset">
-              <div
-                className={`tab-itm title order-1 ${
-                  tabItem === 'Interest Rates'
-                }`}
-                onClick={() => setTabItem('Interest Rates')}
-              >
-                Set New Display Currency
+            <div className="assetPriceWrapper">
+              <div className="tab-inrest-asset">
+                <div
+                  className={`tab-itm title order-1 ${
+                    tabItem === 'Interest Rates'
+                  }`}
+                  onClick={() => setTabItem('Interest Rates')}
+                >
+                  Set New Display Currency
+                </div>
+                <div
+                  className={`tab-itm settings order-3 ${
+                    tabItem === 'Settings'
+                  }`}
+                  onClick={() => setTabItem('Settings')}
+                >
+                  <img src={settingsIcon} alt="" />
+                </div>
               </div>
-              <div
-                className={`tab-itm settings order-3 ${tabItem === 'Settings'}`}
-                onClick={() => setTabItem('Settings')}
-              >
-                <img src={settingsIcon} alt="" />
-              </div>
-            </div>
-            <Scrollbars
-              autoHide
-              renderThumbHorizontal={() => <div />}
-              renderView={(props) => <div {...props} className="coins-list" />}
-              className="defCoinList"
-            >
-              <div
-                className="coin"
-                key="all"
-                onClick={() => {
-                  setDefaultCoin({
-                    coin: null,
-                    name: 'Default Coin',
-                    img: allPlatforms,
-                  });
-                  setOpenDefaultCoinSidebar(false);
-                }}
-              >
-                <img className="coin-logo mr-2" src={allPlatforms} alt="" />
-                <div className="coin-name">Default Currency</div>
-                {defaultCoin.coin === null ? (
-                  <img className="select" src={selectIcon} alt="" />
-                ) : (
-                  ''
+              <Scrollbars
+                autoHide
+                renderThumbHorizontal={() => <div />}
+                renderView={(props) => (
+                  <div {...props} className="coins-list" />
                 )}
-              </div>
-              {coinListSorted
-                .filter((coin) => coin.coinSymbol === 'USD')
-                .map((coin) => (
-                  <div
-                    className="coin"
-                    key={coin.coinName}
-                    onClick={() => {
-                      setDefaultCoin({
-                        coin: coin.coinSymbol,
-                        name: coin.coinName,
-                        img: coin.coinImage,
-                      });
-                      setOpenDefaultCoinSidebar(false);
-                    }}
-                  >
-                    <img
-                      className="coin-logo mr-2"
-                      src={coin.coinImage}
-                      alt=""
-                    />
-                    <div className="coin-name">{coin.coinName}</div>
-                    {defaultCoin.coin === coin.coinSymbol ? (
-                      <img className="select" src={selectIcon} alt="" />
-                    ) : (
-                      ''
-                    )}
-                  </div>
-                ))}
-            </Scrollbars>
+                className="defCoinList"
+              >
+                <div
+                  className="coin"
+                  key="all"
+                  onClick={() => {
+                    setDefaultCoin({
+                      coin: null,
+                      name: 'Default Coin',
+                      img: allPlatforms,
+                    });
+                    setOpenDefaultCoinSidebar(false);
+                  }}
+                >
+                  <img className="coin-logo mr-2" src={allPlatforms} alt="" />
+                  <div className="coin-name">Default Currency</div>
+                  {defaultCoin.coin === null ? (
+                    <img className="select" src={selectIcon} alt="" />
+                  ) : (
+                    ''
+                  )}
+                </div>
+                {coinListSorted
+                  .filter((coin) => coin.coinSymbol === 'USD')
+                  .map((coin) => (
+                    <div
+                      className="coin"
+                      key={coin.coinName}
+                      onClick={() => {
+                        setDefaultCoin({
+                          coin: coin.coinSymbol,
+                          name: coin.coinName,
+                          img: coin.coinImage,
+                        });
+                        setOpenDefaultCoinSidebar(false);
+                      }}
+                    >
+                      <img
+                        className="coin-logo mr-2"
+                        src={coin.coinImage}
+                        alt=""
+                      />
+                      <div className="coin-name">{coin.coinName}</div>
+                      {defaultCoin.coin === coin.coinSymbol ? (
+                        <img className="select" src={selectIcon} alt="" />
+                      ) : (
+                        ''
+                      )}
+                    </div>
+                  ))}
+              </Scrollbars>
+            </div>
           </>
         )}
       </div>
