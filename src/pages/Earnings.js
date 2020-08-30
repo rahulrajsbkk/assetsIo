@@ -5,6 +5,7 @@ import EarningPageHead from '../components/EarningsPage/EarningsPageHead';
 import EarningsContextProvider from '../context/EarningsContext';
 import EarningsTransactionTable from '../components/EarningsPage/EarningsTransactionTable';
 import EarningsControlls from '../components/EarningsPage/EarningsControlls';
+import EarningsPageFab from '../components/EarningsPage/EarningsPageFab';
 
 function Earnings({ match }) {
   return (
@@ -16,6 +17,7 @@ function Earnings({ match }) {
           credit={!(match.params.type === 'deposit')}
           debit={!(match.params.type === 'withdraw')}
         />
+        <EarningsPageFab />
       </Layout>
     </EarningsContextProvider>
   );

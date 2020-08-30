@@ -150,8 +150,10 @@ function EarningsControlls() {
           </div>
           {userApps.map((app) => (
             <div
-              className={`appIcon ${appSelected === app.app_code}`}
-              onClick={() => setAppSelected(app.app_code)}
+              className={`appIcon ${
+                appSelected && appSelected.app_code === app.app_code
+              }`}
+              onClick={() => setAppSelected(app)}
             >
               <img src={IsValidURL(app.app_icon) || assetLogo} alt="" />
               <div className="appTooltip">{app.app_code}</div>

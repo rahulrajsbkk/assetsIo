@@ -53,7 +53,7 @@ function EarningsContextProvider({ children }) {
       setLoadingBalance(true);
       Axios.get(
         `https://comms.globalxchange.com/coin/vault/service/user/app/interest/balances/get?email=${email}${
-          appSelected ? `&app_code=${appSelected}` : ''
+          appSelected ? `&app_code=${appSelected.app_code}` : ''
         }`
       )
         .then((res) => {
@@ -93,7 +93,7 @@ function EarningsContextProvider({ children }) {
         Axios.get(
           `https://comms.globalxchange.com/coin/vault/service/user/app/interest/logs/get?&email=${email}&coin=${
             coinSelected.coinSymbol
-          }${appSelected ? `&app_code=${appSelected}` : ''}`
+          }${appSelected ? `&app_code=${appSelected.app_code}` : ''}`
         )
           .then((res) => {
             const { data } = res;

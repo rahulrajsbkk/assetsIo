@@ -53,7 +53,7 @@ function EarningsPageHead() {
             <Skeleton width={150} />
           ) : liquidOrBond === 'Liquid' ? (
             <>
-              {appSelected || 'All'} Liquid{' '}
+              {(appSelected && appSelected.app_code) || 'All'} Liquid{' '}
               {coinSelected && coinSelected.coinName}s Earnings Vault
             </>
           ) : (
