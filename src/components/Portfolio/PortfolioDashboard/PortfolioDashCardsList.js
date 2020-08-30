@@ -5,6 +5,7 @@ import { PortfolioContext } from '../../../context/PortfolioContext';
 import { FormatCurrency } from '../../../utils/FunctionTools';
 import { BankContext } from '../../../context/Context';
 import logo from '../../../static/images/logoWtBg.svg';
+import Skeleton from 'react-loading-skeleton';
 
 function PortfolioDashCardsList({
   selectedCard,
@@ -12,9 +13,13 @@ function PortfolioDashCardsList({
   selectedApp,
   setSelectedApp,
 }) {
-  const { fiatBalance, cryptoBalance, userApps, appBalances } = useContext(
-    PortfolioContext
-  );
+  const {
+    fiatBalance,
+    cryptoBalance,
+    userApps,
+    appBalances,
+    loadingAppBalance,
+  } = useContext(PortfolioContext);
   const { updateInterval } = useContext(BankContext);
   const [duration, setDuration] = useState(2);
   const togleDuration = (duration) => {
@@ -41,18 +46,24 @@ function PortfolioDashCardsList({
                   <img className="coin-logo mr-2" src={coin.coinImage} alt="" />
                   <div className="coin-name">{coin.coinName}</div>
                   <div className="rate">
-                    $
-                    <CountUp
-                      onEnd={() => {
-                        if (updateInterval)
-                          setTimeout(() => {
-                            togleDuration(duration);
-                          }, updateInterval * 1000);
-                      }}
-                      duration={duration}
-                      end={coin.coinValueUSD}
-                      decimals={2}
-                    />
+                    {loadingAppBalance ? (
+                      <Skeleton height="100%" width={80} />
+                    ) : (
+                      <>
+                        $
+                        <CountUp
+                          onEnd={() => {
+                            if (updateInterval)
+                              setTimeout(() => {
+                                togleDuration(duration);
+                              }, updateInterval * 1000);
+                          }}
+                          duration={duration}
+                          end={coin.coinValueUSD}
+                          decimals={2}
+                        />
+                      </>
+                    )}
                   </div>
                 </div>
               ))}
@@ -83,25 +94,27 @@ function PortfolioDashCardsList({
                   <img className="coin-logo mr-2" src={logo} alt="" />
                   <div className="coin-name">{app.app_code}</div>
                   <div className="rate">
-                    $
-                    {appBalances[app.app_code] ? (
-                      <CountUp
-                        onEnd={() => {
-                          if (updateInterval)
-                            setTimeout(() => {
-                              togleDuration(duration);
-                            }, updateInterval * 1000);
-                        }}
-                        duration={duration}
-                        end={
-                          selectedCard === 'Cryptocurrency'
-                            ? appBalances[app.app_code].cryptoBalance
-                            : appBalances[app.app_code].fiatBalance
-                        }
-                        decimals={2}
-                      />
+                    {loadingAppBalance || !appBalances[app.app_code] ? (
+                      <Skeleton height="100%" width={80} />
                     ) : (
-                      ''
+                      <>
+                        $
+                        <CountUp
+                          onEnd={() => {
+                            if (updateInterval)
+                              setTimeout(() => {
+                                togleDuration(duration);
+                              }, updateInterval * 1000);
+                          }}
+                          duration={duration}
+                          end={
+                            selectedCard === 'Cryptocurrency'
+                              ? appBalances[app.app_code].cryptoBalance
+                              : appBalances[app.app_code].fiatBalance
+                          }
+                          decimals={2}
+                        />
+                      </>
                     )}
                   </div>
                 </div>

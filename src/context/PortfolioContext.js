@@ -103,11 +103,13 @@ function PortfolioContextProvider({ children }) {
     });
   }, [email]);
 
+  const [loadingAppBalance, setLoadingAppBalance] = useState(true);
   const [fiatBalance, setFiatBalance] = useState(0);
   const [cryptoBalance, setCryptoBalance] = useState(0);
   const [userApps, setUserApps] = useState([]);
   const [appBalances, setAppBalances] = useState({});
   const getBalances = async () => {
+    setLoadingAppBalance(true);
     const res = await Axios.get(
       `https://comms.globalxchange.com/gxb/apps/registered/user?email=${email}`
     );
@@ -150,6 +152,7 @@ function PortfolioContextProvider({ children }) {
     setAppBalances(obj);
     setFiatBalance(totalFiat);
     setCryptoBalance(totalCrypto);
+    setLoadingAppBalance(false);
   };
 
   useEffect(() => {
@@ -183,6 +186,7 @@ function PortfolioContextProvider({ children }) {
         cryptoBalance,
         userApps,
         appBalances,
+        loadingAppBalance,
       }}
     >
       {children}
