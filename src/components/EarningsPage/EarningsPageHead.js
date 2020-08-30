@@ -16,6 +16,7 @@ function EarningsPageHead() {
     liquidEarningBalances,
     liquidOrBond,
     contractEarnings,
+    appSelected,
   } = useContext(EarningsContext);
   const { coinList } = useContext(BankContext);
   const [coin, setCoin] = useState('BTC');
@@ -50,8 +51,13 @@ function EarningsPageHead() {
         <div className="vault">
           {loading ? (
             <Skeleton width={150} />
+          ) : liquidOrBond === 'Liquid' ? (
+            <>
+              {appSelected || 'All'} Liquid{' '}
+              {coinSelected && coinSelected.coinName}s Earnings Vault
+            </>
           ) : (
-            <>{coinSelected && coinSelected.coinName} Earnings</>
+            <>Bonds {coinSelected && coinSelected.coinName}s Earnings Vault</>
           )}
         </div>
         {liquidOrBond === 'Liquid' ? (
