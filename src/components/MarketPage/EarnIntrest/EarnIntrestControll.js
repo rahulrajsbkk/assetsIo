@@ -4,7 +4,7 @@ import usdt from '../../../static/images/coin-color/tether.svg';
 import indices from '../../../static/images/indices.svg';
 
 function EarnIntrestControll({ setAssetTab }) {
-  const [tabSelected, setTabSelected] = useState('stableCoin');
+  const [tabSelected, setTabSelected] = useState('cryptoCoin');
   useEffect(() => {
     try {
       setAssetTab(tabSelected);
@@ -15,16 +15,6 @@ function EarnIntrestControll({ setAssetTab }) {
       {/* <h2 className="mb-4">{title}</h2> */}
       <div className="earn-intrest-controll">
         <div
-          className={`tab-item ${tabSelected === 'stableCoin'}`}
-          onClick={() => setTabSelected('stableCoin')}
-        >
-          <img className="coin-img" src={usdt} alt="" />
-          <div className="text-content">
-            <h5>StableCoins</h5>
-            <h6>Digital Assets Pegged To An Analog Asset</h6>
-          </div>
-        </div>
-        <div
           className={`tab-item ${tabSelected === 'cryptoCoin'}`}
           onClick={() => setTabSelected('cryptoCoin')}
         >
@@ -32,6 +22,16 @@ function EarnIntrestControll({ setAssetTab }) {
           <div className="text-content">
             <h5>Cryptocurrencies</h5>
             <h6>Assets Built On A Blockchain</h6>
+          </div>
+        </div>
+        <div
+          className={`tab-item ${tabSelected === 'stableCoin'}`}
+          onClick={() => setTabSelected('stableCoin')}
+        >
+          <img className="coin-img" src={usdt} alt="" />
+          <div className="text-content">
+            <h5>StableCoins</h5>
+            <h6>Digital Assets Pegged To An Analog Asset</h6>
           </div>
         </div>
         <div
