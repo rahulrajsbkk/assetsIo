@@ -6,9 +6,14 @@ import { FormatCurrency, YesterdayToday } from '../../utils/FunctionTools';
 import { EarningsContext } from '../../context/EarningsContext';
 
 function EarningsTransactionTable({ credit, debit }) {
-  const { coinSelected, loading, dateSelected, earnTransactions } = useContext(
-    EarningsContext
-  );
+  const {
+    coinSelected,
+    loading,
+    dateSelected,
+    earnTransactions,
+    contractTransactions,
+    liquidOrBond,
+  } = useContext(EarningsContext);
   let date = '';
   return (
     <Scrollbars
@@ -28,7 +33,7 @@ function EarningsTransactionTable({ credit, debit }) {
         </>
       ) : (
         coinSelected &&
-        earnTransactions
+        (liquidOrBond === 'Liquid' ? earnTransactions : contractTransactions)
           .filter(
             (txn) =>
               txn.coin === coinSelected.coinSymbol &&

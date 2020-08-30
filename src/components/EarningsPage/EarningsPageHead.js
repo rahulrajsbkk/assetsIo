@@ -14,6 +14,8 @@ function EarningsPageHead() {
     setCoinSelected,
     loading,
     liquidEarningBalances,
+    liquidOrBond,
+    contractEarnings,
   } = useContext(EarningsContext);
   const { coinList } = useContext(BankContext);
   const [coin, setCoin] = useState('BTC');
@@ -52,31 +54,59 @@ function EarningsPageHead() {
             <>{coinSelected && coinSelected.coinName} Earnings</>
           )}
         </div>
-        <div className="balance">
-          {loading ? (
-            <Skeleton width={250} />
-          ) : (
-            coinSelected &&
-            FormatCurrency(
-              liquidEarningBalances[coinSelected.coinSymbol],
-              coinSelected.coinSymbol
-            )
-          )}{' '}
-          <small>
+        {liquidOrBond === 'Liquid' ? (
+          <div className="balance">
             {loading ? (
-              ''
+              <Skeleton width={250} />
             ) : (
-              <>
-                $
-                {coinSelected &&
-                  FormatCurrency(
-                    liquidEarningBalances[coinSelected.coinSymbol] *
-                      coinSelected.price.USD
-                  )}
-              </>
-            )}
-          </small>
-        </div>
+              coinSelected &&
+              FormatCurrency(
+                liquidEarningBalances[coinSelected.coinSymbol],
+                coinSelected.coinSymbol
+              )
+            )}{' '}
+            <small>
+              {loading ? (
+                ''
+              ) : (
+                <>
+                  $
+                  {coinSelected &&
+                    FormatCurrency(
+                      liquidEarningBalances[coinSelected.coinSymbol] *
+                        coinSelected.price.USD
+                    )}
+                </>
+              )}
+            </small>
+          </div>
+        ) : (
+          <div className="balance">
+            {loading ? (
+              <Skeleton width={250} />
+            ) : (
+              coinSelected &&
+              FormatCurrency(
+                contractEarnings[coinSelected.coinSymbol],
+                coinSelected.coinSymbol
+              )
+            )}{' '}
+            <small>
+              {loading ? (
+                ''
+              ) : (
+                <>
+                  $
+                  {coinSelected &&
+                    FormatCurrency(
+                      contractEarnings[coinSelected.coinSymbol] *
+                        coinSelected.price.USD
+                    )}
+                </>
+              )}
+            </small>
+          </div>
+        )}
       </div>
       <div className="coin-select">
         {loading ? (
