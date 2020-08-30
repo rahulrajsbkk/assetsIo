@@ -75,6 +75,8 @@ function EarningsContextProvider({ children }) {
               }
               setLiquidEarningBalances(coins);
             });
+          } else {
+            setLiquidEarningBalances(coinZero);
           }
         })
         .finally(() => {
