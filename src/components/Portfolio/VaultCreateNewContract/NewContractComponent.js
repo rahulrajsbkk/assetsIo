@@ -40,7 +40,7 @@ function NewContractComponent() {
         <h5>Step 1: Select Asset</h5>
         <Scrollbars
           autoHide
-          className="scroll-view"
+          className="scroll-view-wrapper"
           renderTrackVertical={(props) => <div {...props} className="d-none" />}
           renderThumbVertical={(props) => <div {...props} className="d-none" />}
           renderView={(props) => <div {...props} className="scroll-view" />}

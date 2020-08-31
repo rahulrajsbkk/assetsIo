@@ -44,15 +44,6 @@ function PortfolioGrowAssets() {
             <div
               className="btnAsset"
               onClick={() => {
-                setGrowAsset('createAsset');
-                setTitle('');
-              }}
-            >
-              Create An Asset
-            </div>
-            <div
-              className="btnAsset"
-              onClick={() => {
                 setGrowAsset('iceAsset');
                 setTitle('');
               }}
@@ -61,10 +52,21 @@ function PortfolioGrowAssets() {
             </div>
             <div
               className="btnAsset"
-              onClick={() => {
-                setGrowAsset('createIndex');
-                setTitle('');
-              }}
+              style={{ cursor: 'progress', opacity: '0.3' }}
+              // onClick={() => {
+              //   setGrowAsset('createAsset');
+              //   setTitle('');
+              // }}
+            >
+              Create An Asset
+            </div>
+            <div
+              className="btnAsset"
+              style={{ cursor: 'progress', opacity: '0.3' }}
+              // onClick={() => {
+              //   setGrowAsset('createIndex');
+              //   setTitle('');
+              // }}
             >
               Create An Index
             </div>
@@ -86,16 +88,7 @@ function PortfolioGrowAssets() {
             }`}
           >
             <div
-              className="btnAsset"
-              onClick={() => {
-                setGrowAsset('createAsset');
-                setTitle('Create An Asset');
-              }}
-            >
-              Create An Asset
-            </div>
-            <div
-              className={`btnAsset invert ${
+              className={`btnAsset  ${
                 growAsset === 'iceAsset' ? 'd-none' : ''
               }`}
               onClick={() => {
@@ -107,6 +100,17 @@ function PortfolioGrowAssets() {
               Ice An Asset
             </div>
             <div
+              style={{ cursor: 'progress', opacity: '0.3' }}
+              className="btnAsset invert"
+              onClick={() => {
+                setGrowAsset('createAsset');
+                setTitle('Create An Asset');
+              }}
+            >
+              Create An Asset
+            </div>
+            <div
+              style={{ cursor: 'progress', opacity: '0.3' }}
               className="btnAsset"
               onClick={() => {
                 setGrowAsset('createIndex');

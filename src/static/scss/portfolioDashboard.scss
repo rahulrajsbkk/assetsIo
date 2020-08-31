@@ -55,7 +55,7 @@
       .chart-section {
         display: flex;
         .chart {
-          flex: 0 0 40%;
+          width: 250px;
           position: relative;
           transform-style: preserve-3d;
           margin-right: 20px;
@@ -79,6 +79,21 @@
           }
           &:hover {
             transform: scale(1.02);
+          }
+          @media (max-height: 1050px) {
+            zoom: 0.95;
+          }
+          @include xxxl {
+            zoom: 0.8;
+          }
+          @include xxl {
+            zoom: 0.7;
+          }
+          @include xl {
+            zoom: 0.6;
+          }
+          @include lg {
+            zoom: 0.5;
           }
         }
         .cards-list {
@@ -296,6 +311,21 @@
             &.true {
               opacity: 1;
             }
+          }
+          @media (max-height: 1050px) {
+            zoom: 0.95;
+          }
+          @include xxxl {
+            zoom: 0.85;
+          }
+          @include xxl {
+            zoom: 0.75;
+          }
+          @include xl {
+            zoom: 0.65;
+          }
+          @include lg {
+            zoom: 0.55;
           }
         }
       }
