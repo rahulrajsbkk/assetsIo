@@ -248,6 +248,7 @@
       }
       &.true {
         .textNBtns {
+          border-top: 1px solid $vault-border-color;
           background: white;
           h6 {
             color: $primary-color;
