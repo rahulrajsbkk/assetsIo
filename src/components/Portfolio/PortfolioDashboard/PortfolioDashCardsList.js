@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
+import Skeleton from 'react-loading-skeleton';
 import CountUp from 'react-countup';
 import { PortfolioContext } from '../../../context/PortfolioContext';
 import { FormatCurrency } from '../../../utils/FunctionTools';
 import { BankContext } from '../../../context/Context';
 import logo from '../../../static/images/logoWtBg.svg';
-import Skeleton from 'react-loading-skeleton';
 
 function PortfolioDashCardsList({
   selectedCard,
@@ -19,6 +19,10 @@ function PortfolioDashCardsList({
     userApps,
     appBalances,
     loadingAppBalance,
+    loadingEarnings,
+    totalUsdEarning,
+    totalUsdContractEarning,
+    loadingBondEarnings,
   } = useContext(PortfolioContext);
   const { updateInterval } = useContext(BankContext);
   const [duration, setDuration] = useState(2);
@@ -132,25 +136,49 @@ function PortfolioDashCardsList({
         onClick={() => setSelectedCard('Cryptocurrency')}
       >
         <div className="name">Liquid Crypto</div>
-        <div className="value">${FormatCurrency(cryptoBalance)} USD</div>
+        <div className="value">
+          {loadingAppBalance ? (
+            <Skeleton height="100%" width={180} />
+          ) : (
+            `$${FormatCurrency(cryptoBalance)} USD`
+          )}
+        </div>
       </div>
       <div
         className="indexCard"
         onClick={() => setSelectedCard('Fiat Currency')}
       >
         <div className="name">Fiat Currency</div>
-        <div className="value">${FormatCurrency(fiatBalance)} USD</div>
+        <div className="value">
+          {loadingAppBalance ? (
+            <Skeleton height="100%" width={180} />
+          ) : (
+            `$${FormatCurrency(fiatBalance)} USD`
+          )}
+        </div>
       </div>
       <div className="indexCard" onClick={() => setSelectedCard('Bonds')}>
         <div className="name">Bonds</div>
-        <div className="value">$_ USD</div>
+        <div className="value">
+          {loadingBondEarnings ? (
+            <Skeleton height="100%" width={180} />
+          ) : (
+            `$${FormatCurrency(totalUsdContractEarning)} USD`
+          )}
+        </div>
       </div>
       <div
         className="indexCard"
         onClick={() => setSelectedCard('Fixed Income')}
       >
         <div className="name">Fixed Income</div>
-        <div className="value">$_ USD</div>
+        <div className="value">
+          {loadingEarnings ? (
+            <Skeleton height="100%" width={180} />
+          ) : (
+            `$${FormatCurrency(totalUsdEarning)} USD`
+          )}
+        </div>
       </div>
       <div className="indexCard">
         <div className="name">Digital Assets</div>

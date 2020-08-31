@@ -12,9 +12,15 @@ import PortfolioGrowAssets from './PortfolioGrowAssets';
 function PortfolioDashboard() {
   const [dashTab, setDashTab] = useState('Net-Worth');
 
-  const { portfolioSelected, setPortfolioSelected, icedContracts } = useContext(
-    PortfolioContext
-  );
+  const {
+    portfolioSelected,
+    setPortfolioSelected,
+    icedContracts,
+    fiatBalance,
+    cryptoBalance,
+    totalUsdEarning,
+    totalUsdContractEarning,
+  } = useContext(PortfolioContext);
   const { coinList, email, coinListObject } = useContext(BankContext);
 
   const [totalLiquid, setTotalLiquid] = useState(0);
@@ -46,14 +52,14 @@ function PortfolioDashboard() {
 
   const chartData = [
     {
-      value: totalLiquid,
+      value: fiatBalance + cryptoBalance + totalUsdEarning,
       color: '#464B4E',
       name: 'Liquid',
     },
     {
-      value: totalPooled,
+      value: totalUsdContractEarning,
       color: '#8B8B8B',
-      name: 'Pooled',
+      name: 'Invested',
     },
   ];
 
@@ -92,14 +98,32 @@ function PortfolioDashboard() {
             className="total"
             // onClick={() => setChartData(totalDataChart)}
           >
-            <h6>{portfolioSelected} Portfolio</h6>
-            <h4>
-              $
-              {FormatCurrency(
-                totalLiquid * (portfolioSelected !== 'Pooled') +
-                  totalPooled * (portfolioSelected !== 'Liquid')
-              )}
-            </h4>
+            {portfolioSelected === 'Total' ? (
+              <>
+                <h6>Your Net-Worth</h6>
+                <h4>
+                  $
+                  {FormatCurrency(
+                    fiatBalance +
+                      cryptoBalance +
+                      totalUsdEarning +
+                      totalUsdContractEarning
+                  )}
+                </h4>
+              </>
+            ) : (
+              <>
+                <h6>{portfolioSelected} Portfolio</h6>
+                <h4>
+                  $
+                  {FormatCurrency(
+                    (fiatBalance + cryptoBalance + totalUsdEarning) *
+                      (portfolioSelected !== 'Invested') +
+                      totalUsdContractEarning * (portfolioSelected !== 'Liquid')
+                  )}
+                </h4>
+              </>
+            )}
           </div>
           <div className="chart-section">
             <div
@@ -131,7 +155,7 @@ function PortfolioDashboard() {
                 <div className="indicator">
                   <h6
                     className={`my-3 d-flex ${
-                      portfolioSelected === 'Pooled' ? 'inactive' : ''
+                      portfolioSelected === 'Invested' ? 'inactive' : ''
                     }`}
                     onClick={() => {
                       if (portfolioSelected === 'Liquid') {
@@ -154,8 +178,19 @@ function PortfolioDashboard() {
                       <small>
                         (
                         {FormatNumber(
-                          (totalLiquid / (totalLiquid + totalPooled)) * 100,
-                          (totalLiquid / (totalLiquid + totalPooled)) * 100 < 10
+                          ((fiatBalance + cryptoBalance + totalUsdEarning) /
+                            (fiatBalance +
+                              cryptoBalance +
+                              totalUsdEarning +
+                              totalUsdContractEarning)) *
+                            100,
+                          ((fiatBalance + cryptoBalance + totalUsdEarning) /
+                            (fiatBalance +
+                              cryptoBalance +
+                              totalUsdEarning +
+                              totalUsdContractEarning)) *
+                            100 <
+                            10
                             ? 2
                             : 1
                         )}
@@ -168,11 +203,11 @@ function PortfolioDashboard() {
                       portfolioSelected === 'Liquid' ? 'inactive' : ''
                     }`}
                     onClick={() => {
-                      if (portfolioSelected === 'Pooled') {
+                      if (portfolioSelected === 'Invested') {
                         setPortfolioSelected('Total');
                         setSegment(null);
                       } else {
-                        setPortfolioSelected('Pooled');
+                        setPortfolioSelected('Invested');
                         setSegment(1);
                       }
                     }}
@@ -183,13 +218,24 @@ function PortfolioDashboard() {
                       style={{ color: '#8B8B8B' }}
                     />
                     <span className="m-0">
-                      Pooled&nbsp;
+                      Invested&nbsp;
                       <br />
                       <small>
                         (
                         {FormatNumber(
-                          (totalPooled / (totalLiquid + totalPooled)) * 100,
-                          (totalPooled / (totalLiquid + totalPooled)) * 100 < 10
+                          (totalUsdContractEarning /
+                            (fiatBalance +
+                              cryptoBalance +
+                              totalUsdEarning +
+                              totalUsdContractEarning)) *
+                            100,
+                          (totalUsdContractEarning /
+                            (fiatBalance +
+                              cryptoBalance +
+                              totalUsdEarning +
+                              totalUsdContractEarning)) *
+                            100 <
+                            10
                             ? 2
                             : 1
                         )}

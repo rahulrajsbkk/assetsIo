@@ -4,8 +4,40 @@ import { BankContext } from './Context';
 
 export const PortfolioContext = createContext();
 
+const coinZero = {
+  AED: 0,
+  ARS: 0,
+  AUD: 0,
+  BTC: 0,
+  CAD: 0,
+  CNY: 0,
+  COP: 0,
+  DGP: 0,
+  DOGE: 0,
+  EOS: 0,
+  ETH: 0,
+  EUR: 0,
+  EWT: 0,
+  GBP: 0,
+  GXT: 0,
+  IDR: 0,
+  INR: 0,
+  JPY: 0,
+  JST: 0,
+  LTC: 0,
+  MXN: 0,
+  MyGXT: 0,
+  SEF: 0,
+  TRX: 0,
+  USD: 0,
+  USDT: 0,
+  XRP: 0,
+};
+
 function PortfolioContextProvider({ children }) {
-  const { email, token, tostShowOn, profileId } = useContext(BankContext);
+  const { email, token, tostShowOn, profileId, coinListObject } = useContext(
+    BankContext
+  );
   const [loading, setLoading] = useState(false);
   const [loadingCnfrm, setLoadingCnfrm] = useState(false);
   const [coinContract, setCoinContract] = useState('');
@@ -160,6 +192,94 @@ function PortfolioContextProvider({ children }) {
     // eslint-disable-next-line
   }, [profileId]);
 
+  // Get earnings
+  console.log('coinListObject', coinListObject);
+  const [liquidEarningBalances, setLiquidEarningBalances] = useState();
+  const [totalUsdEarning, setTotalUsdEarning] = useState(0);
+  const [loadingEarnings, setLoadingEarnings] = useState(true);
+  const [contractEarnings, setContractEarnings] = useState({});
+  const [loadingBondEarnings, setLoadingBondEarnings] = useState(true);
+  const [totalUsdContractEarning, setTotalUsdContractEarning] = useState(0);
+  const getEarnings = async () => {
+    if (email && coinListObject && coinListObject.BTC) {
+      setLoadingEarnings(true);
+      const res = await Axios.get(
+        `https://comms.globalxchange.com/coin/vault/service/user/app/interest/balances/get?email=${email}`
+      );
+      const { data } = res;
+      if (
+        data.status &&
+        data.result &&
+        data.result[0] &&
+        data.result[0].balances
+      ) {
+        let coins = coinZero;
+        let coinBalance = 0;
+        data.result[0].balances.forEach((app) => {
+          for (const coinSymbol in app.liquid_balances) {
+            if (
+              coinListObject[coinSymbol] &&
+              coinListObject[coinSymbol].price
+            ) {
+              coinBalance +=
+                app.liquid_balances[coinSymbol] *
+                coinListObject[coinSymbol].price.USD;
+            }
+            coins = {
+              ...coins,
+              [coinSymbol]: app.liquid_balances[coinSymbol] + coins[coinSymbol],
+            };
+          }
+        });
+        console.log('coinBalance', coinBalance);
+        setLiquidEarningBalances(coins);
+        setTotalUsdEarning(coinBalance);
+      } else {
+        setLiquidEarningBalances(coinZero);
+        setTotalUsdEarning(0);
+      }
+      setLoadingEarnings(false);
+    }
+  };
+  useEffect(() => {
+    getEarnings();
+    setLoadingBondEarnings(true);
+    Axios.get(
+      `https://comms.globalxchange.com/coin/iced/interest/balances/get?email=${email}`
+    )
+      .then((res) => {
+        const { data } = res;
+        let contractEarningUsd;
+        if (
+          data.status &&
+          data.result &&
+          data.result[0] &&
+          data.result[0].balances &&
+          data.result[0].balances[0] &&
+          data.result[0].balances[0].iced_balances
+        ) {
+          setContractEarnings(data.result[0].balances[0].iced_balances);
+          for (const coinSymbol in data.result[0].balances[0].iced_balances) {
+            if (
+              coinListObject[coinSymbol] &&
+              coinListObject[coinSymbol].price
+            ) {
+              contractEarningUsd +=
+                data.result[0].balances[0].iced_balances[coinSymbol] *
+                coinListObject[coinSymbol].price.USD;
+            }
+          }
+          setTotalUsdContractEarning(contractEarningUsd);
+        } else {
+          setContractEarnings(coinZero);
+          setTotalUsdContractEarning(0);
+        }
+      })
+      .finally(() => {
+        setLoadingBondEarnings(false);
+      });
+  }, [email, coinListObject]);
+
   return (
     <PortfolioContext.Provider
       value={{
@@ -188,6 +308,11 @@ function PortfolioContextProvider({ children }) {
         userApps,
         appBalances,
         loadingAppBalance,
+
+        totalUsdEarning,
+        loadingEarnings,
+        totalUsdContractEarning,
+        loadingBondEarnings,
       }}
     >
       {children}

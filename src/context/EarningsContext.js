@@ -73,8 +73,8 @@ function EarningsContextProvider({ children }) {
                     app.liquid_balances[coinSymbol] + coins[coinSymbol],
                 };
               }
-              setLiquidEarningBalances(coins);
             });
+            setLiquidEarningBalances(coins);
           } else {
             setLiquidEarningBalances(coinZero);
           }
@@ -97,7 +97,6 @@ function EarningsContextProvider({ children }) {
         )
           .then((res) => {
             const { data } = res;
-            console.log('data.logs', data.logs);
             if (data.status) {
               setEarnTransactions(
                 data.logs && data.logs[0] ? data.logs[0].logs : []
