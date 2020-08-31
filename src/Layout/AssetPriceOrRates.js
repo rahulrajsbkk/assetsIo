@@ -39,6 +39,19 @@ function AssetPriceOrRates({ isIndex }) {
   const togleDuration = (duration) => {
     setDuration(duration === 2 ? 2.1 : 2);
   };
+
+  function GetSortOrder() {
+    if (coinListObject && coinListObject.BTC)
+      return function (a, b) {
+        if (coinListObject[a.coin].type > coinListObject[b.coin].type) {
+          return 1;
+        } else if (coinListObject[a.coin].type < coinListObject[b.coin].type) {
+          return -1;
+        }
+        return 0;
+      };
+  }
+
   return (
     <>
       {tabItem === 'Settings' ? (
@@ -88,46 +101,49 @@ function AssetPriceOrRates({ isIndex }) {
               contentSideBar.content
             ) : coinListObject && tabItem === 'Interest Rates' ? (
               <>
-                {liquidRates.map((rateCoin) => (
-                  <div className="coin" key={rateCoin.coin}>
-                    <img
-                      className="coin-logo mr-2"
-                      src={
-                        coinListObject[rateCoin.coin] &&
-                        coinListObject[rateCoin.coin].coinImage
-                      }
-                      alt=""
-                    />
-                    <div className="coin-name">
-                      {coinListObject[rateCoin.coin] &&
-                        coinListObject[rateCoin.coin].coinName}
-                    </div>
-                    <div className="rate">
-                      <CountUp
-                        onEnd={() => {
-                          if (updateInterval)
-                            setTimeout(() => {
-                              togleDuration(duration);
-                            }, updateInterval * 1000);
-                        }}
-                        duration={duration}
-                        end={rateCoin.interest_rate * 365 || 0}
-                        decimals={1}
+                {Array.prototype.slice
+                  .call(liquidRates)
+                  .sort(GetSortOrder())
+                  .map((rateCoin) => (
+                    <div className="coin" key={rateCoin.coin}>
+                      <img
+                        className="coin-logo mr-2"
+                        src={
+                          coinListObject[rateCoin.coin] &&
+                          coinListObject[rateCoin.coin].coinImage
+                        }
+                        alt=""
                       />
-                      %
-                      <small>
-                        (
+                      <div className="coin-name">
+                        {coinListObject[rateCoin.coin] &&
+                          coinListObject[rateCoin.coin].coinName}
+                      </div>
+                      <div className="rate">
                         <CountUp
+                          onEnd={() => {
+                            if (updateInterval)
+                              setTimeout(() => {
+                                togleDuration(duration);
+                              }, updateInterval * 1000);
+                          }}
                           duration={duration}
-                          end={1.2 || 0}
+                          end={rateCoin.interest_rate * 365 || 0}
                           decimals={1}
                         />
-                        %)
-                        {arrow}
-                      </small>
+                        %
+                        <small>
+                          (
+                          <CountUp
+                            duration={duration}
+                            end={1.2 || 0}
+                            decimals={1}
+                          />
+                          %)
+                          {arrow}
+                        </small>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </>
             ) : (
               <>
