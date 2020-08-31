@@ -1,15 +1,11 @@
-import React, { useState, useEffect, Fragment, useContext } from 'react';
+import React, { useState, Fragment, useContext } from 'react';
 import EarningsWithdraw from './EarningsWithdraw/EarningsWithdraw';
 import { EarningsContext } from '../../context/EarningsContext';
 
 function EarningsPageFab() {
   const [fabOpen, setFabOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const [depositMenuOpen, setDepositMenuOpen] = useState(false);
   const { appSelected, liquidOrBond } = useContext(EarningsContext);
-  useEffect(() => {
-    setDepositMenuOpen(false);
-  }, [fabOpen]);
   return (
     <>
       {fabOpen ? (

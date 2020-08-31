@@ -2,8 +2,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable indent */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useContext, useEffect, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid/dist';
+import React, { useContext, useState } from 'react';
 import Axios from 'axios';
 import Lottie from 'react-lottie';
 import * as animationData from '../../../../../static/animations/cpu-loading.json';

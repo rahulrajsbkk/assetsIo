@@ -157,6 +157,7 @@ function PortfolioContextProvider({ children }) {
 
   useEffect(() => {
     getBalances();
+    // eslint-disable-next-line
   }, [profileId]);
 
   return (
