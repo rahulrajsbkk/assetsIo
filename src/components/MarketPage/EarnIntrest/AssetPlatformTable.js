@@ -85,40 +85,46 @@ function AssetPlatformTable({
             </div>
           </div>
         </div>
-        <label className="searchWrapper">
-          <input
-            value={search}
-            type="text"
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder={`Search ${searchTitle}`}
-          />
-          <FontAwesomeIcon icon={faSearch} />
-          {search ? (
-            <div className="menu" onClick={() => setSearch('')}>
-              {coinList
-                .filter(
-                  (coin) =>
-                    coin.coinName
-                      .toLowerCase()
-                      .includes(search.toLowerCase()) ||
-                    coin.coinSymbol.toLowerCase().includes(search.toLowerCase())
-                )
-                .map((coin) => (
-                  <div
-                    key={coin._id}
-                    className="btn-togle"
-                    onClick={() => setCoinSelect(coin)}
-                  >
-                    <img src={coin.coinImage} alt="" />
-                    {coin.coinName}
-                    <span className="platform">{coin.coinSymbol}</span>
-                  </div>
-                ))}
-            </div>
-          ) : (
-            ''
-          )}
-        </label>
+        {coinToDetail ? (
+          <div className="m-auto"></div>
+        ) : (
+          <label className="searchWrapper">
+            <input
+              value={search}
+              type="text"
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder={`Search ${searchTitle}`}
+            />
+            <FontAwesomeIcon icon={faSearch} />
+            {search ? (
+              <div className="menu" onClick={() => setSearch('')}>
+                {coinList
+                  .filter(
+                    (coin) =>
+                      coin.coinName
+                        .toLowerCase()
+                        .includes(search.toLowerCase()) ||
+                      coin.coinSymbol
+                        .toLowerCase()
+                        .includes(search.toLowerCase())
+                  )
+                  .map((coin) => (
+                    <div
+                      key={coin._id}
+                      className="btn-togle"
+                      onClick={() => setCoinSelect(coin)}
+                    >
+                      <img src={coin.coinImage} alt="" />
+                      {coin.coinName}
+                      <span className="platform">{coin.coinSymbol}</span>
+                    </div>
+                  ))}
+              </div>
+            ) : (
+              ''
+            )}
+          </label>
+        )}
         <img
           onClick={() => setFullScreen(!fullScreen)}
           className="fullIcon"

@@ -43,7 +43,7 @@ function CoinDetailTable({
           <FontAwesomeIcon icon={faChevronRight} />
         </div>
         <div className="bread" onClick={() => setCoinToDetail(null)}>
-          By {isAsset ? 'Asset' : 'Platform'}
+          By {isAsset ? 'Asset' : 'Bond'}
         </div>
         <div className="div">
           <FontAwesomeIcon icon={faChevronRight} />

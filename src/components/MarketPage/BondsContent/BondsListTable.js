@@ -7,7 +7,7 @@ import { BankContext } from '../../../context/Context';
 import { IndexContext } from '../../../context/IndexContext';
 import AssetTableChart from '../EarnIntrest/AssetTableChart';
 
-function BondsListTable({ assetTab }) {
+function BondsListTable({ assetTab, setCoinToDetail }) {
   const {
     coinListObject,
     tostShowOn,
@@ -69,6 +69,10 @@ function BondsListTable({ assetTab }) {
       .finally(() => {});
   };
 
+  const getCoinDetail = (key) => {
+    setCoinToDetail(coinListObject[key]);
+  };
+
   return (
     <table className="asetPlatformTable">
       <thead className="tableHead">
@@ -89,7 +93,7 @@ function BondsListTable({ assetTab }) {
               <Fragment key={value._id}>
                 <tr className={`${contract && contract._id === value._id}`}>
                   <td className="rank">{i + 1}</td>
-                  <td className="coin">
+                  <td className="coin" onClick={() => getCoinDetail(key)}>
                     <div className="coin-name">
                       <img
                         src={coinListObject[key].coinImage}
@@ -99,7 +103,7 @@ function BondsListTable({ assetTab }) {
                       {coinListObject[key].coinName}
                     </div>
                   </td>
-                  <td className="">
+                  <td className="" onClick={() => getCoinDetail(key)}>
                     <CountUp
                       onEnd={() => {
                         if (updateInterval)
@@ -119,7 +123,10 @@ function BondsListTable({ assetTab }) {
                     />{' '}
                     {defaultCoin.coin ? defaultCoin.coin : key}
                   </td>
-                  <td className="dayChange false">
+                  <td
+                    className="dayChange false"
+                    onClick={() => getCoinDetail(key)}
+                  >
                     <CountUp
                       duration={duration}
                       start={value.base_compression_rate - 2 || 0}
@@ -128,7 +135,10 @@ function BondsListTable({ assetTab }) {
                     />
                     %
                   </td>
-                  <td className="dayChange false">
+                  <td
+                    className="dayChange false"
+                    onClick={() => getCoinDetail(key)}
+                  >
                     <CountUp
                       duration={duration}
                       start={value.base_velocity - 2 || 0}
@@ -137,7 +147,10 @@ function BondsListTable({ assetTab }) {
                     />
                     %
                   </td>
-                  <td className="dayChange true">
+                  <td
+                    className="dayChange true"
+                    onClick={() => getCoinDetail(key)}
+                  >
                     <CountUp
                       duration={duration}
                       start={value.acceleration - 2 || 0}

@@ -19,7 +19,7 @@ function AssetBondsTable({
   assetTab,
 }) {
   const { setContentSideBar } = useContext(BankContext);
-  const [isAsset, setIsAsset] = useState(true);
+  const [isAsset, setIsAsset] = useState(false);
   const [fullScreen, setFullScreen] = useState(false);
   const [coinSelect, setCoinSelect] = useState({});
   const [search, setSearch] = useState('');
@@ -42,9 +42,6 @@ function AssetBondsTable({
       }`}
     >
       <div className="assetTableControlls">
-        <div className={`bt-asset ${isAsset}`} onClick={() => setIsAsset(true)}>
-          By Asset
-        </div>
         <div
           className={`bt-asset ${!isAsset}`}
           onClick={() => setIsAsset(false)}
@@ -83,40 +80,49 @@ function AssetBondsTable({
             </div>
           </div>
         </div>
-        <label className="searchWrapper">
-          <input
-            value={search}
-            type="text"
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder={`Search ${searchTitle}`}
-          />
-          <FontAwesomeIcon icon={faSearch} />
-          {search ? (
-            <div className="menu" onClick={() => setSearch('')}>
-              {coinList
-                .filter(
-                  (coin) =>
-                    coin.coinName
-                      .toLowerCase()
-                      .includes(search.toLowerCase()) ||
-                    coin.coinSymbol.toLowerCase().includes(search.toLowerCase())
-                )
-                .map((coin) => (
-                  <div
-                    key={coin._id}
-                    className="btn-togle"
-                    onClick={() => setCoinSelect(coin)}
-                  >
-                    <img src={coin.coinImage} alt="" />
-                    {coin.coinName}
-                    <span className="platform">{coin.coinSymbol}</span>
-                  </div>
-                ))}
-            </div>
-          ) : (
-            ''
-          )}
-        </label>
+        <div className={`bt-asset ${isAsset}`} onClick={() => setIsAsset(true)}>
+          By Asset
+        </div>
+        {coinToDetail ? (
+          <div className="m-auto"></div>
+        ) : (
+          <label className="searchWrapper">
+            <input
+              value={search}
+              type="text"
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder={`Search ${searchTitle}`}
+            />
+            <FontAwesomeIcon icon={faSearch} />
+            {search ? (
+              <div className="menu" onClick={() => setSearch('')}>
+                {coinList
+                  .filter(
+                    (coin) =>
+                      coin.coinName
+                        .toLowerCase()
+                        .includes(search.toLowerCase()) ||
+                      coin.coinSymbol
+                        .toLowerCase()
+                        .includes(search.toLowerCase())
+                  )
+                  .map((coin) => (
+                    <div
+                      key={coin._id}
+                      className="btn-togle"
+                      onClick={() => setCoinSelect(coin)}
+                    >
+                      <img src={coin.coinImage} alt="" />
+                      {coin.coinName}
+                      <span className="platform">{coin.coinSymbol}</span>
+                    </div>
+                  ))}
+              </div>
+            ) : (
+              ''
+            )}
+          </label>
+        )}
         <img
           onClick={() => setFullScreen(!fullScreen)}
           className="fullIcon"
@@ -142,7 +148,10 @@ function AssetBondsTable({
               coinList={coinList}
             />
           ) : (
-            <BondsListTable assetTab={assetTab} />
+            <BondsListTable
+              assetTab={assetTab}
+              setCoinToDetail={setCoinToDetail}
+            />
           )}
         </Scrollbars>
       )}
