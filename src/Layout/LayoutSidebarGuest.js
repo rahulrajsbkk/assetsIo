@@ -65,7 +65,7 @@ function LayoutSidebarGuest({ active }) {
           >
             <h5 className="d-flex py-3 menu-itm">
               <img src={portfolio} alt="" />
-              <span className="my-auto">Iced Vault</span>
+              <span className="my-auto">My Assets</span>
             </h5>
           </div>
           <Link

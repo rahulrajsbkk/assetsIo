@@ -110,7 +110,7 @@ function LayoutSidebarCoins({ active }) {
             >
               <h5 className="d-flex py-3 menu-itm">
                 <img src={card} alt="" />
-                <span className="my-auto">Vault</span>
+                <span className="my-auto">Vaults</span>
               </h5>
             </Link>
             <Link
@@ -119,7 +119,7 @@ function LayoutSidebarCoins({ active }) {
             >
               <h5 className="d-flex py-3 menu-itm">
                 <img src={earnings} alt="" />
-                <span className="my-auto">Earnings</span>
+                <span className="my-auto">Fixed Income</span>
               </h5>
             </Link>
             <Link
@@ -158,7 +158,7 @@ function LayoutSidebarCoins({ active }) {
             >
               <h5 className="d-flex py-3 menu-itm">
                 <img src={portfolio} alt="" />
-                <span className="my-auto">Iced Vault</span>
+                <span className="my-auto">My Assets</span>
               </h5>
             </div>
             <Link
