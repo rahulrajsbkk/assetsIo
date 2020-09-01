@@ -10,11 +10,11 @@ function AssetAreaChart({ today, sevenDay }) {
     const totalWidth = svg._groups[0][0].clientWidth;
     const totalHeight = svg._groups[0][0].clientHeight;
     const maxVal = Math.max(...data);
-    const ratio = totalHeight / maxVal;
+    const ratio = (totalHeight - 30) / maxVal;
     const myArea = area()
       .x((value, index) => index * (totalWidth / (data.length - 1)))
       .y0(totalHeight)
-      .y1((value) => totalHeight - ratio * value)
+      .y1((value) => totalHeight - 30 - ratio * value)
       .curve(curveCardinal);
 
     svg
