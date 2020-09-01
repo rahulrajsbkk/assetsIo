@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import CountUp from 'react-countup';
 import AssetTableChart from './AssetTableChart';
 import { BankContext } from '../../../context/Context';
+import AssetAreaChart from './AssetAreaChart';
 
 function AssetTable({ coinList, setCoinToDetail }) {
   const { updateInterval, liquidRatesObject } = useContext(BankContext);
@@ -9,6 +10,8 @@ function AssetTable({ coinList, setCoinToDetail }) {
   const togleDuration = (duration) => {
     setDuration(duration === 2 ? 2.1 : 2);
   };
+
+  console.log('object', liquidRatesObject && liquidRatesObject.INR);
   return (
     <table className="asetPlatformTable">
       <thead className="tableHead">
@@ -16,9 +19,9 @@ function AssetTable({ coinList, setCoinToDetail }) {
           <th>Rank</th>
           <th>Name</th>
           <th>Daily Rate</th>
-          <th>24Hr Change</th>
+          <th>7 Day Change</th>
           <th>Supply</th>
-          <th>Chart</th>
+          <th>7 Day Chart</th>
         </tr>
       </thead>
       <tbody className="tableContent">
@@ -51,11 +54,30 @@ function AssetTable({ coinList, setCoinToDetail }) {
               />
               %
             </td>
-            <td className={`dayChange ${0 > coin._24hrchange}`}>
+            <td
+              className={`dayChange ${
+                0 >
+                (liquidRatesObject &&
+                  liquidRatesObject[coin.coinSymbol] &&
+                  liquidRatesObject[coin.coinSymbol].changeData &&
+                  liquidRatesObject[coin.coinSymbol].changeData.interestRate &&
+                  liquidRatesObject[coin.coinSymbol].changeData.interestRate
+                    ._7days)
+              }`}
+            >
               <CountUp
                 duration={duration}
-                start={coin._24hrchange - 2 || 0}
-                end={coin._24hrchange || 0}
+                start={0}
+                end={
+                  (liquidRatesObject &&
+                    liquidRatesObject[coin.coinSymbol] &&
+                    liquidRatesObject[coin.coinSymbol].changeData &&
+                    liquidRatesObject[coin.coinSymbol].changeData
+                      .interestRate &&
+                    liquidRatesObject[coin.coinSymbol].changeData.interestRate
+                      ._7days) ||
+                  0
+                }
                 decimals={2}
               />
               %
@@ -63,15 +85,64 @@ function AssetTable({ coinList, setCoinToDetail }) {
             <td className="supply">
               <CountUp
                 duration={duration}
-                start={1125166.24 - 2 || 0}
-                end={1125166.24 || 0}
+                start={
+                  (liquidRatesObject &&
+                    liquidRatesObject[coin.coinSymbol] &&
+                    liquidRatesObject[coin.coinSymbol].supply - 2) ||
+                  0
+                }
+                end={
+                  (liquidRatesObject &&
+                    liquidRatesObject[coin.coinSymbol] &&
+                    liquidRatesObject[coin.coinSymbol].supply) ||
+                  0
+                }
                 decimals={2}
               />{' '}
               {coin.coinSymbol}
             </td>
             <td className="chart">
               <div className="chartIn">
-                <AssetTableChart />
+                <AssetAreaChart
+                  today={
+                    (liquidRatesObject &&
+                      liquidRatesObject[coin.coinSymbol] &&
+                      liquidRatesObject[coin.coinSymbol].interest_rate) ||
+                    0
+                  }
+                  sevenDay={
+                    ((liquidRatesObject &&
+                      liquidRatesObject[coin.coinSymbol] &&
+                      liquidRatesObject[coin.coinSymbol].interest_rate) ||
+                      0) -
+                    ((liquidRatesObject &&
+                      liquidRatesObject[coin.coinSymbol] &&
+                      liquidRatesObject[coin.coinSymbol].changeData &&
+                      liquidRatesObject[coin.coinSymbol].changeData
+                        .interestRate) ||
+                      0)
+                  }
+                />
+                {/* <AssetTableChart
+                  today={
+                    (liquidRatesObject &&
+                      liquidRatesObject[coin.coinSymbol] &&
+                      liquidRatesObject[coin.coinSymbol].interest_rate) ||
+                    0
+                  }
+                  sevenDay={
+                    ((liquidRatesObject &&
+                      liquidRatesObject[coin.coinSymbol] &&
+                      liquidRatesObject[coin.coinSymbol].interest_rate) ||
+                      0) -
+                    ((liquidRatesObject &&
+                      liquidRatesObject[coin.coinSymbol] &&
+                      liquidRatesObject[coin.coinSymbol].changeData &&
+                      liquidRatesObject[coin.coinSymbol].changeData
+                        .interestRate) ||
+                      0)
+                  }
+                /> */}
               </div>
             </td>
           </tr>
