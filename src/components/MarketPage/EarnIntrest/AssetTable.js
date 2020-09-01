@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import CountUp from 'react-countup';
-import AssetTableChart from './AssetTableChart';
 import { BankContext } from '../../../context/Context';
 import AssetAreaChart from './AssetAreaChart';
 
@@ -119,30 +118,12 @@ function AssetTable({ coinList, setCoinToDetail }) {
                       liquidRatesObject[coin.coinSymbol] &&
                       liquidRatesObject[coin.coinSymbol].changeData &&
                       liquidRatesObject[coin.coinSymbol].changeData
-                        .interestRate) ||
+                        .interestRate &&
+                      liquidRatesObject[coin.coinSymbol].changeData.interestRate
+                        ._7days) ||
                       0)
                   }
                 />
-                {/* <AssetTableChart
-                  today={
-                    (liquidRatesObject &&
-                      liquidRatesObject[coin.coinSymbol] &&
-                      liquidRatesObject[coin.coinSymbol].interest_rate) ||
-                    0
-                  }
-                  sevenDay={
-                    ((liquidRatesObject &&
-                      liquidRatesObject[coin.coinSymbol] &&
-                      liquidRatesObject[coin.coinSymbol].interest_rate) ||
-                      0) -
-                    ((liquidRatesObject &&
-                      liquidRatesObject[coin.coinSymbol] &&
-                      liquidRatesObject[coin.coinSymbol].changeData &&
-                      liquidRatesObject[coin.coinSymbol].changeData
-                        .interestRate) ||
-                      0)
-                  }
-                /> */}
               </div>
             </td>
           </tr>
