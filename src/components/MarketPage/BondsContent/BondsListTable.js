@@ -222,7 +222,8 @@ function BondsListTable({ assetTab, setCoinToDetail }) {
                               }
                               end={contractPreview.earningPower / calcDays || 0}
                               decimals={5}
-                            />
+                            />{' '}
+                            {key}
                           </div>
                           <div className="label">
                             {dailyOrTotal} Earning Power
