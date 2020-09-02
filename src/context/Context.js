@@ -222,6 +222,22 @@ function BankContextProvider({ children }) {
     return () => {};
   }, []);
 
+  const [conractsObj, setConractsObj] = useState({});
+  useEffect(() => {
+    Axios.get('https://comms.globalxchange.com/coin/iced/admin/get/data').then(
+      (res) => {
+        const { data } = res;
+        if (data.status) {
+          const obj = {};
+          data.config_data.forEach((config) => {
+            obj[config.coin] = { ...obj[config.coin], ...config };
+          });
+          setConractsObj(obj);
+        }
+      }
+    );
+  }, []);
+
   return (
     <BankContext.Provider
       value={{
@@ -252,6 +268,7 @@ function BankContextProvider({ children }) {
         contentSideBar,
         setContentSideBar,
         coinData,
+        conractsObj,
       }}
     >
       {children}

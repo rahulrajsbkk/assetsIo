@@ -1,0 +1,130 @@
+.portfolioAssets {
+  flex-grow: 1;
+  display: flex;
+  .assetsText,
+  .assetsContent {
+    flex: 0 0 50%;
+  }
+  .assetsText {
+    padding: 5%;
+    color: $primary-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .title {
+      font-size: 45px;
+      font-weight: bold;
+    }
+    .detail {
+      font-size: 22px;
+    }
+    .bondTypes {
+      display: flex;
+      align-items: center;
+      padding-top: 30px;
+      .bondTypesText {
+        font-size: 22px;
+        font-weight: 600;
+        margin-right: 30px;
+      }
+      .drop-select {
+        cursor: pointer;
+        position: relative;
+        padding: 0 20px;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid $vault-border-color;
+        color: $primary-color;
+        border-radius: 6px;
+        .content {
+          height: 38px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 200px;
+        }
+        .menu {
+          z-index: 5;
+          position: absolute;
+          top: calc(100% - 2px);
+          margin-left: -2px;
+          margin-right: -2px;
+          left: 0;
+          right: 0;
+          border-radius: 0 0 6px 6px;
+          border: 1px solid $vault-border-color;
+          border-top: none;
+          background-color: white;
+          display: flex;
+          flex-direction: column;
+          .menuItem {
+            cursor: pointer;
+            height: 39px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            &:hover {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+  }
+  .assetsContent {
+    display: flex;
+    .bondsListScroll {
+      .bondsList {
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid $vault-border-color;
+        .bondsItem {
+          flex: 0 0 40%;
+          border-bottom: 1px solid $vault-border-color;
+          padding: 4% 6%;
+          display: flex;
+          flex-direction: column;
+          .coinPrice,
+          .labels,
+          .rates {
+            display: flex;
+            justify-content: space-between;
+            color: $primary-color;
+          }
+          .coinPrice {
+            .img {
+              height: 52px;
+              display: flex;
+              align-items: center;
+              font-size: 35px;
+              font-weight: bold;
+              img {
+                height: 90%;
+                margin-right: 15px;
+              }
+            }
+            .title {
+              font-size: 35px;
+              font-weight: bold;
+            }
+          }
+          .labels {
+            font-size: 20px;
+          }
+          .rates {
+            margin-top: auto;
+            .ratesItem {
+              .value {
+                font-size: 30px;
+                font-weight: bold;
+              }
+              .label {
+                font-size: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

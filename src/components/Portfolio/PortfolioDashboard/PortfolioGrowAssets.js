@@ -6,6 +6,7 @@ import { PortfolioContext } from '../../../context/PortfolioContext';
 import * as animationData from '../../../static/animations/cpu-loading.json';
 import NewContractComponent from '../VaultCreateNewContract/NewContractComponent';
 import NewContractInitiate from '../VaultCreateNewContract/NewContractInitiate';
+import iceLogo from '../../../static/images/logo.svg';
 
 function PortfolioGrowAssets() {
   const [showGrowAssets, setShowGrowAssets] = useState(false);
@@ -17,12 +18,14 @@ function PortfolioGrowAssets() {
     className: 'carousel-status',
   };
 
-  const { loadingCnfrm, roiStep } = useContext(PortfolioContext);
+  const { loadingCnfrm, roiStep, dashTab, setDashTab } = useContext(
+    PortfolioContext
+  );
 
   const steps = [<NewContractComponent />, <NewContractInitiate />];
 
   const [growAsset, setGrowAsset] = useState('');
-  const [title, setTitle] = useState('Welcome To The Ice Machine');
+  const [title, setTitle] = useState('');
 
   function getContent(growAsset) {
     switch (growAsset) {
@@ -45,7 +48,8 @@ function PortfolioGrowAssets() {
               className="btnAsset"
               onClick={() => {
                 setGrowAsset('iceAsset');
-                setTitle('');
+                setTitle('Icing An Asset With The');
+                setDashTab('Assets');
               }}
             >
               Ice An Asset
@@ -81,30 +85,33 @@ function PortfolioGrowAssets() {
     <div className={`growAssets ${showGrowAssets}`}>
       <div className={`head ${showGrowAssets}`}>
         <div className="textNBtns">
-          <h6>{showGrowAssets ? title : 'Click Here To Grow Your Assets'}</h6>
+          <h6>{title}</h6>
+          <img src={iceLogo} alt="" />
+          <h6>Machine</h6>
           <div
             className={`btnsAsset ${
               growAsset === '' && showGrowAssets ? 'd-none' : ''
             }`}
           >
             <div
-              className={`btnAsset  ${
+              className={`btnAsset invert ${
                 growAsset === 'iceAsset' ? 'd-none' : ''
               }`}
               onClick={() => {
                 setGrowAsset('iceAsset');
                 setShowGrowAssets(true);
-                setTitle('Ice An Asset');
+                setTitle('Icing An Asset With The');
+                setDashTab('Assets');
               }}
             >
               Ice An Asset
             </div>
             <div
               style={{ cursor: 'progress', opacity: '0.3' }}
-              className="btnAsset invert"
+              className="btnAsset"
               onClick={() => {
                 setGrowAsset('createAsset');
-                setTitle('Create An Asset');
+                setTitle('Creating An Asset With The');
               }}
             >
               Create An Asset
@@ -114,7 +121,7 @@ function PortfolioGrowAssets() {
               className="btnAsset"
               onClick={() => {
                 setGrowAsset('createIndex');
-                setTitle('Create An Index');
+                setTitle('Creating An Index With The');
               }}
             >
               Create An Index
@@ -126,7 +133,7 @@ function PortfolioGrowAssets() {
           onClick={() => {
             setGrowAsset('');
             setShowGrowAssets(!showGrowAssets);
-            setTitle('Welcome To The Ice Machine');
+            setTitle('');
           }}
         >
           <FontAwesomeIcon icon={showGrowAssets ? faCaretDown : faCaretUp} />

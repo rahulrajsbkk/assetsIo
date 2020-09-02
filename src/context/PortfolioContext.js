@@ -45,7 +45,7 @@ function PortfolioContextProvider({ children }) {
   const [durationUnit, setDurationUnit] = useState('Days');
   const [daysToHold, setDaysToHold] = useState(0);
   const [roiStep, setRoiStep] = useState(0);
-  const [dashTab, setDashTab] = useState('Dashboard');
+  const [dashTab, setDashTab] = useState('Net-Worth');
   const [contractPreview, setContractPreview] = useState({});
   const [portfolioSelected, setPortfolioSelected] = useState('Total');
 
@@ -193,7 +193,6 @@ function PortfolioContextProvider({ children }) {
   }, [profileId]);
 
   // Get earnings
-  console.log('coinListObject', coinListObject);
   const [liquidEarningBalances, setLiquidEarningBalances] = useState();
   const [totalUsdEarning, setTotalUsdEarning] = useState(0);
   const [loadingEarnings, setLoadingEarnings] = useState(true);
@@ -280,6 +279,9 @@ function PortfolioContextProvider({ children }) {
       });
   }, [email, coinListObject]);
 
+  //
+  const [filterCurrency, setFilterCurrency] = useState('CryptoCurrency');
+
   return (
     <PortfolioContext.Provider
       value={{
@@ -313,6 +315,9 @@ function PortfolioContextProvider({ children }) {
         loadingEarnings,
         totalUsdContractEarning,
         loadingBondEarnings,
+
+        filterCurrency,
+        setFilterCurrency,
       }}
     >
       {children}

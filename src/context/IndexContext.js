@@ -1,24 +1,11 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import Axios from 'axios';
+import { BankContext } from './Context';
 
 export const IndexContext = createContext();
 
 function IndexContextProvider({ children }) {
-  const [conractsObj, setConractsObj] = useState({});
-  useEffect(() => {
-    Axios.get('https://comms.globalxchange.com/coin/iced/admin/get/data').then(
-      (res) => {
-        const { data } = res;
-        if (data.status) {
-          const obj = {};
-          data.config_data.forEach((config) => {
-            obj[config.coin] = { ...obj[config.coin], ...config };
-          });
-          setConractsObj(obj);
-        }
-      }
-    );
-  }, []);
+  const { conractsObj } = useContext(BankContext);
 
   // Coin Defenitions;
   const [defenitionsList, setDefenitionsList] = useState([]);

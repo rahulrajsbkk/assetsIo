@@ -203,10 +203,13 @@
         background: $primary-color;
         display: flex;
         align-items: center;
+        img {
+          height: 45%;
+          filter: brightness(0) invert(1);
+        }
         h6 {
           line-height: 1;
-          margin: 0;
-          margin-left: 90px;
+          margin: 0 30px;
           font-size: 20px;
           font-weight: 600;
           color: white;
@@ -249,25 +252,25 @@
       }
       &.true {
         .textNBtns {
-          border-top: 1px solid $vault-border-color;
-          background: white;
-          h6 {
-            color: $primary-color;
-          }
-          .btnAsset {
-            cursor: pointer;
-            border-color: $primary-color;
-            color: $primary-color;
-            &.invert {
-              background: $primary-color;
-              color: white;
-            }
-          }
+          // border-top: 1px solid $vault-border-color;
+          // background: white;
+          // h6 {
+          //   color: $primary-color;
+          // }
+          // .btnAsset {
+          //   cursor: pointer;
+          //   border-color: $primary-color;
+          //   color: $primary-color;
+          //   &.invert {
+          //     background: $primary-color;
+          //     color: white;
+          //   }
+          // }
         }
-        .btnShowHide {
-          background: $primary-color;
-          color: white;
-        }
+        // .btnShowHide {
+        //   background: $primary-color;
+        //   color: white;
+        // }
       }
     }
     .content-steps {
