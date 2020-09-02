@@ -7,7 +7,7 @@ import { PortfolioContext } from '../../../context/PortfolioContext';
 function PortfolioContractsToBuyList() {
   const { conractsObj, coinListObject } = useContext(BankContext);
   const { filterCurrency } = useContext(PortfolioContext);
-  console.log('coinListObject.USDT', coinListObject.USDT);
+  console.log('coinListObject.USDT', coinListObject.BTC);
   return (
     <Scrollbars
       autoHide
@@ -58,9 +58,12 @@ function PortfolioContractsToBuyList() {
               <div className="labels">
                 <span>
                   Your Balance:{' '}
-                  {`${FormatCurrency(contract.amount, contract.coin)} ${
+                  {`${FormatCurrency(
+                    coinListObject &&
+                      coinListObject[key] &&
+                      coinListObject[key].coinValue,
                     contract.coin
-                  }`}
+                  )} ${contract.coin}`}
                 </span>
                 <span>Bond Price</span>
               </div>
