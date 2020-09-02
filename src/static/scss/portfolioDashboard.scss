@@ -197,7 +197,6 @@
     .head {
       height: 65px;
       display: flex;
-      border-bottom: 1px solid $vault-border-color;
       .textNBtns {
         flex-grow: 1;
         background: $primary-color;
@@ -213,261 +212,33 @@
           font-size: 20px;
           font-weight: 600;
           color: white;
-        }
-        .btnsAsset {
-          margin-left: auto;
-          margin-right: 70px;
-          display: flex;
-          .btnAsset {
-            height: 35px;
-            min-width: 130px;
-            font-size: 13px;
-            border: 1px solid white;
-            margin-right: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            color: white;
-            &.invert {
-              color: $primary-color;
-              background: white;
-            }
+          u {
+            cursor: pointer;
           }
         }
       }
-      .btnShowHide {
-        cursor: pointer;
-        height: 65px;
-        width: 65px;
-        background: white;
-        color: $primary-color;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        svg {
-          height: 40px;
-          width: 40px;
-        }
-      }
-      &.true {
-        .textNBtns {
-          // border-top: 1px solid $vault-border-color;
-          // background: white;
-          // h6 {
-          //   color: $primary-color;
-          // }
-          // .btnAsset {
-          //   cursor: pointer;
-          //   border-color: $primary-color;
-          //   color: $primary-color;
-          //   &.invert {
-          //     background: $primary-color;
-          //     color: white;
-          //   }
-          // }
-        }
-        // .btnShowHide {
-        //   background: $primary-color;
-        //   color: white;
-        // }
-      }
     }
-    .content-steps {
-      display: none;
+    .icingSteps {
       flex-grow: 1;
-      border-top: 0.5px solid $vault-border-color;
-      .step-one {
-        flex: 0 0 50%;
-        max-width: 50%;
-        border-right: 0.5px solid $vault-border-color;
-        padding: 40px 60px;
-        display: flex;
-        flex-direction: column;
-        h5 {
-          color: #464b4e;
-          font-size: 24px;
-          font-weight: 600;
-        }
-        .scroll-view {
-          display: flex;
-          align-items: center;
-          .card {
-            min-width: 150px;
-            opacity: 0.2;
-            padding: 30px 10px;
-            flex: 1;
-            margin-right: 30px;
-            align-items: center;
-            img {
-              width: 60px;
-              height: 60px;
-              margin-bottom: 20px;
-            }
-            .coin {
-              color: #9b9b9b;
-              font-size: 14px;
-              margin-bottom: 5px;
-            }
-            .value {
-              color: #828282;
-              font-size: 20px;
-            }
-            &.true {
-              opacity: 1;
-            }
-          }
-          @media (max-height: 1050px) {
-            zoom: 0.95;
-          }
-          @include xxxl {
-            zoom: 0.85;
-          }
-          @include xxl {
-            zoom: 0.75;
-          }
-          @include xl {
-            zoom: 0.65;
-          }
-          @include lg {
-            zoom: 0.55;
-          }
-        }
-      }
-      .step-two {
-        flex: 0 0 50%;
-        max-width: 50%;
-        display: flex;
-        flex-direction: column;
-        .period-hold {
-          padding: 40px 60px;
-          flex: 1px;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-around;
-          h5 {
-            color: #464b4e;
-            font-size: 24px;
-            font-weight: 600;
-          }
-          .days {
-            border: 0.5px solid $vault-border-color;
-            border-radius: 8px;
-            height: 60px;
-            width: 90%;
-            display: flex;
-            input {
-              flex: 1;
-              width: 0;
-              background: none;
-              border: none;
-              padding: 0 50px;
-              font-size: 24px;
-            }
-            .btn-days-wrapper {
-              width: 140px;
-              height: 58px;
-              position: relative;
-              .btn-days {
-                border-radius: 0 8px 8px 0;
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                background: $primary-color;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                padding: 0 20px;
-                h5 {
-                  cursor: pointer;
-                  width: 100%;
-                  display: flex;
-                  align-items: center;
-                  justify-content: space-between;
-                  height: 58px;
-                  font-size: 20px;
-                  color: white;
-                  margin: 0;
-                }
-                h6 {
-                  cursor: pointer;
-                  display: none;
-                  width: 100%;
-                  align-items: center;
-                  justify-content: space-between;
-                  height: 35px;
-                  font-size: 19px;
-                  color: white;
-                  margin: 0;
-                }
-                &.true {
-                  border-radius: 0 8px 8px 8px;
-                  h5 {
-                    margin-bottom: -5px;
-                  }
-                  h6 {
-                    display: flex;
-                  }
-                }
-              }
-            }
-          }
-        }
-        .btn-calculate {
-          background-color: $primary-color;
-          padding: 20px 0;
-          h5 {
-            display: flex;
-            color: white;
-            text-align: center;
-            font-size: 24px;
-            font-weight: 600;
-            line-height: 1;
-            margin: 0;
-            justify-content: center;
-            align-items: center;
-            img {
-              margin-left: 15px;
-              height: 24px;
-            }
-          }
-        }
-      }
-    }
-    .buttonsList {
-      flex: 1;
       display: none;
-      flex-direction: column;
-      justify-content: center;
-      .btnAsset {
-        cursor: pointer;
-        height: 50px;
-        width: 200px;
-        border: 1px solid $primary-color;
-        margin-right: 20px;
+      .icingStep {
+        flex: 0 0 33.333%;
+        border-left: 1px solid $vault-border-color;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-weight: bold;
+        font-size: 30px;
+        font-weight: 600;
         color: $primary-color;
-        margin: 10px 0;
+        &.true {
+          background: #f2f2f2;
+        }
       }
-    }
-    .newContractInitiate {
-      display: none;
     }
     &.true {
       flex: 0 0 40%;
-      .content-steps {
+      .icingSteps {
         display: flex;
-      }
-      .newContractInitiate {
-        display: flex;
-      }
-      .buttonsList {
-        display: flex;
-        padding-left: 90px;
       }
     }
   }

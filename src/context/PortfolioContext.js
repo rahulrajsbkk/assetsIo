@@ -281,6 +281,7 @@ function PortfolioContextProvider({ children }) {
 
   //
   const [filterCurrency, setFilterCurrency] = useState('CryptoCurrency');
+  const [icingStep, setIcingStep] = useState(0);
 
   return (
     <PortfolioContext.Provider
@@ -318,6 +319,8 @@ function PortfolioContextProvider({ children }) {
 
         filterCurrency,
         setFilterCurrency,
+        icingStep,
+        setIcingStep,
       }}
     >
       {children}
