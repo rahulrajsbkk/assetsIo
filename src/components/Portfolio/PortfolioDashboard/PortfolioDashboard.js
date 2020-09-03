@@ -21,6 +21,7 @@ function PortfolioDashboard() {
     totalUsdContractEarning,
     dashTab,
     setDashTab,
+    icingStep,
   } = useContext(PortfolioContext);
   const { coinList, email, coinListObject } = useContext(BankContext);
 
@@ -67,10 +68,15 @@ function PortfolioDashboard() {
   const [selectedCard, setSelectedCard] = useState(null);
   const [selectedApp, setSelectedApp] = useState(null);
 
+  const icingAssetSteps = [
+    <PortfolioAssets />,
+    <div className="flex-grow-1"></div>,
+  ];
+
   const getDashContent = () => {
     switch (dashTab) {
       case 'Assets':
-        return <PortfolioAssets />;
+        return icingAssetSteps[icingStep];
       default:
         return (
           <div className="chartNCards">

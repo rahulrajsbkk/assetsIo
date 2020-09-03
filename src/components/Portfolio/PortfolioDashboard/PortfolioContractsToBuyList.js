@@ -6,7 +6,9 @@ import { PortfolioContext } from '../../../context/PortfolioContext';
 
 function PortfolioContractsToBuyList() {
   const { conractsObj, coinListObject } = useContext(BankContext);
-  const { filterCurrency } = useContext(PortfolioContext);
+  const { filterCurrency, setCoinContract, setIcingStep } = useContext(
+    PortfolioContext
+  );
   console.log('coinListObject.USDT', coinListObject.BTC);
   return (
     <Scrollbars
@@ -19,7 +21,7 @@ function PortfolioContractsToBuyList() {
         .filter((key) => {
           if (coinListObject && coinListObject[key])
             switch (filterCurrency) {
-              case 'CryptoCurrency':
+              case 'Cryptocurrency':
                 return coinListObject[key].type === 'crypto';
               case 'StableCoin':
                 return (
@@ -35,7 +37,13 @@ function PortfolioContractsToBuyList() {
         .map((key) => {
           const contract = conractsObj[key];
           return (
-            <div className="bondsItem">
+            <div
+              className="bondsItem"
+              onClick={() => {
+                setCoinContract(key);
+                setIcingStep(1);
+              }}
+            >
               <div className="coinPrice">
                 <div className="img">
                   <img
@@ -68,19 +76,19 @@ function PortfolioContractsToBuyList() {
                 <span>Bond Price</span>
               </div>
               <div className="rates">
-                <div className="ratesItem">
+                <div className="ratesItem text-left">
                   <div className="value">
                     {FormatNumber(contract.base_compression_rate, 1)}%
                   </div>
                   <div className="label">Base Rate</div>
                 </div>
-                <div className="ratesItem">
+                <div className="ratesItem text-center">
                   <div className="value">
                     {FormatNumber(contract.base_velocity, 1)}%
                   </div>
                   <div className="label">Velocity</div>
                 </div>
-                <div className="ratesItem">
+                <div className="ratesItem text-right">
                   <div className="value">
                     {FormatNumber(-contract.acceleration, 2)}
                   </div>

@@ -280,7 +280,7 @@ function PortfolioContextProvider({ children }) {
   }, [email, coinListObject]);
 
   //
-  const [filterCurrency, setFilterCurrency] = useState('CryptoCurrency');
+  const [filterCurrency, setFilterCurrency] = useState('Cryptocurrency');
   const [icingStep, setIcingStep] = useState(0);
 
   return (

@@ -6,26 +6,27 @@
     flex: 0 0 50%;
   }
   .assetsText {
-    padding: 0 5%;
+    padding: 0 5% 0 130px;
     color: $primary-color;
     display: flex;
     flex-direction: column;
     justify-content: center;
     .title {
-      font-size: 45px;
+      font-size: 42px;
       font-weight: bold;
     }
     .detail {
-      font-size: 22px;
+      font-size: 16px;
+      font-weight: normal;
     }
     .bondTypes {
       display: flex;
       align-items: center;
-      padding-top: 30px;
+      padding-top: 25px;
       .bondTypesText {
-        font-size: 22px;
+        font-size: 20px;
         font-weight: 600;
-        margin-right: 30px;
+        margin-right: 22px;
       }
       .drop-select {
         cursor: pointer;
@@ -80,6 +81,7 @@
         border-left: 1px solid $vault-border-color;
         .bondsItem {
           flex: 0 0 40%;
+          cursor: pointer;
           border-bottom: 1px solid $vault-border-color;
           padding: 4% 6%;
           display: flex;
@@ -93,35 +95,38 @@
           }
           .coinPrice {
             .img {
-              height: 52px;
+              height: 44px;
               display: flex;
               align-items: center;
-              font-size: 35px;
+              font-size: 30px;
               font-weight: bold;
               img {
-                height: 90%;
-                margin-right: 15px;
+                height: 80%;
+                margin-right: 10px;
               }
             }
             .title {
-              font-size: 35px;
+              font-size: 30px;
               font-weight: bold;
             }
           }
           .labels {
-            font-size: 20px;
+            font-size: 18px;
           }
           .rates {
             margin-top: auto;
             .ratesItem {
               .value {
-                font-size: 30px;
+                font-size: 28px;
                 font-weight: bold;
               }
               .label {
-                font-size: 20px;
+                font-size: 18px;
               }
             }
+          }
+          &:hover {
+            background: #00000006;
           }
         }
       }

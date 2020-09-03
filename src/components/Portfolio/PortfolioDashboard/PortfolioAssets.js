@@ -27,14 +27,14 @@ function PortfolioAssets() {
               <div className="menu">
                 <div
                   className={`menuItem ${
-                    filterCurrency === 'CryptoCurrency' ? 'd-none' : ''
+                    filterCurrency === 'Cryptocurrency' ? 'd-none' : ''
                   }`}
                   onClick={() => {
                     setMenuOpen(false);
-                    setFilterCurrency('CryptoCurrency');
+                    setFilterCurrency('Cryptocurrency');
                   }}
                 >
-                  CryptoCurrency
+                  Cryptocurrency
                 </div>
                 <div
                   className={`menuItem ${
