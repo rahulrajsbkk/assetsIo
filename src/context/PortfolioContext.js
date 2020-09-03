@@ -49,6 +49,8 @@ function PortfolioContextProvider({ children }) {
   const [contractPreview, setContractPreview] = useState({});
   const [portfolioSelected, setPortfolioSelected] = useState('Total');
 
+  /* To Remove Start */
+
   useEffect(() => {
     switch (durationUnit) {
       case 'Weeks':
@@ -122,6 +124,7 @@ function PortfolioContextProvider({ children }) {
       setRoiStep(1);
     }, 2000);
   };
+  /* To Remove End */
 
   const [icedContracts, setIcedContracts] = useState([]);
   useEffect(() => {
@@ -282,6 +285,7 @@ function PortfolioContextProvider({ children }) {
   //
   const [filterCurrency, setFilterCurrency] = useState('Cryptocurrency');
   const [icingStep, setIcingStep] = useState(0);
+  const [icingDays, setIcingDays] = useState(0);
 
   return (
     <PortfolioContext.Provider
@@ -321,6 +325,8 @@ function PortfolioContextProvider({ children }) {
         setFilterCurrency,
         icingStep,
         setIcingStep,
+        icingDays,
+        setIcingDays,
       }}
     >
       {children}

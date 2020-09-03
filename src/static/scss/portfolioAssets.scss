@@ -43,6 +43,9 @@
           align-items: center;
           justify-content: space-between;
           width: 200px;
+          &.bond {
+            min-width: 260px;
+          }
         }
         .menu {
           z-index: 5;
@@ -130,6 +133,136 @@
           }
         }
       }
+    }
+  }
+  &.time {
+    position: relative;
+    background-image: url('../images/graphTriangle.svg');
+    background-repeat: no-repeat;
+    background-position-y: bottom;
+    background-position-x: 600px;
+    background-size: cover;
+    .range {
+      position: absolute;
+      left: 600px;
+      bottom: -11px;
+      width: calc((100% - 700px));
+      transform: skewY(-21deg);
+      transform-origin: 0;
+      -webkit-appearance: none;
+      height: 15px;
+      border-radius: 5px;
+      background: transparent;
+      outline: none;
+      -webkit-transition: 0.2s;
+      transition: opacity 0.2s;
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #fff;
+        transform: skewY(21deg);
+        cursor: pointer;
+        border: 1px solid $primary-color;
+      }
+      &::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid $primary-color;
+        transform: skewY(21deg);
+        cursor: pointer;
+      }
+    }
+    .timeDetail {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      bottom: 20px;
+      left: 612px;
+      height: 220px;
+      width: 350px;
+      transform: translateX(-50%);
+      border-radius: 8px;
+      background-color: $vault-border-color;
+      border: 1px solid $vault-border-color;
+      .head {
+        background: $primary-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-weight: 600;
+        font-size: 20px;
+        .days {
+          flex-grow: 1;
+          text-align: center;
+        }
+        .confirm {
+          cursor: pointer;
+          padding: 4px 16px;
+          align-self: flex-end;
+          background: white;
+          color: $primary-color;
+          height: 100%;
+          text-align: center;
+          border-bottom: 1px solid $vault-border-color;
+        }
+      }
+      .content {
+        flex-grow: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 0 1px;
+        .contentIn {
+          background-color: white;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          .value {
+            font-size: 30px;
+          }
+          .label {
+            font-size: 13px;
+          }
+        }
+      }
+    }
+    .daysSwitcher {
+      position: absolute;
+      bottom: 20px;
+      right: 10px;
+      display: flex;
+      .option {
+        cursor: pointer;
+        margin: 0 10px;
+        font-size: 18px;
+        color: $primary-color;
+        &.true {
+          font-weight: bold;
+        }
+      }
+    }
+    .today,
+    .nextDay {
+      position: absolute;
+      height: 64px;
+      bottom: -64px;
+      color: white;
+      display: flex;
+      align-items: center;
+      font-size: 20px;
+      font-weight: 600;
+      left: 612px;
+      transform: translateX(-50%);
     }
   }
 }
