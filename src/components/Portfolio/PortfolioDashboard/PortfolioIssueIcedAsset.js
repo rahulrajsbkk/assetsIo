@@ -7,7 +7,7 @@ import { FormatCurrency, FormatNumber } from '../../../utils/FunctionTools';
 
 function PortfolioIssueIcedAsset() {
   const { icingDays, coinContract } = useContext(PortfolioContext);
-  const { email, token } = useContext(BankContext);
+  const { email, token, profileId, tostShowOn } = useContext(BankContext);
   const [contractResult, setContractResult] = useState({});
   useEffect(() => {
     Axios.post('https://comms.globalxchange.com/coin/iced/contract/create', {
@@ -19,6 +19,20 @@ function PortfolioIssueIcedAsset() {
     }).then((res) => {
       const { data } = res;
       if (data.status) setContractResult(data);
+      Axios.post('https://comms.globalxchange.com/coin/iced/contract/create', {
+        email,
+        token,
+        coin: coinContract,
+        days: icingDays,
+        profile_id: profileId,
+      })
+        .then((res) => {
+          const { data } = res;
+          tostShowOn(data.message);
+        })
+        .catch((err) => {
+          tostShowOn(err.message || 'Something Went Wrong On Purchase');
+        });
     });
   }, []);
 
