@@ -196,10 +196,10 @@ function PortfolioContextProvider({ children }) {
   }, [profileId]);
 
   // Get earnings
-  const [liquidEarningBalances, setLiquidEarningBalances] = useState();
+  // const [liquidEarningBalances, setLiquidEarningBalances] = useState(); //Not Used
   const [totalUsdEarning, setTotalUsdEarning] = useState(0);
   const [loadingEarnings, setLoadingEarnings] = useState(true);
-  const [contractEarnings, setContractEarnings] = useState({});
+  // const [contractEarnings, setContractEarnings] = useState({}); //Not Used
   const [loadingBondEarnings, setLoadingBondEarnings] = useState(true);
   const [totalUsdContractEarning, setTotalUsdContractEarning] = useState(0);
   const getEarnings = async () => {
@@ -234,10 +234,10 @@ function PortfolioContextProvider({ children }) {
           }
         });
         console.log('coinBalance', coinBalance);
-        setLiquidEarningBalances(coins);
+        // setLiquidEarningBalances(coins);
         setTotalUsdEarning(coinBalance);
       } else {
-        setLiquidEarningBalances(coinZero);
+        // setLiquidEarningBalances(coinZero);
         setTotalUsdEarning(0);
       }
       setLoadingEarnings(false);
@@ -260,7 +260,7 @@ function PortfolioContextProvider({ children }) {
           data.result[0].balances[0] &&
           data.result[0].balances[0].iced_balances
         ) {
-          setContractEarnings(data.result[0].balances[0].iced_balances);
+          // setContractEarnings(data.result[0].balances[0].iced_balances);
           for (const coinSymbol in data.result[0].balances[0].iced_balances) {
             if (
               coinListObject[coinSymbol] &&
@@ -273,16 +273,16 @@ function PortfolioContextProvider({ children }) {
           }
           setTotalUsdContractEarning(contractEarningUsd);
         } else {
-          setContractEarnings(coinZero);
+          // setContractEarnings(coinZero);
           setTotalUsdContractEarning(0);
         }
       })
       .finally(() => {
         setLoadingBondEarnings(false);
       });
+    // eslint-disable-next-line
   }, [email, coinListObject]);
 
-  //
   const [filterCurrency, setFilterCurrency] = useState('Cryptocurrency');
   const [icingStep, setIcingStep] = useState(0);
   const [icingDays, setIcingDays] = useState(0);

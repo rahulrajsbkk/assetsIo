@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useContext } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { select, area, curveCardinal } from 'd3';
 // const data = [0, 45, 35, 60, 75, 55, 49, 80];
 

@@ -20,7 +20,7 @@ function PortfolioSetDays() {
       bottom: 20 + (baseHeight * days) / totalDays,
       left: 612 + (baseWidth * days) / totalDays,
     });
-  }, [days]);
+  }, [days, totalDays]);
   const [menuOpen, setMenuOpen] = useState(false);
   const {
     coinContract,
