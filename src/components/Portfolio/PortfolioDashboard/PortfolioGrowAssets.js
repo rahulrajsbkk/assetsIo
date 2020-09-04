@@ -1,10 +1,12 @@
 import React, { useState, useContext } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PortfolioContext } from '../../../context/PortfolioContext';
 import iceLogo from '../../../static/images/logo.svg';
 import btc from '../../../static/images/vault-methods/bitcoin.svg';
 import eth from '../../../static/images/vault-methods/ethereum.svg';
 import usdt from '../../../static/images/vault-methods/tether.svg';
 import { BankContext } from '../../../context/Context';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 function PortfolioGrowAssets() {
   const [showGrowAssets, setShowGrowAssets] = useState(false);
@@ -94,6 +96,16 @@ function PortfolioGrowAssets() {
           ) : (
             ''
           )}
+        </div>
+        <div
+          className="closeDiv"
+          onClick={() => {
+            setShowGrowAssets(false);
+            setTitle('');
+            setDashTab('Net-Worth');
+          }}
+        >
+          <FontAwesomeIcon icon={faCaretDown} />
         </div>
       </div>
       <div className="icingSteps">

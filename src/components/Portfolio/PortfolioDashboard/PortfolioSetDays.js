@@ -1,6 +1,6 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import Axios from 'axios';
 import moment from 'moment';
 import { PortfolioContext } from '../../../context/PortfolioContext';
@@ -67,7 +67,10 @@ function PortfolioSetDays() {
                 {FormatCurrency(conractsObj[coinContract].amount, coinContract)}
                 {coinContract}
               </span>
-              <FontAwesomeIcon className="ml-2" icon={faCaretDown} />
+              <FontAwesomeIcon
+                className="ml-2"
+                icon={menuOpen ? faCaretUp : faCaretDown}
+              />
             </div>
             {menuOpen ? (
               <div className="menu">

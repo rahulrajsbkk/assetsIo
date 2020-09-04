@@ -219,6 +219,15 @@
           }
         }
       }
+      .closeDiv {
+        cursor: pointer;
+        background: $primary-color;
+        color: white;
+        padding-right: 60px;
+        display: none;
+        align-items: center;
+        font-size: 30px;
+      }
     }
     .icingSteps {
       flex-grow: 1;
@@ -268,6 +277,11 @@
       flex: 0 0 40%;
       .icingSteps {
         display: flex;
+      }
+      .head {
+        .closeDiv {
+          display: flex;
+        }
       }
     }
   }

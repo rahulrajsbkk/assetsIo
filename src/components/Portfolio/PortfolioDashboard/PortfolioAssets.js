@@ -1,7 +1,7 @@
 import React, { useState, useContext, useRef } from 'react';
 import PortfolioContractsToBuyList from './PortfolioContractsToBuyList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { PortfolioContext } from '../../../context/PortfolioContext';
 import OnOutsideClick from '../../../utils/OnOutsideClick';
 
@@ -24,7 +24,10 @@ function PortfolioAssets() {
           <div className="drop-select" ref={ref}>
             <div className="content" onClick={() => setMenuOpen(!menuOpen)}>
               {filterCurrency}
-              <FontAwesomeIcon className="ml-2" icon={faCaretDown} />
+              <FontAwesomeIcon
+                className="ml-2"
+                icon={menuOpen ? faCaretUp : faCaretDown}
+              />
             </div>
             {menuOpen ? (
               <div className="menu">

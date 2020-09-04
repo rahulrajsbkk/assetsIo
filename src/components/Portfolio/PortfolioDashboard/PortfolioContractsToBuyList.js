@@ -1,15 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import CountUp from 'react-countup';
 import Scrollbars from 'react-custom-scrollbars';
 import { BankContext } from '../../../context/Context';
-import { FormatNumber, FormatCurrency } from '../../../utils/FunctionTools';
 import { PortfolioContext } from '../../../context/PortfolioContext';
 
 function PortfolioContractsToBuyList() {
-  const { conractsObj, coinListObject } = useContext(BankContext);
+  const { conractsObj, coinListObject, updateInterval } = useContext(
+    BankContext
+  );
   const { filterCurrency, setCoinContract, setIcingStep } = useContext(
     PortfolioContext
   );
-  console.log('coinListObject.USDT', coinListObject.BTC);
+
+  const [duration, setDuration] = useState(2);
+  const togleDuration = (duration) => {
+    setDuration(duration === 2 ? 2.1 : 2);
+  };
+
   return (
     <Scrollbars
       autoHide
@@ -59,39 +66,77 @@ function PortfolioContractsToBuyList() {
                     coinListObject[key] &&
                     coinListObject[key].coinName}
                 </div>
-                <div className="title">{`${FormatCurrency(
-                  contract.amount,
-                  contract.coin
-                )} ${contract.coin}`}</div>
+                <div className="title">
+                  <CountUp
+                    onEnd={() => {
+                      if (updateInterval)
+                        setTimeout(() => {
+                          togleDuration(duration);
+                        }, updateInterval * 1000);
+                    }}
+                    duration={duration}
+                    start={0}
+                    end={contract.amount || 0}
+                    decimals={
+                      contract.coin === 'ETH' || contract.coin === 'BTC' ? 4 : 2
+                    }
+                  />
+                  {contract.coin}
+                </div>
               </div>
               <div className="labels">
                 <span>
                   Your Balance:{' '}
-                  {`${FormatCurrency(
-                    coinListObject &&
-                      coinListObject[key] &&
-                      coinListObject[key].coinValue,
-                    contract.coin
-                  )} ${contract.coin}`}
+                  <CountUp
+                    duration={duration}
+                    start={0}
+                    end={
+                      (coinListObject &&
+                        coinListObject[key] &&
+                        coinListObject[key].coinValue) ||
+                      0
+                    }
+                    decimals={
+                      contract.coin === 'ETH' || contract.coin === 'BTC' ? 4 : 2
+                    }
+                  />
+                  {contract.coin}
                 </span>
                 <span>Bond Price</span>
               </div>
               <div className="rates">
                 <div className="ratesItem text-left">
                   <div className="value">
-                    {FormatNumber(contract.base_compression_rate, 1)}%
+                    <CountUp
+                      duration={duration}
+                      start={0}
+                      end={contract.base_compression_rate || 0}
+                      decimals={1}
+                    />
+                    %
                   </div>
                   <div className="label">Base Rate</div>
                 </div>
                 <div className="ratesItem text-center">
                   <div className="value">
-                    {FormatNumber(contract.base_velocity, 1)}%
+                    <CountUp
+                      duration={duration}
+                      start={0}
+                      end={contract.base_velocity || 0}
+                      decimals={1}
+                    />
+                    %
                   </div>
                   <div className="label">Velocity</div>
                 </div>
                 <div className="ratesItem text-right">
                   <div className="value">
-                    {FormatNumber(-contract.acceleration, 2)}
+                    <CountUp
+                      duration={duration}
+                      start={0}
+                      end={-contract.acceleration || 0}
+                      decimals={2}
+                    />
                   </div>
                   <div className="label">Acceleration</div>
                 </div>
