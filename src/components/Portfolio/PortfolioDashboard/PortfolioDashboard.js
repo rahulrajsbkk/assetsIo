@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDotCircle } from '@fortawesome/free-solid-svg-icons';
 import { FormatCurrency, FormatNumber } from '../../../utils/FunctionTools';
 import DonutChart from '../../DonutChart/Index';
 import { PortfolioContext } from '../../../context/PortfolioContext';
-import { BankContext } from '../../../context/Context';
 import assetLogo from '../../../static/images/assetsLogo.svg';
 import PortfolioDashCardsList from './PortfolioDashCardsList';
 import PortfolioGrowAssets from './PortfolioGrowAssets';
@@ -16,7 +15,6 @@ function PortfolioDashboard() {
   const {
     portfolioSelected,
     setPortfolioSelected,
-    icedContracts,
     fiatBalance,
     cryptoBalance,
     totalUsdEarning,
@@ -25,33 +23,6 @@ function PortfolioDashboard() {
     setDashTab,
     icingStep,
   } = useContext(PortfolioContext);
-  const { coinList, email, coinListObject } = useContext(BankContext);
-
-  const [totalLiquid, setTotalLiquid] = useState(0);
-  useEffect(() => {
-    let totalUsdValue = 0.00000000000000000000000000000000000000001; //To Bypass Divide By Zero Error
-    coinList.forEach((coin) => {
-      totalUsdValue += coin.coinValueUSD;
-    });
-    setTotalLiquid(totalUsdValue);
-  }, [coinList]);
-  const [totalPooled, setTotalPooled] = useState(0);
-  useEffect(() => {
-    let totalUsdValue = 0.00000000000000000000000000000000000000001; //To Bypass Divide By Zero Error
-    icedContracts.forEach((coin) => {
-      if (
-        coinListObject &&
-        coinListObject[coin._id] &&
-        coinListObject[coin._id].price &&
-        coinListObject[coin._id].price.USD
-      ) {
-        totalUsdValue +=
-          coin.contract_amount * coinListObject[coin._id].price.USD;
-      }
-    });
-    setTotalPooled(totalUsdValue);
-  }, [icedContracts, coinListObject, email]);
-
   const [segment, setSegment] = useState(null);
 
   const chartData = [

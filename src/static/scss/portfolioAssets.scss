@@ -18,6 +18,7 @@
     .detail {
       font-size: 16px;
       font-weight: normal;
+      padding-top: 22px;
     }
     .bondTypes {
       display: flex;
@@ -129,11 +130,11 @@
             margin-top: auto;
             .ratesItem {
               .value {
-                font-size: 28px;
+                font-size: 22px;
                 font-weight: bold;
               }
               .label {
-                font-size: 18px;
+                font-size: 13px;
               }
             }
           }

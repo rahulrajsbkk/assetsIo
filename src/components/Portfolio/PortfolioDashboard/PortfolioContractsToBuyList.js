@@ -33,6 +33,7 @@ function PortfolioContractsToBuyList() {
               default:
                 return true;
             }
+          return true;
         })
         .map((key) => {
           const contract = conractsObj[key];

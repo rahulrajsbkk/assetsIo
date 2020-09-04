@@ -34,7 +34,7 @@ function PortfolioIssueIcedAsset() {
           tostShowOn(err.message || 'Something Went Wrong On Purchase');
         });
     });
-  }, []);
+  }, [coinContract, email, icingDays, profileId, token, tostShowOn]);
 
   const [conractCostUsd, setConractCostUsd] = useState(false);
   const [depositCostUsd, setDepositCostUsd] = useState(false);
