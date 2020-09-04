@@ -156,7 +156,7 @@ function EarningsControlls() {
               onClick={() => setAppSelected(app)}
             >
               <img src={IsValidURL(app.app_icon) || assetLogo} alt="" />
-              <div className="appTooltip">{app.app_code}</div>
+              <div className="appTooltip">{app.app_name}</div>
             </div>
           ))}
         </Scrollbars>
