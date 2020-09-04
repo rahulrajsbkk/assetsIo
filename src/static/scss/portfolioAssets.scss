@@ -277,6 +277,7 @@
     }
   }
   &.issueIced {
+    position: relative;
     flex-direction: column;
     justify-content: center;
     .textNValuation {
@@ -374,6 +375,15 @@
           }
         }
       }
+    }
+    .issueIcedLoading {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      display: flex;
     }
   }
 }

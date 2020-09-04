@@ -286,6 +286,8 @@ function PortfolioContextProvider({ children }) {
   const [filterCurrency, setFilterCurrency] = useState('Cryptocurrency');
   const [icingStep, setIcingStep] = useState(0);
   const [icingDays, setIcingDays] = useState(0);
+  const [contractCount, setContractCount] = useState(1);
+  const [createContractLoading, setCreateContractLoading] = useState(false);
 
   return (
     <PortfolioContext.Provider
@@ -327,6 +329,10 @@ function PortfolioContextProvider({ children }) {
         setIcingStep,
         icingDays,
         setIcingDays,
+        contractCount,
+        setContractCount,
+        createContractLoading,
+        setCreateContractLoading,
       }}
     >
       {children}

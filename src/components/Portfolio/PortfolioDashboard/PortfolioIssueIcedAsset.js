@@ -4,10 +4,17 @@ import moment from 'moment';
 import { PortfolioContext } from '../../../context/PortfolioContext';
 import { BankContext } from '../../../context/Context';
 import { FormatCurrency, FormatNumber } from '../../../utils/FunctionTools';
+import LoadingAnim from '../../LoadingAnim/LoadingAnim';
 
 function PortfolioIssueIcedAsset() {
-  const { icingDays, coinContract } = useContext(PortfolioContext);
-  const { email, token, profileId, tostShowOn } = useContext(BankContext);
+  const {
+    icingDays,
+    coinContract,
+    contractCount,
+    setContractCount,
+    createContractLoading,
+  } = useContext(PortfolioContext);
+  const { email, token, profileId } = useContext(BankContext);
   const [contractResult, setContractResult] = useState({});
   useEffect(() => {
     Axios.post('https://comms.globalxchange.com/coin/iced/contract/create', {
@@ -19,22 +26,8 @@ function PortfolioIssueIcedAsset() {
     }).then((res) => {
       const { data } = res;
       if (data.status) setContractResult(data);
-      Axios.post('https://comms.globalxchange.com/coin/iced/contract/create', {
-        email,
-        token,
-        coin: coinContract,
-        days: icingDays,
-        profile_id: profileId,
-      })
-        .then((res) => {
-          const { data } = res;
-          tostShowOn(data.message);
-        })
-        .catch((err) => {
-          tostShowOn(err.message || 'Something Went Wrong On Purchase');
-        });
     });
-  }, [coinContract, email, icingDays, profileId, token, tostShowOn]);
+  }, [coinContract, email, icingDays, profileId, token]);
 
   const [conractCostUsd, setConractCostUsd] = useState(false);
   const [depositCostUsd, setDepositCostUsd] = useState(false);
@@ -53,7 +46,17 @@ function PortfolioIssueIcedAsset() {
           <div className="bondTypes">
             <div className="bondTypesText">How Many Bonds </div>
             <label className="drop-select p-0">
-              <input type="text" defaultValue={1} name="" id="" />
+              <input
+                type="text"
+                value={contractCount}
+                onChange={(e) => {
+                  const numRegex = new RegExp(/^\d*$/);
+                  if (numRegex.test(e.target.value) || e.target.value === '')
+                    setContractCount(e.target.value);
+                }}
+                name=""
+                id=""
+              />
             </label>
           </div>
         </div>
@@ -61,7 +64,8 @@ function PortfolioIssueIcedAsset() {
           {conractCostUsd ? (
             <div className="value">
               {FormatCurrency(
-                contractResult && contractResult.investment_usd,
+                contractResult &&
+                  contractResult.investment_usd * (contractCount || 0),
                 'USD'
               )}
               <small>USD</small>
@@ -69,7 +73,8 @@ function PortfolioIssueIcedAsset() {
           ) : (
             <div className="value">
               {FormatCurrency(
-                contractResult && contractResult.contractCost,
+                contractResult &&
+                  contractResult.contractCost * (contractCount || 0),
                 coinContract
               )}
               <small>{coinContract}</small>
@@ -117,7 +122,8 @@ function PortfolioIssueIcedAsset() {
             {depositCostUsd ? (
               <div className="value">
                 {FormatCurrency(
-                  contractResult && contractResult.investment_usd,
+                  contractResult &&
+                    contractResult.investment_usd * (contractCount || 0),
                   'USD'
                 )}
                 <small>USD</small>
@@ -125,7 +131,8 @@ function PortfolioIssueIcedAsset() {
             ) : (
               <div className="value">
                 {FormatCurrency(
-                  contractResult && contractResult.investment,
+                  contractResult &&
+                    contractResult.investment * (contractCount || 0),
                   coinContract
                 )}
                 <small>{coinContract}</small>
@@ -157,7 +164,8 @@ function PortfolioIssueIcedAsset() {
             {dailyPaymentsUsd ? (
               <div className="value">
                 {FormatCurrency(
-                  contractResult && contractResult.interestValueUsd,
+                  contractResult &&
+                    contractResult.interestValueUsd * (contractCount || 0),
                   'USD'
                 )}
                 <small>USD</small>
@@ -165,7 +173,8 @@ function PortfolioIssueIcedAsset() {
             ) : (
               <div className="value">
                 {FormatCurrency(
-                  contractResult && contractResult.interestValue,
+                  contractResult &&
+                    contractResult.interestValue * (contractCount || 0),
                   coinContract
                 )}
                 <small>{coinContract}</small>
@@ -203,7 +212,8 @@ function PortfolioIssueIcedAsset() {
             {expirationUsd ? (
               <div className="value">
                 {FormatCurrency(
-                  contractResult && contractResult.redemptionAmountUSD,
+                  contractResult &&
+                    contractResult.redemptionAmountUSD * (contractCount || 0),
                   'USD'
                 )}
                 <small>USD</small>
@@ -211,7 +221,8 @@ function PortfolioIssueIcedAsset() {
             ) : (
               <div className="value">
                 {FormatCurrency(
-                  contractResult && contractResult.redemptionAmount,
+                  contractResult &&
+                    contractResult.redemptionAmount * (contractCount || 0),
                   coinContract
                 )}
                 <small>{coinContract}</small>
@@ -223,6 +234,13 @@ function PortfolioIssueIcedAsset() {
           </div>
         </div>
       </div>
+      {createContractLoading ? (
+        <div className="issueIcedLoading">
+          <LoadingAnim />
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 }

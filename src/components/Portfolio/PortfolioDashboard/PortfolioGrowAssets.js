@@ -1,20 +1,30 @@
 import React, { useState, useContext } from 'react';
+import Axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { PortfolioContext } from '../../../context/PortfolioContext';
 import iceLogo from '../../../static/images/logo.svg';
+import next from '../../../static/images/nextColor.svg';
 import btc from '../../../static/images/vault-methods/bitcoin.svg';
 import eth from '../../../static/images/vault-methods/ethereum.svg';
 import usdt from '../../../static/images/vault-methods/tether.svg';
 import { BankContext } from '../../../context/Context';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 function PortfolioGrowAssets() {
   const [showGrowAssets, setShowGrowAssets] = useState(false);
 
-  const { setDashTab, icingStep, coinContract, icingDays } = useContext(
-    PortfolioContext
+  const {
+    setDashTab,
+    setIcingStep,
+    icingStep,
+    coinContract,
+    icingDays,
+    createContractLoading,
+    setCreateContractLoading,
+  } = useContext(PortfolioContext);
+  const { coinListObject, email, token, profileId, tostShowOn } = useContext(
+    BankContext
   );
-  const { coinListObject } = useContext(BankContext);
 
   const [title, setTitle] = useState('');
 
@@ -70,6 +80,35 @@ function PortfolioGrowAssets() {
     </div>
   );
 
+  const createContract = () => {
+    if (!createContractLoading) {
+      setCreateContractLoading(true);
+      Axios.post('https://comms.globalxchange.com/coin/iced/contract/create', {
+        email,
+        token,
+        coin: coinContract,
+        days: icingDays,
+        profile_id: profileId,
+      })
+        .then((res) => {
+          const { data } = res;
+          tostShowOn(data.message);
+          if (data.status) {
+            setIcingStep(0);
+            setTitle('');
+            setDashTab('Net-Worth');
+            setShowGrowAssets(false);
+          }
+        })
+        .catch((err) => {
+          tostShowOn(err.message || 'Something Went Wrong On Purchase');
+        })
+        .finally(() => {
+          setCreateContractLoading(false);
+        });
+    }
+  };
+
   return (
     <div className={`growAssets ${showGrowAssets}`}>
       <div className={`head ${showGrowAssets}`}>
@@ -101,6 +140,7 @@ function PortfolioGrowAssets() {
           className="closeDiv"
           onClick={() => {
             setShowGrowAssets(false);
+            setIcingStep(0);
             setTitle('');
             setDashTab('Net-Worth');
           }}
@@ -108,7 +148,7 @@ function PortfolioGrowAssets() {
           <FontAwesomeIcon icon={faCaretDown} />
         </div>
       </div>
-      <div className="icingSteps">
+      <div className={`icingSteps ${createContractLoading}`}>
         <div className={`icingStep ${icingStep === 0}`}>
           {coinContract ? coinDetail : 'Choose Asset'}
         </div>
@@ -124,7 +164,16 @@ function PortfolioGrowAssets() {
             'Configure Time'
           )}
         </div>
-        <div className={`icingStep ${icingStep === 2}`}>Issue Iced Asset</div>
+        <div className={`icingStep ${icingStep === 2}`}>
+          {icingStep === 2 ? (
+            <div className="issueBond" onClick={createContract}>
+              Issue My Bond
+              <img src={next} alt="" />
+            </div>
+          ) : (
+            'Issue Iced Asset'
+          )}
+        </div>
       </div>
     </div>
   );
