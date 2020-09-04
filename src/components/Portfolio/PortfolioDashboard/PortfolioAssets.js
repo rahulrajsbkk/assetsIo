@@ -1,12 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import PortfolioContractsToBuyList from './PortfolioContractsToBuyList';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { PortfolioContext } from '../../../context/PortfolioContext';
+import OnOutsideClick from '../../../utils/OnOutsideClick';
 
 function PortfolioAssets() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { filterCurrency, setFilterCurrency } = useContext(PortfolioContext);
+  const ref = useRef();
+  OnOutsideClick(ref, () => setMenuOpen(false));
   return (
     <div className="portfolioAssets">
       <div className="assetsText">
@@ -18,7 +21,7 @@ function PortfolioAssets() {
         </div>
         <div className="bondTypes">
           <div className="bondTypesText">Bond Types: </div>
-          <div className="drop-select">
+          <div className="drop-select" ref={ref}>
             <div className="content" onClick={() => setMenuOpen(!menuOpen)}>
               {filterCurrency}
               <FontAwesomeIcon className="ml-2" icon={faCaretDown} />

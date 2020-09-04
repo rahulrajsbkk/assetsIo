@@ -6,7 +6,7 @@
     flex: 0 0 50%;
   }
   .assetsText {
-    padding: 0 5% 0 130px;
+    padding: 0 120px;
     color: $primary-color;
     display: flex;
     flex-direction: column;
@@ -124,7 +124,7 @@
             }
           }
           .labels {
-            font-size: 18px;
+            font-size: 14px;
           }
           .rates {
             margin-top: auto;
@@ -134,7 +134,7 @@
                 font-weight: bold;
               }
               .label {
-                font-size: 13px;
+                font-size: 14px;
               }
             }
           }

@@ -1,14 +1,17 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import Axios from 'axios';
 import moment from 'moment';
 import { PortfolioContext } from '../../../context/PortfolioContext';
 import { BankContext } from '../../../context/Context';
 import { FormatCurrency, FormatNumber } from '../../../utils/FunctionTools';
-import Axios from 'axios';
+import OnOutsideClick from '../../../utils/OnOutsideClick';
 
 function PortfolioSetDays() {
   const ref = useRef();
+  const dropdownRef = useRef();
+  OnOutsideClick(dropdownRef, () => setMenuOpen(false));
   const [days, setDays] = useState(0);
   const [totalDays, setTotalDays] = useState(365);
   const [boxStyle, setBoxStyle] = useState({ bottom: 20, left: 612 });
@@ -54,7 +57,7 @@ function PortfolioSetDays() {
         </div>
         <div className="bondTypes pb-p-25">
           <div className="bondTypesText">Selected Bond: </div>
-          <div className="drop-select">
+          <div className="drop-select" ref={dropdownRef}>
             <div
               className="content bond"
               onClick={() => setMenuOpen(!menuOpen)}
