@@ -112,7 +112,7 @@ function PortfolioGrowAssets() {
             'Configure Time'
           )}
         </div>
-        <div className={`icingStep ${icingStep === 2}`}>Set Leverage</div>
+        <div className={`icingStep ${icingStep === 2}`}>Issue Iced Asset</div>
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ import PortfolioDashCardsList from './PortfolioDashCardsList';
 import PortfolioGrowAssets from './PortfolioGrowAssets';
 import PortfolioAssets from './PortfolioAssets';
 import PortfolioSetDays from './PortfolioSetDays';
+import PortfolioIssueIcedAsset from './PortfolioIssueIcedAsset';
 
 function PortfolioDashboard() {
   const {
@@ -72,7 +73,7 @@ function PortfolioDashboard() {
   const icingAssetSteps = [
     <PortfolioAssets />,
     <PortfolioSetDays />,
-    <div className="flex-grow-1" />,
+    <PortfolioIssueIcedAsset />,
   ];
 
   const getDashContent = () => {

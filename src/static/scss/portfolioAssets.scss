@@ -37,6 +37,7 @@
         border: 1px solid $vault-border-color;
         color: $primary-color;
         border-radius: 6px;
+        margin: 0;
         .content {
           height: 38px;
           display: flex;
@@ -71,6 +72,14 @@
               font-weight: 600;
             }
           }
+        }
+        input {
+          width: 50px;
+          border: none;
+          background: none;
+          outline: none;
+          text-align: center;
+          margin: auto 0;
         }
       }
     }
@@ -263,6 +272,106 @@
       font-weight: 600;
       left: 612px;
       transform: translateX(-50%);
+    }
+  }
+  &.issueIced {
+    flex-direction: column;
+    justify-content: center;
+    .textNValuation {
+      display: flex;
+      margin-bottom: 30px;
+      .bondValuation {
+        position: relative;
+        margin-left: auto;
+        flex: 0 0 40%;
+        border: 1px solid $primary-color;
+        padding: 0 6%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: $primary-color;
+        .value {
+          font-size: 45px;
+          font-weight: bold;
+          line-height: 1;
+          small {
+            font-weight: bold;
+            font-size: 24px;
+          }
+        }
+        .label {
+          font-size: 18px;
+        }
+        .switch {
+          position: absolute;
+          top: 15px;
+          right: 15px;
+          .btn {
+            font-size: 16px;
+            &.true {
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+    .depositDetails {
+      flex: 0 0 36%;
+      display: flex;
+      justify-content: space-between;
+      padding-left: 130px;
+      .detailBox {
+        flex: 0 0 32%;
+        border: 1px solid $primary-color;
+        display: flex;
+        flex-direction: column;
+        .head {
+          color: white;
+          background: $primary-color;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 12%;
+          .title {
+            font-size: 19px;
+            font-weight: 600;
+          }
+          .switch {
+            display: flex;
+            color: white;
+            width: 90px;
+            justify-content: space-between;
+            align-items: center;
+            .btn {
+              color: white;
+              padding: 5px 0;
+              &.true {
+                font-weight: bold;
+              }
+            }
+          }
+        }
+        .content {
+          flex: 1;
+          padding: 0 12%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          color: $primary-color;
+          .value {
+            font-size: 40px;
+            font-weight: bold;
+            line-height: 1;
+            small {
+              font-weight: bold;
+              font-size: 20px;
+            }
+          }
+          .label {
+            font-size: 16px;
+          }
+        }
+      }
     }
   }
 }
