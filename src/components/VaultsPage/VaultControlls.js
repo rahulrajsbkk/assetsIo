@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCaretDown,
@@ -8,6 +8,7 @@ import {
 import moment from 'moment';
 import Skeleton from 'react-loading-skeleton';
 import { VaultContext } from '../../context/VaultContext';
+import OnOutsideClick from '../../utils/OnOutsideClick';
 
 function VaultControlls() {
   const {
@@ -114,9 +115,18 @@ function VaultControlls() {
     },
   ];
 
+  const menuOneRef = useRef();
+  const menuTwoRef = useRef();
+
+  OnOutsideClick(menuOneRef, () => setMenuOneOpen(false));
+  OnOutsideClick(menuTwoRef, () => setMenuTwoOpen(false));
+
   return (
     <div className="controlls">
-      <div className={'drop-select mr-3' + (loading ? ' p-0' : '')}>
+      <div
+        className={'drop-select mr-3' + (loading ? ' p-0' : '')}
+        ref={menuOneRef}
+      >
         <div
           className="content transaction"
           onClick={() => setMenuOneOpen(!menuOneOpen)}
@@ -151,7 +161,10 @@ function VaultControlls() {
           ''
         )}
       </div>
-      <div className={'drop-select mr-3' + (loading ? ' p-0' : '')}>
+      <div
+        className={'drop-select mr-3' + (loading ? ' p-0' : '')}
+        ref={menuTwoRef}
+      >
         <div
           className="content direction"
           onClick={() => setMenuTwoOpen(!menuTwoOpen)}
