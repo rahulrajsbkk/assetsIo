@@ -23,8 +23,9 @@ function PortfolioDashCardsList({
     totalUsdEarning,
     totalUsdContractEarning,
     loadingBondEarnings,
+    icedContracts,
   } = useContext(PortfolioContext);
-  const { updateInterval } = useContext(BankContext);
+  const { updateInterval, coinListObject } = useContext(BankContext);
   const [duration, setDuration] = useState(2);
   const togleDuration = (duration) => {
     setDuration(duration === 2 ? 2.1 : 2);
@@ -131,7 +132,53 @@ function PortfolioDashCardsList({
           </Scrollbars>
         ) : (
           ''
-        )}{' '}
+        )}
+        {selectedCard === 'Bonds' ? (
+          <Scrollbars
+            className="vaultList"
+            autoHide
+            renderTrackHorizontal={() => <div />}
+            renderThumbHorizontal={() => <div />}
+            renderView={(props) => <div {...props} className="vault-list" />}
+          >
+            {appBalances &&
+              icedContracts.map((contract) => (
+                <div className="coin" key={contract._id}>
+                  <img
+                    className="coin-logo mr-2"
+                    src={
+                      coinListObject &&
+                      coinListObject[contract._id] &&
+                      coinListObject[contract._id].coinImage
+                    }
+                    alt=""
+                  />
+                  <div className="coin-name">
+                    {contract.count}{' '}
+                    {coinListObject &&
+                      coinListObject[contract._id] &&
+                      coinListObject[contract._id].coinName}
+                  </div>
+                  <div className="rate">
+                    $
+                    <CountUp
+                      onEnd={() => {
+                        if (updateInterval)
+                          setTimeout(() => {
+                            togleDuration(duration);
+                          }, updateInterval * 1000);
+                      }}
+                      duration={duration}
+                      end={contract.contracts[0].investment_usd}
+                      decimals={2}
+                    />
+                  </div>
+                </div>
+              ))}
+          </Scrollbars>
+        ) : (
+          ''
+        )}
       </div>
     );
   return (

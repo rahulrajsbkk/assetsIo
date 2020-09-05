@@ -35,9 +35,14 @@ const coinZero = {
 };
 
 function PortfolioContextProvider({ children }) {
-  const { email, token, tostShowOn, profileId, coinListObject } = useContext(
-    BankContext
-  );
+  const {
+    email,
+    token,
+    tostShowOn,
+    profileId,
+    coinListObject,
+    icedContracts,
+  } = useContext(BankContext);
   const [loading, setLoading] = useState(false);
   const [loadingCnfrm, setLoadingCnfrm] = useState(false);
   const [coinContract, setCoinContract] = useState('');
@@ -125,18 +130,6 @@ function PortfolioContextProvider({ children }) {
     }, 2000);
   };
   /* To Remove End */
-
-  const [icedContracts, setIcedContracts] = useState([]);
-  useEffect(() => {
-    Axios.get(
-      `https://comms.globalxchange.com/coin/iced/contract/get?email=${email}`
-    ).then((res) => {
-      const { data } = res;
-      if (data.status) {
-        setIcedContracts(data.icedContracts);
-      }
-    });
-  }, [email]);
 
   const [loadingAppBalance, setLoadingAppBalance] = useState(true);
   const [fiatBalance, setFiatBalance] = useState(0);
