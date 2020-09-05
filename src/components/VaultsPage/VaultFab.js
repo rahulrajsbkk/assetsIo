@@ -45,7 +45,6 @@ function VaultFab() {
               >
                 Vault
               </div>
-              <div className="menuItm">Credit Card</div>
             </div>
           ) : (
             <div className="fabMenu">
@@ -68,8 +67,8 @@ function VaultFab() {
               >
                 Withdraw
               </div>
-              <div className="menuItm">Transfer</div>
-              <div className="menuItm">Exchange</div>
+              <div className="menuItm disable">Transfer</div>
+              <div className="menuItm disable">Exchange</div>
             </div>
           )}
         </Fragment>
