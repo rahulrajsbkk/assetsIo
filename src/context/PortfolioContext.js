@@ -244,7 +244,7 @@ function PortfolioContextProvider({ children }) {
     )
       .then((res) => {
         const { data } = res;
-        let contractEarningUsd;
+        let contractEarningUsd = 0;
         if (
           data.status &&
           data.result &&

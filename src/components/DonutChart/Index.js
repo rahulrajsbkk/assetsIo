@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as d3 from 'd3';
 
 const Arc = ({
@@ -26,14 +26,16 @@ const Arc = ({
 const DonutChart = ({ onMouseOver, onMouseOut, pieData, segment }) => {
   const innerRadius = 130;
   const outerRadius = 150;
-  const createPie = d3
-    .pie()
-    .value((d) => d.value)
-    .sort(null);
-  const createArc = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
-
   const colors = d3.scaleOrdinal(d3.schemeCategory10);
-  const data = createPie(pieData);
+  const [data, setData] = useState([]);
+  const createArc = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
+  useEffect(() => {
+    const createPie = d3
+      .pie()
+      .value((d) => d.value)
+      .sort(null);
+    setData(createPie(pieData));
+  }, [pieData]);
 
   return (
     <svg viewBox="0 0 300 300" style={{ width: '100%', height: '100%' }}>

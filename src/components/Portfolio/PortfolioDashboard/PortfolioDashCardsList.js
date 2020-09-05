@@ -30,6 +30,41 @@ function PortfolioDashCardsList({
   const togleDuration = (duration) => {
     setDuration(duration === 2 ? 2.1 : 2);
   };
+
+  function GetSortOrder(prop) {
+    return function (a, b) {
+      if (a[prop] > b[prop]) {
+        return -1;
+      } else if (a[prop] < b[prop]) {
+        return 1;
+      }
+      return 0;
+    };
+  }
+
+  function sortAppBalance() {
+    return function (a, b) {
+      if (
+        selectedCard === 'Cryptocurrency'
+          ? appBalances[a.app_code].cryptoBalance >
+            appBalances[b.app_code].cryptoBalance
+          : appBalances[a.app_code].fiatBalance >
+            appBalances[b.app_code].fiatBalance
+      ) {
+        return -1;
+      } else if (
+        selectedCard === 'Cryptocurrency'
+          ? appBalances[a.app_code].cryptoBalance <
+            appBalances[b.app_code].cryptoBalance
+          : appBalances[a.app_code].fiatBalance <
+            appBalances[b.app_code].fiatBalance
+      ) {
+        return 1;
+      }
+      return 0;
+    };
+  }
+
   if (selectedApp)
     return (
       <div className="cardsSection detail">
@@ -45,36 +80,41 @@ function PortfolioDashCardsList({
           renderThumbHorizontal={() => <div />}
           renderView={(props) => <div {...props} className="vault-list" />}
         >
-          {appBalances &&
-            appBalances[selectedApp] &&
-            appBalances[selectedApp].coins_data
-              .filter((coin) => selectedCard.toLowerCase().includes(coin.type))
-              .map((coin) => (
-                <div className="coin" key={coin.coinSymbol}>
-                  <img className="coin-logo mr-2" src={coin.coinImage} alt="" />
-                  <div className="coin-name">{coin.coinName}</div>
-                  <div className="rate">
-                    {loadingAppBalance ? (
-                      <Skeleton height="100%" width={80} />
-                    ) : (
-                      <>
-                        $
-                        <CountUp
-                          onEnd={() => {
-                            if (updateInterval)
-                              setTimeout(() => {
-                                togleDuration(duration);
-                              }, updateInterval * 1000);
-                          }}
-                          duration={duration}
-                          end={coin.coinValueUSD}
-                          decimals={2}
-                        />
-                      </>
-                    )}
-                  </div>
+          {Array.prototype.slice
+            .call(
+              appBalances &&
+                appBalances[selectedApp] &&
+                appBalances[selectedApp].coins_data.filter((coin) =>
+                  selectedCard.toLowerCase().includes(coin.type)
+                )
+            )
+            .sort(GetSortOrder('coinValueUSD'))
+            .map((coin) => (
+              <div className="coin" key={coin.coinSymbol}>
+                <img className="coin-logo mr-2" src={coin.coinImage} alt="" />
+                <div className="coin-name">{coin.coinName}</div>
+                <div className="rate">
+                  {loadingAppBalance ? (
+                    <Skeleton height="100%" width={80} />
+                  ) : (
+                    <>
+                      $
+                      <CountUp
+                        onEnd={() => {
+                          if (updateInterval)
+                            setTimeout(() => {
+                              togleDuration(duration);
+                            }, updateInterval * 1000);
+                        }}
+                        duration={duration}
+                        end={coin.coinValueUSD}
+                        decimals={2}
+                      />
+                    </>
+                  )}
                 </div>
-              ))}
+              </div>
+            ))}
         </Scrollbars>
       </div>
     );
@@ -94,8 +134,10 @@ function PortfolioDashCardsList({
             renderThumbHorizontal={() => <div />}
             renderView={(props) => <div {...props} className="vault-list" />}
           >
-            {appBalances &&
-              userApps.map((app) => (
+            {Array.prototype.slice
+              .call(appBalances && userApps)
+              .sort(sortAppBalance())
+              .map((app) => (
                 <div
                   className="coin"
                   key={app.app_code}
