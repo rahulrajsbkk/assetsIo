@@ -11,8 +11,6 @@ import usdt from '../../../static/images/vault-methods/tether.svg';
 import { BankContext } from '../../../context/Context';
 
 function PortfolioGrowAssets() {
-  const [showGrowAssets, setShowGrowAssets] = useState(false);
-
   const {
     setDashTab,
     setIcingStep,
@@ -21,12 +19,14 @@ function PortfolioGrowAssets() {
     icingDays,
     createContractLoading,
     setCreateContractLoading,
+    showGrowAssets,
+    setShowGrowAssets,
+    iceGrowTitle,
+    setIceGrowTitle,
   } = useContext(PortfolioContext);
   const { coinListObject, email, token, profileId, tostShowOn } = useContext(
     BankContext
   );
-
-  const [title, setTitle] = useState('');
 
   const getCoinLogo = () => {
     switch (coinContract) {
@@ -95,7 +95,7 @@ function PortfolioGrowAssets() {
           tostShowOn(data.message);
           if (data.status) {
             setIcingStep(0);
-            setTitle('');
+            setIceGrowTitle('');
             setDashTab('Net-Worth');
             setShowGrowAssets(false);
           }
@@ -116,14 +116,14 @@ function PortfolioGrowAssets() {
           className="textNBtns"
           onClick={() => {
             setShowGrowAssets(true);
-            setTitle('Icing An Asset With The');
+            setIceGrowTitle('Icing An Asset With The');
             setDashTab('Assets');
           }}
         >
           {icingStep === 0 ? (
             <>
               <h6>
-                {title || (
+                {iceGrowTitle || (
                   <>
                     <u>Click Here</u> To Use The
                   </>
@@ -141,7 +141,7 @@ function PortfolioGrowAssets() {
           onClick={() => {
             setShowGrowAssets(false);
             setIcingStep(0);
-            setTitle('');
+            setIceGrowTitle('');
             setDashTab('Net-Worth');
           }}
         >

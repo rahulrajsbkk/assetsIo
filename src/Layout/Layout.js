@@ -8,6 +8,7 @@ import LayoutSidebarCoins from './LayoutSidebarCoins';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import LoginWrapper from '../components/LoginModal/LoginWrapper';
+import IceMechineFooter from '../components/Portfolio/PortfolioDashboard/IceMechineFooter';
 
 function Layout({ children, active, className }) {
   const {
@@ -28,7 +29,10 @@ function Layout({ children, active, className }) {
         ) : (
           <LayoutSidebarGuest active={active} />
         )}
-        <div className={`page-content ${className}`}>{children}</div>
+        <div className="d-flex flex-column flex-grow-1">
+          <div className={`page-content ${className}`}>{children}</div>
+          {active === 'portfolio' ? '' : <IceMechineFooter />}
+        </div>
       </div>
       {!email && footerShow ? (
         <footer className="footer-main">

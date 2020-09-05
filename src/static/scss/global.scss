@@ -5,3 +5,34 @@
   opacity: 0.2;
   cursor: wait !important;
 }
+
+.growAssets {
+  display: flex;
+  flex-direction: column;
+  .head {
+    height: 65px;
+    display: flex;
+    .textNBtns {
+      flex-grow: 1;
+      background: $primary-color;
+      display: flex;
+      align-items: center;
+      padding-left: 120px;
+      img {
+        height: 45%;
+        filter: brightness(0) invert(1);
+        margin: 0 15px;
+      }
+      h6 {
+        line-height: 1;
+        font-size: 20px;
+        font-weight: 600;
+        margin: 0;
+        color: white;
+        u {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

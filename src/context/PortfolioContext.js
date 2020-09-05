@@ -282,6 +282,9 @@ function PortfolioContextProvider({ children }) {
   const [contractCount, setContractCount] = useState(1);
   const [createContractLoading, setCreateContractLoading] = useState(false);
 
+  const [showGrowAssets, setShowGrowAssets] = useState(false);
+  const [iceGrowTitle, setIceGrowTitle] = useState('');
+
   return (
     <PortfolioContext.Provider
       value={{
@@ -326,6 +329,10 @@ function PortfolioContextProvider({ children }) {
         setContractCount,
         createContractLoading,
         setCreateContractLoading,
+        showGrowAssets,
+        setShowGrowAssets,
+        iceGrowTitle,
+        setIceGrowTitle,
       }}
     >
       {children}

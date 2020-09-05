@@ -3,12 +3,15 @@ import { BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Routes from './Routes';
 import BankContextProvider from './context/Context';
+import PortfolioContextProvider from './context/PortfolioContext';
 
 const App = () => (
   <BankContextProvider>
-    <BrowserRouter>
-      <Routes />
-    </BrowserRouter>
+    <PortfolioContextProvider>
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
+    </PortfolioContextProvider>
   </BankContextProvider>
 );
 
