@@ -12,7 +12,14 @@ import { VaultContext } from '../../../../../context/VaultContext';
 import logo from '../../../../../static/images/logo.svg';
 
 function SetAmount({ coinObject, price, transCoin, isDeposit, setOpenModal }) {
-  const { email, token, name, profileId, tostShowOn } = useContext(BankContext);
+  const {
+    email,
+    token,
+    name,
+    profileId,
+    tostShowOn,
+    coinListObject,
+  } = useContext(BankContext);
   const { updateBalance, coinSelected } = useContext(VaultContext);
   console.log('coinSelected :>> ', coinSelected);
   const [depositAsset, setDepositAsset] = useState('');
@@ -31,12 +38,7 @@ function SetAmount({ coinObject, price, transCoin, isDeposit, setOpenModal }) {
     const data = {
       email: email,
       token: token,
-      amount: parseFloat(
-        isDeposit
-          ? (selectedCoinAmount * price[transCoin].price) /
-              price[coinSelected.coinSymbol].price
-          : selectedCoinAmount
-      ), // amount you need to be credited in SUbVAult:GXVAult
+      amount: parseFloat(isDeposit ? depositAsset : selectedCoinAmount), // amount you need to be credited in SUbVAult:GXVAult
       from_coin: isDeposit ? transCoin : coinSelected.coinSymbol, // coin from GXVAULT:SUBVAULT
       to_coin: isDeposit ? coinSelected.coinSymbol : transCoin, // to COIN in SUBVAULT:GXVAULT
       identifier: uuidv4(), // unique Identifier
@@ -75,20 +77,27 @@ function SetAmount({ coinObject, price, transCoin, isDeposit, setOpenModal }) {
   const [selectedCoinAmount, setSelectedCoinAmount] = useState('');
   const selectedChange = (e) => {
     setSelectedCoinAmount(e.target.value);
-    setDepositAsset(
-      e.target.value === ''
-        ? ''
-        : (coinObject.price * e.target.value).toFixed(2)
-    );
+    coinListObject &&
+      coinListObject[coinSelected.coinSymbol] &&
+      setDepositAsset(
+        e.target.value === ''
+          ? ''
+          : (
+              (coinObject.price * e.target.value) /
+              coinListObject[coinSelected.coinSymbol].price.USD
+            ).toFixed(4)
+      );
   };
   const depositOnChange = (e) => {
     setDepositAsset(e.target.value);
     setSelectedCoinAmount(
       e.target.value === ''
         ? ''
-        : Math.round(
-            (e.target.value / coinObject.price + Number.EPSILON) * 100000
-          ) / (100000).toPrecision(5)
+        : (
+            (e.target.value *
+              coinListObject[coinSelected.coinSymbol].price.USD) /
+            coinObject.price
+          ).toFixed(4)
     );
   };
   useEffect(() => {
@@ -177,7 +186,7 @@ function SetAmount({ coinObject, price, transCoin, isDeposit, setOpenModal }) {
                 {transCoin}
                 &nbsp;Vault Debit
               </span>
-              <span className="col-6 p-0">USD Value</span>
+              <span className="col-6 p-0">{coinSelected.coinSymbol} Value</span>
             </p>
             <div className="border-wrap p-0 d-flex">
               <input
@@ -185,14 +194,21 @@ function SetAmount({ coinObject, price, transCoin, isDeposit, setOpenModal }) {
                 onChange={selectedChange}
                 type="number"
                 className="amount-input d-flex h-100 col-6"
-                placeholder="0.0000"
+                placeholder={
+                  transCoin === 'BTC' || transCoin === 'ETH' ? '0.0000' : '0.00'
+                }
               />
               <input
                 value={depositAsset}
                 onChange={depositOnChange}
                 type="number"
                 className="amount-input d-flex h-100 col-6 border-left"
-                placeholder="$0.00"
+                placeholder={
+                  coinSelected.coinSymbol === 'BTC' ||
+                  coinSelected.coinSymbol === 'ETH'
+                    ? '0.0000'
+                    : '0.00'
+                }
               />
             </div>
           </div>
