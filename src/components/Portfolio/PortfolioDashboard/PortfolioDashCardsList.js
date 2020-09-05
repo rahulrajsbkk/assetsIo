@@ -33,7 +33,10 @@ function PortfolioDashCardsList({
     return (
       <div className="cardsSection detail">
         <h3>{selectedCard}</h3>
-        <h6>Here Are All Your Balances For {selectedApp}</h6>
+        <h6>
+          Here Are All Your Balances For{' '}
+          {selectedApp === 'Bonds' ? 'Bonds' : 'Vaults'}
+        </h6>
         <Scrollbars
           className="vaultList"
           autoHide
@@ -78,7 +81,9 @@ function PortfolioDashCardsList({
     return (
       <div className="cardsSection detail">
         <h3>{selectedCard}</h3>
-        <h6>Here Are All Your Vaults</h6>
+        <h6>
+          Here Are All Your {selectedApp === 'Bonds' ? 'Bonds' : 'Vaults'}
+        </h6>
         {selectedCard === 'Cryptocurrency' ||
         selectedCard === 'Fiat Currency' ? (
           <Scrollbars
@@ -96,7 +101,7 @@ function PortfolioDashCardsList({
                   onClick={() => setSelectedApp(app.app_code)}
                 >
                   <img className="coin-logo mr-2" src={logo} alt="" />
-                  <div className="coin-name">{app.app_code}</div>
+                  <div className="coin-name">{app.app_name}</div>
                   <div className="rate">
                     {loadingAppBalance || !appBalances[app.app_code] ? (
                       <Skeleton height="100%" width={80} />
