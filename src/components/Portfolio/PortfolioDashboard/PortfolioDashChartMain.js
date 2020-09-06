@@ -9,6 +9,7 @@ import DonutChart from '../../DonutChart/Index';
 import assetLogo from '../../../static/images/assetsLogo.svg';
 import { PortfolioContext } from '../../../context/PortfolioContext';
 import Scrollbars from 'react-custom-scrollbars';
+import { BankContext } from '../../../context/Context';
 
 function PortfolioDashChartMain({
   selectedCard,
@@ -24,9 +25,10 @@ function PortfolioDashChartMain({
     totalUsdContractEarning,
     appBalances,
     userApps,
-    coinListObject,
     icedContracts,
   } = useContext(PortfolioContext);
+
+  const { coinListObject } = useContext(BankContext);
 
   const [segment, setSegment] = useState(null);
 
@@ -153,7 +155,7 @@ function PortfolioDashChartMain({
           });
         setChartData(arr);
         setTotalSelectedBalance(totalUsdContractEarning);
-      } else if (selectedCard === 'Bonds') {
+      } else {
         setChartData([]);
         setTotalSelectedBalance(totalUsdEarning);
       }
@@ -175,7 +177,7 @@ function PortfolioDashChartMain({
       ]);
     }
     // eslint-disable-next-line
-  }, [selectedApp, selectedCard]);
+  }, [selectedApp, selectedCard, coinListObject]);
 
   return (
     <div className="chartSection">
