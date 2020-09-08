@@ -73,12 +73,11 @@ function NetWorthContextProvider({ children }) {
       value: cryptoBalance + icedValues.crypto.value,
       color: colors(0),
       percent:
-        (cryptoBalance +
-          icedValues.crypto.value /
-            (cryptoBalance +
-              fiatBalance +
-              icedValues.crypto.value +
-              icedValues.fiat.value)) *
+        ((cryptoBalance + icedValues.crypto.value) /
+          (cryptoBalance +
+            fiatBalance +
+            icedValues.crypto.value +
+            icedValues.fiat.value)) *
         100,
       assets:
         appBalances &&
@@ -94,12 +93,11 @@ function NetWorthContextProvider({ children }) {
       value: fiatBalance,
       color: colors(1),
       percent:
-        (fiatBalance +
-          icedValues.fiat.value /
-            (cryptoBalance +
-              fiatBalance +
-              icedValues.crypto.value +
-              icedValues.fiat.value)) *
+        ((fiatBalance + icedValues.fiat.value) /
+          (cryptoBalance +
+            fiatBalance +
+            icedValues.crypto.value +
+            icedValues.fiat.value)) *
         100,
       assets:
         appBalances &&
@@ -288,7 +286,17 @@ function NetWorthContextProvider({ children }) {
             (coin) => coinListObject[coin.coinSymbol].coinName === assetCoin
           )[0].coinValueUSD,
           color: colors(0),
-          percent: 0,
+          percent:
+            (appBalances.total.coins_data.filter(
+              (coin) => coinListObject[coin.coinSymbol].coinName === assetCoin
+            )[0].coinValueUSD /
+              (appBalances.total.coins_data.filter(
+                (coin) => coinListObject[coin.coinSymbol].coinName === assetCoin
+              )[0].coinValueUSD +
+                icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
+                  coinNameObject[assetCoin].coinSymbol
+                ].value)) *
+            100,
           type: 'liquidity',
           assets: userApps.length,
           assetText: 'Wallets',
@@ -300,7 +308,17 @@ function NetWorthContextProvider({ children }) {
               coinNameObject[assetCoin].coinSymbol
             ].value,
           color: colors(1),
-          percent: 0,
+          percent:
+            (icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
+              coinNameObject[assetCoin].coinSymbol
+            ].value /
+              (appBalances.total.coins_data.filter(
+                (coin) => coinListObject[coin.coinSymbol].coinName === assetCoin
+              )[0].coinValueUSD +
+                icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
+                  coinNameObject[assetCoin].coinSymbol
+                ].value)) *
+            100,
           type: 'liquidity',
           assets:
             icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
