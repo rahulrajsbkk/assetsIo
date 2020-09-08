@@ -14,7 +14,7 @@ function NetWorthPage() {
     return <Redirect to="/" />;
   }
   return (
-    <Layout active="portfolio" className="vault-content">
+    <Layout active="networth" className="vault-content">
       <NetWorthContextProvider>
         <HeadTabs />
         <div className="netWorthLayout">

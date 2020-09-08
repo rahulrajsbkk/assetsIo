@@ -94,12 +94,12 @@ function LayoutSidebarCoins({ active }) {
               </h5>
             </Link>
             <Link
-              to="/portfolio"
-              className={`menu-itm${active === 'portfolio' ? ' active' : ''}`}
+              to="/net-worth"
+              className={`menu-itm${active === 'networth' ? ' active' : ''}`}
             >
               <h5 className="d-flex py-3 menu-itm">
                 <img src={portfolio} alt="" />
-                <span className="my-auto">Portfolio</span>
+                <span className="my-auto">My Net-Worth</span>
               </h5>
             </Link>
             <Link

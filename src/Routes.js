@@ -26,7 +26,7 @@ function Routes() {
       <Route exact path="/">
         <>
           {email ? (
-            <Portfolio />
+            <NetWorthPage />
           ) : width > 768 ? (
             <IcedIndex />
           ) : (
