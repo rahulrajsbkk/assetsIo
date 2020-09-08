@@ -4,7 +4,26 @@ import { FormatCurrency, FormatNumber } from '../../utils/FunctionTools';
 import { NetWorthContext } from '../../context/ NetWorthContext';
 
 function NetWorthCards() {
-  const { cardList, setAssetClass, setAssetCoin } = useContext(NetWorthContext);
+  const {
+    cardList,
+    setAssetClass,
+    setAssetCoin,
+    setLiquidity,
+    assetClass,
+    assetCoin,
+    liquidity,
+  } = useContext(NetWorthContext);
+
+  function GetSortOrder(prop) {
+    return function (a, b) {
+      if (a[prop] > b[prop]) {
+        return -1;
+      } else if (a[prop] < b[prop]) {
+        return 1;
+      }
+      return 0;
+    };
+  }
 
   return (
     <Scrollbars
@@ -16,16 +35,19 @@ function NetWorthCards() {
         <div {...props} className="netWorthCardsListView" />
       )}
     >
-      {cardList.map((card) => (
+      {cardList.sort(GetSortOrder('value')).map((card, i) => (
         <div
-          key={card.name}
-          className="netWorthCard"
+          key={`${card.name}${i + assetClass + assetCoin + liquidity}`}
+          className={`netWorthCard ${card.type}`}
           onClick={() => {
             if (card.type && card.type === 'asset_class') {
               setAssetClass(card.name);
             }
             if (card.type && card.type === 'coin') {
               setAssetCoin(card.name);
+            }
+            if (card.type && card.type === 'liquidity') {
+              setLiquidity(card.name);
             }
           }}
         >
@@ -44,8 +66,11 @@ function NetWorthCards() {
               </div>
             </div>
             <div className="labels">
-              <span>{FormatNumber(card.assets, 0)} Assets</span>
-              <span>Up 2.4% In 24Hrs</span>
+              <span>
+                {!isNaN(card.assets) && FormatNumber(card.assets, 0)}{' '}
+                {card.assetText}
+              </span>
+              <span>Up {FormatNumber(0, 1)}% In 24Hrs</span>
             </div>
             <div className="rates">
               <div className="ratesItem text-left">

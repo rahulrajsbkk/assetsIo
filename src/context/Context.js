@@ -157,6 +157,15 @@ function BankContextProvider({ children }) {
     setCoinListObject(coinObj);
   }, [coinList]);
 
+  const [coinNameObject, setCoinNameObject] = useState({});
+  useEffect(() => {
+    let coinObj = {};
+    coinList.forEach((coin) => {
+      coinObj[coin.coinName] = coin;
+    });
+    setCoinNameObject(coinObj);
+  }, [coinList]);
+
   const [liquidRatesObject, setLiquidRatesObject] = useState({});
   useEffect(() => {
     let coinObj = {};
@@ -269,6 +278,7 @@ function BankContextProvider({ children }) {
         setContentSideBar,
         coinData,
         conractsObj,
+        coinNameObject,
       }}
     >
       {children}

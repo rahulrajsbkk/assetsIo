@@ -124,6 +124,12 @@
             background: #00000006;
           }
         }
+        &.liquidity {
+          flex: 0 0 50%;
+          .bondsItem {
+            padding: 14% 6%;
+          }
+        }
       }
     }
   }

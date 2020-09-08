@@ -16,6 +16,9 @@ function NetWorthChart() {
     setAssetClass,
     assetCoin,
     setAssetCoin,
+    liquidity,
+    setLiquidity,
+    icedValues,
   } = useContext(NetWorthContext);
   return (
     <div className="chartSection">
@@ -24,6 +27,7 @@ function NetWorthChart() {
           onClick={() => {
             setAssetClass(null);
             setAssetCoin(null);
+            setLiquidity(null);
           }}
         >
           Net-Worth
@@ -34,6 +38,7 @@ function NetWorthChart() {
             <span
               onClick={() => {
                 setAssetCoin(null);
+                setLiquidity(null);
               }}
             >
               {assetClass}
@@ -45,7 +50,21 @@ function NetWorthChart() {
         {assetCoin ? (
           <>
             &gt;
-            <span onClick={() => {}}>{assetCoin}</span>
+            <span
+              onClick={() => {
+                setLiquidity(null);
+              }}
+            >
+              {assetCoin}
+            </span>
+          </>
+        ) : (
+          <></>
+        )}
+        {liquidity ? (
+          <>
+            &gt;
+            <span onClick={() => {}}>{liquidity}</span>
           </>
         ) : (
           <></>
@@ -53,7 +72,15 @@ function NetWorthChart() {
       </div>
       <div role="button" tabIndex="0" className="total mt-auto">
         <h6>Your Net-Worth</h6>
-        <h4>${FormatCurrency(fiatBalance + cryptoBalance)}</h4>
+        <h4>
+          $
+          {FormatCurrency(
+            fiatBalance +
+              cryptoBalance +
+              icedValues.crypto.value +
+              icedValues.fiat.value
+          )}
+        </h4>
       </div>
       <div className="chart-section mb-auto">
         <div className="chart">
