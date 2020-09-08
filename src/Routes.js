@@ -10,6 +10,7 @@ import useWindowDimensions from './utils/WindowSize';
 import IcedIndexMobile from './pages/IcedIndexMobile';
 import { BankContext } from './context/Context';
 import Earnings from './pages/Earnings';
+import NetWorthPage from './pages/NetWorthPage';
 
 function Routes() {
   const { width } = useWindowDimensions();
@@ -17,6 +18,7 @@ function Routes() {
   return (
     <Switch>
       <Route exact path="/portfolio" component={Portfolio} />
+      <Route exact path="/net-worth" component={NetWorthPage} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/index">
         <>{width > 768 ? <IcedIndex /> : <IcedIndexMobile />}</>

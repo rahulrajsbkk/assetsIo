@@ -36,3 +36,38 @@
     }
   }
 }
+
+.headTabsWrapper {
+  height: 60px;
+  border-bottom: 1px solid $vault-border-color;
+  display: flex;
+  .headTab {
+    align-items: center;
+    display: flex;
+    width: 150px;
+    padding: 0 30px;
+    border-right: 1px solid $vault-border-color;
+    opacity: 0.5;
+    font-size: 11px;
+    position: relative;
+    .text {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .bt-close {
+      position: absolute;
+      font-size: 18px;
+      top: 8px;
+      right: 8px;
+      transform: rotate(45deg);
+      line-height: 0.7;
+      color: gray;
+    }
+    &.true {
+      width: unset;
+      opacity: 1;
+      font-size: 14px;
+    }
+  }
+}

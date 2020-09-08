@@ -24,7 +24,7 @@ const Arc = ({
 
 // eslint-disable-next-line object-curly-newline
 const DonutChart = ({ onMouseOver, onMouseOut, pieData, segment }) => {
-  const innerRadius = 130;
+  const innerRadius = 135;
   const outerRadius = 150;
   const colors = d3.scaleOrdinal(d3.schemeCategory10);
   const [data, setData] = useState([]);
