@@ -5,7 +5,7 @@ import { BankContext } from '../../context/Context';
 function HeadTabs() {
   const { assetClass, assetCoin, liquidity } = useContext(NetWorthContext);
   const { coinNameObject } = useContext(BankContext);
-  const [title, setTitle] = useState('Networth By Asset Class');
+  const [title, setTitle] = useState('Net-Worth By Asset Class');
   useEffect(() => {
     if (liquidity) {
       if (liquidity === 'Liquid') {
@@ -30,7 +30,7 @@ function HeadTabs() {
     } else if (assetClass) {
       setTitle(`${assetClass} Holdings By Asset`);
     } else {
-      setTitle('Networth By Asset Class');
+      setTitle('Net-Worth By Asset Class');
     }
   }, [assetClass, assetCoin, liquidity]);
   return (

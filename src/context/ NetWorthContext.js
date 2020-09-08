@@ -224,10 +224,17 @@ function NetWorthContextProvider({ children }) {
   const [assetCoin, setAssetCoin] = useState(null);
   const [liquidity, setLiquidity] = useState(null);
   const [cardList, setCardList] = useState([]);
+  const [selectedTotalBalance, setSelectedTotalBalance] = useState(0);
 
   useEffect(() => {
     setCardList(mainCards);
-  }, [fiatBalance, cryptoBalance, appBalances]);
+    setSelectedTotalBalance(
+      fiatBalance +
+        cryptoBalance +
+        icedValues.crypto.value +
+        icedValues.fiat.value
+    );
+  }, [fiatBalance, cryptoBalance, appBalances, icedValues]);
 
   useEffect(() => {
     if (liquidity) {
@@ -255,6 +262,11 @@ function NetWorthContextProvider({ children }) {
           });
         });
         setCardList(arr);
+        setSelectedTotalBalance(
+          appBalances.total.coins_data.filter(
+            (coin) => coinListObject[coin.coinSymbol].coinName === assetCoin
+          )[0].coinValueUSD
+        );
       } else {
         let arr = [];
         icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
@@ -277,6 +289,11 @@ function NetWorthContextProvider({ children }) {
           });
         });
         setCardList(arr);
+        setSelectedTotalBalance(
+          icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
+            coinNameObject[assetCoin].coinSymbol
+          ].value
+        );
       }
     } else if (assetCoin) {
       let arr = [
@@ -328,6 +345,14 @@ function NetWorthContextProvider({ children }) {
         },
       ];
       setCardList(arr);
+      setSelectedTotalBalance(
+        appBalances.total.coins_data.filter(
+          (coin) => coinListObject[coin.coinSymbol].coinName === assetCoin
+        )[0].coinValueUSD +
+          icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
+            coinNameObject[assetCoin].coinSymbol
+          ].value
+      );
     } else if (assetClass) {
       if (
         assetClass === 'Cryptocurrency' &&
@@ -361,6 +386,7 @@ function NetWorthContextProvider({ children }) {
             });
           });
         setCardList(arr);
+        setSelectedTotalBalance(cryptoBalance + icedValues.crypto.value);
       } else if (
         assetClass === 'Fiat Currencies' &&
         appBalances &&
@@ -393,9 +419,16 @@ function NetWorthContextProvider({ children }) {
             });
           });
         setCardList(arr);
+        setSelectedTotalBalance(fiatBalance + icedValues.fiat.value);
       }
     } else {
       setCardList(mainCards);
+      setSelectedTotalBalance(
+        fiatBalance +
+          cryptoBalance +
+          icedValues.crypto.value +
+          icedValues.fiat.value
+      );
     }
   }, [assetClass, appBalances, assetCoin, liquidity]);
   return (
@@ -413,6 +446,7 @@ function NetWorthContextProvider({ children }) {
         liquidity,
         setLiquidity,
         icedValues,
+        selectedTotalBalance,
       }}
     >
       {children}

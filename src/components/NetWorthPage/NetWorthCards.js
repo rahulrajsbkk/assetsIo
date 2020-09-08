@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import { FormatCurrency, FormatNumber } from '../../utils/FunctionTools';
 import { NetWorthContext } from '../../context/ NetWorthContext';
+import { BankContext } from '../../context/Context';
 
 function NetWorthCards() {
   const {
     cardList,
+    loadingAppBalance,
     setAssetClass,
     setAssetCoin,
     setLiquidity,
@@ -13,6 +15,7 @@ function NetWorthCards() {
     assetCoin,
     liquidity,
   } = useContext(NetWorthContext);
+  const { coinNameObject } = useContext(BankContext);
 
   function GetSortOrder(prop) {
     return function (a, b) {
@@ -24,6 +27,43 @@ function NetWorthCards() {
       return 0;
     };
   }
+
+  const [title, setTitle] = useState('Networth By Asset Class');
+  useEffect(() => {
+    if (liquidity) {
+      if (liquidity === 'Liquid') {
+        setTitle(
+          `Of Liquid ${
+            coinNameObject &&
+            coinNameObject[assetCoin] &&
+            coinNameObject[assetCoin].coinSymbol
+          }`
+        );
+      } else {
+        setTitle(
+          `Of ${
+            coinNameObject &&
+            coinNameObject[assetCoin] &&
+            coinNameObject[assetCoin].coinSymbol
+          } Bonds`
+        );
+      }
+    } else if (assetCoin) {
+      setTitle(
+        `Of ${
+          coinNameObject &&
+          coinNameObject[assetCoin] &&
+          coinNameObject[assetCoin].coinSymbol
+        }  Holdings`
+      );
+    } else if (assetClass) {
+      setTitle(
+        `Of ${assetClass === 'Cryptocurrency' ? 'Crypto' : 'Fiat'} Holdings`
+      );
+    } else {
+      setTitle('Of Net-Worth');
+    }
+  }, [assetClass, assetCoin, liquidity]);
 
   return (
     <Scrollbars
@@ -40,14 +80,16 @@ function NetWorthCards() {
           key={`${card.name}${i + assetClass + assetCoin + liquidity}`}
           className={`netWorthCard ${card.type}`}
           onClick={() => {
-            if (card.type && card.type === 'asset_class') {
-              setAssetClass(card.name);
-            }
-            if (card.type && card.type === 'coin') {
-              setAssetCoin(card.name);
-            }
-            if (card.type && card.type === 'liquidity') {
-              setLiquidity(card.name);
+            if (!loadingAppBalance) {
+              if (card.type && card.type === 'asset_class') {
+                setAssetClass(card.name);
+              }
+              if (card.type && card.type === 'coin') {
+                setAssetCoin(card.name);
+              }
+              if (card.type && card.type === 'liquidity') {
+                setLiquidity(card.name);
+              }
             }
           }}
         >
@@ -70,24 +112,27 @@ function NetWorthCards() {
                 {!isNaN(card.assets) && FormatNumber(card.assets, 0)}{' '}
                 {card.assetText}
               </span>
-              <span>Up {FormatNumber(0, 1)}% In 24Hrs</span>
+              <span>Up {FormatNumber(0, 2)}% In 24Hrs</span>
             </div>
             <div className="rates">
               <div className="ratesItem text-left">
                 <div className="value">
-                  <span>{FormatNumber(card.percent, 1)}</span>%
+                  <span>
+                    {FormatNumber(card.percent, card.percent < 10 ? 2 : 1)}
+                  </span>
+                  %
                 </div>
-                <div className="label">% Of Net-Worth</div>
+                <div className="label">% {title}</div>
               </div>
               <div className="ratesItem text-center">
                 <div className="value">
-                  <span>0.0</span>%
+                  <span>{FormatNumber(0, 2)}</span>%
                 </div>
                 <div className="label">Capital Appreciation</div>
               </div>
               <div className="ratesItem text-right">
                 <div className="value">
-                  <span>0.00</span>
+                  <span>{FormatNumber(0, 2)}</span>
                 </div>
                 <div className="label">Fixed Income</div>
               </div>
