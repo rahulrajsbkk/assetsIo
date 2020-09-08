@@ -10,13 +10,13 @@ import NetWorthContextProvider from '../context/ NetWorthContext';
 
 function NetWorthPage() {
   const { email } = useContext(BankContext);
-  //   if (!email) {
-  //     return <Redirect to="/" />;
-  //   }
+  if (!email) {
+    return <Redirect to="/" />;
+  }
   return (
     <Layout active="portfolio" className="vault-content">
-      <HeadTabs />
       <NetWorthContextProvider>
+        <HeadTabs />
         <div className="netWorthLayout">
           <NetWorthChart />
           <NetWorthCards />
