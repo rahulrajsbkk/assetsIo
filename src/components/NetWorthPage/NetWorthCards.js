@@ -103,16 +103,37 @@ function NetWorthCards() {
                 {card.img && <img src={card.img} alt="" />}
                 {card.name}
               </div>
-              <div className="title">
-                $ <span>{FormatCurrency(card.value)}</span>USD
-              </div>
+              {assetCoin ? (
+                <div className="title">
+                  <span>
+                    {FormatCurrency(
+                      card.value / coinNameObject[assetCoin].price.USD,
+                      coinNameObject[assetCoin].coinSymbol
+                    )}
+                  </span>
+                  {coinNameObject[assetCoin].coinSymbol}
+                </div>
+              ) : (
+                <div className="title">
+                  $ <span>{FormatCurrency(card.value)}</span>USD
+                </div>
+              )}
             </div>
             <div className="labels">
               <span>
                 {!isNaN(card.assets) && FormatNumber(card.assets, 0)}{' '}
                 {card.assetText}
               </span>
-              <span>Up {FormatNumber(0, 2)}% In 24Hrs</span>
+              <span>
+                {assetCoin ? (
+                  <b>
+                    $ <span>{FormatCurrency(card.value)}</span>USD |{' '}
+                  </b>
+                ) : (
+                  ''
+                )}
+                Up {FormatNumber(0, 2)}% In 24Hrs
+              </span>
             </div>
             <div className="rates">
               <div className="ratesItem text-left">

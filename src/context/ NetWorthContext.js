@@ -40,29 +40,28 @@ function NetWorthContextProvider({ children }) {
       count: 0,
     };
     icedContracts.forEach((contract) => {
-      if (coinListObject && coinListObject[contract._id])
+      console.log('contract', contract);
+      if (coinListObject && coinListObject[contract._id]) {
+        let totalContractVoc = 0;
+        contract.contracts.forEach((contr) => {
+          totalContractVoc += contr.voc_usd;
+        });
         if (coinListObject[contract._id].type === 'crypto') {
           contractsVal.crypto.value =
-            contractsVal.crypto.value +
-            contract.investment * coinListObject[contract._id].price.USD;
+            contractsVal.crypto.value + totalContractVoc;
           contractsVal.crypto.count =
             contractsVal.crypto.count + contract.count;
-          contractsVal.crypto[contract._id] =
-            contract.investment * coinListObject[contract._id].price.USD;
           contractsVal.crypto[contract._id] = {};
-          contractsVal.crypto[contract._id].value =
-            contract.investment * coinListObject[contract._id].price.USD;
+          contractsVal.crypto[contract._id].value = totalContractVoc;
           contractsVal.crypto[contract._id].contracts = contract.contracts;
         } else {
-          contractsVal.fiat.value =
-            contractsVal.fiat.value +
-            contract.investment * coinListObject[contract._id].price.USD;
+          contractsVal.fiat.value = contractsVal.fiat.value + totalContractVoc;
           contractsVal.fiat.count = contractsVal.fiat.count + contract.count;
           contractsVal.fiat[contract._id] = {};
-          contractsVal.fiat[contract._id].value =
-            contract.investment * coinListObject[contract._id].price.USD;
+          contractsVal.fiat[contract._id].value = totalContractVoc;
           contractsVal.fiat[contract._id].contracts = contract.contracts;
         }
+      }
     });
     setIcedValues(contractsVal);
   }, [icedContracts, coinListObject]);
@@ -431,6 +430,7 @@ function NetWorthContextProvider({ children }) {
       );
     }
   }, [assetClass, appBalances, assetCoin, liquidity]);
+  console.log('icedValues', icedValues);
   return (
     <NetWorthContext.Provider
       value={{
