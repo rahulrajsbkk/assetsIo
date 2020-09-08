@@ -112,36 +112,42 @@ function NetWorthContextProvider({ children }) {
       value: 0,
       color: colors(2),
       assetText: 'Assets',
+      type: 'coming_soon',
     },
     {
       name: 'Loans',
       value: 0,
       color: colors(3),
       assetText: 'Assets',
+      type: 'coming_soon',
     },
     {
       name: 'Real Estate',
       value: 0,
       color: colors(4),
       assetText: 'Assets',
+      type: 'coming_soon',
     },
     {
       name: 'Private Equity',
       value: 0,
       color: colors(5),
       assetText: 'Assets',
+      type: 'coming_soon',
     },
     {
       name: 'Digital Properties',
       value: 0,
       color: colors(6),
       assetText: 'Assets',
+      type: 'coming_soon',
     },
     {
       name: 'Influence',
       value: 0,
       color: colors(7),
       assetText: 'Assets',
+      type: 'coming_soon',
     },
   ];
 

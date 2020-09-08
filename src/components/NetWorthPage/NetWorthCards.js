@@ -3,6 +3,7 @@ import Scrollbars from 'react-custom-scrollbars';
 import { FormatCurrency, FormatNumber } from '../../utils/FunctionTools';
 import { NetWorthContext } from '../../context/ NetWorthContext';
 import { BankContext } from '../../context/Context';
+import ModalAlertUpdate from './ModalAlertUpdate';
 
 function NetWorthCards() {
   const {
@@ -65,6 +66,8 @@ function NetWorthCards() {
     }
   }, [assetClass, assetCoin, liquidity]);
 
+  const [modalAsset, setModalAsset] = useState(false);
+
   return (
     <Scrollbars
       autoHide
@@ -89,6 +92,9 @@ function NetWorthCards() {
               }
               if (card.type && card.type === 'liquidity') {
                 setLiquidity(card.name);
+              }
+              if (card.type && card.type === 'coming_soon') {
+                setModalAsset(card.name);
               }
             }
           }}
@@ -161,6 +167,14 @@ function NetWorthCards() {
           </div>
         </div>
       ))}
+      {modalAsset ? (
+        <ModalAlertUpdate
+          setOpenModal={setModalAsset}
+          assetClass={modalAsset}
+        />
+      ) : (
+        ''
+      )}
     </Scrollbars>
   );
 }
