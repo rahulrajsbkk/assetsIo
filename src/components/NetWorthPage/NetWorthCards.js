@@ -83,7 +83,7 @@ function NetWorthCards() {
           key={`${card.name}${i + assetClass + assetCoin + liquidity}`}
           className={`netWorthCard ${card.type}`}
           onClick={() => {
-            if (!loadingAppBalance) {
+            if (!loadingAppBalance && card.value) {
               if (card.type && card.type === 'asset_class') {
                 setAssetClass(card.name);
               }
@@ -93,9 +93,9 @@ function NetWorthCards() {
               if (card.type && card.type === 'liquidity') {
                 setLiquidity(card.name);
               }
-              if (card.type && card.type === 'coming_soon') {
-                setModalAsset(card.name);
-              }
+            }
+            if (card.type && card.type === 'coming_soon') {
+              setModalAsset(card.name);
             }
           }}
         >

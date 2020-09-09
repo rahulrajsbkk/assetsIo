@@ -54,10 +54,12 @@ function EarningsPageHead() {
           ) : liquidOrBond === 'Liquid' ? (
             <>
               {(appSelected && appSelected.app_name) || 'All'} Liquid{' '}
-              {coinSelected && coinSelected.coinName}s Earnings Vault
+              {coinSelected && coinSelected.coinName}s Fixed Income Vault
             </>
           ) : (
-            <>Bonds {coinSelected && coinSelected.coinName}s Earnings Vault</>
+            <>
+              Bonds {coinSelected && coinSelected.coinName}s Fixed Income Vault
+            </>
           )}
         </div>
         {liquidOrBond === 'Liquid' ? (

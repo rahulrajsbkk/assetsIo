@@ -202,9 +202,18 @@ function NetWorthContextProvider({ children }) {
         obj.total.coins_data.forEach((element, i) => {
           coinsData.push({
             ...element,
-            coinValue: dataOne.coins_data[i].coinValue + element.coinValue,
+            coinValue:
+              ((dataOne &&
+                dataOne.coins_data &&
+                dataOne.coins_data[i] &&
+                dataOne.coins_data[i].coinValue) ||
+                0) + element.coinValue,
             coinValueUSD:
-              dataOne.coins_data[i].coinValueUSD + element.coinValueUSD,
+              ((dataOne &&
+                dataOne.coins_data &&
+                dataOne.coins_data[i] &&
+                dataOne.coins_data[i].coinValueUSD) ||
+                0) + element.coinValueUSD,
           });
         });
       }
@@ -315,9 +324,16 @@ function NetWorthContextProvider({ children }) {
               (appBalances.total.coins_data.filter(
                 (coin) => coinListObject[coin.coinSymbol].coinName === assetCoin
               )[0].coinValueUSD +
-                icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
-                  coinNameObject[assetCoin].coinSymbol
-                ].value)) *
+                ((icedValues[
+                  assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'
+                ] &&
+                  icedValues[
+                    assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'
+                  ][coinNameObject[assetCoin].coinSymbol] &&
+                  icedValues[
+                    assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'
+                  ][coinNameObject[assetCoin].coinSymbol].value) ||
+                  0))) *
             100,
           type: 'liquidity',
           assets: userApps.length,
@@ -326,26 +342,53 @@ function NetWorthContextProvider({ children }) {
         {
           name: 'Bonds',
           value:
-            icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
-              coinNameObject[assetCoin].coinSymbol
-            ].value,
+            (icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'] &&
+              icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
+                coinNameObject[assetCoin].coinSymbol
+              ] &&
+              icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
+                coinNameObject[assetCoin].coinSymbol
+              ].value) ||
+            0,
           color: colors(1),
           percent:
-            (icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
-              coinNameObject[assetCoin].coinSymbol
-            ].value /
+            (((icedValues[
+              assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'
+            ] &&
+              icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
+                coinNameObject[assetCoin].coinSymbol
+              ] &&
+              icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
+                coinNameObject[assetCoin].coinSymbol
+              ].value) ||
+              0) /
               (appBalances.total.coins_data.filter(
                 (coin) => coinListObject[coin.coinSymbol].coinName === assetCoin
               )[0].coinValueUSD +
-                icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
-                  coinNameObject[assetCoin].coinSymbol
-                ].value)) *
+                ((icedValues[
+                  assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'
+                ] &&
+                  icedValues[
+                    assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'
+                  ][coinNameObject[assetCoin].coinSymbol] &&
+                  icedValues[
+                    assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'
+                  ][coinNameObject[assetCoin].coinSymbol].value) ||
+                  0))) *
             100,
           type: 'liquidity',
           assets:
-            icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
-              coinNameObject[assetCoin].coinSymbol
-            ].contracts.length,
+            (icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'] &&
+              icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
+                coinNameObject[assetCoin].coinSymbol
+              ] &&
+              icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
+                coinNameObject[assetCoin].coinSymbol.contracts
+              ] &&
+              icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
+                coinNameObject[assetCoin].coinSymbol
+              ].contracts.length) ||
+            0,
           assetText: 'Bonds',
         },
       ];
@@ -354,9 +397,14 @@ function NetWorthContextProvider({ children }) {
         appBalances.total.coins_data.filter(
           (coin) => coinListObject[coin.coinSymbol].coinName === assetCoin
         )[0].coinValueUSD +
-          icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
-            coinNameObject[assetCoin].coinSymbol
-          ].value
+          ((icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'] &&
+            icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
+              coinNameObject[assetCoin].coinSymbol
+            ] &&
+            icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
+              coinNameObject[assetCoin].coinSymbol
+            ].value) ||
+            0)
       );
     } else if (assetClass) {
       if (
