@@ -59,7 +59,7 @@ function SelectCoin({
         <div
           tabIndex={0}
           role="button"
-          className={`tab-itm col-6 ${tab === 'Vault' ? 'active' : ''}`}
+          className={`tab-itm col-6 ${tab === 'Fiat' ? 'active' : ''}`}
           onClick={() => {
             setTab('Fiat');
           }}
