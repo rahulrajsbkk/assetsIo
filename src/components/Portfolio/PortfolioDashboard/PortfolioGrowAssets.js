@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import Axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useHistory } from 'react-router-dom';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { PortfolioContext } from '../../../context/PortfolioContext';
 import iceLogo from '../../../static/images/logo.svg';
@@ -11,8 +12,8 @@ import usdt from '../../../static/images/vault-methods/tether.svg';
 import { BankContext } from '../../../context/Context';
 
 function PortfolioGrowAssets() {
+  const history = useHistory();
   const {
-    setDashTab,
     setIcingStep,
     icingStep,
     coinContract,
@@ -23,6 +24,7 @@ function PortfolioGrowAssets() {
     setShowGrowAssets,
     iceGrowTitle,
     setIceGrowTitle,
+    pageOnClose,
   } = useContext(PortfolioContext);
   const { coinListObject, email, token, profileId, tostShowOn } = useContext(
     BankContext
@@ -96,7 +98,6 @@ function PortfolioGrowAssets() {
           if (data.status) {
             setIcingStep(0);
             setIceGrowTitle('');
-            setDashTab('Net-Worth');
             setShowGrowAssets(false);
           }
         })
@@ -117,7 +118,6 @@ function PortfolioGrowAssets() {
           onClick={() => {
             setShowGrowAssets(true);
             setIceGrowTitle('Icing An Asset With The');
-            setDashTab('Assets');
           }}
         >
           {icingStep === 0 ? (
@@ -142,7 +142,7 @@ function PortfolioGrowAssets() {
             setShowGrowAssets(false);
             setIcingStep(0);
             setIceGrowTitle('');
-            setDashTab('Net-Worth');
+            history.push(pageOnClose);
           }}
         >
           <FontAwesomeIcon icon={faCaretDown} />

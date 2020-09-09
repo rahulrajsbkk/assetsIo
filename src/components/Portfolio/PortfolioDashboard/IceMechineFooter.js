@@ -4,10 +4,10 @@ import { BankContext } from '../../../context/Context';
 import { PortfolioContext } from '../../../context/PortfolioContext';
 import iceLogo from '../../../static/images/logo.svg';
 
-function IceMechineFooter() {
+function IceMechineFooter({ pageOnClose = '/' }) {
   const { email } = useContext(BankContext);
   const history = useHistory();
-  const { setDashTab, setShowGrowAssets, setIceGrowTitle } = useContext(
+  const { setShowGrowAssets, setIceGrowTitle, setPageOnClose } = useContext(
     PortfolioContext
   );
   return (
@@ -19,8 +19,8 @@ function IceMechineFooter() {
             if (email) {
               setShowGrowAssets(true);
               setIceGrowTitle('Icing An Asset With The');
-              setDashTab('Assets');
-              history.push('/portfolio');
+              setPageOnClose(pageOnClose);
+              history.push('/iceAsset');
             }
           }}
         >

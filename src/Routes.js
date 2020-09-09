@@ -17,7 +17,7 @@ function Routes() {
   const { email } = useContext(BankContext);
   return (
     <Switch>
-      <Route exact path="/portfolio" component={Portfolio} />
+      <Route exact path="/iceAsset" component={Portfolio} />
       <Route exact path="/net-worth" component={NetWorthPage} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/index">
