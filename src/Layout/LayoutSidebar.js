@@ -68,7 +68,7 @@ function LayoutSidebar({ active }) {
           </h5>
         </Link>
         <Link
-          to="/net-worth"
+          to="/"
           className={`menu-itm${active === 'networth' ? ' active' : ''}`}
         >
           <h5 className="d-flex py-3 menu-itm">

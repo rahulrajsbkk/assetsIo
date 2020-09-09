@@ -59,7 +59,7 @@ function LayoutSidebarGuest({ active }) {
           <div
             onClick={() => {
               setLoginModalOpen(true);
-              setOnLoginPage('/portfolio');
+              setOnLoginPage('/');
             }}
             className={`menu-itm${active === 'portfolio' ? ' active' : ''}`}
           >

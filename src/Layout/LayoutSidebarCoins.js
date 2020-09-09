@@ -94,7 +94,7 @@ function LayoutSidebarCoins({ active }) {
               </h5>
             </Link>
             <Link
-              to="/net-worth"
+              to="/"
               className={`menu-itm${active === 'networth' ? ' active' : ''}`}
             >
               <h5 className="d-flex py-3 menu-itm">
@@ -152,7 +152,7 @@ function LayoutSidebarCoins({ active }) {
             <div
               onClick={() => {
                 setLoginModalOpen(true);
-                setOnLoginPage('/portfolio');
+                setOnLoginPage('/');
               }}
               className={`menu-itm${active === 'portfolio' ? ' active' : ''}`}
             >
