@@ -4,6 +4,7 @@ import { FormatCurrency, FormatNumber } from '../../utils/FunctionTools';
 import { NetWorthContext } from '../../context/ NetWorthContext';
 import { BankContext } from '../../context/Context';
 import ModalAlertUpdate from './ModalAlertUpdate';
+import Skeleton from 'react-loading-skeleton';
 
 function NetWorthCards() {
   const {
@@ -107,7 +108,11 @@ function NetWorthCards() {
             <div className="coinPrice">
               <div className="img">
                 {card.img && <img src={card.img} alt="" />}
-                {card.name}
+                {loadingAppBalance ? (
+                  <Skeleton height="42" width={300} />
+                ) : (
+                  card.name
+                )}
               </div>
               {assetCoin ? (
                 <div className="title">
@@ -121,47 +126,91 @@ function NetWorthCards() {
                 </div>
               ) : (
                 <div className="title">
-                  $ <span>{FormatCurrency(card.value)}</span>USD
+                  {loadingAppBalance ? (
+                    <Skeleton height={44} width={300} />
+                  ) : (
+                    <>
+                      $ <span>{FormatCurrency(card.value)}</span>USD
+                    </>
+                  )}
                 </div>
               )}
             </div>
             <div className="labels">
-              <span>
-                {!isNaN(card.assets) && FormatNumber(card.assets, 0)}{' '}
-                {card.assetText}
-              </span>
-              <span>
-                {assetCoin ? (
-                  <b>
-                    $ <span>{FormatCurrency(card.value)}</span>USD |{' '}
-                  </b>
-                ) : (
-                  ''
-                )}
-                Up {FormatNumber(0, 2)}% In 24Hrs
-              </span>
+              {loadingAppBalance ? (
+                <Skeleton height={20} width={220} />
+              ) : (
+                <span>
+                  {!isNaN(card.assets) && FormatNumber(card.assets, 0)}{' '}
+                  {card.assetText}
+                </span>
+              )}
+              {loadingAppBalance ? (
+                <Skeleton height={20} width={220} />
+              ) : (
+                <span>
+                  {assetCoin ? (
+                    <b>
+                      $ <span>{FormatCurrency(card.value)}</span>USD |{' '}
+                    </b>
+                  ) : (
+                    ''
+                  )}
+                  Up {FormatNumber(0, 2)}% In 24Hrs
+                </span>
+              )}
             </div>
             <div className="rates">
               <div className="ratesItem text-left">
                 <div className="value">
-                  <span>
-                    {FormatNumber(card.percent, card.percent < 10 ? 2 : 1)}
-                  </span>
-                  %
+                  {loadingAppBalance ? (
+                    <Skeleton height={30} width={120} />
+                  ) : (
+                    <span>
+                      {FormatNumber(card.percent, card.percent < 10 ? 2 : 1)} %
+                    </span>
+                  )}
                 </div>
-                <div className="label">% {title}</div>
+                <div className="label">
+                  {loadingAppBalance ? (
+                    <Skeleton height={20} width={140} />
+                  ) : (
+                    `% ${title}`
+                  )}
+                </div>
               </div>
               <div className="ratesItem text-center">
                 <div className="value">
-                  <span>{FormatNumber(0, 2)}</span>%
+                  {loadingAppBalance ? (
+                    <Skeleton height={30} width={120} />
+                  ) : (
+                    <span>{FormatNumber(0, 2)}%</span>
+                  )}
                 </div>
-                <div className="label">Capital Appreciation</div>
+                <div className="label">
+                  {loadingAppBalance ? (
+                    <Skeleton height={20} width={140} />
+                  ) : (
+                    'Capital Appreciation'
+                  )}
+                </div>
               </div>
               <div className="ratesItem text-right">
                 <div className="value">
-                  <span>{FormatNumber(0, 2)}</span>
+                  {loadingAppBalance ? (
+                    <Skeleton height={30} width={120} />
+                  ) : (
+                    <span>{FormatNumber(0, 2)}</span>
+                  )}
                 </div>
-                <div className="label">Fixed Income</div>
+                <div className="label">
+                  {' '}
+                  {loadingAppBalance ? (
+                    <Skeleton height={20} width={140} />
+                  ) : (
+                    'Fixed Income'
+                  )}
+                </div>
               </div>
             </div>
           </div>

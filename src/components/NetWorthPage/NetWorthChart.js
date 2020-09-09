@@ -6,6 +6,7 @@ import DonutChart from '../DonutChart/Index';
 import assetLogo from '../../static/images/assetsLogo.svg';
 import { NetWorthContext } from '../../context/ NetWorthContext';
 import { BankContext } from '../../context/Context';
+import Skeleton from 'react-loading-skeleton';
 
 function NetWorthChart() {
   const [segment, setSegment] = useState(null);
@@ -18,6 +19,7 @@ function NetWorthChart() {
     liquidity,
     setLiquidity,
     selectedTotalBalance,
+    loadingAppBalance,
   } = useContext(NetWorthContext);
   const { coinNameObject } = useContext(BankContext);
 
@@ -101,8 +103,14 @@ function NetWorthChart() {
         )}
       </div>
       <div role="button" tabIndex="0" className="total mt-auto">
-        <h6>{title}</h6>
-        <h4>${FormatCurrency(selectedTotalBalance)}</h4>
+        <h6>{loadingAppBalance ? <Skeleton width="50%" /> : title}</h6>
+        <h4>
+          {loadingAppBalance ? (
+            <Skeleton width="70%" />
+          ) : (
+            `$${FormatCurrency(selectedTotalBalance)}`
+          )}
+        </h4>
       </div>
       <div className="chart-section mb-auto">
         <div className="chart">
