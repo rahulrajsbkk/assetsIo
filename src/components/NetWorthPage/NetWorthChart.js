@@ -85,7 +85,7 @@ function NetWorthChart() {
           </span>
           {assetClass ? (
             <>
-              &gt;
+              &nbsp;&gt;&nbsp;
               <span
                 onClick={() => {
                   setAssetCoin(null);
@@ -100,7 +100,7 @@ function NetWorthChart() {
           )}
           {assetCoin ? (
             <>
-              &gt;
+              &nbsp;&gt;&nbsp;
               <span
                 onClick={() => {
                   setLiquidity(null);
@@ -114,7 +114,7 @@ function NetWorthChart() {
           )}
           {liquidity ? (
             <>
-              &gt;
+              &nbsp;&gt;&nbsp;
               <span onClick={() => {}}>{liquidity}</span>
             </>
           ) : (

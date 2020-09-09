@@ -122,6 +122,7 @@ function NetWorthCards() {
                       coinNameObject[assetCoin].coinSymbol
                     )}
                   </span>
+                  &nbsp;
                   {coinNameObject[assetCoin].coinSymbol}
                 </div>
               ) : (
@@ -156,7 +157,9 @@ function NetWorthCards() {
                   ) : (
                     ''
                   )}
-                  Up {FormatNumber(0, 2)}% In 24Hrs
+                  <span className="disabledValue">
+                    Up {FormatNumber(0, 2)}% In 24Hrs
+                  </span>
                 </span>
               )}
             </div>
@@ -179,7 +182,7 @@ function NetWorthCards() {
                   )}
                 </div>
               </div>
-              <div className="ratesItem text-center">
+              <div className="ratesItem text-center disabledValue">
                 <div className="value">
                   {loadingAppBalance ? (
                     <Skeleton height={30} width={120} />
@@ -195,7 +198,7 @@ function NetWorthCards() {
                   )}
                 </div>
               </div>
-              <div className="ratesItem text-right">
+              <div className="ratesItem text-right disabledValue">
                 <div className="value">
                   {loadingAppBalance ? (
                     <Skeleton height={30} width={120} />
