@@ -65,7 +65,7 @@ function NetWorthCards() {
     } else {
       setTitle('Of Net-Worth');
     }
-  }, [assetClass, assetCoin, liquidity]);
+  }, [assetClass, assetCoin, liquidity, coinNameObject]);
 
   const [modalAsset, setModalAsset] = useState(false);
 

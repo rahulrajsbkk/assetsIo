@@ -32,7 +32,7 @@ function HeadTabs() {
     } else {
       setTitle('Net-Worth By Asset Class');
     }
-  }, [assetClass, assetCoin, liquidity]);
+  }, [assetClass, assetCoin, liquidity, coinNameObject]);
   return (
     <div className="headTabsWrapper">
       <div className="headTab true">

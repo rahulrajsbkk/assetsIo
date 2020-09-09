@@ -232,6 +232,7 @@ function NetWorthContextProvider({ children }) {
 
   useEffect(() => {
     getBalances();
+    // eslint-disable-next-line
   }, [email]);
 
   const [assetClass, setAssetClass] = useState(null);
@@ -239,16 +240,6 @@ function NetWorthContextProvider({ children }) {
   const [liquidity, setLiquidity] = useState(null);
   const [cardList, setCardList] = useState([]);
   const [selectedTotalBalance, setSelectedTotalBalance] = useState(0);
-
-  useEffect(() => {
-    setCardList(mainCards);
-    setSelectedTotalBalance(
-      fiatBalance +
-        cryptoBalance +
-        icedValues.crypto.value +
-        icedValues.fiat.value
-    );
-  }, [fiatBalance, cryptoBalance, appBalances, icedValues]);
 
   useEffect(() => {
     if (liquidity) {
@@ -483,7 +474,22 @@ function NetWorthContextProvider({ children }) {
           icedValues.fiat.value
       );
     }
-  }, [assetClass, appBalances, assetCoin, liquidity]);
+    // eslint-disable-next-line
+  }, [
+    assetClass,
+    appBalances,
+    assetCoin,
+    liquidity,
+    fiatBalance,
+    cryptoBalance,
+    icedValues,
+    coinListObject,
+    coinNameObject,
+    cryptoBalance,
+    fiatBalance,
+    icedValues,
+    userApps,
+  ]);
   console.log('icedValues', icedValues);
   return (
     <NetWorthContext.Provider

@@ -55,7 +55,7 @@ function NetWorthChart() {
     } else {
       setTitle('Net-Worth');
     }
-  }, [assetClass, assetCoin, liquidity]);
+  }, [assetClass, assetCoin, liquidity, coinNameObject]);
 
   return (
     <>
