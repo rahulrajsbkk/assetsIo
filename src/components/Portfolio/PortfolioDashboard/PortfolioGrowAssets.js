@@ -26,9 +26,14 @@ function PortfolioGrowAssets() {
     setIceGrowTitle,
     pageOnClose,
   } = useContext(PortfolioContext);
-  const { coinListObject, email, token, profileId, tostShowOn } = useContext(
-    BankContext
-  );
+  const {
+    coinListObject,
+    email,
+    token,
+    profileId,
+    tostShowOn,
+    getIcedContracts,
+  } = useContext(BankContext);
 
   const getCoinLogo = () => {
     switch (coinContract) {
@@ -99,6 +104,8 @@ function PortfolioGrowAssets() {
             setIcingStep(0);
             setIceGrowTitle('');
             setShowGrowAssets(false);
+            getIcedContracts();
+            history.push(pageOnClose);
           }
         })
         .catch((err) => {
@@ -149,10 +156,18 @@ function PortfolioGrowAssets() {
         </div>
       </div>
       <div className={`icingSteps ${createContractLoading}`}>
-        <div className={`icingStep ${icingStep === 0}`}>
+        <div
+          className={`icingStep ${icingStep === 0}`}
+          onClick={() => setIcingStep(0)}
+        >
           {coinContract ? coinDetail : 'Choose Asset'}
         </div>
-        <div className={`icingStep ${icingStep === 1}`}>
+        <div
+          className={`icingStep ${icingStep === 1}`}
+          onClick={() => {
+            if (coinContract) setIcingStep(1);
+          }}
+        >
           {icingDays ? (
             <div className="detailCoin">
               <div className="img">
@@ -164,7 +179,12 @@ function PortfolioGrowAssets() {
             'Configure Time'
           )}
         </div>
-        <div className={`icingStep ${icingStep === 2}`}>
+        <div
+          className={`icingStep ${icingStep === 2}`}
+          onClick={() => {
+            if (icingDays) setIcingStep(2);
+          }}
+        >
           {icingStep === 2 ? (
             <div className="issueBond" onClick={createContract}>
               Issue My Bond

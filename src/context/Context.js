@@ -136,7 +136,7 @@ function BankContextProvider({ children }) {
   }, [profileId]);
 
   const [icedContracts, setIcedContracts] = useState([]);
-  useEffect(() => {
+  function getIcedContracts() {
     Axios.get(
       `https://comms.globalxchange.com/coin/iced/contract/get?email=${email}`
     ).then((res) => {
@@ -146,6 +146,10 @@ function BankContextProvider({ children }) {
         setIcedContracts(icedContracts);
       }
     });
+  }
+  useEffect(() => {
+    getIcedContracts();
+    // eslint-disable-next-line
   }, [email]);
 
   const [coinListObject, setCoinListObject] = useState({});
@@ -279,6 +283,7 @@ function BankContextProvider({ children }) {
         coinData,
         conractsObj,
         coinNameObject,
+        getIcedContracts,
       }}
     >
       {children}

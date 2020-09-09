@@ -65,6 +65,7 @@ function PortfolioSetDays() {
               {coinListObject[coinContract].coinName} Bond -
               <span>
                 {FormatCurrency(conractsObj[coinContract].amount, coinContract)}
+                &nbsp;
                 {coinContract}
               </span>
               <FontAwesomeIcon
@@ -202,9 +203,13 @@ function PortfolioSetDays() {
         </div>
       </div>
       <div className="today">{moment().format('MMMM Do YYYY')}</div>
-      <div className="nextDay" style={{ left: boxStyle.left }}>
-        {moment().add('days', days).format('MMMM Do YYYY')}
-      </div>
+      {days / totalDays > 0.25 ? (
+        <div className="nextDay" style={{ left: boxStyle.left }}>
+          {moment().add('days', days).format('MMMM Do YYYY')}
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 }
