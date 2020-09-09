@@ -40,7 +40,6 @@ function NetWorthContextProvider({ children }) {
       count: 0,
     };
     icedContracts.forEach((contract) => {
-      console.log('contract', contract);
       if (coinListObject && coinListObject[contract._id]) {
         let totalContractVoc = 0;
         contract.contracts.forEach((contr) => {
@@ -490,7 +489,27 @@ function NetWorthContextProvider({ children }) {
     icedValues,
     userApps,
   ]);
-  console.log('icedValues', icedValues);
+
+  const [tabData, setTabData] = useState({
+    key: {
+      assetClass,
+      assetCoin,
+      liquidity,
+    },
+  });
+  const [tabIndex, setTabIndex] = useState('key');
+  useEffect(() => {
+    setTabData({
+      ...tabData,
+      [tabIndex]: {
+        assetClass,
+        assetCoin,
+        liquidity,
+      },
+    });
+    // eslint-disable-next-line
+  }, [assetClass, assetCoin, liquidity]);
+
   return (
     <NetWorthContext.Provider
       value={{
@@ -507,6 +526,10 @@ function NetWorthContextProvider({ children }) {
         setLiquidity,
         icedValues,
         selectedTotalBalance,
+        tabData,
+        setTabData,
+        tabIndex,
+        setTabIndex,
       }}
     >
       {children}

@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid/dist';
 import { ContextMenu, MenuItem, ContextMenuTrigger } from 'react-contextmenu';
 import { FormatCurrency } from '../../utils/FunctionTools';
 import DonutChart from '../DonutChart/Index';
@@ -20,6 +21,8 @@ function NetWorthChart() {
     setLiquidity,
     selectedTotalBalance,
     loadingAppBalance,
+    setTabData,
+    tabData,
   } = useContext(NetWorthContext);
   const { coinNameObject } = useContext(BankContext);
 
@@ -27,6 +30,16 @@ function NetWorthChart() {
 
   function handleClick(e, data) {
     console.log(data.foo);
+  }
+  function newTab() {
+    setTabData({
+      ...tabData,
+      [uuidv4()]: {
+        assetClass,
+        assetCoin,
+        liquidity,
+      },
+    });
   }
 
   useEffect(() => {
@@ -141,7 +154,7 @@ function NetWorthChart() {
         <MenuItem data={{ foo: 'bar' }} onClick={handleClick}>
           Open In Current Tab
         </MenuItem>
-        <MenuItem data={{ foo: 'bar' }} onClick={handleClick}>
+        <MenuItem data={{ foo: 'bar' }} onClick={newTab}>
           Open In New Assets Tab
         </MenuItem>
         <MenuItem data={{ foo: 'bar' }} onClick={handleClick}>
