@@ -130,7 +130,7 @@ function NetWorthCards() {
                     <Skeleton height={44} width={300} />
                   ) : (
                     <>
-                      $ <span>{FormatCurrency(card.value)}</span>USD
+                      $<span>{FormatCurrency(card.value)}</span> USD
                     </>
                   )}
                 </div>
@@ -151,7 +151,7 @@ function NetWorthCards() {
                 <span>
                   {assetCoin ? (
                     <b>
-                      $ <span>{FormatCurrency(card.value)}</span>USD |{' '}
+                      $<span>{FormatCurrency(card.value)}</span> USD |{' '}
                     </b>
                   ) : (
                     ''
