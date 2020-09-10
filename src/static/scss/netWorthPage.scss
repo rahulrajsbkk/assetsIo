@@ -145,4 +145,105 @@
       padding: 6px 0;
     }
   }
+  @include mdportrait {
+    flex-direction: column;
+    .react-contextmenu-wrapper {
+      max-width: 100%;
+      padding: 40px 20px;
+      .breadCrumbs {
+        display: none !important;
+      }
+      .total {
+        h6 {
+          font-size: 20px;
+          text-align: center;
+        }
+        h4 {
+          font-size: 40px;
+          text-align: center;
+        }
+      }
+      .chart-section {
+        .chart {
+          margin: 0 auto;
+          width: 260px;
+          flex: 0 0 260px;
+        }
+      }
+    }
+    .netWorthCardsList {
+      flex: unset;
+      max-width: 100%;
+      .netWorthCardsListView {
+        // Todo: Remove Unused Styles
+        margin: 0;
+        position: relative !important;
+        .netWorthCard {
+          flex: 0 0 28%;
+          border-bottom: $vault-border-color 1px solid;
+          display: flex;
+          .colorHighlight {
+            flex: 0 0 16px;
+            border-right: $vault-border-color 1px solid;
+          }
+          .bondsItem {
+            flex-grow: 1;
+            cursor: pointer;
+            border-bottom: 1px solid $vault-border-color;
+            padding: 4% 6%;
+            display: flex;
+            flex-direction: column;
+            .coinPrice,
+            .labels,
+            .rates {
+              display: flex;
+              justify-content: space-between;
+              color: $primary-color;
+            }
+            .coinPrice {
+              .img {
+                height: 18px;
+                display: flex;
+                align-items: center;
+                font-size: 16px;
+                font-weight: bold;
+                img {
+                  height: 80%;
+                  margin-right: 10px;
+                }
+              }
+              .title {
+                font-size: 16px;
+                font-weight: bold;
+              }
+            }
+            .labels {
+              font-size: 10px;
+            }
+            .rates {
+              margin-top: auto;
+              .ratesItem {
+                .value {
+                  font-size: 15px;
+                  font-weight: bold;
+                }
+                .label {
+                  font-size: 10px;
+                }
+              }
+            }
+            &:hover {
+              background: #00000006;
+            }
+          }
+          &.liquidity {
+            flex: 0 0 50%;
+            .bondsItem {
+              padding: 14% 6%;
+            }
+          }
+        }
+      }
+    }
+  }
 }
