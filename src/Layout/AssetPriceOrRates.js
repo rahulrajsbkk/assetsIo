@@ -131,11 +131,13 @@ function AssetPriceOrRates({ isIndex }) {
                           decimals={1}
                         />
                         %
-                        <small>
+                        <small
+                          className={`${rateCoin.coin_metdata._24hrchange < 0}`}
+                        >
                           (
                           <CountUp
                             duration={duration}
-                            end={1.2 || 0}
+                            end={rateCoin.coin_metdata._24hrchange || 0}
                             decimals={1}
                           />
                           %)
