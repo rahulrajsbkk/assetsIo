@@ -35,8 +35,8 @@ function MobileNavbar({ active }) {
     case 'index':
       title = 'Index';
       break;
-    case 'portfolio':
-      title = 'Portfolio';
+    case 'networth':
+      title = 'Net-Worth';
       break;
     case 'vaults-undefined':
       title = 'Vault';
@@ -77,53 +77,102 @@ function MobileNavbar({ active }) {
               </div>
             </div>
             <div className="menu">
-              <Link to="/" className={`menu-itm ${active === 'index'}`}>
-                Index
-              </Link>
-              <Link
-                to="/portfolio"
-                className={`menu-itm ${active === 'portfolio'}`}
-              >
-                Portfolio
-              </Link>
-              <Link
-                to="/vault"
-                className={`menu-itm ${active === 'vaults-undefined'}`}
-              >
-                Transactions
-              </Link>
-              <Link
-                to="/vault/deposit"
-                className={`menu-itm ${active === 'vaults-deposit'}`}
-              >
-                Deposit
-              </Link>
-              <Link
-                to="/vault/withdraw"
-                className={`menu-itm ${active === 'vaults-withdraw'}`}
-              >
-                Withdraw
-              </Link>
               {email ? (
-                <div
-                  className="logout-btn"
-                  role="button"
-                  tabIndex="0"
-                  onClick={() => login()}
-                >
-                  Logout
-                </div>
+                <>
+                  <Link
+                    to="/index"
+                    className={`menu-itm ${active === 'index'}`}
+                  >
+                    Index
+                  </Link>
+                  <Link
+                    to="/net-worth"
+                    className={`menu-itm ${active === 'portfolio'}`}
+                  >
+                    My Net-Worth
+                  </Link>
+                  <Link
+                    to="/vault"
+                    className={`menu-itm ${active === 'vaults-undefined'}`}
+                  >
+                    Transactions
+                  </Link>
+                  <Link
+                    to="/vault/deposit"
+                    className={`menu-itm ${active === 'vaults-deposit'}`}
+                  >
+                    Deposit
+                  </Link>
+                  <Link
+                    to="/vault/withdraw"
+                    className={`menu-itm ${active === 'vaults-withdraw'}`}
+                  >
+                    Withdraw
+                  </Link>
+                  <div
+                    className="logout-btn"
+                    role="button"
+                    tabIndex="0"
+                    onClick={() => login()}
+                  >
+                    Logout
+                  </div>
+                </>
               ) : (
-                <div
-                  className="logout-btn"
-                  onClick={() => {
-                    setLoginModalOpen(true);
-                  }}
-                  role="button"
-                  tabIndex="0"
-                >
-                  Get Started
-                </div>
+                <>
+                  <Link
+                    to="/index"
+                    className={`menu-itm ${active === 'index'}`}
+                  >
+                    Index
+                  </Link>
+                  <div
+                    onClick={() => {
+                      setLoginModalOpen(true);
+                      setOnLoginPage('/');
+                    }}
+                    className={`menu-itm ${active === 'portfolio'}`}
+                  >
+                    My Net-Worth
+                  </div>
+                  <div
+                    onClick={() => {
+                      setLoginModalOpen(true);
+                      setOnLoginPage('/vault');
+                    }}
+                    className={`menu-itm ${active === 'vaults-undefined'}`}
+                  >
+                    Transactions
+                  </div>
+                  <div
+                    onClick={() => {
+                      setLoginModalOpen(true);
+                      setOnLoginPage('/vault/deposit');
+                    }}
+                    className={`menu-itm ${active === 'vaults-deposit'}`}
+                  >
+                    Deposit
+                  </div>
+                  <div
+                    onClick={() => {
+                      setLoginModalOpen(true);
+                      setOnLoginPage('/vault/withdraw');
+                    }}
+                    className={`menu-itm ${active === 'vaults-withdraw'}`}
+                  >
+                    Withdraw
+                  </div>
+                  <div
+                    className="logout-btn"
+                    onClick={() => {
+                      setLoginModalOpen(true);
+                    }}
+                    role="button"
+                    tabIndex="0"
+                  >
+                    Get Started
+                  </div>
+                </>
               )}
             </div>
           </div>
