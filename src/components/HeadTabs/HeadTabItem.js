@@ -10,6 +10,7 @@ function HeadTabItem({ index }) {
     setAssetCoin,
     setLiquidity,
     tabData,
+    setTabData,
   } = useContext(NetWorthContext);
   const { coinNameObject } = useContext(BankContext);
   const [title, setTitle] = useState('Net-Worth By Asset Class');
@@ -47,9 +48,24 @@ function HeadTabItem({ index }) {
     }
   }, [tabData, index, coinNameObject]);
   return (
-    <div className={`headTab ${tabIndex === index}`} onClick={changeTab}>
-      <div className="text">{title}</div>
-      <div className="bt-close">+</div>
+    <div className={`headTab ${tabIndex === index}`}>
+      <div className="text" onClick={changeTab}>
+        {title}
+      </div>
+      <div
+        className="bt-close"
+        onClick={() => {
+          const { [index]: foo, ...rest } = tabData;
+          setTabData(rest);
+          if (tabIndex === index) {
+            setTabIndex(
+              (Object.keys(tabData) && Object.keys(tabData)[0]) || 'key'
+            );
+          }
+        }}
+      >
+        +
+      </div>
     </div>
   );
 }

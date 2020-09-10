@@ -31,15 +31,51 @@ function NetWorthChart() {
   function handleClick(e, data) {
     console.log(data.foo);
   }
+  const [filter, setFilter] = useState(null);
   function newTab() {
-    setTabData({
-      ...tabData,
-      [uuidv4()]: {
-        assetClass,
-        assetCoin,
-        liquidity,
-      },
-    });
+    switch (filter) {
+      case 'networth':
+        setTabData({
+          ...tabData,
+          [uuidv4()]: {
+            assetClass: null,
+            assetCoin: null,
+            liquidity: null,
+          },
+        });
+        break;
+      case 'assetClass':
+        setTabData({
+          ...tabData,
+          [uuidv4()]: {
+            assetClass,
+            assetCoin: null,
+            liquidity: null,
+          },
+        });
+        break;
+      case 'assetCoin':
+        setTabData({
+          ...tabData,
+          [uuidv4()]: {
+            assetClass,
+            assetCoin,
+            liquidity: null,
+          },
+        });
+        break;
+      default:
+        setTabData({
+          ...tabData,
+          [uuidv4()]: {
+            assetClass,
+            assetCoin,
+            liquidity,
+          },
+        });
+        break;
+    }
+    setFilter(null);
   }
 
   useEffect(() => {
@@ -75,6 +111,9 @@ function NetWorthChart() {
       <ContextMenuTrigger className="chartSection" id="same_unique_identifier">
         <div className="breadCrumbs d-flex">
           <span
+            onContextMenuCapture={() => {
+              setFilter('networth');
+            }}
             onClick={() => {
               setAssetClass(null);
               setAssetCoin(null);
@@ -87,6 +126,9 @@ function NetWorthChart() {
             <>
               &nbsp;&gt;&nbsp;
               <span
+                onContextMenuCapture={() => {
+                  setFilter('assetClass');
+                }}
                 onClick={() => {
                   setAssetCoin(null);
                   setLiquidity(null);
@@ -102,6 +144,9 @@ function NetWorthChart() {
             <>
               &nbsp;&gt;&nbsp;
               <span
+                onContextMenuCapture={() => {
+                  setFilter('assetCoin');
+                }}
                 onClick={() => {
                   setLiquidity(null);
                 }}
