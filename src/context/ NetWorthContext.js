@@ -279,10 +279,10 @@ function NetWorthContextProvider({ children }) {
           arr.push({
             img: assetLogo,
             name: 'Assets.io',
-            value: contract.investment_usd,
+            value: contract.voc_usd,
             color: colors(i),
             percent:
-              (contract.investment_usd /
+              (contract.voc_usd /
                 icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
                   coinNameObject[assetCoin].coinSymbol
                 ].value) *
