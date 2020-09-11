@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import iceFullLogo from '../../static/images/iceLogoFull.svg';
 import moneyMarketLogo from '../../static/images/moneyMarketLogo.svg';
 import IceSidebarTransactionList from './IceSidebarTransactionList';
 import Axios from 'axios';
-import { FormatCurrency } from '../../utils/FunctionTools';
+import CountUp from 'react-countup';
 import { Link } from 'react-router-dom';
+import { BankContext } from '../../context/Context';
 
 function IceSidebar() {
   const [earnStats, setEarnStats] = useState({});
@@ -28,6 +29,12 @@ function IceSidebar() {
   const [menuAssetTypes, setMenuAssetTypes] = useState(false);
   const [menuBonds, setMenuBonds] = useState(false);
 
+  const { updateInterval } = useContext(BankContext);
+  const [duration, setDuration] = useState(2);
+  const togleDuration = (duration) => {
+    setDuration(duration === 2 ? 2.1 : 2);
+  };
+
   return (
     <div className="iceSidebar">
       <div className="head">
@@ -41,11 +48,15 @@ function IceSidebar() {
           Powered By
           <img src={moneyMarketLogo} alt="" />
         </a>
-        <div className="buttons">
+        <div
+          className={`buttons ${menuUserTypes || menuAssetTypes || menuBonds}`}
+        >
           <div
             className="btn-filter"
             onClick={() => {
               setMenuUserTypes(!menuUserTypes);
+              setMenuAssetTypes(false);
+              setMenuBonds(false);
             }}
           >
             All Users
@@ -54,6 +65,8 @@ function IceSidebar() {
             className="btn-filter"
             onClick={() => {
               setMenuAssetTypes(!menuAssetTypes);
+              setMenuUserTypes(false);
+              setMenuBonds(false);
             }}
           >
             All Asset Types
@@ -62,6 +75,8 @@ function IceSidebar() {
             className="btn-filter"
             onClick={() => {
               setMenuBonds(!menuBonds);
+              setMenuAssetTypes(false);
+              setMenuUserTypes(false);
             }}
           >
             From Bonds
@@ -96,19 +111,48 @@ function IceSidebar() {
       <div className="payoutsHead">
         <h6>
           Payouts Till Date
-          <span>{earnStats.interest_payments}</span>
+          <CountUp
+            onEnd={() => {
+              if (updateInterval)
+                setTimeout(() => {
+                  togleDuration(duration);
+                }, updateInterval * 1000);
+            }}
+            duration={duration}
+            start={0}
+            end={earnStats.interest_payments || 0}
+            decimals={0}
+          />
         </h6>
         <h6>
           Total Earnings
-          <span>${FormatCurrency(earnStats.interest_paid)}</span>
+          <span>
+            $
+            <CountUp
+              duration={duration}
+              start={0}
+              end={earnStats.interest_paid || 0}
+              decimals={2}
+            />
+          </span>
         </h6>
         <h6>
           Contracts
-          <span>{earnStats.contracts}</span>
+          <CountUp
+            duration={duration}
+            start={0}
+            end={earnStats.contracts || 0}
+            decimals={0}
+          />
         </h6>
         <h6>
           Assets
-          <span>{earnStats.assets}</span>
+          <CountUp
+            duration={duration}
+            start={0}
+            end={earnStats.assets || 0}
+            decimals={0}
+          />
         </h6>
       </div>
       <IceSidebarTransactionList globalEarnings={globalEarnings} />

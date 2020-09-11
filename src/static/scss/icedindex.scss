@@ -630,7 +630,7 @@
       .head {
         padding: 40px 10px 0px 50px;
         border-bottom: 1px solid $vault-border-color;
-        height: 250px;
+        flex: 0 0 250px;
         display: flex;
         flex-direction: column;
         .iceLogo {
@@ -651,7 +651,7 @@
           }
         }
         .buttons {
-          margin: auto 0;
+          margin: 30px 0;
           display: flex;
           padding: 8px 0;
           .btn-filter {
@@ -672,8 +672,12 @@
               margin-right: 0;
             }
           }
+          &.true {
+            margin-bottom: 10px;
+          }
           &.sub {
             margin-top: 0;
+            margin-bottom: 10px;
             padding-top: 0;
           }
         }
