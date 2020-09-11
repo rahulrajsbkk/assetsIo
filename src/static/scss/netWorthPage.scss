@@ -148,6 +148,7 @@
   @include mdportrait {
     flex-direction: column;
     .react-contextmenu-wrapper {
+      flex: unset;
       max-width: 100%;
       padding: 40px 20px;
       .breadCrumbs {
@@ -177,7 +178,7 @@
       max-width: 100%;
       .netWorthCardsListView {
         // Todo: Remove Unused Styles
-        margin: 0;
+        margin: 0 !important;
         position: relative !important;
         .netWorthCard {
           flex: 0 0 28%;
@@ -188,7 +189,7 @@
             border-right: $vault-border-color 1px solid;
           }
           .bondsItem {
-            flex: unset;
+            flex: 1;
             cursor: pointer;
             border-bottom: 1px solid $vault-border-color;
             padding: 4% 6%;
