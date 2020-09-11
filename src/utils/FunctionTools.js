@@ -14,7 +14,7 @@ export function FormatCurrency(value, coin = 'USD') {
   return FormatNumber(value, 2);
 }
 
-export function YesterdayToday(timestamp) {
+export function YesterdayToday(timestamp, format = 'MMMM Do YYYY') {
   if (moment(timestamp).format('MMDDYYYY') === moment().format('MMDDYYYY')) {
     return 'Today';
   } else if (
@@ -23,16 +23,16 @@ export function YesterdayToday(timestamp) {
   ) {
     return 'Yesterday';
   } else {
-    return moment(timestamp).format('MMMM Do YYYY');
+    return moment(timestamp).format(format);
   }
 }
 export function IsValidURL(str) {
   const urlRegex = new RegExp(
     '^(https?:\\/\\/)?' + // protocol
-    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-    '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-    '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
       '(\\#[-a-z\\d_]*)?$',
     'i'
   ); // fragment locator

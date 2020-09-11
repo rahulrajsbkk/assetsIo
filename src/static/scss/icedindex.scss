@@ -3,595 +3,725 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  .tab {
-    height: 60px;
-    display: flex;
-    .tab-itm {
-      cursor: pointer;
-      flex: 1;
-      border-bottom: 2px solid #e7e7e7;
-      font-size: 15px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      opacity: 0.25;
-      position: relative;
-      &.true {
-        opacity: 1;
-        font-size: 20px;
-        border-color: $primary-color;
-      }
-    }
-  }
-  .content-section {
+  .icedContainer {
     flex: 1;
     display: flex;
-    flex-direction: column;
-    padding: 50px 100px;
-    position: relative;
-    .overlayComingSoon {
-      position: absolute;
-      background: rgba(0, 0, 0, 0.8);
-      z-index: 2;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      &.det-3 {
-        padding-left: 40%;
-        padding-right: 40%;
-      }
-      &.det-4 {
-        padding-left: 60%;
-        padding-right: 20%;
-      }
-      &.det-5 {
-        padding-left: 80%;
-        padding-right: 0%;
-      }
-      .detail {
-        width: 100%;
-        background: white;
-        margin-top: 15px;
-        padding: 2px;
-        position: relative;
-        margin-bottom: auto;
-        .detailText {
-          padding: 40px;
-          text-align: left;
-          color: $primary-color;
-          line-height: 2;
-        }
-        .btComingSoon {
-          height: 50px;
-          width: 100%;
-          background: $primary-color;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 18px;
-          color: white;
-          font-weight: 600;
-        }
-        &::before {
-          content: '';
-          position: absolute;
-          top: -12px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 0;
-          height: 0;
-          border-left: 12px solid transparent;
-          border-right: 12px solid transparent;
-          border-bottom: 12px solid white;
-        }
-      }
-    }
-    .earn-intrest {
+    .mainContent {
       flex: 1;
-      height: 60vh;
       display: flex;
       flex-direction: column;
-      .earn-intrest-controll {
-        width: 100%;
-        height: 100px;
-        margin-bottom: 30px;
+      .tab {
+        height: 70px;
         display: flex;
-        justify-content: space-between;
-        .tab-item {
-          opacity: 0.35;
+        .tab-itm {
           cursor: pointer;
+          flex: 1;
+          border-bottom: 2px solid #e7e7e7;
+          font-size: 15px;
           display: flex;
-          width: calc((100% - 45px) / 3);
-          height: 100%;
-          background-color: white;
-          box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
-          padding: 0 20px;
+          justify-content: center;
           align-items: center;
-          justify-content: flex-start;
-          border: 1px solid #e7e7e7;
-          .coin-img {
-            height: 35px;
-            width: 35px;
-          }
-          .text-content {
-            margin-left: 25px;
-            h5 {
-              line-height: 1;
-              font-size: 22px;
-              margin-bottom: 0.2rem;
-              color: $primary-color;
-              font-weight: 600;
-            }
-            h6 {
-              line-height: 1;
-              font-size: 11px;
-              color: $primary-color;
-              margin: 0;
-            }
-          }
-          &:hover {
-            opacity: 0.8;
-            border-width: 4px;
-            padding: 0 17px;
-          }
+          opacity: 0.25;
+          position: relative;
           &.true {
             opacity: 1;
-            border-width: 4px;
-            padding: 0 17px;
-          }
-        }
-      }
-      .table-scroll-wrapper {
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
-        table {
-          background: white;
-          text-align: left;
-          position: relative;
-          border-collapse: collapse;
-          th,
-          td {
-            padding: 0.5rem 0.25rem;
-            min-width: 150px;
-          }
-          .table-head {
-            position: sticky;
-            top: 0;
-            .coin-head {
-              background: white;
-              th {
-                height: 90px;
-                background: white;
-                position: sticky;
-                top: 0;
-                justify-content: center;
-                box-shadow: 0px 2px 0px 0px $vault-border-color;
-                .img-spacer,
-                img {
-                  width: 100%;
-                  height: 24px;
-                  margin-bottom: 10px;
-                  margin-top: 10px;
-                }
-                h6 {
-                  text-align: center;
-                  font-size: 16px;
-                }
-                &:first-child {
-                  position: sticky;
-                  left: 0;
-                  z-index: 1;
-                  h6 {
-                    text-align: left;
-                  }
-                }
-              }
-            }
-            .price-n-change {
-              background: white;
-              th {
-                background: white;
-                position: sticky;
-                top: 92px;
-                box-shadow: 0px 1px 0px 0px $vault-border-color;
-                h5 {
-                  text-align: center;
-                  font-size: 14px;
-                }
-                h6 {
-                  text-align: center;
-                  font-size: 13px;
-                }
-                &:first-child {
-                  position: sticky;
-                  left: 0;
-                  z-index: 1;
-                  padding-left: 50px;
-                  h5 {
-                    text-align: left;
-                  }
-                  h6 {
-                    text-align: left;
-                  }
-                }
-              }
-            }
-          }
-          .table-body {
-            .table-row {
-              .property {
-                position: sticky;
-                left: 0;
-                padding-left: 0;
-                .property-container {
-                  background: white;
-                  display: flex;
-                  img {
-                    width: 50px;
-                    height: 30px;
-                    margin: auto 0;
-                  }
-                  .prop-name {
-                    margin: auto 0;
-                    font-size: 14px;
-                    font-weight: 600;
-                  }
-                }
-              }
-              .prop-value {
-                font-size: 14px;
-                display: flex;
-                height: 100%;
-                width: 100%;
-                justify-content: center;
-                align-items: center;
-              }
-              &:nth-child(odd) {
-                background-color: aliceblue;
-                .property-container {
-                  background: aliceblue;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-    .loans-card {
-      margin-top: 20px;
-      height: 45vh;
-      box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
-      display: flex;
-      .loan-col-3 {
-        flex: 0 0 33.333%;
-        max-width: 33.333%;
-        padding: 25px;
-        display: flex;
-        flex-direction: column;
-        .name {
-          font-size: 20px;
-        }
-        .volume {
-          font-size: 12px;
-        }
-        .volume-amt {
-          font-size: 24px;
-          font-weight: 600;
-        }
-        .chart {
-          flex: 1;
-          position: relative;
-        }
-        .details {
-          padding: 8px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background: #f7fafc;
-          &:hover {
-            background: #2e9ede;
-            color: white;
-          }
-        }
-      }
-    }
-    .historical-rates {
-      display: flex;
-      flex-direction: column;
-      .historical-rate-controll {
-        width: 32%;
-        height: 45px;
-        margin-left: auto;
-        display: flex;
-        .period {
-          cursor: pointer;
-          font-weight: 600;
-          width: 14.285%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border-bottom: 4px solid gainsboro;
-          &:hover {
-            color: blue;
-          }
-          &.active {
+            font-size: 20px;
             border-color: $primary-color;
           }
+          &.ice {
+            max-width: 80px;
+            opacity: 1;
+            img {
+              width: 40px;
+              height: 40px;
+            }
+          }
         }
       }
-      .historical-rate-card {
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
-        margin-top: 20px;
-        margin-bottom: 40px;
-        min-height: 45vh;
-        padding: 25px;
+      .content-section {
+        flex: 1;
         display: flex;
         flex-direction: column;
-        .coin-head {
+        padding: 50px 80px;
+        position: relative;
+        .overlayComingSoon {
+          position: absolute;
+          background: rgba(0, 0, 0, 0.8);
+          z-index: 2;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
           display: flex;
-          align-items: center;
-          img {
-            height: 34px;
+          &.det-3 {
+            padding-left: 40%;
+            padding-right: 40%;
           }
-          .coin-name {
-            font-size: 26px;
-            font-weight: 600;
+          &.det-4 {
+            padding-left: 60%;
+            padding-right: 20%;
           }
-        }
-        .chart-n-indicator {
-          flex-grow: 1;
-          display: flex;
-          .chart-wrapper {
-            flex: 0 0 70%;
-            max-width: 70%;
+          &.det-5 {
+            padding-left: 80%;
+            padding-right: 0%;
+          }
+          .detail {
+            width: 100%;
+            background: white;
+            margin-top: 15px;
+            padding: 2px;
             position: relative;
-          }
-          .chart-indicators {
-            flex: 0 0 30%;
-            max-width: 30%;
-            display: flex;
-            flex-direction: column;
-            .platforms {
-              font-size: 14px;
+            margin-bottom: auto;
+            .detailText {
+              padding: 40px;
+              text-align: left;
+              color: $primary-color;
+              line-height: 2;
             }
-            .platform-itm {
+            .btComingSoon {
+              height: 50px;
+              width: 100%;
+              background: $primary-color;
               display: flex;
               align-items: center;
-              padding: 15px 10px;
-              line-height: 1;
-              border: 1px gainsboro;
-              border-style: solid none none none;
-              .indicator {
-                height: 10px;
-                width: 20px;
-                margin-right: 5px;
-              }
-              .platform-name {
-                font-size: 17px;
-              }
-              .apy {
-                font-size: 17px;
-                margin-left: auto;
-              }
-              &:last-child {
-                border-style: solid none;
-              }
-            }
-          }
-        }
-      }
-    }
-    .loans-content,
-    .collateral-content {
-      display: flex;
-      flex-direction: column;
-      .show-amount-in {
-        display: flex;
-        margin-left: auto;
-        align-items: center;
-        .switch {
-          background: #ebf1f7;
-          display: flex;
-          padding: 4px;
-          .option {
-            cursor: pointer;
-            padding: 3px 5px;
-            font-size: 14px;
-            line-height: 1;
-            &.true {
-              background-color: $primary-color;
+              justify-content: center;
+              font-size: 18px;
               color: white;
+              font-weight: 600;
             }
-          }
-        }
-      }
-      .loans-controlls {
-        margin-top: 15px;
-        display: flex;
-        .type-controll {
-          height: 45px;
-          display: flex;
-          .type {
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            padding: 0 10px;
-            justify-content: center;
-            align-items: center;
-            border-bottom: 4px solid gainsboro;
-            .indicator {
+            &::before {
               content: '';
-              height: 7px;
-              width: 14px;
-              margin-right: 6px;
-            }
-            &:hover {
-              color: blue;
-            }
-            &.active {
-              border-color: $primary-color;
-            }
-          }
-        }
-        .time-period-controll {
-          width: 32%;
-          height: 45px;
-          margin-left: auto;
-          display: flex;
-          .period {
-            cursor: pointer;
-            font-weight: 600;
-            width: 14.285%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-bottom: 4px solid gainsboro;
-            &:hover {
-              color: blue;
-            }
-            &.active {
-              border-color: $primary-color;
+              position: absolute;
+              top: -12px;
+              left: 50%;
+              transform: translateX(-50%);
+              width: 0;
+              height: 0;
+              border-left: 12px solid transparent;
+              border-right: 12px solid transparent;
+              border-bottom: 12px solid white;
             }
           }
         }
-      }
-      .loans-originated-card {
-        margin-top: 15px;
-        margin-bottom: 25px;
-        box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
-        display: flex;
-        flex-direction: column;
-        height: 50vh;
-        padding: 25px;
-        .loans-originated-head {
+        .earn-intrest {
+          flex: 1;
+          height: 60vh;
           display: flex;
-          justify-content: space-between;
-          align-items: center;
-          font-size: 24px;
-          .switch {
-            background: #ebf1f7;
+          flex-direction: column;
+          .earn-intrest-controll {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 30px;
             display: flex;
-            padding: 6px;
-            .option {
+            justify-content: space-between;
+            .tab-item {
+              opacity: 0.35;
               cursor: pointer;
-              padding: 3px 5px;
-              font-size: 16px;
-              line-height: 1;
+              display: flex;
+              width: calc((100% - 45px) / 3);
+              height: 100%;
+              background-color: white;
+              box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
+              padding: 0 20px;
+              align-items: center;
+              justify-content: flex-start;
+              border: 1px solid #e7e7e7;
+              .coin-img {
+                height: 35px;
+                width: 35px;
+              }
+              .text-content {
+                margin-left: 25px;
+                h5 {
+                  line-height: 1;
+                  font-size: 22px;
+                  margin-bottom: 0.2rem;
+                  color: $primary-color;
+                  font-weight: 600;
+                }
+                h6 {
+                  line-height: 1;
+                  font-size: 11px;
+                  color: $primary-color;
+                  margin: 0;
+                }
+              }
+              &:hover {
+                opacity: 0.8;
+                border-width: 4px;
+                padding: 0 17px;
+              }
               &.true {
-                background-color: $primary-color;
+                opacity: 1;
+                border-width: 4px;
+                padding: 0 17px;
+              }
+            }
+          }
+          .table-scroll-wrapper {
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
+            table {
+              background: white;
+              text-align: left;
+              position: relative;
+              border-collapse: collapse;
+              th,
+              td {
+                padding: 0.5rem 0.25rem;
+                min-width: 150px;
+              }
+              .table-head {
+                position: sticky;
+                top: 0;
+                .coin-head {
+                  background: white;
+                  th {
+                    height: 90px;
+                    background: white;
+                    position: sticky;
+                    top: 0;
+                    justify-content: center;
+                    box-shadow: 0px 2px 0px 0px $vault-border-color;
+                    .img-spacer,
+                    img {
+                      width: 100%;
+                      height: 24px;
+                      margin-bottom: 10px;
+                      margin-top: 10px;
+                    }
+                    h6 {
+                      text-align: center;
+                      font-size: 16px;
+                    }
+                    &:first-child {
+                      position: sticky;
+                      left: 0;
+                      z-index: 1;
+                      h6 {
+                        text-align: left;
+                      }
+                    }
+                  }
+                }
+                .price-n-change {
+                  background: white;
+                  th {
+                    background: white;
+                    position: sticky;
+                    top: 92px;
+                    box-shadow: 0px 1px 0px 0px $vault-border-color;
+                    h5 {
+                      text-align: center;
+                      font-size: 14px;
+                    }
+                    h6 {
+                      text-align: center;
+                      font-size: 13px;
+                    }
+                    &:first-child {
+                      position: sticky;
+                      left: 0;
+                      z-index: 1;
+                      padding-left: 50px;
+                      h5 {
+                        text-align: left;
+                      }
+                      h6 {
+                        text-align: left;
+                      }
+                    }
+                  }
+                }
+              }
+              .table-body {
+                .table-row {
+                  .property {
+                    position: sticky;
+                    left: 0;
+                    padding-left: 0;
+                    .property-container {
+                      background: white;
+                      display: flex;
+                      img {
+                        width: 50px;
+                        height: 30px;
+                        margin: auto 0;
+                      }
+                      .prop-name {
+                        margin: auto 0;
+                        font-size: 14px;
+                        font-weight: 600;
+                      }
+                    }
+                  }
+                  .prop-value {
+                    font-size: 14px;
+                    display: flex;
+                    height: 100%;
+                    width: 100%;
+                    justify-content: center;
+                    align-items: center;
+                  }
+                  &:nth-child(odd) {
+                    background-color: aliceblue;
+                    .property-container {
+                      background: aliceblue;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .loans-card {
+          margin-top: 20px;
+          height: 45vh;
+          box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
+          display: flex;
+          .loan-col-3 {
+            flex: 0 0 33.333%;
+            max-width: 33.333%;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            .name {
+              font-size: 20px;
+            }
+            .volume {
+              font-size: 12px;
+            }
+            .volume-amt {
+              font-size: 24px;
+              font-weight: 600;
+            }
+            .chart {
+              flex: 1;
+              position: relative;
+            }
+            .details {
+              padding: 8px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              background: #f7fafc;
+              &:hover {
+                background: #2e9ede;
                 color: white;
               }
             }
           }
         }
-
-        .chart-n-table {
-          flex-grow: 1;
+        .historical-rates {
           display: flex;
-          .chart-detail {
-            flex: 0 0 65%;
-            max-width: 65%;
+          flex-direction: column;
+          .historical-rate-controll {
+            width: 32%;
+            height: 45px;
+            margin-left: auto;
+            display: flex;
+            .period {
+              cursor: pointer;
+              font-weight: 600;
+              width: 14.285%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-bottom: 4px solid gainsboro;
+              &:hover {
+                color: blue;
+              }
+              &.active {
+                border-color: $primary-color;
+              }
+            }
+          }
+          .historical-rate-card {
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
+            margin-top: 20px;
+            margin-bottom: 40px;
+            min-height: 45vh;
+            padding: 25px;
             display: flex;
             flex-direction: column;
-            .volume-n-transaction {
+            .coin-head {
               display: flex;
-              justify-content: space-between;
-              .one-month {
-                font-size: 13px;
+              align-items: center;
+              img {
+                height: 34px;
               }
-              .volume {
-                font-size: 28px;
+              .coin-name {
+                font-size: 26px;
                 font-weight: 600;
               }
             }
-            .chart {
+            .chart-n-indicator {
               flex-grow: 1;
-              position: relative;
-            }
-          }
-          .table-chart {
-            flex: 0 0 35%;
-            max-width: 35%;
-            padding-left: 20px;
-            .head {
               display: flex;
-              font-size: 12px;
-              .amount {
-                flex: 0 0 40%;
-                max-width: 40%;
-                padding: 8px;
-                text-align: right;
+              .chart-wrapper {
+                flex: 0 0 70%;
+                max-width: 70%;
+                position: relative;
               }
-              .asset {
-                flex: 0 0 40%;
-                max-width: 40%;
-                padding: 8px;
-              }
-              .share {
-                flex: 0 0 20%;
-                max-width: 20%;
-                padding: 8px;
-              }
-            }
-            .list-itm {
-              display: flex;
-              line-height: 1.2;
-              border-top: 1px gainsboro solid;
-              .amount {
-                flex: 0 0 40%;
-                max-width: 40%;
-                padding: 8px;
-                text-align: right;
-                .amt {
-                  font-weight: 600;
-                  font-size: 16px;
-                }
-                .usd {
-                  font-size: 13px;
-                }
-              }
-              .asset {
-                flex: 0 0 40%;
-                max-width: 40%;
-                padding: 8px;
+              .chart-indicators {
+                flex: 0 0 30%;
+                max-width: 30%;
                 display: flex;
-                .coin-img {
-                  height: 30px;
-                  width: 30px;
+                flex-direction: column;
+                .platforms {
+                  font-size: 14px;
                 }
-              }
-              .share {
-                flex: 0 0 20%;
-                max-width: 20%;
-                padding: 8px;
-              }
-              &:last-child {
-                border-bottom: 1px gainsboro solid;
+                .platform-itm {
+                  display: flex;
+                  align-items: center;
+                  padding: 15px 10px;
+                  line-height: 1;
+                  border: 1px gainsboro;
+                  border-style: solid none none none;
+                  .indicator {
+                    height: 10px;
+                    width: 20px;
+                    margin-right: 5px;
+                  }
+                  .platform-name {
+                    font-size: 17px;
+                  }
+                  .apy {
+                    font-size: 17px;
+                    margin-left: auto;
+                  }
+                  &:last-child {
+                    border-style: solid none;
+                  }
+                }
               }
             }
           }
         }
-        .type-controll {
+        .loans-content,
+        .collateral-content {
           display: flex;
-          .type {
-            cursor: pointer;
-            font-weight: 600;
+          flex-direction: column;
+          .show-amount-in {
             display: flex;
-            padding: 0 10px;
+            margin-left: auto;
+            align-items: center;
+            .switch {
+              background: #ebf1f7;
+              display: flex;
+              padding: 4px;
+              .option {
+                cursor: pointer;
+                padding: 3px 5px;
+                font-size: 14px;
+                line-height: 1;
+                &.true {
+                  background-color: $primary-color;
+                  color: white;
+                }
+              }
+            }
+          }
+          .loans-controlls {
+            margin-top: 15px;
+            display: flex;
+            .type-controll {
+              height: 45px;
+              display: flex;
+              .type {
+                cursor: pointer;
+                font-weight: 600;
+                display: flex;
+                padding: 0 10px;
+                justify-content: center;
+                align-items: center;
+                border-bottom: 4px solid gainsboro;
+                .indicator {
+                  content: '';
+                  height: 7px;
+                  width: 14px;
+                  margin-right: 6px;
+                }
+                &:hover {
+                  color: blue;
+                }
+                &.active {
+                  border-color: $primary-color;
+                }
+              }
+            }
+            .time-period-controll {
+              width: 32%;
+              height: 45px;
+              margin-left: auto;
+              display: flex;
+              .period {
+                cursor: pointer;
+                font-weight: 600;
+                width: 14.285%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-bottom: 4px solid gainsboro;
+                &:hover {
+                  color: blue;
+                }
+                &.active {
+                  border-color: $primary-color;
+                }
+              }
+            }
+          }
+          .loans-originated-card {
+            margin-top: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            height: 50vh;
+            padding: 25px;
+            .loans-originated-head {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              font-size: 24px;
+              .switch {
+                background: #ebf1f7;
+                display: flex;
+                padding: 6px;
+                .option {
+                  cursor: pointer;
+                  padding: 3px 5px;
+                  font-size: 16px;
+                  line-height: 1;
+                  &.true {
+                    background-color: $primary-color;
+                    color: white;
+                  }
+                }
+              }
+            }
+
+            .chart-n-table {
+              flex-grow: 1;
+              display: flex;
+              .chart-detail {
+                flex: 0 0 65%;
+                max-width: 65%;
+                display: flex;
+                flex-direction: column;
+                .volume-n-transaction {
+                  display: flex;
+                  justify-content: space-between;
+                  .one-month {
+                    font-size: 13px;
+                  }
+                  .volume {
+                    font-size: 28px;
+                    font-weight: 600;
+                  }
+                }
+                .chart {
+                  flex-grow: 1;
+                  position: relative;
+                }
+              }
+              .table-chart {
+                flex: 0 0 35%;
+                max-width: 35%;
+                padding-left: 20px;
+                .head {
+                  display: flex;
+                  font-size: 12px;
+                  .amount {
+                    flex: 0 0 40%;
+                    max-width: 40%;
+                    padding: 8px;
+                    text-align: right;
+                  }
+                  .asset {
+                    flex: 0 0 40%;
+                    max-width: 40%;
+                    padding: 8px;
+                  }
+                  .share {
+                    flex: 0 0 20%;
+                    max-width: 20%;
+                    padding: 8px;
+                  }
+                }
+                .list-itm {
+                  display: flex;
+                  line-height: 1.2;
+                  border-top: 1px gainsboro solid;
+                  .amount {
+                    flex: 0 0 40%;
+                    max-width: 40%;
+                    padding: 8px;
+                    text-align: right;
+                    .amt {
+                      font-weight: 600;
+                      font-size: 16px;
+                    }
+                    .usd {
+                      font-size: 13px;
+                    }
+                  }
+                  .asset {
+                    flex: 0 0 40%;
+                    max-width: 40%;
+                    padding: 8px;
+                    display: flex;
+                    .coin-img {
+                      height: 30px;
+                      width: 30px;
+                    }
+                  }
+                  .share {
+                    flex: 0 0 20%;
+                    max-width: 20%;
+                    padding: 8px;
+                  }
+                  &:last-child {
+                    border-bottom: 1px gainsboro solid;
+                  }
+                }
+              }
+            }
+            .type-controll {
+              display: flex;
+              .type {
+                cursor: pointer;
+                font-weight: 600;
+                display: flex;
+                padding: 0 10px;
+                justify-content: center;
+                align-items: center;
+                .indicator {
+                  content: '';
+                  height: 5px;
+                  width: 14px;
+                  margin-right: 6px;
+                }
+                &:hover {
+                  color: blue;
+                }
+                &.active {
+                  border-color: $primary-color;
+                }
+              }
+            }
+          }
+        }
+      }
+      &.true {
+        .content-section
+          .assetPlatformTable
+          .tableScrollWrapper
+          .asetPlatformTable {
+          width: 165%;
+        }
+      }
+    }
+    .iceSidebar {
+      flex: 0 0 480px;
+      border-left: 1px $vault-border-color solid;
+      display: flex;
+      flex-direction: column;
+      .head {
+        padding: 40px 10px 0px 50px;
+        border-bottom: 1px solid $vault-border-color;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        .iceLogo {
+          height: 52px;
+          margin-right: auto;
+        }
+        .poweredBy {
+          display: flex;
+          color: #186ab4;
+          font-size: 18px;
+          font-weight: bold;
+          margin-top: 10px;
+          text-decoration: none;
+          img {
+            align-items: center;
+            height: 25px;
+            margin-left: 10px;
+          }
+        }
+        .buttons {
+          margin: auto 0;
+          display: flex;
+          padding: 8px 0;
+          .btn-filter {
+            cursor: pointer;
+            border: 1px solid $vault-border-color;
+            color: $primary-color;
+            font-weight: 600;
+            width: 0;
+            flex: 0 0 31%;
+            margin-right: 3.5%;
+            line-height: 1;
+            display: flex;
             justify-content: center;
             align-items: center;
-            .indicator {
-              content: '';
-              height: 5px;
-              width: 14px;
-              margin-right: 6px;
+            font-size: 14px;
+            padding: 10px 0;
+            &:last-child {
+              margin-right: 0;
             }
-            &:hover {
-              color: blue;
-            }
-            &.active {
-              border-color: $primary-color;
+          }
+          &.sub {
+            margin-top: 0;
+            padding-top: 0;
+          }
+        }
+      }
+      .payoutsHead {
+        padding: 25px 50px;
+        border-bottom: 1px $vault-border-color solid;
+        h6 {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 13px;
+          padding: 10px 0;
+          margin: 0;
+          span {
+            font-size: 16px;
+            font-weight: bold;
+          }
+        }
+      }
+      .iceEarningList {
+        .earningList {
+          display: flex;
+          flex-direction: column;
+          padding: 40px 0;
+          .day {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 0 50px;
+            margin: 10px 0;
+          }
+          .transaction {
+            margin: 8px 50px;
+            justify-content: space-between;
+            display: flex;
+            padding: 24px 30px;
+            border: 1px solid $vault-border-color;
+            align-items: center;
+            h6 {
+              display: flex;
+              align-items: center;
+              margin: 0;
+              font-size: 18px;
+              line-height: 1;
+              img {
+                height: 19px;
+                margin-right: 8px;
+              }
             }
           }
         }

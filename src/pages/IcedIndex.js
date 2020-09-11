@@ -9,6 +9,9 @@ import Collateral from '../components/MarketPage/Collateral/Collateral';
 import useWindowDimensions from '../utils/WindowSize';
 import BondsContent from '../components/MarketPage/BondsContent/BondsContent';
 import IndexContextProvider from '../context/IndexContext';
+import iceLogo from '../static/images/logo.svg';
+import backDouble from '../static/images/backDouble.svg';
+import IceSidebar from '../components/IceSidebar/IceSidebar';
 
 function IcedIndex() {
   const [title, setTitle] = useState('Earn Interest');
@@ -62,6 +65,8 @@ function IcedIndex() {
   ];
   const [detailIndex, setDetailIndex] = useState(null);
 
+  const [iceOpen, setIceOpen] = useState(false);
+
   return (
     <IndexContextProvider>
       <Layout
@@ -71,82 +76,82 @@ function IcedIndex() {
         setTitle={setTitle}
         setMenuSelected={setMenuSelected}
       >
-        {width > 768 ? (
-          <div className="tab">
-            <div
-              className={`tab-itm ${menuSelected === 'earn-intrest'}`}
-              onClick={() => {
-                setMenuSelected('earn-intrest');
-                setTitle('Earn Interest');
-              }}
-            >
-              Earn
-            </div>
-            <div
-              className={`tab-itm ${menuSelected === 'bonds-tab'}`}
-              onClick={() => {
-                setMenuSelected('bonds-tab');
-                setTitle('Earn Interest');
-              }}
-            >
-              Bonds
-            </div>
-            <div
-              className={`tab-itm ${menuSelected === 'borrow-intrest'}`}
-              // onClick={() => {
-              //   setMenuSelected('borrow-intrest');
-              //   setTitle('Borrow');
-              // }}
-              onMouseEnter={() => setDetailIndex(0)}
-              onMouseLeave={() => setDetailIndex(null)}
-            >
-              Indicies
-            </div>
-            <div
-              className={`tab-itm ${menuSelected === 'loan'}`}
-              // onClick={() => {
-              //   setMenuSelected('loan');
-              //   setTitle('Loans');
-              // }}
-              onMouseEnter={() => setDetailIndex(1)}
-              onMouseLeave={() => setDetailIndex(null)}
-            >
-              Assets
-            </div>
-            <div
-              className={`tab-itm ${menuSelected === 'collateral'}`}
-              // onClick={() => {
-              //   setMenuSelected('collateral');
-              //   setTitle('COLLATERAL');
-              // }}
-              onMouseEnter={() => setDetailIndex(2)}
-              onMouseLeave={() => setDetailIndex(null)}
-            >
-              Ice Machine
+        <div className="icedContainer">
+          <div className={`mainContent ${iceOpen}`}>
+            {width > 768 ? (
+              <div className="tab">
+                <div
+                  className={`tab-itm ${menuSelected === 'earn-intrest'}`}
+                  onClick={() => {
+                    setMenuSelected('earn-intrest');
+                    setTitle('Earn Interest');
+                  }}
+                >
+                  Earn
+                </div>
+                <div
+                  className={`tab-itm ${menuSelected === 'bonds-tab'}`}
+                  onClick={() => {
+                    setMenuSelected('bonds-tab');
+                    setTitle('Earn Interest');
+                  }}
+                >
+                  Bonds
+                </div>
+                <div
+                  className={`tab-itm ${menuSelected === 'borrow-intrest'}`}
+                  // onClick={() => {
+                  //   setMenuSelected('borrow-intrest');
+                  //   setTitle('Borrow');
+                  // }}
+                  onMouseEnter={() => setDetailIndex(0)}
+                  onMouseLeave={() => setDetailIndex(null)}
+                >
+                  Indicies
+                </div>
+                <div
+                  className={`tab-itm ${menuSelected === 'loan'}`}
+                  // onClick={() => {
+                  //   setMenuSelected('loan');
+                  //   setTitle('Loans');
+                  // }}
+                  onMouseEnter={() => setDetailIndex(1)}
+                  onMouseLeave={() => setDetailIndex(null)}
+                >
+                  Assets
+                </div>
+                <div
+                  onClick={() => setIceOpen(!iceOpen)}
+                  className={`tab-itm ice ${menuSelected === 'collateral'}`}
+                >
+                  <img src={iceOpen ? backDouble : iceLogo} alt="" />
+                </div>
+              </div>
+            ) : (
+              ''
+            )}
+            <div className="content-section">
+              {getPageContent(menuSelected)}
+              {details[detailIndex] ? (
+                <div
+                  className={`overlayComingSoon det-${detailIndex + 3}`}
+                  onMouseEnter={() => setDetailIndex(detailIndex)}
+                >
+                  <div
+                    className="detail"
+                    onMouseEnter={() => setDetailIndex(detailIndex)}
+                    onMouseLeave={() => setDetailIndex(null)}
+                  >
+                    <div className="detailText">{details[detailIndex]}</div>
+                    <div className="btComingSoon">Coming Soon!</div>
+                  </div>
+                </div>
+              ) : (
+                ''
+              )}
             </div>
           </div>
-        ) : (
-          ''
-        )}
-        <div className="content-section">
-          {getPageContent(menuSelected)}
-          {details[detailIndex] ? (
-            <div
-              className={`overlayComingSoon det-${detailIndex + 3}`}
-              onMouseEnter={() => setDetailIndex(detailIndex)}
-            >
-              <div
-                className="detail"
-                onMouseEnter={() => setDetailIndex(detailIndex)}
-                onMouseLeave={() => setDetailIndex(null)}
-              >
-                <div className="detailText">{details[detailIndex]}</div>
-                <div className="btComingSoon">Coming Soon!</div>
-              </div>
-            </div>
-          ) : (
-            ''
-          )}
+          {iceOpen ? <IceSidebar /> : ''}
         </div>
       </Layout>
     </IndexContextProvider>
