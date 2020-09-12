@@ -2,9 +2,12 @@ import React, { useState, useContext } from 'react';
 import CountUp from 'react-countup';
 import AssetTableChart from './AssetTableChart';
 import { BankContext } from '../../../context/Context';
+import { IndexContext } from '../../../context/IndexContext';
+import all from '../../../static/images/allPlatforms.svg';
 
-function PlatformTable({ coinSelect, setCoinToDetail }) {
-  const { updateInterval } = useContext(BankContext);
+function PlatformTable() {
+  const { updateInterval, coinListObject } = useContext(BankContext);
+  const { platformRatesObject, coinSelect } = useContext(IndexContext);
   const [duration, setDuration] = useState(2);
   const togleDuration = (duration) => {
     setDuration(duration === 2 ? 2.1 : 2);
@@ -16,183 +19,82 @@ function PlatformTable({ coinSelect, setCoinToDetail }) {
           <th>Rank</th>
           <th>Name</th>
           <th>Annual Rate</th>
-          <th>24Hr Change</th>
-          <th>Commitment</th>
-          <th>Chart</th>
+          <th>Lend Rate</th>
+          <th>Borrow Rate</th>
+          <th>Supply</th>
+          <th className="text-left">Demand</th>
         </tr>
       </thead>
       <tbody className="tableContent">
-        <tr onClick={() => setCoinToDetail(coinSelect)}>
-          <td className="rank">1</td>
-          <td className="coin">
-            <div className="coin-name">
-              <img src={coinSelect.coinImage} alt="" className="coinLogo" />{' '}
-              {coinSelect.coinName}
-            </div>
-          </td>
-          <td className="annRate">
-            <CountUp
-              onEnd={() => {
-                if (updateInterval)
-                  setTimeout(() => {
-                    togleDuration(duration);
-                  }, updateInterval * 1000);
-              }}
-              duration={duration}
-              start={0}
-              end={1.02 || 0}
-              decimals={2}
-            />
-            %
-          </td>
-          <td className={`dayChange ${0 > coinSelect._24hrchange}`}>
-            <CountUp
-              duration={duration}
-              start={coinSelect._24hrchange - 2 || 0}
-              end={coinSelect._24hrchange || 0}
-              decimals={2}
-            />
-            %
-          </td>
-          <td className="supply">Term Lock Up</td>
-          <td className="chart">
-            <div className="chartIn">
-              <AssetTableChart />
-            </div>
-          </td>
-        </tr>
-        <tr onClick={() => setCoinToDetail(coinSelect)}>
-          <td className="rank">1</td>
-          <td className="coin">
-            <div className="coin-name">
-              <img src={coinSelect.coinImage} alt="" className="coinLogo" />{' '}
-              {coinSelect.coinName}
-            </div>
-          </td>
-          <td className="annRate">
-            <CountUp
-              duration={duration}
-              start={0}
-              end={1.02 || 0}
-              decimals={2}
-            />
-            %
-          </td>
-          <td className={`dayChange ${0 > coinSelect._24hrchange}`}>
-            <CountUp
-              duration={duration}
-              start={coinSelect._24hrchange - 2 || 0}
-              end={coinSelect._24hrchange || 0}
-              decimals={2}
-            />
-            %
-          </td>
-          <td className="supply">Surety Deposit</td>
-          <td className="chart">
-            <div className="chartIn">
-              <AssetTableChart />
-            </div>
-          </td>
-        </tr>
-        <tr onClick={() => setCoinToDetail(coinSelect)}>
-          <td className="rank">1</td>
-          <td className="coin">
-            <div className="coin-name">
-              <img src={coinSelect.coinImage} alt="" className="coinLogo" />{' '}
-              {coinSelect.coinName}
-            </div>
-          </td>
-          <td className="annRate">
-            <CountUp
-              duration={duration}
-              start={0}
-              end={1.02 || 0}
-              decimals={2}
-            />
-            %
-          </td>
-          <td className={`dayChange ${0 > coinSelect._24hrchange}`}>
-            <CountUp
-              duration={duration}
-              start={coinSelect._24hrchange - 2 || 0}
-              end={coinSelect._24hrchange || 0}
-              decimals={2}
-            />
-            %
-          </td>
-          <td className="supply">Decentralized</td>
-          <td className="chart">
-            <div className="chartIn">
-              <AssetTableChart />
-            </div>
-          </td>
-        </tr>
-        <tr onClick={() => setCoinToDetail(coinSelect)}>
-          <td className="rank">1</td>
-          <td className="coin">
-            <div className="coin-name">
-              <img src={coinSelect.coinImage} alt="" className="coinLogo" />{' '}
-              {coinSelect.coinName}
-            </div>
-          </td>
-          <td className="annRate">
-            <CountUp
-              duration={duration}
-              start={0}
-              end={1.02 || 0}
-              decimals={2}
-            />
-            %
-          </td>
-          <td className={`dayChange ${0 > coinSelect._24hrchange}`}>
-            <CountUp
-              duration={duration}
-              start={coinSelect._24hrchange - 2 || 0}
-              end={coinSelect._24hrchange || 0}
-              decimals={2}
-            />
-            %
-          </td>
-          <td className="supply">None</td>
-          <td className="chart">
-            <div className="chartIn">
-              <AssetTableChart />
-            </div>
-          </td>
-        </tr>
-        <tr onClick={() => setCoinToDetail(coinSelect)}>
-          <td className="rank">1</td>
-          <td className="coin">
-            <div className="coin-name">
-              <img src={coinSelect.coinImage} alt="" className="coinLogo" />{' '}
-              {coinSelect.coinName}
-            </div>
-          </td>
-          <td className="annRate">
-            <CountUp
-              duration={duration}
-              start={0}
-              end={1.02 || 0}
-              decimals={2}
-            />
-            %
-          </td>
-          <td className={`dayChange ${0 > coinSelect._24hrchange}`}>
-            <CountUp
-              duration={duration}
-              start={coinSelect._24hrchange - 2 || 0}
-              end={coinSelect._24hrchange || 0}
-              decimals={2}
-            />
-            %
-          </td>
-          <td className="supply">Trading Volume</td>
-          <td className="chart">
-            <div className="chartIn">
-              <AssetTableChart />
-            </div>
-          </td>
-        </tr>
+        {Object.keys(platformRatesObject).map((key, i) => (
+          <tr>
+            <td className="rank">{i + 1}</td>
+            <td className="coin">
+              <div className="coin-name">
+                <img
+                  src={
+                    (coinListObject &&
+                      coinListObject[coinSelect] &&
+                      coinListObject[coinSelect].coinImage) ||
+                    all
+                  }
+                  alt=""
+                  className="coinLogo"
+                />{' '}
+                {key}
+              </div>
+            </td>
+            <td className="annRate">
+              <CountUp
+                onEnd={() => {
+                  if (updateInterval)
+                    setTimeout(() => {
+                      togleDuration(duration);
+                    }, updateInterval * 1000);
+                }}
+                duration={duration}
+                start={0}
+                end={1.02 || 0}
+                decimals={2}
+              />
+              %
+            </td>
+            <td className="annRate">
+              <CountUp
+                duration={duration}
+                start={0}
+                end={platformRatesObject[key].lend.rate || 0}
+                decimals={2}
+              />
+              %
+            </td>
+            <td className="annRate">
+              <CountUp
+                duration={duration}
+                start={0}
+                end={platformRatesObject[key].borrow.rate || 0}
+                decimals={2}
+              />
+              %
+            </td>
+            <td className="annRate">
+              <CountUp
+                duration={duration}
+                start={0}
+                end={13400 || 0}
+                decimals={2}
+              />
+            </td>
+            <td className="annRate">
+              <CountUp
+                duration={duration}
+                start={0}
+                end={12000 || 0}
+                decimals={2}
+              />
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );

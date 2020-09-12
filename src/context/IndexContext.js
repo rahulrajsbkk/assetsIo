@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { BankContext } from './Context';
 
 export const IndexContext = createContext();
-
+const apiKey = '44ca622072609f7311624de1bed6204b9c80fed56ac5e4c6ab60e10b52b2';
 function IndexContextProvider({ children }) {
   const { conractsObj } = useContext(BankContext);
 
@@ -19,8 +19,39 @@ function IndexContextProvider({ children }) {
       }
     });
   }, []);
+
+  const [tokenList, setTokenList] = useState(['USDT']);
+  const [coinSelect, setCoinSelect] = useState('USDT');
+  const [platformRatesObject, setPlatformRatesObject] = useState({});
+  useEffect(() => {
+    Axios.get(
+      `https://data-api.defipulse.com/api/v1/defipulse/api/GetLendingTokens?api-key=${apiKey}`
+    ).then((res) => {
+      const { data } = res;
+      setTokenList(data);
+    });
+  }, []);
+  useEffect(() => {
+    Axios.get(
+      `https://data-api.defipulse.com/api/v1/defipulse/api/GetRates?token=${coinSelect}&api-key=${apiKey}`
+    ).then((res) => {
+      const { data } = res;
+      if (data.rates) {
+        setPlatformRatesObject(data.rates);
+      }
+    });
+  }, [coinSelect]);
   return (
-    <IndexContext.Provider value={{ conractsObj, defenitionsList }}>
+    <IndexContext.Provider
+      value={{
+        conractsObj,
+        defenitionsList,
+        platformRatesObject,
+        tokenList,
+        coinSelect,
+        setCoinSelect,
+      }}
+    >
       {children}
     </IndexContext.Provider>
   );
