@@ -456,7 +456,18 @@
       }
     }
     .assetApps {
-      display: none;
+      margin-top: 20px;
+      width: 100%;
+      flex: 0 0 50px;
+      height: 50px !important;
+      .view {
+        display: flex;
+        padding: 4px 15px;
+        .appIcon {
+          min-width: 50px;
+          max-width: 50px;
+        }
+      }
     }
     .vaults-list {
       margin-top: 30px;
@@ -485,40 +496,13 @@
             flex: 0 0 90%;
             height: unset;
             padding: 0 10px;
-            display: flex;
-            line-height: 1;
-            flex-direction: column;
-            justify-content: center;
-            .name {
-              font-weight: 600;
-              font-size: 18px;
-            }
-            .date {
-              font-size: 11px;
-            }
           }
           .credit,
           .debit,
           .balance {
             flex: 33.33%;
             max-width: 33.33%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 18px;
-          }
-          .credit {
-            color: #3ea254;
-          }
-          .debit {
-            color: #ea0f0f;
-          }
-          .balance {
-            color: $primary-color;
-            font-weight: bold;
-          }
-          &:hover {
-            background: #f8f9fa;
+            font-size: 15px;
           }
         }
       }
