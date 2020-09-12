@@ -66,7 +66,9 @@ function VaultTransactionTable({ credit, debit }) {
                   <div className="name-n-date mr-auto">
                     <div className="name">{txn.pid || txn.reason}</div>
                     <div className="date">
-                      {moment().format('MMMM Do YYYY [at] h:mm:ss A zz')}
+                      {moment(txn.timestamp).format(
+                        'MMMM Do YYYY [at] h:mm:ss A zz'
+                      )}
                     </div>
                   </div>
                   <div className="credit">

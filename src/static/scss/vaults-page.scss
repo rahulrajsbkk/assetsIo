@@ -463,6 +463,7 @@
       height: unset !important;
       .vaultsView {
         position: relative !important;
+        overflow: unset !important;
         .day {
           margin-top: 1rem;
           font-size: 16px;
@@ -471,18 +472,19 @@
           font-weight: bold;
         }
         .vaults-itm {
-          display: flex;
-          margin-left: 20px;
-          height: 90px;
+          flex-wrap: wrap;
+          margin-bottom: 20px;
           img {
-            background: #ffeae9;
-            height: 40px;
-            width: 40px;
-            border-radius: 20px;
-            margin: auto 20px;
+            width: 30px;
+            height: 30px;
+            max-width: 10%;
+            flex: 0 0 10%;
+            margin: auto 0;
           }
           .name-n-date {
-            height: 100%;
+            flex: 0 0 90%;
+            height: unset;
+            padding: 0 10px;
             display: flex;
             line-height: 1;
             flex-direction: column;
@@ -498,8 +500,8 @@
           .credit,
           .debit,
           .balance {
-            flex: 12%;
-            max-width: 12%;
+            flex: 33.33%;
+            max-width: 33.33%;
             display: flex;
             justify-content: center;
             align-items: center;
