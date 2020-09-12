@@ -347,4 +347,179 @@
       }
     }
   }
+  &.mobile-content {
+    padding: 0 15px;
+    overflow-y: auto;
+    display: unset;
+    .head {
+      height: unset;
+      min-height: 60px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+      .vault-n-balance {
+        flex: 0 0 100%;
+        padding: 16px;
+        .vault {
+          font-size: 20px;
+        }
+        .balance {
+          font-size: 38px;
+          small {
+            font-size: 24px;
+          }
+        }
+      }
+      .coin-select {
+        margin: 0;
+        .coin-wrap {
+          height: 40px;
+          width: 40px;
+          img {
+            width: 25px;
+            height: 25px;
+          }
+        }
+        .search-wrapper {
+          height: 40px;
+          width: 40px;
+          .serch-n-result {
+            min-height: 40px;
+            .search-icon {
+              margin: 10px;
+              width: 20px;
+              height: 20px;
+            }
+            .search {
+              height: 36px;
+              input {
+                font-size: 16px;
+                padding: 0 20px;
+              }
+              .serch-close {
+                font-size: 30px;
+              }
+            }
+            .search-res {
+              .search-coin {
+                width: 20px;
+                height: 20px;
+              }
+              .coin,
+              .value {
+                font-size: 14px;
+                font-weight: 600;
+              }
+              .coin {
+                margin-left: 6px;
+              }
+              .value {
+                margin-left: auto;
+              }
+              .change {
+                margin-left: 3px;
+              }
+            }
+          }
+          &.true {
+            width: 100%;
+            .serch-n-result {
+              width: 350px;
+            }
+          }
+        }
+      }
+    }
+    .controlls {
+      height: unset;
+      min-height: 40px;
+      display: flex;
+      flex-direction: column;
+      padding: 0 15px;
+      .drop-select,
+      .search {
+        width: 100%;
+        padding: 0 20px;
+        margin-bottom: 10px;
+        .content {
+          &.transaction {
+            width: 100%;
+          }
+          &.direction {
+            width: 100%;
+          }
+        }
+      }
+      .search {
+        input {
+          width: 100%;
+        }
+      }
+    }
+    .assetApps {
+      display: none;
+    }
+    .vaults-list {
+      margin-top: 30px;
+      height: unset !important;
+      .vaultsView {
+        position: relative !important;
+        .day {
+          margin-top: 1rem;
+          font-size: 16px;
+          line-height: 1;
+          padding: 6px 0;
+          font-weight: bold;
+        }
+        .vaults-itm {
+          display: flex;
+          margin-left: 20px;
+          height: 90px;
+          img {
+            background: #ffeae9;
+            height: 40px;
+            width: 40px;
+            border-radius: 20px;
+            margin: auto 20px;
+          }
+          .name-n-date {
+            height: 100%;
+            display: flex;
+            line-height: 1;
+            flex-direction: column;
+            justify-content: center;
+            .name {
+              font-weight: 600;
+              font-size: 18px;
+            }
+            .date {
+              font-size: 11px;
+            }
+          }
+          .credit,
+          .debit,
+          .balance {
+            flex: 12%;
+            max-width: 12%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+          }
+          .credit {
+            color: #3ea254;
+          }
+          .debit {
+            color: #ea0f0f;
+          }
+          .balance {
+            color: $primary-color;
+            font-weight: bold;
+          }
+          &:hover {
+            background: #f8f9fa;
+          }
+        }
+      }
+    }
+  }
 }
