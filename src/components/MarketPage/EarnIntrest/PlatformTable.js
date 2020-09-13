@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import CountUp from 'react-countup';
-import AssetTableChart from './AssetTableChart';
 import { BankContext } from '../../../context/Context';
 import { IndexContext } from '../../../context/IndexContext';
 import all from '../../../static/images/allPlatforms.svg';

@@ -174,7 +174,7 @@ function AssetPlatformTable({
                   setSearchOpen(!searchOpen);
                 }}
               >
-                <FontAwesomeIcon icon={faSearch} />
+                <FontAwesomeIcon icon={searchOpen ? faTimes : faSearch} />
               </div>
               {search ? (
                 <div className="menu" onClick={() => setSearch('')}>
