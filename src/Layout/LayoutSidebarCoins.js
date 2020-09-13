@@ -65,7 +65,7 @@ function LayoutSidebarCoins({ active }) {
         <div className="profile d-flex">
           <img src={email ? profileImg || guest : logo} alt="" />
           <div className="col my-auto">
-            <h5>{email ? (name ? name : username) : 'Guest'}&nbsp;</h5>
+            <h5>{email ? (name ? name : username) : 'Assets.io'}&nbsp;</h5>
             <div
               className="currencySelect"
               onClick={() => setOpenDefaultCoinSidebar(!openDefaultCoinSidebar)}

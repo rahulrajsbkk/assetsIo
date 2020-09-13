@@ -30,7 +30,7 @@ function LayoutSidebarGuest({ active }) {
         <div className="profile d-flex">
           <img src={guest} alt="" />
           <div className="col my-auto">
-            <h5>Guest&nbsp;</h5>
+            <h5>Assets.io&nbsp;</h5>
             <div
               className="currencySelect"
               onClick={() => setOpenDefaultCoinSidebar(!openDefaultCoinSidebar)}
