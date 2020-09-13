@@ -47,6 +47,9 @@ function MobileNavbar({ active }) {
     case 'vaults-withdraw':
       title = 'Withdraw';
       break;
+    case 'earn':
+      title = 'Fixed Income';
+      break;
     default:
       break;
   }
@@ -85,29 +88,28 @@ function MobileNavbar({ active }) {
                   >
                     Index
                   </Link>
-                  <Link
-                    to="/net-worth"
-                    className={`menu-itm ${active === 'portfolio'}`}
-                  >
+                  <Link to="/" className={`menu-itm ${active === 'networth'}`}>
                     My Net-Worth
                   </Link>
-                  <Link
-                    to="/vault"
-                    className={`menu-itm ${active === 'vaults-undefined'}`}
+                  <div
+                    className={`menu-itm ${active.includes('vaults')}`}
+                    onClick={() => {
+                      history.push('/vault');
+                    }}
                   >
-                    Transactions
+                    Vaults
+                  </div>
+                  <Link
+                    to="/earning"
+                    className={`menu-itm ${active === 'earn'}`}
+                  >
+                    Fixed Income
                   </Link>
                   <Link
-                    to="/vault/deposit"
-                    className={`menu-itm ${active === 'vaults-deposit'}`}
+                    to="/mobile-apps"
+                    className={`menu-itm ${active === 'mobileApps'}`}
                   >
-                    Deposit
-                  </Link>
-                  <Link
-                    to="/vault/withdraw"
-                    className={`menu-itm ${active === 'vaults-withdraw'}`}
-                  >
-                    Withdraw
+                    Mobile Apps
                   </Link>
                   <div
                     className="logout-btn"
@@ -120,10 +122,7 @@ function MobileNavbar({ active }) {
                 </>
               ) : (
                 <>
-                  <Link
-                    to="/index"
-                    className={`menu-itm ${active === 'index'}`}
-                  >
+                  <Link to="/" className={`menu-itm ${active === 'index'}`}>
                     Index
                   </Link>
                   <div
@@ -135,33 +134,12 @@ function MobileNavbar({ active }) {
                   >
                     My Net-Worth
                   </div>
-                  <div
-                    onClick={() => {
-                      setLoginModalOpen(true);
-                      setOnLoginPage('/vault');
-                    }}
-                    className={`menu-itm ${active === 'vaults-undefined'}`}
+                  <Link
+                    to="/mobile-apps"
+                    className={`menu-itm ${active === 'mobileApps'}`}
                   >
-                    Transactions
-                  </div>
-                  <div
-                    onClick={() => {
-                      setLoginModalOpen(true);
-                      setOnLoginPage('/vault/deposit');
-                    }}
-                    className={`menu-itm ${active === 'vaults-deposit'}`}
-                  >
-                    Deposit
-                  </div>
-                  <div
-                    onClick={() => {
-                      setLoginModalOpen(true);
-                      setOnLoginPage('/vault/withdraw');
-                    }}
-                    className={`menu-itm ${active === 'vaults-withdraw'}`}
-                  >
-                    Withdraw
-                  </div>
+                    Mobile Apps
+                  </Link>
                   <div
                     className="logout-btn"
                     onClick={() => {
