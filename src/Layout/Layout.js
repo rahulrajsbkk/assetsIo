@@ -5,8 +5,6 @@ import { BankContext } from '../context/Context';
 import LayoutSidebar from './LayoutSidebar';
 import LayoutSidebarGuest from './LayoutSidebarGuest';
 import LayoutSidebarCoins from './LayoutSidebarCoins';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import LoginWrapper from '../components/LoginModal/LoginWrapper';
 import IceMechineFooter from '../components/Portfolio/PortfolioDashboard/IceMechineFooter';
 
@@ -15,7 +13,7 @@ function Layout({ children, active, className }) {
     email,
     openDefaultCoinSidebar,
     footerShow,
-    setFooterShow,
+    // setFooterShow,
   } = useContext(BankContext);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
 
