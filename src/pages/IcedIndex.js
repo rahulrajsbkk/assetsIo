@@ -134,7 +134,9 @@ function IcedIndex() {
               {getPageContent(menuSelected)}
               {details[detailIndex] ? (
                 <div
-                  className={`overlayComingSoon det-${detailIndex + 3}`}
+                  className={`overlayComingSoon det-${
+                    detailIndex + 3
+                  } ${iceOpen}`}
                   onMouseEnter={() => setDetailIndex(detailIndex)}
                 >
                   <div

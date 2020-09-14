@@ -103,6 +103,9 @@
               border-bottom: 12px solid white;
             }
           }
+          &.true {
+            zoom: 0.8;
+          }
         }
         .earn-intrest {
           flex: 1;
