@@ -7,6 +7,7 @@ import LayoutSidebarGuest from './LayoutSidebarGuest';
 import LayoutSidebarCoins from './LayoutSidebarCoins';
 import LoginWrapper from '../components/LoginModal/LoginWrapper';
 import IceMechineFooter from '../components/Portfolio/PortfolioDashboard/IceMechineFooter';
+import WhatIsAssetsIo from '../components/WhatIsAssetsIo/WhatIsAssetsIo';
 
 function Layout({ children, active, className }) {
   const {
@@ -16,6 +17,7 @@ function Layout({ children, active, className }) {
     // setFooterShow,
   } = useContext(BankContext);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [whatIsAssetIo, setWhatIsAssetIo] = useState(false);
 
   return (
     <>
@@ -27,14 +29,14 @@ function Layout({ children, active, className }) {
         ) : (
           <LayoutSidebarGuest active={active} />
         )}
-        <div className="d-flex flex-column flex-grow-1">
+        <div className="d-flex flex-column flex-grow-1 position-relative">
           <div className={`page-content ${className}`}>{children}</div>
           {active === 'portfolio' ? '' : <IceMechineFooter />}
           {!email && footerShow ? (
             <footer
               className="footer-main"
               onClick={() => {
-                setLoginModalOpen(true);
+                setWhatIsAssetIo(true);
               }}
             >
               <svg
@@ -56,6 +58,11 @@ function Layout({ children, active, className }) {
                 />
               </svg>
             </footer>
+          ) : (
+            ''
+          )}
+          {whatIsAssetIo ? (
+            <WhatIsAssetsIo setWhatIsAssetIo={setWhatIsAssetIo} />
           ) : (
             ''
           )}

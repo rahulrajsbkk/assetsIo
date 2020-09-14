@@ -85,3 +85,26 @@ p {
     }
   }
 }
+
+.whatIsAssetsIo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: white;
+  z-index: 5;
+  padding: 60px 80px;
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .logoSvg {
+      height: 40px;
+    }
+    .closeWhatIsAsset {
+      cursor: pointer;
+      height: 25px;
+    }
+  }
+}
