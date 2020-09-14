@@ -39,6 +39,43 @@ function WhatIsAssetsIo({ setWhatIsAssetIo }) {
             />
           </svg>
         </div>
+        <p className="subTitle">
+          Assets.io Is The Worlds First Wealth Transition Platform Where You You
+          Can Digitalize Your Analog Assets By Turning Them Into Collatorized
+          Fixed Income Instruments. Select Which Area Interests You The Most
+        </p>
+        <div className="cardsHelp">
+          <div className="helpCard">
+            <div className="front">
+              <h5>I Am Completely New</h5>
+            </div>
+            <div className="back">
+              <h5>We Get It... This Stuff Is Confusing</h5>
+              <p>
+                That Is Why We Have Prepared A Quick Start Training. Once You Go
+                Through It, You Will Have Created A Free Assets.io Account,
+                Procured Some Cryptocurrency And Even Started To Grow Your
+                Digital Portfolio.
+              </p>
+              <div className="btnLetsGo">Let's Go</div>
+            </div>
+          </div>
+          <div className="helpCard disable">
+            <div className="front">
+              <h5>Managing My Porfolio</h5>
+            </div>
+          </div>
+          <div className="helpCard disable">
+            <div className="front">
+              <h5>Creating Passive Income</h5>
+            </div>
+          </div>
+          <div className="helpCard disable">
+            <div className="front">
+              <h5>Insitutional Fund Management</h5>
+            </div>
+          </div>
+        </div>
       </div>
     </Fade>
   );
