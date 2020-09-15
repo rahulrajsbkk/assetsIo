@@ -73,7 +73,7 @@ function AssetPlatformTable({
           By Asset
         </div>
         <div
-          className={`bt-asset ${!isAsset}`}
+          className={`bt-asset platform ${!isAsset}`}
           onClick={() => setIsAsset(false)}
         >
           {!isAsset ? 'By Platform For ' : 'By Platform '}

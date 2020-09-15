@@ -12,23 +12,23 @@ function PlatformTable() {
     setDuration(duration === 2 ? 2.1 : 2);
   };
   return (
-    <table className="asetPlatformTable">
+    <table className="asetPlatformTable platform">
       <thead className="tableHead">
         <tr>
-          <th>Rank</th>
-          <th>Name</th>
-          <th>Annual Rate</th>
-          <th>Lend Rate</th>
-          <th>Borrow Rate</th>
-          <th>Supply</th>
-          <th className="text-left">Demand</th>
+          <th className="col-a">Rank</th>
+          <th className="col-b">Name</th>
+          <th className="col-c">Annual Rate</th>
+          <th className="col-d">Lend Rate</th>
+          <th className="col-e">Borrow Rate</th>
+          <th className="col-f">Supply</th>
+          <th className="text-left col-g">Demand</th>
         </tr>
       </thead>
       <tbody className="tableContent">
         {Object.keys(platformRatesObject).map((key, i) => (
           <tr>
-            <td className="rank">{i + 1}</td>
-            <td className="coin">
+            <td className="rank col-a">{i + 1}</td>
+            <td className="coin col-b">
               <div className="coin-name">
                 <img
                   src={
@@ -43,7 +43,7 @@ function PlatformTable() {
                 {key}
               </div>
             </td>
-            <td className="annRate">
+            <td className="annRate col-c">
               <CountUp
                 onEnd={() => {
                   if (updateInterval)
@@ -58,7 +58,7 @@ function PlatformTable() {
               />
               %
             </td>
-            <td className="annRate">
+            <td className="annRate col-d">
               <CountUp
                 duration={duration}
                 start={0}
@@ -67,7 +67,7 @@ function PlatformTable() {
               />
               %
             </td>
-            <td className="annRate">
+            <td className="annRate col-e">
               <CountUp
                 duration={duration}
                 start={0}
@@ -76,7 +76,7 @@ function PlatformTable() {
               />
               %
             </td>
-            <td className="annRate">
+            <td className="annRate col-f">
               <CountUp
                 duration={duration}
                 start={0}
@@ -84,7 +84,7 @@ function PlatformTable() {
                 decimals={2}
               />
             </td>
-            <td className="annRate">
+            <td className="annRate col-g">
               <CountUp
                 duration={duration}
                 start={0}

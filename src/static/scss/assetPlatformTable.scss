@@ -612,7 +612,7 @@
   @include mdportrait {
     .assetPlatformTable {
       .assetTableControlls {
-        height: 90px;
+        height: unset;
         flex-wrap: wrap;
         .bt-asset {
           padding: 0 20px;
@@ -621,6 +621,13 @@
           font-size: 12px;
           flex: 0 0 50%;
           border-bottom: 1px solid #e7e7e7;
+          height: 40px;
+          &.true {
+            &.platform {
+              border-top: 1px solid #e7e7e7;
+              flex: 0 0 100%;
+            }
+          }
         }
         .searchWrapper {
           margin: 0;
@@ -630,6 +637,11 @@
           input {
             flex: 1;
           }
+        }
+        .coinsSelect {
+          height: 50px;
+          margin-left: 10px;
+          margin-right: auto;
         }
       }
       .tableScrollWrapper {
@@ -646,6 +658,21 @@
             .col-d,
             .col-e,
             .col-f {
+              display: none !important;
+            }
+            .col-b {
+              padding-left: 20px;
+            }
+          }
+          &.platform {
+            th {
+              background: $primary-color !important;
+              color: white;
+            }
+            .col-a,
+            .col-c,
+            .col-f,
+            .col-g {
               display: none !important;
             }
             .col-b {
