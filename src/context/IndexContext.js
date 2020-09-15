@@ -28,7 +28,7 @@ function IndexContextProvider({ children }) {
       `https://data-api.defipulse.com/api/v1/defipulse/api/GetLendingTokens?api-key=${apiKey}`
     ).then((res) => {
       const { data } = res;
-      setTokenList(data);
+      if (Array.isArray(data)) setTokenList(data);
     });
   }, []);
   useEffect(() => {

@@ -21,18 +21,10 @@ function Routes() {
       <Route exact path="/net-worth" component={NetWorthPage} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/index">
-        <>{width > 768 ? <IcedIndex /> : <IcedIndexMobile />}</>
+        <IcedIndex />
       </Route>
       <Route exact path="/">
-        <>
-          {email ? (
-            <NetWorthPage />
-          ) : width > 768 ? (
-            <IcedIndex />
-          ) : (
-            <IcedIndexMobile />
-          )}
-        </>
+        <>{email ? <NetWorthPage /> : <IcedIndex />}</>
       </Route>
       <Route exact path="/vault" component={Vault} />
       <Route exact path="/earning" component={Earnings} />

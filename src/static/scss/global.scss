@@ -154,17 +154,18 @@ p {
         transform: rotateX(-180deg);
         background-color: $primary-color;
         flex-direction: column;
-        padding: 30px;
+        padding: 40px 60px;
         h5,
         p {
           color: white;
         }
         h5 {
-          font-size: 26px;
+          font-size: 24px;
         }
         p {
           margin-top: 10px;
           line-height: 1.8;
+          font-size: 14px;
         }
         .btnLetsGo {
           background-color: white;

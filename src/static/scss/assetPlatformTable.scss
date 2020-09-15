@@ -609,4 +609,51 @@
       }
     }
   }
+  @include mdportrait {
+    .assetPlatformTable {
+      .assetTableControlls {
+        height: 90px;
+        flex-wrap: wrap;
+        .bt-asset {
+          padding: 0 20px;
+          width: unset;
+          min-width: 120px;
+          font-size: 12px;
+          flex: 0 0 50%;
+          border-bottom: 1px solid #e7e7e7;
+        }
+        .searchWrapper {
+          margin: 0;
+          width: 0;
+          flex: 1;
+          display: flex;
+          input {
+            flex: 1;
+          }
+        }
+      }
+      .tableScrollWrapper {
+        > div {
+          position: relative !important;
+        }
+        .asetPlatformTable {
+          &.asset {
+            th {
+              background: $primary-color !important;
+              color: white;
+            }
+            .col-a,
+            .col-d,
+            .col-e,
+            .col-f {
+              display: none !important;
+            }
+            .col-b {
+              padding-left: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -5,6 +5,8 @@ import EarnIntrest from '../components/MarketPage/EarnIntrest/EarnIntrest';
 import Collateral from '../components/MarketPage/Collateral/Collateral';
 import Loans from '../components/MarketPage/Loans/Loans';
 import EarnIntrestMobile from '../components/IcedIndexMobile/EarnIntrestMobile/EarnIntrestMobile';
+import BondsContent from '../components/MarketPage/BondsContent/BondsContent';
+import IndexContextProvider, { IndexContext } from '../context/IndexContext';
 
 function IcedIndexMobile() {
   const [title, setTitle] = useState('Earn Interest');
@@ -14,7 +16,7 @@ function IcedIndexMobile() {
       case 'bonds-tab':
         return (
           <>
-            <HistoricalRates title={title} />
+            <BondsContent title={title} />
           </>
         );
       case 'borrow-intrest':
@@ -50,15 +52,19 @@ function IcedIndexMobile() {
     }
   }
   return (
-    <Layout
-      active="index"
-      className="icedIndex"
-      menuSelected={menuSelected}
-      setTitle={setTitle}
-      setMenuSelected={setMenuSelected}
-    >
-      <div className="contentSectionMobile">{getPageContent(menuSelected)}</div>
-    </Layout>
+    <IndexContextProvider>
+      <Layout
+        active="index"
+        className="icedIndex"
+        menuSelected={menuSelected}
+        setTitle={setTitle}
+        setMenuSelected={setMenuSelected}
+      >
+        <div className="contentSectionMobile">
+          {getPageContent(menuSelected)}
+        </div>
+      </Layout>
+    </IndexContextProvider>
   );
 }
 

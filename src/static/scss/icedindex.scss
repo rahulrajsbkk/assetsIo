@@ -735,5 +735,56 @@
         }
       }
     }
+    @include mdportrait {
+      .mainContent {
+        width: 100%;
+        .content-section {
+          padding: 0 !important;
+          .earn-intrest {
+            height: unset;
+            width: 100%;
+            display: flex;
+            .earn-intrest-controll {
+              height: 80px;
+              margin: 0;
+              padding: 10px 20px;
+              overflow-x: auto;
+              .tab-item {
+                margin: 0 10px;
+                width: unset;
+                .coin-img {
+                  height: 30px;
+                  width: 30px;
+                }
+                .text-content {
+                  margin-left: 10px;
+                  h5 {
+                    font-size: 18px;
+                    margin: 0;
+                    white-space: nowrap;
+                  }
+                  h6 {
+                    display: none;
+                  }
+                }
+                &:hover {
+                  opacity: 0.8;
+                  border-width: 4px;
+                  padding: 0 17px;
+                }
+                &.true {
+                  opacity: 1;
+                  border-width: 1px;
+                }
+              }
+              &::after {
+                content: '';
+                flex: 0 0 2px;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
