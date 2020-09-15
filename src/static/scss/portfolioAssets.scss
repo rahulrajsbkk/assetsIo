@@ -389,6 +389,86 @@
       display: flex;
     }
   }
+  @include mdportrait {
+    flex-direction: column;
+    .assetsText,
+    .assetsContent {
+      flex: unset;
+    }
+    .assetsText {
+      padding: 0 20px;
+      .title {
+        padding-top: 20px;
+        font-size: 35px;
+      }
+      .detail {
+        font-size: 14px;
+        font-weight: normal;
+        padding-top: 22px;
+        line-height: 2.2;
+      }
+      .bondTypes {
+        display: flex;
+        align-items: center;
+        padding: 15px 0;
+        .bondTypesText {
+          font-size: 15px;
+          margin-right: 8px;
+        }
+        .drop-select {
+          padding: 0 10px;
+        }
+      }
+    }
+    .assetsContent {
+      .bondsListScroll {
+        .bondsList {
+          position: relative !important;
+          .bondsItem {
+            flex: unset;
+            .coinPrice {
+              .img {
+                height: unset;
+                font-size: 20px;
+                img {
+                  height: 20px;
+                  margin-right: 6px;
+                }
+              }
+              .title {
+                display: flex;
+                font-size: 20px;
+                align-items: center;
+              }
+            }
+            .labels {
+              font-size: 11px;
+            }
+            .rates {
+              margin-top: 10px;
+              .ratesItem {
+                .value {
+                  font-size: 18px;
+                }
+                .label {
+                  font-size: 11px;
+                }
+              }
+            }
+            &:hover {
+              background: #00000006;
+            }
+          }
+        }
+      }
+    }
+    .range,
+    .timeDetail,
+    .daysSwitcher,
+    .today {
+      display: none;
+    }
+  }
 }
 
 @keyframes blinker {
