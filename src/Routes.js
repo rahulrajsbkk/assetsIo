@@ -6,14 +6,11 @@ import Portfolio from './pages/Portfolio';
 import MobileApps from './pages/MobileApps';
 import Markets from './pages/Markets';
 import IcedIndex from './pages/IcedIndex';
-import useWindowDimensions from './utils/WindowSize';
-import IcedIndexMobile from './pages/IcedIndexMobile';
 import { BankContext } from './context/Context';
 import Earnings from './pages/Earnings';
 import NetWorthPage from './pages/NetWorthPage';
 
 function Routes() {
-  const { width } = useWindowDimensions();
   const { email } = useContext(BankContext);
   return (
     <Switch>
