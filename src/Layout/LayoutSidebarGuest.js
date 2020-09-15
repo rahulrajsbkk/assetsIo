@@ -11,11 +11,7 @@ import AssetPriceOrRates from './AssetPriceOrRates';
 import { BankContext } from '../context/Context';
 
 function LayoutSidebarGuest({ active }) {
-  const {
-    openDefaultCoinSidebar,
-    setOpenDefaultCoinSidebar,
-    defaultCoin,
-  } = useContext(BankContext);
+  const { email, login } = useContext(BankContext);
   const history = useHistory();
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [onLoginPage, setOnLoginPage] = useState('');
@@ -31,13 +27,26 @@ function LayoutSidebarGuest({ active }) {
           <img src={guest} alt="" />
           <div className="col my-auto">
             <h5>Assets.io&nbsp;</h5>
-            <div
-              className="currencySelect"
-              onClick={() => setOpenDefaultCoinSidebar(!openDefaultCoinSidebar)}
-            >
-              <img src={defaultCoin.img} alt="" />
-              <h6>{defaultCoin.name}</h6>
-            </div>
+            {email ? (
+              <div
+                className="getStartedBtn"
+                onClick={() => {
+                  login();
+                }}
+              >
+                Get Started
+              </div>
+            ) : (
+              <div
+                className="getStartedBtn"
+                onClick={() => {
+                  setLoginModalOpen(true);
+                  setOnLoginPage(false);
+                }}
+              >
+                Logout
+              </div>
+            )}
           </div>
         </div>
         <Scrollbars

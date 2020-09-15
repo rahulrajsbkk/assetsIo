@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useContext, useRef, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars';
 
@@ -13,14 +13,7 @@ import AssetPriceOrRates from './AssetPriceOrRates';
 
 function LayoutSidebar({ active }) {
   const history = useHistory();
-  const {
-    username,
-    name,
-    profileImg,
-    setOpenDefaultCoinSidebar,
-    openDefaultCoinSidebar,
-    defaultCoin,
-  } = useContext(BankContext);
+  const { username, name, profileImg, login } = useContext(BankContext);
 
   const menuEndRef = useRef(null);
 
@@ -42,11 +35,12 @@ function LayoutSidebar({ active }) {
         <div className="col my-auto">
           <h5>{name ? name : username}&nbsp;</h5>
           <div
-            className="currencySelect"
-            onClick={() => setOpenDefaultCoinSidebar(!openDefaultCoinSidebar)}
+            className="getStartedBtn"
+            onClick={() => {
+              login();
+            }}
           >
-            <img src={defaultCoin.img} alt="" />
-            <h6>{defaultCoin.name}</h6>
+            Logout
           </div>
         </div>
       </div>

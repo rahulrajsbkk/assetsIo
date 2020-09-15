@@ -26,7 +26,6 @@ function LayoutSidebarCoins({ active }) {
     defaultCoin,
     setDefaultCoin,
     setOpenDefaultCoinSidebar,
-    openDefaultCoinSidebar,
   } = useContext(BankContext);
   const history = useHistory();
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -67,11 +66,13 @@ function LayoutSidebarCoins({ active }) {
           <div className="col my-auto">
             <h5>{email ? (name ? name : username) : 'Assets.io'}&nbsp;</h5>
             <div
-              className="currencySelect"
-              onClick={() => setOpenDefaultCoinSidebar(!openDefaultCoinSidebar)}
+              className="getStartedBtn"
+              onClick={() => {
+                setLoginModalOpen(true);
+                setOnLoginPage(false);
+              }}
             >
-              <img src={defaultCoin.img} alt="" />
-              <h6>{defaultCoin.name}</h6>
+              Get Started
             </div>
           </div>
         </div>

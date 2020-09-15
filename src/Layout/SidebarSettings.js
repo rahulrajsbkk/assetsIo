@@ -14,6 +14,8 @@ function SidebarSettings({ tabItem, setTabItem, defTab }) {
     updateInterval,
     setUpdateInterval,
     populateModal,
+    setOpenDefaultCoinSidebar,
+    openDefaultCoinSidebar,
   } = useContext(BankContext);
 
   const stepsComponent = [
@@ -22,6 +24,12 @@ function SidebarSettings({ tabItem, setTabItem, defTab }) {
         Data Refresh
       </div>
       <div className="settingsMenu">Resize</div>
+      <div
+        className="settingsMenu"
+        onClick={() => setOpenDefaultCoinSidebar(!openDefaultCoinSidebar)}
+      >
+        Change Default Currency
+      </div>
       <div className="settingsMenu">Time Machine</div>
       {email ? (
         <div
