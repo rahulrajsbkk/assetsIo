@@ -192,7 +192,10 @@ function NetWorthContextProvider({ children }) {
       totalCrypto += cryptoBalance;
       totalFiat += fiatBalance;
       obj[appCode] = {
-        coins_data: dataOne.coins_data,
+        coins_data:
+          dataOne && dataOne.coins_data && Array.isArray(dataOne.coins_data)
+            ? dataOne.coins_data
+            : [],
         cryptoBalance,
         fiatBalance,
         totalBalance: cryptoBalance + fiatBalance,
@@ -249,19 +252,37 @@ function NetWorthContextProvider({ children }) {
           arr.push({
             img: app.app_logo,
             name: app.app_name,
-            value: appBalances[app.app_code].coins_data.filter(
-              (coin) => coinListObject[coin.coinSymbol].coinName === assetCoin
-            )[0].coinValueUSD,
-            color: colors(i),
-            percent:
+            value:
               (appBalances[app.app_code].coins_data.filter(
                 (coin) => coinListObject[coin.coinSymbol].coinName === assetCoin
-              )[0].coinValueUSD /
-                appBalances.total.coins_data.filter(
+              ) &&
+                appBalances[app.app_code].coins_data.filter(
                   (coin) =>
                     coinListObject[coin.coinSymbol].coinName === assetCoin
-                )[0].coinValueUSD) *
-              100,
+                )[0] &&
+                appBalances[app.app_code].coins_data.filter(
+                  (coin) =>
+                    coinListObject[coin.coinSymbol].coinName === assetCoin
+                )[0].coinValueUSD) ||
+              0,
+            color: colors(i),
+            percent:
+              ((appBalances[app.app_code].coins_data.filter(
+                (coin) => coinListObject[coin.coinSymbol].coinName === assetCoin
+              ) &&
+                appBalances[app.app_code].coins_data.filter(
+                  (coin) =>
+                    coinListObject[coin.coinSymbol].coinName === assetCoin
+                )[0] &&
+                appBalances[app.app_code].coins_data.filter(
+                  (coin) =>
+                    coinListObject[coin.coinSymbol].coinName === assetCoin
+                )[0].coinValueUSD) ||
+                0 /
+                  appBalances.total.coins_data.filter(
+                    (coin) =>
+                      coinListObject[coin.coinSymbol].coinName === assetCoin
+                  )[0].coinValueUSD) * 100,
             type: 'app',
             assetText: 'GX Vault',
           });

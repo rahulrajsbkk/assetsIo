@@ -417,6 +417,16 @@
         }
         .drop-select {
           padding: 0 10px;
+          .content.bond {
+            min-width: unset;
+            font-size: 11px;
+          }
+          .menu {
+            margin: 0 -1px;
+            .menuItem {
+              font-size: 11px;
+            }
+          }
         }
       }
     }
@@ -466,7 +476,7 @@
     .timeDetail,
     .daysSwitcher,
     .today {
-      display: none;
+      display: none !important;
     }
   }
 }
