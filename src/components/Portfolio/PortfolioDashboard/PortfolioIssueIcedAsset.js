@@ -22,12 +22,14 @@ function PortfolioIssueIcedAsset() {
       token,
       coin: coinContract,
       days: icingDays,
+      num_of_bonds: contractCount,
+      payCoin: coinContract,
       simulate: true,
     }).then((res) => {
       const { data } = res;
       if (data.status) setContractResult(data);
     });
-  }, [coinContract, email, icingDays, profileId, token]);
+  }, [coinContract, email, icingDays, profileId, contractCount, token]);
 
   const [conractCostUsd, setConractCostUsd] = useState(false);
   const [depositCostUsd, setDepositCostUsd] = useState(false);
@@ -64,8 +66,7 @@ function PortfolioIssueIcedAsset() {
           {conractCostUsd ? (
             <div className="value">
               {FormatCurrency(
-                contractResult &&
-                  contractResult.investment_usd * (contractCount || 0),
+                contractResult && contractResult.investment_usd,
                 'USD'
               )}
               <small>USD</small>
@@ -73,8 +74,7 @@ function PortfolioIssueIcedAsset() {
           ) : (
             <div className="value">
               {FormatCurrency(
-                contractResult &&
-                  contractResult.contractCost * (contractCount || 0),
+                contractResult && contractResult.contractCost,
                 coinContract
               )}
               <small>{coinContract}</small>
@@ -122,8 +122,7 @@ function PortfolioIssueIcedAsset() {
             {depositCostUsd ? (
               <div className="value">
                 {FormatCurrency(
-                  contractResult &&
-                    contractResult.investment_usd * (contractCount || 0),
+                  contractResult && contractResult.investment_usd,
                   'USD'
                 )}
                 <small>USD</small>
@@ -131,8 +130,7 @@ function PortfolioIssueIcedAsset() {
             ) : (
               <div className="value">
                 {FormatCurrency(
-                  contractResult &&
-                    contractResult.investment * (contractCount || 0),
+                  contractResult && contractResult.investment,
                   coinContract
                 )}
                 <small>{coinContract}</small>
@@ -164,8 +162,7 @@ function PortfolioIssueIcedAsset() {
             {dailyPaymentsUsd ? (
               <div className="value">
                 {FormatCurrency(
-                  contractResult &&
-                    contractResult.interestValueUsd * (contractCount || 0),
+                  contractResult && contractResult.interestValueUsd,
                   'USD'
                 )}
                 <small>USD</small>
@@ -173,8 +170,7 @@ function PortfolioIssueIcedAsset() {
             ) : (
               <div className="value">
                 {FormatCurrency(
-                  contractResult &&
-                    contractResult.interestValue * (contractCount || 0),
+                  contractResult && contractResult.interestValue,
                   coinContract
                 )}
                 <small>{coinContract}</small>
@@ -212,8 +208,7 @@ function PortfolioIssueIcedAsset() {
             {expirationUsd ? (
               <div className="value">
                 {FormatCurrency(
-                  contractResult &&
-                    contractResult.redemptionAmountUSD * (contractCount || 0),
+                  contractResult && contractResult.redemptionAmountUSD,
                   'USD'
                 )}
                 <small>USD</small>
@@ -221,8 +216,7 @@ function PortfolioIssueIcedAsset() {
             ) : (
               <div className="value">
                 {FormatCurrency(
-                  contractResult &&
-                    contractResult.redemptionAmount * (contractCount || 0),
+                  contractResult && contractResult.redemptionAmount,
                   coinContract
                 )}
                 <small>{coinContract}</small>

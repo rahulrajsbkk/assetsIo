@@ -17,6 +17,7 @@ function PortfolioGrowAssets() {
     setIcingStep,
     icingStep,
     coinContract,
+    contractCount,
     icingDays,
     createContractLoading,
     setCreateContractLoading,
@@ -94,6 +95,8 @@ function PortfolioGrowAssets() {
         email,
         token,
         coin: coinContract,
+        num_of_bonds: contractCount,
+        payCoin: coinContract,
         days: icingDays,
         profile_id: profileId,
       })
