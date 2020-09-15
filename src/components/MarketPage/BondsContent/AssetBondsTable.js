@@ -43,7 +43,7 @@ function AssetBondsTable({
     >
       <div className="assetTableControlls">
         <div
-          className={`bt-asset ${!isAsset}`}
+          className={`bt-asset bond ${!isAsset}`}
           onClick={() => setIsAsset(false)}
         >
           {!isAsset ? 'By Bond For ' : 'By Bond '}
@@ -141,7 +141,10 @@ function AssetBondsTable({
           />
         </VaultContextProvider>
       ) : (
-        <Scrollbars autoHide className="tableScrollWrapper">
+        <Scrollbars
+          autoHide
+          className={`tableScrollWrapper ${isAsset ? '' : 'bonds'}`}
+        >
           {isAsset ? (
             <BondsAssetTable
               setCoinToDetail={setCoinToDetail}

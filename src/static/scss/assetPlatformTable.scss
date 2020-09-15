@@ -622,26 +622,35 @@
           flex: 0 0 50%;
           border-bottom: 1px solid #e7e7e7;
           height: 40px;
+          order: 0;
           &.true {
-            &.platform {
+            &.platform,
+            &.bond {
               border-top: 1px solid #e7e7e7;
               flex: 0 0 100%;
+              order: 1;
             }
           }
         }
         .searchWrapper {
+          order: 2;
           margin: 0;
           width: 0;
           flex: 1;
           display: flex;
           input {
             flex: 1;
+            margin: 4px;
           }
         }
         .coinsSelect {
+          order: 2;
           height: 50px;
           margin-left: 10px;
           margin-right: auto;
+        }
+        .fullIcon {
+          order: 3;
         }
       }
       .tableScrollWrapper {
@@ -678,6 +687,20 @@
             .col-b {
               padding-left: 20px;
             }
+          }
+          &.bonds {
+            th {
+              background: $primary-color !important;
+              color: white;
+            }
+          }
+        }
+        &.bonds {
+          > div {
+            position: absolute !important;
+          }
+          .asetPlatformTable {
+            width: 240%;
           }
         }
       }

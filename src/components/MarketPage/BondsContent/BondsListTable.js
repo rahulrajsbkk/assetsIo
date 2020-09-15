@@ -74,7 +74,7 @@ function BondsListTable({ assetTab, setCoinToDetail }) {
   };
 
   return (
-    <table className="asetPlatformTable">
+    <table className="asetPlatformTable bonds">
       <thead className="tableHead">
         <tr>
           <th>Rank</th>

@@ -17,28 +17,28 @@ function BondsAssetTable({ coinList, setCoinToDetail }) {
       0
   );
   return (
-    <table className="asetPlatformTable">
+    <table className="asetPlatformTable asset">
       <thead className="tableHead">
         <tr>
-          <th>Rank</th>
-          <th>Name</th>
-          <th>Daily Rate</th>
-          <th>7 Day Change</th>
-          <th>Supply</th>
-          <th>Chart</th>
+          <th className="col-a">Rank</th>
+          <th className="col-b">Name</th>
+          <th className="col-c">Daily Rate</th>
+          <th className="col-d">7 Day Change</th>
+          <th className="col-e">Supply</th>
+          <th className="col-f">Chart</th>
         </tr>
       </thead>
       <tbody className="tableContent">
         {coinList.map((coin, i) => (
           <tr key={coin._id} onClick={() => setCoinToDetail(coin)}>
-            <td className="rank">{i + 1}</td>
-            <td className="coin">
+            <td className="rank col-a">{i + 1}</td>
+            <td className="coin col-b">
               <div className="coin-name">
                 <img src={coin.coinImage} alt="" className="coinLogo" />{' '}
                 {coin.coinName}
               </div>
             </td>
-            <td className="annRate">
+            <td className="annRate col-c">
               <CountUp
                 onEnd={() => {
                   if (updateInterval)
@@ -67,7 +67,7 @@ function BondsAssetTable({ coinList, setCoinToDetail }) {
                   liquidRatesObject[coin.coinSymbol].changeData.interestRate &&
                   liquidRatesObject[coin.coinSymbol].changeData.interestRate
                     ._7days)
-              }`}
+              } col-d`}
             >
               <CountUp
                 duration={duration}
@@ -86,7 +86,7 @@ function BondsAssetTable({ coinList, setCoinToDetail }) {
               />
               %
             </td>
-            <td className="supply">
+            <td className="supply col-e">
               <CountUp
                 duration={duration}
                 start={
@@ -105,7 +105,7 @@ function BondsAssetTable({ coinList, setCoinToDetail }) {
               />{' '}
               {coin.coinSymbol}
             </td>
-            <td className="chart">
+            <td className="chart col-f">
               <div className="chartIn">
                 <AssetAreaChart
                   today={
