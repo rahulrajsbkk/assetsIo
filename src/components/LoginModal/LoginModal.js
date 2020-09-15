@@ -153,7 +153,7 @@ function LoginModal({ onClose, onLogin }) {
           {width < 768 && loginOrSignup ? (
             ''
           ) : (
-            <div className="signup-wrap">
+            <div className={`signup-wrap ${firstLogin ? 'd-none' : ''}`}>
               <Signup setFirstLogin={setFirstLogin} onClose={onClose} />
             </div>
           )}

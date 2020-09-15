@@ -108,7 +108,7 @@ function Signup({ setFirstLogin, onClose }) {
       password: password,
       ref_affiliate: '1',
       account_type: 'Personal',
-      signedup_app: 'IcedVault',
+      signedup_app: 'ice',
     })
       .then((res) => {
         if (!res.data.status) {
@@ -136,7 +136,7 @@ function Signup({ setFirstLogin, onClose }) {
         } else {
           setTimeout(() => {
             setFirstLogin(true);
-          }, 1000);
+          }, 2000);
         }
       })
       .catch((err) => {
@@ -281,16 +281,18 @@ function Signup({ setFirstLogin, onClose }) {
         return (
           <div className="d-flex flex-column signup-form mx-5 flex-grow-1">
             <div className="lottie">
-              <Lottie
-                className="carousel-status"
-                options={defaultOptions}
-                height={150}
-                width={150}
-              />
               {loading ? (
-                <h6>Creating Your Account</h6>
+                <>
+                  <Lottie
+                    className="carousel-status"
+                    options={defaultOptions}
+                    height={150}
+                    width={150}
+                  />
+                  <h6>Creating Your Account</h6>
+                </>
               ) : (
-                <h6>Congraulations, You Are Now A CryptoLottery Member</h6>
+                <h6>Congraulations, You Are Now A Assets.io Member</h6>
               )}
             </div>
           </div>
