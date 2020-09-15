@@ -76,7 +76,7 @@ function AssetPlatformTable({
           className={`bt-asset platform ${!isAsset}`}
           onClick={() => setIsAsset(false)}
         >
-          {!isAsset ? 'By Platform For ' : 'By Platform '}
+          By Defi Network
           <div
             className="platform-select px-3"
             onClick={() => {

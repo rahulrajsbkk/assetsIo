@@ -46,7 +46,7 @@ function AssetBondsTable({
           className={`bt-asset bond ${!isAsset}`}
           onClick={() => setIsAsset(false)}
         >
-          {!isAsset ? 'By Bond For ' : 'By Bond '}
+          By Bonds
           <div
             className="platform-select"
             onClick={() => {
