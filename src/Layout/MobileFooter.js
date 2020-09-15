@@ -21,18 +21,6 @@ function MobileFooter({ menuSelected, setTitle, setMenuSelected }) {
         <div className="tab-name">Lend</div>
       </div>
       <div
-        className={`footer-itm ${menuSelected === 'borrow-intrest'}`}
-        onClick={() => {
-          try {
-            setMenuSelected('borrow-intrest');
-            setTitle('Borrow');
-          } catch (error) {}
-        }}
-      >
-        <ContractSvg />
-        <div className="tab-name">Borrow</div>
-      </div>
-      <div
         className={`footer-itm ${menuSelected === 'bonds-tab'}`}
         onClick={() => {
           try {
@@ -45,12 +33,24 @@ function MobileFooter({ menuSelected, setTitle, setMenuSelected }) {
         <div className="tab-name">Bonds</div>
       </div>
       <div
+        className={`footer-itm ${menuSelected === 'borrow-intrest'}`}
+        onClick={() => {
+          // try {
+          //   setMenuSelected('borrow-intrest');
+          //   setTitle('Borrow');
+          // } catch (error) {}
+        }}
+      >
+        <ContractSvg />
+        <div className="tab-name">Borrow</div>
+      </div>
+      <div
         className={`footer-itm ${menuSelected === 'loan'}`}
         onClick={() => {
-          try {
-            setMenuSelected('loan');
-            setTitle('Loans');
-          } catch (error) {}
+          // try {
+          //   setMenuSelected('loan');
+          //   setTitle('Loans');
+          // } catch (error) {}
         }}
       >
         <CoinInvestSvg />
@@ -59,10 +59,10 @@ function MobileFooter({ menuSelected, setTitle, setMenuSelected }) {
       <div
         className={`footer-itm ${menuSelected === 'collateral'}`}
         onClick={() => {
-          try {
-            setMenuSelected('collateral');
-            setTitle('COLLATERAL');
-          } catch (error) {}
+          // try {
+          //   setMenuSelected('collateral');
+          //   setTitle('COLLATERAL');
+          // } catch (error) {}
         }}
       >
         <ProfileSvg />
