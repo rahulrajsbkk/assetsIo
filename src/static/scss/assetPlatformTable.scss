@@ -447,6 +447,7 @@
         }
         .bread {
           cursor: pointer;
+          &:last-child,
           &:hover {
             font-weight: 700;
           }
@@ -611,6 +612,8 @@
   }
   @include mdportrait {
     .assetPlatformTable {
+      flex: unset;
+      max-height: unset;
       .assetTableControlls {
         height: unset;
         flex-wrap: wrap;
@@ -702,6 +705,77 @@
           .asetPlatformTable {
             width: 240%;
           }
+        }
+      }
+      .tableCoinDetail {
+        flex: unset;
+        .breadCrumbs {
+          padding: 0;
+          align-items: center;
+        }
+        .coinDetail {
+          justify-content: space-between;
+          flex-wrap: wrap;
+          img {
+            flex: 0 0 15%;
+            object-fit: contain;
+          }
+          .coinName {
+            flex: 0 0 82%;
+            margin-left: 3%;
+          }
+          .btnDeposit,
+          .btnBuy {
+            flex: 0 0 45%;
+            height: 30px;
+            margin: 9px 0 0 0;
+          }
+        }
+        .lastPrice,
+        .lastIntrest {
+          flex-direction: column;
+          padding: 20px 0;
+          .price,
+          .subSec {
+            flex: unset;
+            max-width: unset;
+            margin-bottom: 20px;
+            h2,
+            h3,
+            .label {
+              text-align: center;
+            }
+          }
+          .subSec {
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+      &.false {
+        .fullIcon {
+          display: none;
+        }
+      }
+    }
+    .analyticsEarn {
+      flex-direction: column;
+      height: auto;
+      .menu {
+        .view {
+          position: relative !important;
+          padding: 50px;
+          padding-bottom: 0;
+        }
+      }
+      .content {
+        flex-direction: column;
+        .palyerWrapper {
+          width: 100% !important;
+          height: 200px;
+          min-width: unset;
+          min-height: 200px;
         }
       }
     }
