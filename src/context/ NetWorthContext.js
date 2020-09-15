@@ -181,13 +181,14 @@ function NetWorthContextProvider({ children }) {
       const dataOne = resOne.data;
       let cryptoBalance = 0;
       let fiatBalance = 0;
-      dataOne.coins_data.forEach((coin) => {
-        if (coin.type === 'fiat') {
-          fiatBalance += coin.coinValueUSD;
-        } else if (coin.type === 'crypto') {
-          cryptoBalance += coin.coinValueUSD;
-        }
-      });
+      if (dataOne && dataOne.coins_data && Array.isArray(dataOne.coins_data))
+        dataOne.coins_data.forEach((coin) => {
+          if (coin.type === 'fiat') {
+            fiatBalance += coin.coinValueUSD;
+          } else if (coin.type === 'crypto') {
+            cryptoBalance += coin.coinValueUSD;
+          }
+        });
       totalCrypto += cryptoBalance;
       totalFiat += fiatBalance;
       obj[appCode] = {
