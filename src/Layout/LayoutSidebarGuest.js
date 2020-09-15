@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars';
 
@@ -8,10 +8,8 @@ import portfolio from '../static/images/sidebar-icons/portfolio.svg';
 import appstore from '../static/images/sidebar-icons/appstore.svg';
 import LoginWrapper from '../components/LoginModal/LoginWrapper';
 import AssetPriceOrRates from './AssetPriceOrRates';
-import { BankContext } from '../context/Context';
 
 function LayoutSidebarGuest({ active }) {
-  const { email, login } = useContext(BankContext);
   const history = useHistory();
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [onLoginPage, setOnLoginPage] = useState('');
@@ -27,26 +25,15 @@ function LayoutSidebarGuest({ active }) {
           <img src={guest} alt="" />
           <div className="col my-auto">
             <h5>Assets.io&nbsp;</h5>
-            {email ? (
-              <div
-                className="getStartedBtn"
-                onClick={() => {
-                  login();
-                }}
-              >
-                Get Started
-              </div>
-            ) : (
-              <div
-                className="getStartedBtn"
-                onClick={() => {
-                  setLoginModalOpen(true);
-                  setOnLoginPage(false);
-                }}
-              >
-                Logout
-              </div>
-            )}
+            <div
+              className="getStartedBtn"
+              onClick={() => {
+                setLoginModalOpen(true);
+                setOnLoginPage(false);
+              }}
+            >
+              Get Started
+            </div>
           </div>
         </div>
         <Scrollbars
