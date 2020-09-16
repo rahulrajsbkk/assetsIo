@@ -553,6 +553,77 @@
         border-radius: 0;
       }
     }
+    &.issueIced {
+      padding-top: 30px;
+      .textNValuation {
+        margin-bottom: 0;
+        flex-direction: column;
+        .bondValuation {
+          margin: 10px;
+          flex: unset;
+          height: 180px;
+          .value {
+            font-size: 35px;
+            small {
+              font-size: 20px;
+            }
+          }
+          .label {
+            font-size: 15px;
+          }
+          .switch {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            .btn {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+      .depositDetails {
+        flex: unset;
+        flex-direction: column;
+        padding: 10px;
+        .detailBox {
+          margin: 10px 0;
+          .head {
+            padding: 0 8%;
+            .title {
+              font-size: 14px;
+            }
+            .switch {
+              width: 75px;
+              font-size: 13px;
+              .btn {
+                font-size: 13px;
+              }
+            }
+          }
+          .content {
+            padding: 6% 12%;
+            .value {
+              font-size: 32px;
+              small {
+                font-size: 17px;
+              }
+            }
+            .label {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+      .issueIcedLoading {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: white;
+        display: flex;
+      }
+    }
   }
 }
 

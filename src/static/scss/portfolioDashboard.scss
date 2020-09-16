@@ -109,5 +109,64 @@
         }
       }
     }
+    @include mdportrait {
+      flex: 0 0 170px !important;
+      .head {
+        height: 40px;
+        display: flex;
+        .textNBtns {
+          padding-left: 0;
+          img {
+            display: none;
+          }
+          h6 {
+            display: none;
+          }
+        }
+        .closeDiv {
+          cursor: pointer;
+          background: $primary-color;
+          color: white;
+          padding-right: 30px;
+          display: none;
+          align-items: center;
+          font-size: 25px;
+        }
+      }
+      .icingSteps {
+        flex-grow: 1;
+        display: none;
+        .icingStep {
+          font-size: 14px;
+          .detailCoin {
+            flex: 0 0 30%;
+            max-height: 30%;
+            .img {
+              font-size: 14px;
+              .logo {
+                height: 18px;
+                margin-right: 6px;
+              }
+              .logoFull {
+                height: 17px;
+                margin: 0 auto;
+              }
+            }
+            h6 {
+              font-size: 13px;
+              margin: 0;
+            }
+          }
+          .issueBond {
+            font-size: 12px;
+            justify-content: center;
+            img {
+              margin-left: 6px;
+              height: 10px;
+            }
+          }
+        }
+      }
+    }
   }
 }
