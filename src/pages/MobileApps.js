@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Zoom from 'react-reveal/Zoom';
 import Layout from '../Layout/Index';
-import logo from '../static/images/logo.svg';
+import logo from '../static/images/logoWtBg.svg';
 import android from '../static/images/android.svg';
 import ios from '../static/images/ios.svg';
 import Axios from 'axios';
@@ -22,10 +22,11 @@ function MobileApps() {
     <Layout active="mobileApps" className="mobileApps">
       <Zoom>
         <div className="logo-n-title">
-          <div className="logo">
-            <img src={logo} alt="" />
-          </div>
-          <div className="title">Ice</div>
+          <img className="logo" src={logo} alt="" />
+          <div className="title">Assets.io</div>
+          <p className="subTitle">
+            Please Download The Mobile App For The Best User Experience.
+          </p>
         </div>
       </Zoom>
       <div className="download">
