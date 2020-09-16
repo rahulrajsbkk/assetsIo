@@ -46,28 +46,28 @@ function MobileFooter({ menuSelected, setTitle, setMenuSelected }) {
         <div className="tab-name">Payouts</div>
       </div>
       <div
-        className={`footer-itm ${menuSelected === 'loan'}`}
+        className={`footer-itm ${menuSelected === 'indices'}`}
         onClick={() => {
-          // try {
-          //   setMenuSelected('loan');
-          //   setTitle('Loans');
-          // } catch (error) {}
+          try {
+            setMenuSelected('indices');
+            setTitle('Indices');
+          } catch (error) {}
         }}
       >
         <CoinInvestSvg />
-        <div className="tab-name">Loans</div>
+        <div className="tab-name">Indices</div>
       </div>
       <div
-        className={`footer-itm ${menuSelected === 'collateral'}`}
+        className={`footer-itm ${menuSelected === 'assets'}`}
         onClick={() => {
-          // try {
-          //   setMenuSelected('collateral');
-          //   setTitle('COLLATERAL');
-          // } catch (error) {}
+          try {
+            setMenuSelected('assets');
+            setTitle('Assets');
+          } catch (error) {}
         }}
       >
         <ProfileSvg />
-        <div className="tab-name">Collateral</div>
+        <div className="tab-name">Assets</div>
       </div>
     </div>
   );
