@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { BankContext } from '../context/Context';
 import LoginWrapper from '../components/LoginModal/LoginWrapper';
 import guest from '../static/images/guest.jpg';
+import assetsLogo from '../static/images/assetsLogo.svg';
 
 function MobileNavbar({ active }) {
   const [navOpen, setNavOpen] = useState(false);
@@ -71,13 +72,25 @@ function MobileNavbar({ active }) {
         {navOpen ? (
           <div className="menu-open">
             <div className="profile">
-              <img src={profileImg ? profileImg : guest} alt="" />
-              <div className="user-info">
-                <div className="name">
-                  {email ? (name ? name : username) : countryName}&nbsp;
+              {email ? (
+                <img
+                  className="proPic"
+                  src={profileImg ? profileImg : guest}
+                  alt=""
+                />
+              ) : (
+                <img className="logo mt-auto" src={assetsLogo} alt="" />
+              )}
+              {email ? (
+                <div className="user-info">
+                  <div className="name">{name ? name : username}</div>
+                  <div className="balance">$23, 367.32</div>
                 </div>
-                <div className="balance">{email ? '$23, 367.32' : 'Guest'}</div>
-              </div>
+              ) : (
+                <div className="user-info mb-auto">
+                  <div className="balance">Assets.io</div>
+                </div>
+              )}
             </div>
             <div className="menu">
               {email ? (
@@ -111,14 +124,6 @@ function MobileNavbar({ active }) {
                   >
                     Mobile Apps
                   </Link>
-                  <div
-                    className="logout-btn"
-                    role="button"
-                    tabIndex="0"
-                    onClick={() => login()}
-                  >
-                    Logout
-                  </div>
                 </>
               ) : (
                 <>
@@ -140,19 +145,30 @@ function MobileNavbar({ active }) {
                   >
                     Mobile Apps
                   </Link>
-                  <div
-                    className="logout-btn"
-                    onClick={() => {
-                      setLoginModalOpen(true);
-                    }}
-                    role="button"
-                    tabIndex="0"
-                  >
-                    Get Started
-                  </div>
                 </>
               )}
             </div>
+            {email ? (
+              <div
+                className="logout-btn"
+                role="button"
+                tabIndex="0"
+                onClick={() => login()}
+              >
+                Logout
+              </div>
+            ) : (
+              <div
+                className="logout-btn"
+                onClick={() => {
+                  setLoginModalOpen(true);
+                }}
+                role="button"
+                tabIndex="0"
+              >
+                Get Started
+              </div>
+            )}
           </div>
         ) : (
           ''
