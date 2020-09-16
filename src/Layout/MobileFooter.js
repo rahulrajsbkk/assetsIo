@@ -4,6 +4,7 @@ import { ReactComponent as ContractSvg } from '../static/images/mobile-footer-ic
 import { ReactComponent as CoinInvestSvg } from '../static/images/mobile-footer-icon/coinvest.svg';
 import { ReactComponent as MortageSvg } from '../static/images/mobile-footer-icon/mortage.svg';
 import { ReactComponent as ProfileSvg } from '../static/images/mobile-footer-icon/profile.svg';
+import { ReactComponent as IceSvg } from '../static/images/logo.svg';
 
 function MobileFooter({ menuSelected, setTitle, setMenuSelected }) {
   return (
@@ -33,16 +34,16 @@ function MobileFooter({ menuSelected, setTitle, setMenuSelected }) {
         <div className="tab-name">Bonds</div>
       </div>
       <div
-        className={`footer-itm ${menuSelected === 'borrow-intrest'}`}
+        className={`footer-itm ${menuSelected === 'payouts'}`}
         onClick={() => {
-          // try {
-          //   setMenuSelected('borrow-intrest');
-          //   setTitle('Borrow');
-          // } catch (error) {}
+          try {
+            setMenuSelected('payouts');
+            setTitle('Payouts');
+          } catch (error) {}
         }}
       >
-        <ContractSvg />
-        <div className="tab-name">Borrow</div>
+        <IceSvg />
+        <div className="tab-name">Payouts</div>
       </div>
       <div
         className={`footer-itm ${menuSelected === 'loan'}`}

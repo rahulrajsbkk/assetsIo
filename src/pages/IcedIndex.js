@@ -12,6 +12,7 @@ import IndexContextProvider from '../context/IndexContext';
 import iceLogo from '../static/images/logo.svg';
 import backDouble from '../static/images/backDouble.svg';
 import IceSidebar from '../components/IceSidebar/IceSidebar';
+import IcePayouts from '../components/MarketPage/IcePayouts/IcePayouts';
 
 function IcedIndex() {
   const [title, setTitle] = useState('Earn Interest');
@@ -25,10 +26,10 @@ function IcedIndex() {
             <BondsContent title={title} />
           </>
         );
-      case 'borrow-intrest':
+      case 'payouts':
         return (
           <>
-            <HistoricalRates title={title} />
+            <IcePayouts title={title} />
           </>
         );
       case 'borrow-history':
