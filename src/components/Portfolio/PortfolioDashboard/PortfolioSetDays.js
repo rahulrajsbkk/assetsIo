@@ -6,6 +6,7 @@ import moment from 'moment';
 import { PortfolioContext } from '../../../context/PortfolioContext';
 import { BankContext } from '../../../context/Context';
 import { FormatCurrency, FormatNumber } from '../../../utils/FunctionTools';
+import { ReactComponent as GraphTriangle } from '../../../static/images/graphTriangle.svg';
 import OnOutsideClick from '../../../utils/OnOutsideClick';
 
 function PortfolioSetDays() {
@@ -112,6 +113,60 @@ function PortfolioSetDays() {
         }}
         className="range"
       />
+      <div className="daysSwitcher">
+        <div
+          className={`option ${totalDays === 30}`}
+          onClick={() => setTotalDays(30)}
+        >
+          1 Month
+        </div>
+        <div
+          className={`option ${totalDays === 365}`}
+          onClick={() => setTotalDays(365)}
+        >
+          1 Year
+        </div>
+        <div
+          className={`option ${totalDays === 1825}`}
+          onClick={() => setTotalDays(1825)}
+        >
+          5 Years
+        </div>
+      </div>
+      <div className="today">{moment().format('MMMM Do YYYY')}</div>
+      <div className="sliderMobile">
+        <GraphTriangle />
+        <input
+          value={days}
+          type="range"
+          min={0}
+          max={totalDays}
+          onChange={(e) => {
+            setDays(e.target.value);
+          }}
+          className="range-mobile"
+        />
+        <div className="daysSwitcher">
+          <div
+            className={`option ${totalDays === 30}`}
+            onClick={() => setTotalDays(30)}
+          >
+            1 Month
+          </div>
+          <div
+            className={`option ${totalDays === 365}`}
+            onClick={() => setTotalDays(365)}
+          >
+            1 Year
+          </div>
+          <div
+            className={`option ${totalDays === 1825}`}
+            onClick={() => setTotalDays(1825)}
+          >
+            5 Years
+          </div>
+        </div>
+      </div>
       <div className="timeDetail" style={boxStyle}>
         <div className="head">
           <span className="days">{days} Days</span>
@@ -182,27 +237,6 @@ function PortfolioSetDays() {
           </div>
         </div>
       </div>
-      <div className="daysSwitcher">
-        <div
-          className={`option ${totalDays === 30}`}
-          onClick={() => setTotalDays(30)}
-        >
-          1 Month
-        </div>
-        <div
-          className={`option ${totalDays === 365}`}
-          onClick={() => setTotalDays(365)}
-        >
-          1 Year
-        </div>
-        <div
-          className={`option ${totalDays === 1825}`}
-          onClick={() => setTotalDays(1825)}
-        >
-          5 Years
-        </div>
-      </div>
-      <div className="today">{moment().format('MMMM Do YYYY')}</div>
       {days / totalDays > 0.25 ? (
         <div className="nextDay" style={{ left: boxStyle.left }}>
           {moment().add('days', days).format('MMMM Do YYYY')}

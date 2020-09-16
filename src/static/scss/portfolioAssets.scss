@@ -277,6 +277,9 @@
       left: 612px;
       transform: translateX(-50%);
     }
+    .sliderMobile {
+      display: none;
+    }
   }
   &.issueIced {
     position: relative;
@@ -473,10 +476,82 @@
       }
     }
     .range,
-    .timeDetail,
     .daysSwitcher,
-    .today {
+    .today,
+    .nextDay {
       display: none !important;
+    }
+
+    &.time {
+      .sliderMobile {
+        display: flex;
+        position: relative;
+        margin-top: 20px;
+        svg {
+          width: 100%;
+          height: auto;
+        }
+        .range-mobile {
+          width: 100%;
+          z-index: 2;
+          position: absolute;
+          left: 0;
+          bottom: -70px;
+          transform: skewY(-21deg);
+          transform-origin: 0;
+          -webkit-appearance: none;
+          height: 140px;
+          border-radius: 5px;
+          background: transparent;
+          outline: none;
+          -webkit-transition: 0.2s;
+          transition: opacity 0.2s;
+          &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #fff;
+            transform: skewY(21deg);
+            cursor: pointer;
+            border: 1px solid $primary-color;
+          }
+          &::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #fff;
+            border: 1px solid $primary-color;
+            transform: skewY(21deg);
+            cursor: pointer;
+          }
+        }
+        .daysSwitcher {
+          bottom: 10px;
+          right: 10px;
+          display: flex !important;
+          .option {
+            z-index: 6;
+            margin: 0 5px;
+            font-size: 11px;
+            color: $primary-color;
+            &.true {
+              font-weight: bold;
+            }
+          }
+        }
+      }
+      .timeDetail {
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        transform: unset;
+        width: 100%;
+        border-radius: 0;
+      }
     }
   }
 }
