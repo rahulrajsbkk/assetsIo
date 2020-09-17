@@ -13,7 +13,6 @@ import IceIndices from '../components/MarketPage/IceIndices/IceIndices';
 import IceAssets from '../components/MarketPage/IceAssets/IceAssets';
 
 function IcedIndex() {
-  const [title, setTitle] = useState('Earn Interest');
   const [menuSelected, setMenuSelected] = useState('earn-intrest');
   const { width } = useWindowDimensions();
   function getPageContent(tab) {
@@ -67,7 +66,6 @@ function IcedIndex() {
         active="index"
         className="icedIndex"
         menuSelected={menuSelected}
-        setTitle={setTitle}
         setMenuSelected={setMenuSelected}
       >
         <div className="icedContainer">
@@ -78,7 +76,6 @@ function IcedIndex() {
                   className={`tab-itm ${menuSelected === 'earn-intrest'}`}
                   onClick={() => {
                     setMenuSelected('earn-intrest');
-                    setTitle('Earn Interest');
                   }}
                 >
                   Earn
@@ -87,7 +84,6 @@ function IcedIndex() {
                   className={`tab-itm ${menuSelected === 'bonds-tab'}`}
                   onClick={() => {
                     setMenuSelected('bonds-tab');
-                    setTitle('Earn Interest');
                   }}
                 >
                   Bonds
@@ -96,7 +92,6 @@ function IcedIndex() {
                   className={`tab-itm ${menuSelected === 'borrow-intrest'}`}
                   // onClick={() => {
                   //   setMenuSelected('borrow-intrest');
-                  //   setTitle('Borrow');
                   // }}
                   onMouseEnter={() => setDetailIndex(0)}
                   onMouseLeave={() => setDetailIndex(null)}
@@ -107,7 +102,6 @@ function IcedIndex() {
                   className={`tab-itm ${menuSelected === 'loan'}`}
                   // onClick={() => {
                   //   setMenuSelected('loan');
-                  //   setTitle('Loans');
                   // }}
                   onMouseEnter={() => setDetailIndex(1)}
                   onMouseLeave={() => setDetailIndex(null)}

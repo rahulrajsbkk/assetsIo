@@ -7,7 +7,6 @@ function MobileLayout({
   children,
   active,
   className,
-  setTitle,
   setMenuSelected,
   menuSelected,
 }) {
@@ -18,7 +17,6 @@ function MobileLayout({
       <div className={`mobile-content  ${className}`}>{children}</div>
       <MobileFooter
         menuSelected={menuSelected}
-        setTitle={setTitle}
         setMenuSelected={setMenuSelected}
       />
     </div>

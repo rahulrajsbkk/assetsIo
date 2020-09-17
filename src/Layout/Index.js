@@ -7,7 +7,6 @@ function MainLayout({
   children,
   active,
   className,
-  setTitle,
   setMenuSelected,
   menuSelected,
 }) {
@@ -21,7 +20,6 @@ function MainLayout({
           children={children}
           active={active}
           className={className}
-          setTitle={setTitle}
           setMenuSelected={setMenuSelected}
           menuSelected={menuSelected}
         />

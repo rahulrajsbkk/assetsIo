@@ -1,5 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
-import Axios from 'axios';
+import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { BankContext } from '../context/Context';
 import LoginWrapper from '../components/LoginModal/LoginWrapper';
@@ -9,18 +8,6 @@ import assetsLogo from '../static/images/assetsLogo.svg';
 function MobileNavbar({ active }) {
   const [navOpen, setNavOpen] = useState(false);
   const { username, name, profileImg, login, email } = useContext(BankContext);
-  const [countryName, setCountryName] = useState('');
-  useEffect(() => {
-    Axios.get('https://ipapi.co/country_name/')
-      .then((response) => {
-        let data = response.data;
-        setCountryName(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
   const history = useHistory();
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [onLoginPage, setOnLoginPage] = useState('');

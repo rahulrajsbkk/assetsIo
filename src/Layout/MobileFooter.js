@@ -5,7 +5,7 @@ import { ReactComponent as MortageSvg } from '../static/images/mobile-footer-ico
 import { ReactComponent as ProfileSvg } from '../static/images/mobile-footer-icon/profile.svg';
 import { ReactComponent as IceSvg } from '../static/images/logo.svg';
 
-function MobileFooter({ menuSelected, setTitle, setMenuSelected }) {
+function MobileFooter({ menuSelected, setMenuSelected }) {
   return (
     <div className="mobile-footer">
       <div
@@ -13,7 +13,6 @@ function MobileFooter({ menuSelected, setTitle, setMenuSelected }) {
         onClick={() => {
           try {
             setMenuSelected('earn-intrest');
-            setTitle('Earn Interest');
           } catch (error) {}
         }}
       >
@@ -25,7 +24,6 @@ function MobileFooter({ menuSelected, setTitle, setMenuSelected }) {
         onClick={() => {
           try {
             setMenuSelected('bonds-tab');
-            setTitle('Earn Interest');
           } catch (error) {}
         }}
       >
@@ -37,7 +35,6 @@ function MobileFooter({ menuSelected, setTitle, setMenuSelected }) {
         onClick={() => {
           try {
             setMenuSelected('payouts');
-            setTitle('Payouts');
           } catch (error) {}
         }}
       >
@@ -49,7 +46,6 @@ function MobileFooter({ menuSelected, setTitle, setMenuSelected }) {
         onClick={() => {
           try {
             setMenuSelected('indices');
-            setTitle('Indices');
           } catch (error) {}
         }}
       >
@@ -61,7 +57,6 @@ function MobileFooter({ menuSelected, setTitle, setMenuSelected }) {
         onClick={() => {
           try {
             setMenuSelected('assets');
-            setTitle('Assets');
           } catch (error) {}
         }}
       >
