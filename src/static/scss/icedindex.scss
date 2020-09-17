@@ -717,17 +717,17 @@
             margin: 8px 50px;
             justify-content: space-between;
             display: flex;
-            padding: 24px 30px;
+            padding: 33px 30px;
             border: 1px solid $vault-border-color;
             align-items: center;
             h6 {
               display: flex;
               align-items: center;
               margin: 0;
-              font-size: 18px;
+              font-size: 17px;
               line-height: 1;
               img {
-                height: 19px;
+                height: 18px;
                 margin-right: 8px;
               }
             }
@@ -745,21 +745,21 @@
             width: 100%;
             display: flex;
             .earn-intrest-controll {
-              height: 80px;
+              height: 90px;
               margin: 0;
-              padding: 10px 20px;
+              padding: 15px 20px;
               overflow-x: auto;
               .tab-item {
                 margin: 0 10px;
                 width: unset;
                 .coin-img {
-                  height: 30px;
-                  width: 30px;
+                  height: 22px;
+                  width: 22px;
                 }
                 .text-content {
-                  margin-left: 10px;
+                  margin-left: 6px;
                   h5 {
-                    font-size: 18px;
+                    font-size: 16px;
                     margin: 0;
                     white-space: nowrap;
                   }
@@ -781,6 +781,9 @@
                 content: '';
                 flex: 0 0 2px;
               }
+            }
+            .assetPlatformTable {
+              box-shadow: none;
             }
           }
         }

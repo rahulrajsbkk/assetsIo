@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import BondsAssetTable from './BondsAssetTable';
 import fullScreenIcon from '../../../static/images/fullScreen.svg';
 import fullScreenIconExit from '../../../static/images/fullScreenExit.svg';
 import BondsListTable from './BondsListTable';
@@ -19,7 +18,6 @@ function AssetBondsTable({
   assetTab,
 }) {
   const { setContentSideBar } = useContext(BankContext);
-  const [isAsset, setIsAsset] = useState(false);
   const [fullScreen, setFullScreen] = useState(false);
   const [coinSelect, setCoinSelect] = useState({});
   const [search, setSearch] = useState('');
@@ -29,7 +27,7 @@ function AssetBondsTable({
   }, [coinList]);
   useEffect(() => {
     setCoinToDetail(null);
-  }, [coinSelect, isAsset, setCoinToDetail]);
+  }, [coinSelect, setCoinToDetail]);
   useEffect(() => {
     return () => {
       setContentSideBar({});
@@ -42,10 +40,7 @@ function AssetBondsTable({
       }`}
     >
       <div className="assetTableControlls">
-        <div
-          className={`bt-asset bond ${!isAsset}`}
-          onClick={() => setIsAsset(false)}
-        >
+        <div className={`bt-asset bond true`}>
           By Bonds
           <div
             className="platform-select"
@@ -79,9 +74,6 @@ function AssetBondsTable({
               {'All Platforms'}
             </div>
           </div>
-        </div>
-        <div className={`bt-asset ${isAsset}`} onClick={() => setIsAsset(true)}>
-          By Asset
         </div>
         {coinToDetail ? (
           <div className="m-auto"></div>
@@ -133,7 +125,7 @@ function AssetBondsTable({
       {coinToDetail ? (
         <VaultContextProvider>
           <CoinDetailTable
-            isAsset={isAsset}
+            isAsset={false}
             coinToDetail={coinToDetail}
             setCoinToDetail={setCoinToDetail}
             stepOne={searchTitle}
@@ -141,21 +133,11 @@ function AssetBondsTable({
           />
         </VaultContextProvider>
       ) : (
-        <Scrollbars
-          autoHide
-          className={`tableScrollWrapper ${isAsset ? '' : 'bonds'}`}
-        >
-          {isAsset ? (
-            <BondsAssetTable
-              setCoinToDetail={setCoinToDetail}
-              coinList={coinList}
-            />
-          ) : (
-            <BondsListTable
-              assetTab={assetTab}
-              setCoinToDetail={setCoinToDetail}
-            />
-          )}
+        <Scrollbars autoHide className={`tableScrollWrapper bonds`}>
+          <BondsListTable
+            assetTab={assetTab}
+            setCoinToDetail={setCoinToDetail}
+          />
         </Scrollbars>
       )}
     </div>
