@@ -10,9 +10,13 @@ import IceSidebarTransactionList from '../../IceSidebar/IceSidebarTransactionLis
 function IcePayouts() {
   const [earnStats, setEarnStats] = useState({});
   const [globalEarnings, setGlobalEarnings] = useState([]);
+  const [coinType, setCoinType] = useState(null);
+
   useEffect(() => {
     Axios.get(
-      'https://comms.globalxchange.com/coin/iced/interest/logs/get/all'
+      `https://comms.globalxchange.com/coin/iced/interest/logs/get/all${
+        coinType ? `?asset_type=${coinType}` : ''
+      }`
     ).then((res) => {
       const { data } = res;
       if (data.status) {
@@ -23,7 +27,7 @@ function IcePayouts() {
         setGlobalEarnings(data.interestLogs);
       }
     });
-  }, []);
+  }, [coinType]);
 
   const [menuUserTypes, setMenuUserTypes] = useState(false);
   const [menuAssetTypes, setMenuAssetTypes] = useState(false);
@@ -114,6 +118,7 @@ function IcePayouts() {
             setMenuAssetTypes(!menuAssetTypes);
             setMenuUserTypes(false);
             setMenuBonds(false);
+            setCoinType(null);
           }}
         >
           All Asset Types
@@ -140,13 +145,28 @@ function IcePayouts() {
       )}
       {menuAssetTypes ? (
         <div className="buttons sub">
-          <div className="btn-filter" onClick={() => {}}>
+          <div
+            className="btn-filter"
+            onClick={() => {
+              setCoinType('fiat');
+            }}
+          >
             Fiat
           </div>
-          <div className="btn-filter" onClick={() => {}}>
+          <div
+            className="btn-filter"
+            onClick={() => {
+              setCoinType('crypto');
+            }}
+          >
             Crypto
           </div>
-          <div className="btn-filter" onClick={() => {}}>
+          <div
+            className="btn-filter"
+            onClick={() => {
+              setCoinType('stable');
+            }}
+          >
             Stablecoins
           </div>
         </div>
