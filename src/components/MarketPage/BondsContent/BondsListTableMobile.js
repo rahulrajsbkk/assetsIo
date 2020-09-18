@@ -2,11 +2,15 @@ import React, { useContext, useState } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import CountUp from 'react-countup';
 import { BankContext } from '../../../context/Context';
+import { PortfolioContext } from '../../../context/PortfolioContext';
+import { useHistory } from 'react-router-dom';
 
 function BondsListTableMobile({ assetTab }) {
+  const history = useHistory();
   const { conractsObj, coinListObject, updateInterval } = useContext(
     BankContext
   );
+  const { setCoinContract } = useContext(PortfolioContext);
   const [duration, setDuration] = useState(2);
   const togleDuration = (duration) => {
     setDuration(duration === 2 ? 2.1 : 2);
@@ -42,7 +46,14 @@ function BondsListTableMobile({ assetTab }) {
           .map((key) => {
             const contract = conractsObj[key];
             return (
-              <div className="bondsItem">
+              <div
+                className="bondsItem"
+                key={key}
+                onClick={() => {
+                  setCoinContract(key);
+                  history.push('/iceAssetMobile');
+                }}
+              >
                 <div className="coinPrice">
                   <div className="img">
                     <img
@@ -51,7 +62,7 @@ function BondsListTableMobile({ assetTab }) {
                         coinListObject[key] &&
                         coinListObject[key].coinImage
                       }
-                      alt
+                      alt=""
                     />
                     {coinListObject &&
                       coinListObject[key] &&

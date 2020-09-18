@@ -38,6 +38,9 @@ function MobileNavbar({ active }) {
     case 'earn':
       title = 'Fixed Income';
       break;
+    case 'iceMecine':
+      title = 'Ice Machine';
+      break;
     default:
       break;
   }

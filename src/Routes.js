@@ -9,12 +9,14 @@ import IcedIndex from './pages/IcedIndex';
 import { BankContext } from './context/Context';
 import Earnings from './pages/Earnings';
 import NetWorthPage from './pages/NetWorthPage';
+import IceMechineMobile from './pages/IceMechineMobile';
 
 function Routes() {
   const { email } = useContext(BankContext);
   return (
     <Switch>
       <Route exact path="/iceAsset" component={Portfolio} />
+      <Route exact path="/iceAssetMobile" component={IceMechineMobile} />
       <Route exact path="/net-worth" component={NetWorthPage} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/index">

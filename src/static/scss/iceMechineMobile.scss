@@ -1,0 +1,140 @@
+.iceMecineMobile {
+  display: flex;
+  flex-direction: column;
+  .timeDetail {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 170px;
+    width: 85%;
+    border-radius: 8px;
+    background-color: $vault-border-color;
+    border: 1px solid $vault-border-color;
+    margin: 15px;
+    .head {
+      background: $primary-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: 600;
+      font-size: 16px;
+      .days {
+        flex-grow: 1;
+        text-align: center;
+      }
+      .confirm {
+        cursor: pointer;
+        padding: 4px 16px;
+        align-self: flex-end;
+        background: white;
+        color: $primary-color;
+        height: 100%;
+        text-align: center;
+        border-bottom: 1px solid $vault-border-color;
+        animation: blinker 2s linear infinite;
+      }
+    }
+    .content {
+      flex-grow: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 0 1px;
+      .contentIn {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .value {
+          font-size: 26px;
+          line-height: 1;
+        }
+        .label {
+          font-size: 11px;
+        }
+      }
+    }
+  }
+  .chartNSlider {
+    position: relative;
+    margin-top: auto;
+    overflow: hidden;
+    svg {
+      width: 100%;
+      height: auto;
+    }
+    .days {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 15px;
+      .today {
+        width: 70%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+    }
+    .range {
+      z-index: 1;
+      bottom: 0;
+      left: 10px;
+      right: 10px;
+      top: 0;
+      position: absolute;
+      width: calc(100% - 10px);
+      transform: skewY(-40.5deg);
+      position: absolute;
+      transition: opacity 0.2s;
+      background: transparent;
+      outline: none;
+      -webkit-appearance: none;
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: $primary-color url('../images/iceWhite.svg') center
+          no-repeat;
+        transform: skewY(40.5deg);
+        cursor: pointer;
+        border: 1px solid $primary-color;
+      }
+      &::-moz-range-thumb {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: $primary-color url('../images/iceWhite.svg') center
+          no-repeat;
+        border: 1px solid $primary-color;
+        transform: skewY(40.5deg);
+        cursor: pointer;
+      }
+    }
+    .daysSwitcher {
+      z-index: 1;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      display: flex;
+      .option {
+        cursor: pointer;
+        margin: 0 10px;
+        font-size: 12px;
+        color: $primary-color;
+        &.true {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
