@@ -73,13 +73,8 @@ function SetAmount({ setOpenModal }) {
   const [loading, setLoading] = useState(false);
 
   const withdraw = () => {
-    if (
-      coinSelected &&
-      coinSelected.coinSymbol &&
-      appSelected &&
-      appSelected.app_code
-    )
-      if (liquidOrBond === 'Liquid') {
+    if (coinSelected && coinSelected.coinSymbol) {
+      if (appSelected && appSelected.app_code && liquidOrBond === 'Liquid') {
         setLoading(true);
         Axios.post(
           'https://comms.globalxchange.com/coin/vault/service/user/app/interest/withdraw',
@@ -103,6 +98,7 @@ function SetAmount({ setOpenModal }) {
             setLoading(false);
           });
       } else {
+        console.log('he;', 'ss');
         setLoading(true);
         Axios.post(
           'https://comms.globalxchange.com/coin/iced/interest/withdraw',
@@ -126,6 +122,7 @@ function SetAmount({ setOpenModal }) {
             setLoading(false);
           });
       }
+    }
   };
 
   return (

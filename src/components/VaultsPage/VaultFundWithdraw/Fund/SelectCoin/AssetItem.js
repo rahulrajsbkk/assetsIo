@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react';
+import { FormatCurrency } from '../../../../../utils/FunctionTools';
 
 function AssetItem({
   img,
@@ -16,24 +17,6 @@ function AssetItem({
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
-  function formatNum(num) {
-    if (symbol === 'BTC' || symbol === 'ETH') {
-      if (num >= 10) {
-        return new Intl.NumberFormat('en-US', {
-          maximumFractionDigits: 3,
-          minimumFractionDigits: 3,
-        }).format(num);
-      }
-      return new Intl.NumberFormat('en-US', {
-        maximumFractionDigits: 4,
-        minimumFractionDigits: 4,
-      }).format(num);
-    }
-    return new Intl.NumberFormat('en-US', {
-      maximumFractionDigits: 2,
-      minimumFractionDigits: 2,
-    }).format(num);
-  }
   return (
     <div
       className={`asset-item d-flex p-4 justify-content-between ${
@@ -51,7 +34,7 @@ function AssetItem({
         <h4 className="mx-2">{name}</h4>
       </div>
       <h4 className="col p-0">
-        {formatNum(coinObject && coinObject.coinValue)}
+        {FormatCurrency(coinObject && coinObject.coinValue, symbol)}
       </h4>
       <h4 className="px-2">${usdAmountFormatter.format(price)}</h4>
     </div>

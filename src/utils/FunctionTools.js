@@ -9,7 +9,11 @@ export function FormatNumber(value, prec) {
 
 export function FormatCurrency(value, coin = 'USD') {
   if (coin.toUpperCase() === 'BTC' || coin.toUpperCase() === 'ETH') {
-    return FormatNumber(value, 4);
+    if (value < 10) {
+      return FormatNumber(value, 4);
+    } else {
+      return FormatNumber(value, 3);
+    }
   }
   return FormatNumber(value, 2);
 }
