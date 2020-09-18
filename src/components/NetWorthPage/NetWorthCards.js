@@ -118,12 +118,21 @@ function NetWorthCards() {
                 <div className="title">
                   <span>
                     {FormatCurrency(
-                      card.value / coinNameObject[assetCoin].price.USD,
-                      coinNameObject[assetCoin].coinSymbol
+                      card.value /
+                        ((coinNameObject &&
+                          coinNameObject[assetCoin] &&
+                          coinNameObject[assetCoin].price &&
+                          coinNameObject[assetCoin].price.USD) ||
+                          1),
+                      coinNameObject &&
+                        coinNameObject[assetCoin] &&
+                        coinNameObject[assetCoin].coinSymbol
                     )}
                   </span>
                   &nbsp;
-                  {coinNameObject[assetCoin].coinSymbol}
+                  {coinNameObject &&
+                    coinNameObject[assetCoin] &&
+                    coinNameObject[assetCoin].coinSymbol}
                 </div>
               ) : (
                 <div className="title">

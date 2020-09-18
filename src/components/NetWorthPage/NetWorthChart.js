@@ -9,7 +9,7 @@ import { NetWorthContext } from '../../context/ NetWorthContext';
 import { BankContext } from '../../context/Context';
 import Skeleton from 'react-loading-skeleton';
 
-function NetWorthChart() {
+function NetWorthChart({ match }) {
   const [segment, setSegment] = useState(null);
   const {
     cardList,
@@ -28,10 +28,23 @@ function NetWorthChart() {
 
   const [title, setTitle] = useState('Networth By Asset Class');
 
-  function handleClick(e, data) {
-    console.log(data.foo);
-  }
+  useEffect(() => {
+    if (!loadingAppBalance && match && match.params) {
+      if (match.params.assetClass && match.params.assetClass !== 'null') {
+        setAssetClass(match.params.assetClass);
+        if (match.params.assetCoin && match.params.assetCoin !== 'null') {
+          setAssetCoin(match.params.assetCoin);
+          if (match.params.liquidity && match.params.liquidity !== 'null') {
+            setLiquidity(match.params.liquidity);
+          }
+        }
+      }
+    }
+    // eslint-disable-next-line
+  }, [loadingAppBalance]);
+
   const [filter, setFilter] = useState(null);
+
   function newTab() {
     switch (filter) {
       case 'networth':
@@ -73,6 +86,33 @@ function NetWorthChart() {
             liquidity,
           },
         });
+        break;
+    }
+    setFilter(null);
+  }
+
+  const newWindow = () => {
+    window.open(
+      `http://localhost:3000/net-worth/${assetClass}/${assetCoin}/${liquidity}`,
+      '_blank'
+    );
+  };
+
+  function openInCurrent() {
+    switch (filter) {
+      case 'networth':
+        setLiquidity(null);
+        setAssetCoin(null);
+        setAssetClass(null);
+        break;
+      case 'assetClass':
+        setLiquidity(null);
+        setAssetCoin(null);
+        break;
+      case 'assetCoin':
+        setLiquidity(null);
+        break;
+      default:
         break;
     }
     setFilter(null);
@@ -196,13 +236,13 @@ function NetWorthChart() {
       </ContextMenuTrigger>
 
       <ContextMenu id="same_unique_identifier">
-        <MenuItem data={{ foo: 'bar' }} onClick={handleClick}>
+        <MenuItem data={{ foo: 'bar' }} onClick={openInCurrent}>
           Open In Current Tab
         </MenuItem>
         <MenuItem data={{ foo: 'bar' }} onClick={newTab}>
           Open In New Assets Tab
         </MenuItem>
-        <MenuItem data={{ foo: 'bar' }} onClick={handleClick}>
+        <MenuItem data={{ foo: 'bar' }} onClick={newWindow}>
           Open In New Browser Tab
         </MenuItem>
       </ContextMenu>

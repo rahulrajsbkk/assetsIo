@@ -18,6 +18,11 @@ function Routes() {
       <Route exact path="/iceAsset" component={Portfolio} />
       <Route exact path="/iceAssetMobile" component={IceMechineMobile} />
       <Route exact path="/net-worth" component={NetWorthPage} />
+      <Route
+        exact
+        path="/net-worth/:assetClass/:assetCoin/:liquidity"
+        component={NetWorthPage}
+      />
       <Route exact path="/login" component={Login} />
       <Route exact path="/index">
         <IcedIndex />

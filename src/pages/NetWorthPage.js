@@ -8,7 +8,7 @@ import NetWorthChart from '../components/NetWorthPage/NetWorthChart';
 import NetWorthCards from '../components/NetWorthPage/NetWorthCards';
 import NetWorthContextProvider from '../context/ NetWorthContext';
 
-function NetWorthPage() {
+function NetWorthPage({ match }) {
   const { email } = useContext(BankContext);
   if (!email) {
     return <Redirect to="/" />;
@@ -18,7 +18,7 @@ function NetWorthPage() {
       <NetWorthContextProvider>
         <HeadTabs />
         <div className="netWorthLayout">
-          <NetWorthChart />
+          <NetWorthChart match={match} />
           <NetWorthCards />
         </div>
       </NetWorthContextProvider>
