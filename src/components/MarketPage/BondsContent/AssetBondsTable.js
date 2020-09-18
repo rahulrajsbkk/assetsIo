@@ -9,6 +9,8 @@ import allPlatformIcon from '../../../static/images/allPlatforms.svg';
 import { BankContext } from '../../../context/Context';
 import VaultContextProvider from '../../../context/VaultContext';
 import CoinDetailTable from '../EarnIntrest/CoinDetailTable';
+import useWindowDimensions from '../../../utils/WindowSize';
+import BondsListTableMobile from './BondsListTableMobile';
 
 function AssetBondsTable({
   coinList,
@@ -21,6 +23,8 @@ function AssetBondsTable({
   const [fullScreen, setFullScreen] = useState(false);
   const [coinSelect, setCoinSelect] = useState({});
   const [search, setSearch] = useState('');
+
+  const { width } = useWindowDimensions();
 
   useEffect(() => {
     if (coinList[0]) setCoinSelect(coinList[0]);
@@ -132,13 +136,15 @@ function AssetBondsTable({
             root={'Bonds'}
           />
         </VaultContextProvider>
-      ) : (
+      ) : width > 768 ? (
         <Scrollbars autoHide className={`tableScrollWrapper bonds`}>
           <BondsListTable
             assetTab={assetTab}
             setCoinToDetail={setCoinToDetail}
           />
         </Scrollbars>
+      ) : (
+        <BondsListTableMobile assetTab={assetTab} />
       )}
     </div>
   );

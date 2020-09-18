@@ -1,0 +1,91 @@
+.bondListTableMobile {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  .head {
+    height: 30px;
+    background-color: $primary-color;
+    padding: 0 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .bondsListWrapper {
+    height: 0;
+    flex: 1;
+    .bondsList {
+      .bondsItem {
+        height: 180px;
+        flex-grow: 1;
+        cursor: pointer;
+        border-bottom: 1px solid $vault-border-color;
+        padding: 4% 6%;
+        display: flex;
+        flex-direction: column;
+        .coinPrice,
+        .rates {
+          display: flex;
+          justify-content: space-between;
+          color: $primary-color;
+        }
+        .coinPrice {
+          .img {
+            height: 44px;
+            display: flex;
+            align-items: center;
+            font-size: 23px;
+            font-weight: bold;
+            img {
+              height: 80%;
+              margin-right: 10px;
+            }
+          }
+          .title {
+            font-size: 23px;
+            font-weight: bold;
+          }
+        }
+        .rates {
+          margin-top: auto;
+          .ratesItem {
+            .value {
+              font-size: 21px;
+              font-weight: bold;
+            }
+            .label {
+              font-size: 14px;
+            }
+          }
+        }
+        @include sm {
+          height: 120px;
+          .coinPrice {
+            .img {
+              height: 22px;
+              font-size: 16px;
+              img {
+                margin-right: 6px;
+              }
+            }
+            .title {
+              font-size: 16px;
+            }
+          }
+          .rates {
+            .ratesItem {
+              .value {
+                font-size: 15px;
+              }
+              .label {
+                font-size: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
