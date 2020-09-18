@@ -50,7 +50,9 @@ function AssetItem({
         <img src={img} className="icon my-auto" alt="" />
         <h4 className="mx-2">{name}</h4>
       </div>
-      <h4 className="col p-0">{formatNum(coinObject.coinValue)}</h4>
+      <h4 className="col p-0">
+        {formatNum(coinObject && coinObject.coinValue)}
+      </h4>
       <h4 className="px-2">${usdAmountFormatter.format(price)}</h4>
     </div>
   );

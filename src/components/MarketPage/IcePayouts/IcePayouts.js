@@ -124,7 +124,7 @@ function IcePayouts() {
           All Asset Types
         </div>
         <div
-          className="btn-filter"
+          className="btn-filter disable"
           onClick={() => {
             setMenuBonds(!menuBonds);
             setMenuAssetTypes(false);

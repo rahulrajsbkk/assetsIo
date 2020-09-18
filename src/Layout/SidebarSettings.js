@@ -23,14 +23,14 @@ function SidebarSettings({ tabItem, setTabItem, defTab }) {
       <div className="settingsMenu" onClick={() => setStep(1)}>
         Data Refresh
       </div>
-      <div className="settingsMenu">Resize</div>
+      <div className="settingsMenu disable">Resize</div>
       <div
         className="settingsMenu"
         onClick={() => setOpenDefaultCoinSidebar(!openDefaultCoinSidebar)}
       >
         Change Default Currency
       </div>
-      <div className="settingsMenu">Time Machine</div>
+      <div className="settingsMenu disable">Time Machine</div>
       {email ? (
         <div
           className="settingsMenu"
