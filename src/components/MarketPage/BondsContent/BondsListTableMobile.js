@@ -19,7 +19,7 @@ function BondsListTableMobile({ assetTab }) {
     <div className="bondListTableMobile">
       <div className="head">
         <span>Coin</span>
-        <span>Annual Rate</span>
+        <span>Bond Unit Cost</span>
       </div>
       <Scrollbars
         className="bondsListWrapper"
