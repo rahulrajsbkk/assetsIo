@@ -10,7 +10,7 @@ import backDouble from '../static/images/backDouble.svg';
 import IceSidebar from '../components/IceSidebar/IceSidebar';
 import IcePayouts from '../components/MarketPage/IcePayouts/IcePayouts';
 import IceIndices from '../components/MarketPage/IceIndices/IceIndices';
-import IceAssets from '../components/MarketPage/IceAssets/IceAssets';
+import IceBridge from '../components/MarketPage/IceBridge/IceBridge';
 
 function IcedIndex() {
   const [menuSelected, setMenuSelected] = useState('earn-intrest');
@@ -35,10 +35,10 @@ function IcedIndex() {
             <IceIndices />
           </>
         );
-      case 'assets':
+      case 'bridge':
         return (
           <>
-            <IceAssets />
+            <IceBridge />
           </>
         );
 
@@ -67,6 +67,7 @@ function IcedIndex() {
         className="icedIndex"
         menuSelected={menuSelected}
         setMenuSelected={setMenuSelected}
+        hideFooter={menuSelected === 'bridge'}
       >
         <div className="icedContainer">
           <div className={`mainContent ${iceOpen}`}>
@@ -100,11 +101,11 @@ function IcedIndex() {
                 </div>
                 <div
                   className={`tab-itm ${menuSelected === 'bridge'}`}
-                  // onClick={() => {
-                  //   setMenuSelected('loan');
-                  // }}
-                  onMouseEnter={() => setDetailIndex(1)}
-                  onMouseLeave={() => setDetailIndex(null)}
+                  onClick={() => {
+                    setMenuSelected('bridge');
+                  }}
+                  // onMouseEnter={() => setDetailIndex(1)}
+                  // onMouseLeave={() => setDetailIndex(null)}
                 >
                   Bridge
                 </div>
@@ -118,7 +119,7 @@ function IcedIndex() {
             ) : (
               ''
             )}
-            <div className="content-section">
+            <div className={`content-section ${menuSelected}`}>
               {getPageContent(menuSelected)}
               {details[detailIndex] ? (
                 <div

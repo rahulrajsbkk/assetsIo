@@ -9,12 +9,18 @@ function MainLayout({
   className,
   setMenuSelected,
   menuSelected,
+  hideFooter,
 }) {
   const { width } = useWindowDimensions();
   return (
     <>
       {width > 768 ? (
-        <Layout children={children} active={active} className={className} />
+        <Layout
+          children={children}
+          active={active}
+          className={className}
+          hideFooter={hideFooter}
+        />
       ) : (
         <MobileLayout
           children={children}
