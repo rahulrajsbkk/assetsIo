@@ -53,15 +53,15 @@ function MobileFooter({ menuSelected, setMenuSelected }) {
         <div className="tab-name">Indices</div>
       </div>
       <div
-        className={`footer-itm ${menuSelected === 'assets'}`}
+        className={`footer-itm ${menuSelected === 'bridge'}`}
         onClick={() => {
           try {
-            setMenuSelected('assets');
+            setMenuSelected('bridge');
           } catch (error) {}
         }}
       >
         <ProfileSvg />
-        <div className="tab-name">Assets</div>
+        <div className="tab-name">Bridge</div>
       </div>
     </div>
   );
