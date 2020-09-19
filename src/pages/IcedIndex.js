@@ -99,14 +99,14 @@ function IcedIndex() {
                   Indicies
                 </div>
                 <div
-                  className={`tab-itm ${menuSelected === 'loan'}`}
+                  className={`tab-itm ${menuSelected === 'bridge'}`}
                   // onClick={() => {
                   //   setMenuSelected('loan');
                   // }}
                   onMouseEnter={() => setDetailIndex(1)}
                   onMouseLeave={() => setDetailIndex(null)}
                 >
-                  Assets
+                  Bridge
                 </div>
                 <div
                   onClick={() => setIceOpen(!iceOpen)}
