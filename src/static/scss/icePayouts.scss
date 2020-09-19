@@ -29,12 +29,11 @@
   .payoutsHead {
     width: 100%;
     margin-top: 3%;
-    height: 16%;
+    height: 25%;
     background: rgba(231, 231, 231, 0.27);
     display: flex;
     align-items: center;
     overflow-y: auto;
-    padding: 30px 0;
     &::before,
     &::after {
       content: '';

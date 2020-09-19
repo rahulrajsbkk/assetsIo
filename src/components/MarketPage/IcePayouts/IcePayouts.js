@@ -136,7 +136,7 @@ function IcePayouts() {
       </div>
       {menuUserTypes ? (
         <div className="buttons sub">
-          <Link to="/earning" className="btn-filter" onClick={() => {}}>
+          <Link to="/earning" className="btn-filter">
             Just Me
           </Link>
         </div>
