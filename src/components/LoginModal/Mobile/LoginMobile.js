@@ -15,7 +15,6 @@ function LoginMobile({ setIsLogin, onLogin }) {
   const { login, tostShowOn } = useContext(BankContext);
   const [mfaEnabled, setMfaEnabled] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  console.log('mfaEnabled :>> ', mfaEnabled);
   const loginvalidate = (e) => {
     e.preventDefault();
     if (!loading)

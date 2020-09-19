@@ -98,7 +98,6 @@ function SetAmount({ setOpenModal }) {
             setLoading(false);
           });
       } else {
-        console.log('he;', 'ss');
         setLoading(true);
         Axios.post(
           'https://comms.globalxchange.com/coin/iced/interest/withdraw',

@@ -48,7 +48,6 @@ function VaultTransactionTable({ credit, debit }) {
                 : true)
           )
           .map((txn) => {
-            console.log('txn :>> ', txn);
             function sameDay() {
               if (moment(txn.timestamp).format('MMDDYYYY') === date) {
               } else {

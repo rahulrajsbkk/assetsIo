@@ -21,7 +21,6 @@ function SetAmount({ coinObject, price, transCoin, isDeposit, setOpenModal }) {
     coinListObject,
   } = useContext(BankContext);
   const { updateBalance, coinSelected } = useContext(VaultContext);
-  console.log('coinSelected :>> ', coinSelected);
   const [depositAsset, setDepositAsset] = useState('');
   const defaultOptions = {
     loop: true,

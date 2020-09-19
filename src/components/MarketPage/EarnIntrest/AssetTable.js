@@ -10,7 +10,6 @@ function AssetTable({ coinList, setCoinToDetail }) {
     setDuration(duration === 2 ? 2.1 : 2);
   };
 
-  console.log('object', liquidRatesObject && liquidRatesObject.INR);
   return (
     <table className="asetPlatformTable asset">
       <thead className="tableHead">

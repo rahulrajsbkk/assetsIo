@@ -167,7 +167,6 @@ function MobileNavbar({ active }) {
       {loginModalOpen ? (
         <LoginWrapper
           onClose={() => {
-            console.log('close');
             setLoginModalOpen(false);
             setOnLoginPage();
           }}

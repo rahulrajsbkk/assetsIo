@@ -52,7 +52,6 @@ function VaultControlls() {
       }
     }
     setDateList(dates);
-    console.log('dates', dates);
   }, [vaultTxns]);
 
   const [menuOne, setMenuOne] = useState({
