@@ -93,7 +93,7 @@ function NetWorthChart({ match }) {
 
   const newWindow = () => {
     window.open(
-      `http://localhost:3000/net-worth/${assetClass}/${assetCoin}/${liquidity}`,
+      `${window.location.protocol}//${window.location.host}/${assetClass}/${assetCoin}/${liquidity}`,
       '_blank'
     );
   };
