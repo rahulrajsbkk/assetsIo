@@ -7,6 +7,7 @@ import iced from '../static/images/logo.svg';
 import card from '../static/images/sidebar-icons/card.svg';
 import earnings from '../static/images/sidebar-icons/earnings.svg';
 import portfolio from '../static/images/sidebar-icons/portfolio.svg';
+import planB from '../static/images/sidebar-icons/planB.svg';
 import appstore from '../static/images/sidebar-icons/appstore.svg';
 import { BankContext } from '../context/Context';
 import AssetPriceOrRates from './AssetPriceOrRates';
@@ -90,6 +91,12 @@ function LayoutSidebar({ active }) {
             <span className="my-auto">Fixed Income</span>
           </h5>
         </Link>
+        <div href="https://planb.assets.io/" className={`menu-itm disable`}>
+          <h5 className="d-flex py-3 menu-itm">
+            <img src={planB} alt="" />
+            <span className="my-auto">PlanB</span>
+          </h5>
+        </div>
         <Link
           to="/mobile-apps"
           className={`menu-itm${active === 'mobileApps' ? ' active' : ''}`}

@@ -6,6 +6,7 @@ import iced from '../static/images/logo.svg';
 import guest from '../static/images/logoWtBg.svg';
 import portfolio from '../static/images/sidebar-icons/portfolio.svg';
 import appstore from '../static/images/sidebar-icons/appstore.svg';
+import planB from '../static/images/sidebar-icons/planB.svg';
 import LoginWrapper from '../components/LoginModal/LoginWrapper';
 import AssetPriceOrRates from './AssetPriceOrRates';
 
@@ -62,6 +63,12 @@ function LayoutSidebarGuest({ active }) {
             <h5 className="d-flex py-3 menu-itm">
               <img src={portfolio} alt="" />
               <span className="my-auto">My Net-Worth</span>
+            </h5>
+          </div>
+          <div href="https://planb.assets.io/" className={`menu-itm disable`}>
+            <h5 className="d-flex py-3 menu-itm">
+              <img src={planB} alt="" />
+              <span className="my-auto">PlanB</span>
             </h5>
           </div>
           <Link

@@ -90,16 +90,6 @@ function IcedIndex() {
                   Bonds
                 </div>
                 <div
-                  className={`tab-itm ${menuSelected === 'borrow-intrest'}`}
-                  // onClick={() => {
-                  //   setMenuSelected('borrow-intrest');
-                  // }}
-                  onMouseEnter={() => setDetailIndex(0)}
-                  onMouseLeave={() => setDetailIndex(null)}
-                >
-                  Indicies
-                </div>
-                <div
                   className={`tab-itm ${menuSelected === 'bridge'}`}
                   onClick={() => {
                     setMenuSelected('bridge');
@@ -107,7 +97,17 @@ function IcedIndex() {
                   // onMouseEnter={() => setDetailIndex(1)}
                   // onMouseLeave={() => setDetailIndex(null)}
                 >
-                  Bridge
+                  Trusts
+                </div>
+                <div
+                  className={`tab-itm ${menuSelected === 'borrow-intrest'}`}
+                  // onClick={() => {
+                  //   setMenuSelected('borrow-intrest');
+                  // }}
+                  onMouseEnter={() => setDetailIndex(1)}
+                  onMouseLeave={() => setDetailIndex(null)}
+                >
+                  Indicies
                 </div>
                 <div
                   onClick={() => setIceOpen(!iceOpen)}
