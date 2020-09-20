@@ -13,7 +13,16 @@ function PortfolioSetDays() {
   const ref = useRef();
   const dropdownRef = useRef();
   OnOutsideClick(dropdownRef, () => setMenuOpen(false));
-  const [days, setDays] = useState(0);
+
+  const {
+    coinContract,
+    setCoinContract,
+    setIcingDays,
+    setIcingStep,
+    icingDays,
+  } = useContext(PortfolioContext);
+
+  const [days, setDays] = useState(icingDays || 0);
   const [totalDays, setTotalDays] = useState(365);
   const [boxStyle, setBoxStyle] = useState({ bottom: 20, left: 612 });
 
@@ -26,12 +35,7 @@ function PortfolioSetDays() {
     });
   }, [days, totalDays]);
   const [menuOpen, setMenuOpen] = useState(false);
-  const {
-    coinContract,
-    setCoinContract,
-    setIcingDays,
-    setIcingStep,
-  } = useContext(PortfolioContext);
+
   const { conractsObj, coinListObject } = useContext(BankContext);
 
   const [contractDayStats, setContractDayStats] = useState([]);
@@ -104,6 +108,7 @@ function PortfolioSetDays() {
       </div>
       <div className="assetsContent"></div>
       <input
+        defaultValue={icingDays}
         value={days}
         type="range"
         min={0}

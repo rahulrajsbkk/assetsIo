@@ -128,7 +128,7 @@
             .change {
               margin-left: 5px;
               font-size: 10px;
-              color: #3ea254;
+              color: $primary-green;
               &.true {
                 color: #e50914;
               }
@@ -346,7 +346,7 @@
           }
         }
         .credit {
-          color: #3ea254;
+          color: $primary-green;
         }
         .debit {
           color: #ea0f0f;

@@ -312,7 +312,7 @@
               &.annRate {
               }
               &.dayChange {
-                color: #3ea254;
+                color: $primary-green;
                 &.true {
                   color: #f13219;
                 }
@@ -379,51 +379,73 @@
           }
           .detailRow {
             position: relative;
+            cursor: auto;
             td {
-              height: 200px;
+              background: white;
               width: 100%;
               .bondDetail {
                 height: 100%;
                 width: 100%;
+                padding: 2% 50px;
                 display: flex;
-                // background: cyan;
-                .btns {
-                  padding-left: 50px;
+                flex-direction: column;
+                .cardRow {
+                  height: 110px;
                   display: flex;
-                  flex-direction: column;
-                  justify-content: center;
-                  .btn-daily {
-                    cursor: pointer;
-                    width: 100%;
-                    border: 1px solid $primary-color;
-                    padding: 2px 20px;
-                    margin: 8px 0;
-                    opacity: 0.3;
-                    &.true {
-                      opacity: 1;
+                  justify-content: space-between;
+                  .bondCard {
+                    border: solid 1px $vault-border-color;
+                    flex: 0 0 21.5%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    padding: 0 3%;
+                    .value {
+                      color: $primary-green;
+                      font-size: 30px;
+                      line-height: 1;
+                      small {
+                        font-size: 18px;
+                        color: $primary-color;
+                      }
+                    }
+                    .label {
+                      font-size: 15px;
+                      color: $primary-color;
+                      margin: 0;
                     }
                   }
                 }
-                .rateNPower {
-                  padding: 0 4%;
-                  flex-grow: 1;
+                .controllsRow {
+                  margin-top: 2%;
+                  height: 40px;
+                  line-height: 1;
                   display: flex;
-                  flex-direction: column;
-                  justify-content: center;
-                  .value {
-                    color: #3ea254;
-                    font-size: 25px;
-                    font-weight: bold;
+                  align-items: center;
+                  font-size: 16px;
+                  .switchCurrency {
+                    cursor: pointer;
+                    text-decoration: underline;
                   }
-                  .label {
+                  .btnSimulation,
+                  .btnBond {
+                    cursor: pointer;
+                    height: 100%;
+                    width: 180px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                  }
+                  .btnSimulation {
+                    margin-left: auto;
+                    border: solid 1px $primary-color;
                     color: $primary-color;
-                    font-size: 16px;
                   }
-                }
-                .chartWrap {
-                  margin: 10px;
-                  flex: 0 0 40%;
-                  position: relative;
+                  .btnBond {
+                    margin-left: 20px;
+                    background: $primary-color;
+                    color: white;
+                  }
                 }
               }
             }
@@ -509,7 +531,7 @@
             small {
               margin-left: 6px;
               font-size: 15px;
-              color: #3ea254;
+              color: $primary-green;
               &.true {
                 color: #ea0f0f;
               }
