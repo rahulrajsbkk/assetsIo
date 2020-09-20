@@ -1,4 +1,4 @@
-import React, { useContext, useState, Fragment } from 'react';
+import React, { useContext, useState, useEffect, Fragment } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import moment from 'moment';
 import { Scrollbars } from 'react-custom-scrollbars';
@@ -14,9 +14,18 @@ function EarningsTransactionTable() {
     earnTransactions,
     contractTransactions,
     liquidOrBond,
+    showNativeValue,
   } = useContext(EarningsContext);
 
   let date = '';
+
+  const [rate, setRate] = useState(1);
+
+  useEffect(() => {
+    setRate(
+      (coinSelected && coinSelected.price && coinSelected.price.USD) || 1
+    );
+  }, [coinSelected]);
 
   const checkIsExpandValue = (num, coin) => {
     if (coin === 'BTC' || coin === 'ETH') {
@@ -84,19 +93,15 @@ function EarningsTransactionTable() {
                     </div>
                     <div
                       className={`credit ${checkIsExpandValue(
-                        (txn.deposit && txn.earned_interest) || 0,
-                        txn.coin
+                        (txn.deposit &&
+                          txn.earned_interest * (showNativeValue ? 1 : rate)) ||
+                          0,
+                        showNativeValue ? txn.coin : 'USD'
                       )}`}
                     >
                       <span
                         className="expand"
                         onClick={() => {
-                          const rate =
-                            (coinSelected &&
-                              txn.coin &&
-                              coinSelected.price &&
-                              coinSelected.price.USD) ||
-                            1;
                           setTiObject({
                             timestamp: txn.timestamp,
                             title: `${
@@ -115,22 +120,18 @@ function EarningsTransactionTable() {
                       </span>
                       <span className="value">
                         {FormatCurrency(
-                          txn.deposit && txn.earned_interest,
-                          txn.coin
+                          txn.deposit &&
+                            txn.earned_interest * (showNativeValue ? 1 : rate),
+                          showNativeValue ? txn.coin : 'USD'
                         )}
                       </span>
                     </div>
                     <div
                       className={`debit ${checkIsExpandValue(
                         (txn.withdraw &&
-                          txn.usd_value /
-                            ((coinSelected &&
-                              txn.coin &&
-                              coinSelected.price &&
-                              coinSelected.price.USD) ||
-                              1)) ||
+                          txn.usd_value / (showNativeValue ? rate : 1)) ||
                           0,
-                        txn.coin
+                        showNativeValue ? txn.coin : 'USD'
                       )}`}
                     >
                       <span
@@ -143,12 +144,7 @@ function EarningsTransactionTable() {
                                 ? 'Credit From Instest Payment'
                                 : 'Withdraw From Instest Payment'
                             }`,
-                            amount:
-                              txn.usd_value /
-                              (coinSelected &&
-                                txn.coin &&
-                                coinSelected.price &&
-                                coinSelected.price.USD),
+                            amount: txn.usd_value / rate,
                             coin: txn.coin,
                             current: txn.usd_value,
                           });
@@ -159,32 +155,21 @@ function EarningsTransactionTable() {
                       <span className="value">
                         {FormatCurrency(
                           (txn.withdraw &&
-                            txn.usd_value /
-                              ((coinSelected &&
-                                txn.coin &&
-                                coinSelected.price &&
-                                coinSelected.price.USD) ||
-                                1)) ||
+                            txn.usd_value / (showNativeValue ? rate : 1)) ||
                             0,
-                          txn.coin
+                          showNativeValue ? txn.coin : 'USD'
                         )}
                       </span>
                     </div>
                     <div
                       className={`balance ${checkIsExpandValue(
-                        txn.updated_interest,
-                        txn.coin
+                        txn.updated_interest * (showNativeValue ? 1 : rate),
+                        showNativeValue ? txn.coin : 'USD'
                       )}`}
                     >
                       <span
                         className="expand"
                         onClick={() => {
-                          const rate =
-                            (coinSelected &&
-                              txn.coin &&
-                              coinSelected.price &&
-                              coinSelected.price.USD) ||
-                            1;
                           setTiObject({
                             timestamp: txn.timestamp,
                             title: `${
@@ -201,7 +186,10 @@ function EarningsTransactionTable() {
                         Expand
                       </span>
                       <span className="value">
-                        {FormatCurrency(txn.updated_interest, txn.coin)}
+                        {FormatCurrency(
+                          txn.updated_interest * (showNativeValue ? 1 : rate),
+                          showNativeValue ? txn.coin : 'USD'
+                        )}
                       </span>
                     </div>
                   </div>

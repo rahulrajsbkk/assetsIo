@@ -17,7 +17,10 @@ function EarningsPageHead() {
     liquidOrBond,
     contractEarnings,
     appSelected,
+    showNativeValue,
+    setShowNativeValue,
   } = useContext(EarningsContext);
+  console.log('showNativeValue', showNativeValue);
   const { coinList } = useContext(BankContext);
   const [coin, setCoin] = useState('BTC');
   const [searchEnable, setSearchEnable] = useState(false);
@@ -66,52 +69,83 @@ function EarningsPageHead() {
           <div className="balance">
             {loading ? (
               <Skeleton width={250} />
-            ) : (
+            ) : showNativeValue ? (
               coinSelected &&
               FormatCurrency(
                 liquidEarningBalances[coinSelected.coinSymbol],
                 coinSelected.coinSymbol
               )
+            ) : (
+              `$${
+                coinSelected &&
+                FormatCurrency(
+                  liquidEarningBalances[coinSelected.coinSymbol] *
+                    coinSelected.price.USD
+                )
+              }`
             )}{' '}
-            <small>
-              {loading ? (
-                ''
-              ) : (
-                <>
-                  $
-                  {coinSelected &&
+            <small
+              onClick={() => {
+                setShowNativeValue(!showNativeValue);
+              }}
+            >
+              {loading
+                ? ''
+                : showNativeValue
+                ? `$${
+                    coinSelected &&
                     FormatCurrency(
                       liquidEarningBalances[coinSelected.coinSymbol] *
                         coinSelected.price.USD
-                    )}
-                </>
-              )}
+                    )
+                  }`
+                : coinSelected &&
+                  FormatCurrency(
+                    liquidEarningBalances[coinSelected.coinSymbol],
+                    coinSelected.coinSymbol
+                  )}
             </small>
           </div>
         ) : (
           <div className="balance">
             {loading ? (
               <Skeleton width={250} />
-            ) : (
+            ) : showNativeValue ? (
               coinSelected &&
               FormatCurrency(
                 contractEarnings[coinSelected.coinSymbol],
                 coinSelected.coinSymbol
               )
+            ) : (
+              `$${
+                coinSelected &&
+                FormatCurrency(
+                  contractEarnings[coinSelected.coinSymbol] *
+                    coinSelected.price.USD
+                )
+              }`
             )}{' '}
-            <small>
-              {loading ? (
-                ''
-              ) : (
-                <>
-                  $
-                  {coinSelected &&
+            <small
+              onClick={() => {
+                setShowNativeValue(!showNativeValue);
+              }}
+            >
+              {loading
+                ? ''
+                : showNativeValue
+                ? `$
+                  ${
+                    coinSelected &&
                     FormatCurrency(
                       contractEarnings[coinSelected.coinSymbol] *
                         coinSelected.price.USD
-                    )}
-                </>
-              )}
+                    )
+                  }`
+                : coinSelected &&
+                  FormatCurrency(
+                    contractEarnings[coinSelected.coinSymbol],
+                    coinSelected.coinSymbol
+                  )}
             </small>
           </div>
         )}

@@ -171,6 +171,7 @@ function EarningsContextProvider({ children }) {
 
   const [dateSelected, setDateSelected] = useState(null);
 
+  const [showNativeValue, setShowNativeValue] = useState(true);
   return (
     <EarningsContext.Provider
       value={{
@@ -190,6 +191,9 @@ function EarningsContextProvider({ children }) {
         setAppSelected,
         contractEarnings,
         contractTransactions,
+
+        showNativeValue,
+        setShowNativeValue,
       }}
     >
       {children}
