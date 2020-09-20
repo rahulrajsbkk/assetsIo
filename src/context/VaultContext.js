@@ -64,6 +64,8 @@ function VaultContextProvider({ children }) {
 
   const [dateSelected, setDateSelected] = useState(null);
 
+  const [showNativeValue, setShowNativeValue] = useState(true);
+
   return (
     <VaultContext.Provider
       value={{
@@ -78,6 +80,8 @@ function VaultContextProvider({ children }) {
         setMenuTwo,
         dateSelected,
         setDateSelected,
+        showNativeValue,
+        setShowNativeValue,
       }}
     >
       {children}

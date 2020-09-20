@@ -13,6 +13,8 @@ function VaultPageHead() {
     coinSelected,
     setCoinSelected,
     loading,
+    showNativeValue,
+    setShowNativeValue,
   } = useContext(VaultContext);
   const [coin, setCoin] = useState('BTC');
   const [searchEnable, setSearchEnable] = useState(false);
@@ -53,16 +55,19 @@ function VaultPageHead() {
         <div className="balance">
           {loading ? (
             <Skeleton width={250} />
-          ) : (
+          ) : showNativeValue ? (
             coinSelected &&
             FormatCurrency(coinSelected.coinValue, coinSelected.coinSymbol)
+          ) : (
+            `$${coinSelected && FormatCurrency(coinSelected.coinValueUSD)}`
           )}{' '}
-          <small>
-            {loading ? (
-              ''
-            ) : (
-              <>${coinSelected && FormatCurrency(coinSelected.coinValueUSD)}</>
-            )}
+          <small onClick={() => setShowNativeValue(!showNativeValue)}>
+            {loading
+              ? ''
+              : showNativeValue
+              ? `$${coinSelected && FormatCurrency(coinSelected.coinValueUSD)}`
+              : coinSelected &&
+                FormatCurrency(coinSelected.coinValue, coinSelected.coinSymbol)}
           </small>
         </div>
       </div>

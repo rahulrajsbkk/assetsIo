@@ -1,4 +1,4 @@
-import React, { useContext, useState, Fragment } from 'react';
+import React, { useContext, useState, useEffect, Fragment } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import moment from 'moment';
 import { Scrollbars } from 'react-custom-scrollbars';
@@ -13,7 +13,16 @@ function VaultTransactionTable({ credit, debit }) {
     loading,
     menuTwo,
     dateSelected,
+    showNativeValue,
   } = useContext(VaultContext);
+
+  const [rate, setRate] = useState(1);
+
+  useEffect(() => {
+    setRate(
+      (coinSelected && coinSelected.price && coinSelected.price.USD) || 1
+    );
+  }, [coinSelected]);
 
   let date = '';
 
@@ -88,8 +97,10 @@ function VaultTransactionTable({ credit, debit }) {
                     </div>
                     <div
                       className={`credit ${checkIsExpandValue(
-                        (txn.deposit && txn.amount) || 0,
-                        txn.coin
+                        (txn.deposit &&
+                          txn.amount * (showNativeValue ? 1 : rate)) ||
+                          0,
+                        showNativeValue ? txn.coin : 'USD'
                       )}`}
                     >
                       <span
@@ -113,13 +124,20 @@ function VaultTransactionTable({ credit, debit }) {
                         Expand
                       </span>
                       <span className="value">
-                        {FormatCurrency(txn.deposit && txn.amount, txn.coin)}
+                        {FormatCurrency(
+                          (txn.deposit &&
+                            txn.amount * (showNativeValue ? 1 : rate)) ||
+                            0,
+                          showNativeValue ? txn.coin : 'USD'
+                        )}
                       </span>
                     </div>
                     <div
                       className={`debit ${checkIsExpandValue(
-                        (txn.withdraw && txn.amount) || 0,
-                        txn.coin
+                        (txn.withdraw &&
+                          txn.amount * (showNativeValue ? 1 : rate)) ||
+                          0,
+                        showNativeValue ? txn.coin : 'USD'
                       )}`}
                     >
                       <span
@@ -143,13 +161,18 @@ function VaultTransactionTable({ credit, debit }) {
                         Expand
                       </span>
                       <span className="value">
-                        {FormatCurrency(txn.withdraw && txn.amount, txn.coin)}
+                        {FormatCurrency(
+                          (txn.withdraw &&
+                            txn.amount * (showNativeValue ? 1 : rate)) ||
+                            0,
+                          showNativeValue ? txn.coin : 'USD'
+                        )}
                       </span>
                     </div>
                     <div
                       className={`balance ${checkIsExpandValue(
-                        txn.updated_balance,
-                        txn.coin
+                        txn.updated_balance * (showNativeValue ? 1 : rate),
+                        showNativeValue ? txn.coin : 'USD'
                       )}`}
                     >
                       <span
@@ -173,7 +196,10 @@ function VaultTransactionTable({ credit, debit }) {
                         Expand
                       </span>
                       <span className="value">
-                        {FormatCurrency(txn.updated_balance, txn.coin)}
+                        {FormatCurrency(
+                          txn.updated_balance * (showNativeValue ? 1 : rate),
+                          showNativeValue ? txn.coin : 'USD'
+                        )}
                       </span>
                     </div>
                   </div>
