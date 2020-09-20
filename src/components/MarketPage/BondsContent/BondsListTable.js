@@ -90,6 +90,7 @@ function BondsListTable({ assetTab, setCoinToDetail }) {
         </thead>
         <tbody className="tableContent">
           {Object.entries(conractsObj).map(([key, value], i) => {
+            const openedDetail = contract && contract._id === value._id;
             if (coinListObject[key].asset_type === assetType)
               return (
                 <Fragment key={value._id}>
@@ -115,11 +116,18 @@ function BondsListTable({ assetTab, setCoinToDetail }) {
                         }}
                         duration={duration}
                         start={0}
-                        end={convertCoin(value.amount, key) || 0}
+                        end={
+                          value.amount *
+                          ((openedDetail &&
+                            valueInUsd &&
+                            coinListObject &&
+                            coinListObject[key] &&
+                            coinListObject[key].price.USD) ||
+                            1)
+                        }
                         decimals={
-                          (defaultCoin.coin ? defaultCoin.coin : key) ===
-                            'ETH' ||
-                          (defaultCoin.coin ? defaultCoin.coin : key) === 'BTC'
+                          (key === 'ETH' || key === 'BTC') &&
+                          !(openedDetail && valueInUsd)
                             ? 4
                             : 2
                         }

@@ -269,6 +269,7 @@
     }
     .tableScrollWrapper {
       .asetPlatformTable {
+        table-layout: fixed;
         position: relative;
         width: 100%;
         .tableHead {
@@ -338,6 +339,7 @@
               &.estimatedDays {
                 padding: 0;
                 width: 220px;
+                max-width: 220px;
                 .estimatedDaysIn {
                   height: 45px;
                   display: flex;
