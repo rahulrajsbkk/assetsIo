@@ -1,0 +1,64 @@
+.transactionInspectorWrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  .overlay-ti {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.57);
+  }
+  .ti-content {
+    z-index: 2;
+    margin: auto;
+    width: 90%;
+    max-width: 700px;
+    min-height: 450px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    .ti-head {
+      display: flex;
+      align-items: center;
+      background: $primary-color;
+      height: 60px;
+      font-size: 26px;
+      font-weight: 600;
+      color: white;
+      padding: 0 40px;
+      line-height: 1;
+      img {
+        height: 35px;
+        filter: brightness(0) invert(1);
+        margin-right: 20px;
+      }
+    }
+    .ti-detail {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      padding: 0 12%;
+      .ti-row {
+        .label {
+          color: $primary-color;
+          font-size: 16px;
+        }
+        .value {
+          color: $primary-color;
+          font-size: 24px;
+          font-weight: 600;
+        }
+        &.horiz {
+          display: flex;
+        }
+      }
+    }
+  }
+}

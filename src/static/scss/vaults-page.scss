@@ -330,6 +330,19 @@
           justify-content: center;
           align-items: center;
           font-size: 18px;
+          .expand {
+            display: none;
+          }
+          &.true {
+            text-decoration: underline;
+            .value {
+              display: none;
+            }
+            .expand {
+              cursor: pointer;
+              display: block;
+            }
+          }
         }
         .credit {
           color: #3ea254;

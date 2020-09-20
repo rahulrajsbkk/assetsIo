@@ -7,7 +7,7 @@ export function FormatNumber(value, prec) {
   }).format(isNaN(value) ? 0 : value);
 }
 
-export function FormatCurrency(value, coin = 'USD') {
+export function FormatCurrency(value = 0, coin = 'USD') {
   if (coin.toUpperCase() === 'BTC' || coin.toUpperCase() === 'ETH') {
     if (value < 10) {
       return FormatNumber(value, 4);
