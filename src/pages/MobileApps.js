@@ -25,32 +25,36 @@ function MobileApps() {
           <img className="logo" src={logo} alt="" />
           <div className="title">Assets.io</div>
           <p className="subTitle">
-            Please Download The Mobile App For The Best User Experience.
+            {/* Please Download The Mobile App For The Best User Experience. */}
+            Coming Soon To
           </p>
         </div>
       </Zoom>
       <div className="download">
-        <h6>Download The App</h6>
+        <h6>
+          {/* Download The App */}
+          Coming Soon To
+        </h6>
         <div className="buttons">
-          <a
+          <div
             href={`https://${appLinks.androidlink}`}
             target="_blank"
-            className="btn-app"
+            className="btn-app disable"
             rel="noopener noreferrer"
           >
             <img src={android} alt="" />
             Android
-          </a>
+          </div>
           <div className="space" />
-          <a
+          <div
             href={`https://${appLinks.ioslink}`}
             target="_blank"
-            className="btn-app"
+            className="btn-app disable"
             rel="noopener noreferrer"
           >
             <img src={ios} alt="" />
             IOS
-          </a>
+          </div>
         </div>
       </div>
     </Layout>
