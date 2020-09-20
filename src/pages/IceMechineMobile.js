@@ -72,7 +72,11 @@ function IceMechineMobile() {
   };
 
   return (
-    <MobileLayout active="iceMecine" className="iceMecineMobile">
+    <MobileLayout
+      active="iceMecine"
+      menuSelected="bonds-tab"
+      className="iceMecineMobile"
+    >
       <div className="timeDetail">
         <div className="head">
           <span className="days">{days} Days</span>
