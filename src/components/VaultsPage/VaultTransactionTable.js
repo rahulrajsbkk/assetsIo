@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, Fragment } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import moment from 'moment';
 import { Scrollbars } from 'react-custom-scrollbars';
@@ -75,8 +75,10 @@ function VaultTransactionTable({ credit, debit }) {
                   );
                 }
               }
+
+              console.log('txn', txn);
               return (
-                <>
+                <Fragment key={txn._id}>
                   {sameDay()}
                   <div className="vaults-itm">
                     <img src={coinSelected && coinSelected.coinImage} alt="" />
@@ -107,8 +109,8 @@ function VaultTransactionTable({ credit, debit }) {
                             title: `${txn.pid || txn.reason}`,
                             amount: txn.amount,
                             coin: txn.coin,
-                            current: txn.current_balance * rate,
-                            updated: txn.updated_balance * rate,
+                            current: txn.usd_value,
+                            updated: txn.amount * rate,
                           });
                         }}
                       >
@@ -137,8 +139,8 @@ function VaultTransactionTable({ credit, debit }) {
                             title: `${txn.pid || txn.reason}`,
                             amount: txn.amount,
                             coin: txn.coin,
-                            current: txn.current_balance * rate,
-                            updated: txn.updated_balance * rate,
+                            current: txn.usd_value,
+                            updated: txn.amount * rate,
                           });
                         }}
                       >
@@ -167,7 +169,7 @@ function VaultTransactionTable({ credit, debit }) {
                             title: `${txn.pid || txn.reason}`,
                             amount: txn.updated_balance,
                             coin: txn.coin,
-                            current: txn.current_balance * rate,
+                            current: txn.updated_balance * rate,
                             updated: txn.updated_balance * rate,
                           });
                         }}
@@ -179,7 +181,7 @@ function VaultTransactionTable({ credit, debit }) {
                       </span>
                     </div>
                   </div>
-                </>
+                </Fragment>
               );
             })
         )}

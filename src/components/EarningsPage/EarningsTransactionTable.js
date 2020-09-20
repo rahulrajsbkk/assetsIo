@@ -109,8 +109,8 @@ function EarningsTransactionTable({ credit, debit }) {
                             }`,
                             amount: txn.earned_interest,
                             coin: txn.coin,
-                            current: txn.current_interest * rate,
-                            updated: txn.updated_interest * rate,
+                            current: txn.usd_value,
+                            updated: txn.earned_interest * rate,
                           });
                         }}
                       >
@@ -162,8 +162,7 @@ function EarningsTransactionTable({ credit, debit }) {
                                 coinListObject[txn.coin].price &&
                                 coinListObject[txn.coin].price.USD),
                             coin: txn.coin,
-                            current: txn.current_interest * rate,
-                            updated: txn.updated_interest * rate,
+                            current: txn.usd_value,
                           });
                         }}
                       >
@@ -209,7 +208,6 @@ function EarningsTransactionTable({ credit, debit }) {
                             }`,
                             amount: txn.updated_interest,
                             coin: txn.coin,
-                            current: txn.current_interest * rate,
                             updated: txn.updated_interest * rate,
                           });
                         }}
