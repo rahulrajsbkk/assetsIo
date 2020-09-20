@@ -8,6 +8,7 @@ import { IndexContext } from '../../../context/IndexContext';
 import LoginWrapper from '../../LoginModal/LoginWrapper';
 import { useHistory } from 'react-router-dom';
 import { PortfolioContext } from '../../../context/PortfolioContext';
+import { FormatNumber, FormatCurrency } from '../../../utils/FunctionTools';
 
 function BondsListTable({ assetTab, setCoinToDetail }) {
   const history = useHistory();
@@ -71,6 +72,7 @@ function BondsListTable({ assetTab, setCoinToDetail }) {
   };
 
   const [loginModalOpen, setLoginModalOpen] = useState(false);
+  const [valueInUsd, setValueInUsd] = useState(false);
 
   return (
     <>
@@ -188,32 +190,71 @@ function BondsListTable({ assetTab, setCoinToDetail }) {
                           <div className="cardRow">
                             <div className="bondCard">
                               <div className="value">
-                                0.12% <small>BTC</small>
+                                {FormatNumber(contractPreview.interestRate, 2)}%
                               </div>
                               <div className="label">Daily Interest Rate</div>
                             </div>
                             <div className="bondCard">
                               <div className="value">
-                                0.12% <small>BTC</small>
+                                {valueInUsd
+                                  ? `$${FormatNumber(
+                                      contractPreview.interestValueUsd,
+                                      3
+                                    )}`
+                                  : FormatNumber(
+                                      contractPreview.interestValue,
+                                      6
+                                    )}
+                                <small>
+                                  {valueInUsd ? 'USD' : contractPreview.coin}
+                                </small>
                               </div>
                               <div className="label">Daily Earnings</div>
                             </div>
                             <div className="bondCard">
                               <div className="value">
-                                0.12% <small>BTC</small>
+                                {FormatNumber(
+                                  contractPreview.interestRate *
+                                    contractPreview.days,
+                                  2
+                                )}
+                                %
                               </div>
                               <div className="label">Gross ROI</div>
                             </div>
                             <div className="bondCard">
                               <div className="value">
-                                0.12% <small>BTC</small>
+                                {valueInUsd
+                                  ? `$${FormatCurrency(
+                                      contractPreview.interestValueUsd *
+                                        contractPreview.days,
+                                      'USD'
+                                    )}`
+                                  : FormatCurrency(
+                                      contractPreview.interestValue *
+                                        contractPreview.days,
+                                      contractPreview.coin
+                                    )}
+                                <small>
+                                  {valueInUsd ? 'USD' : contractPreview.coin}
+                                </small>
                               </div>
                               <div className="label">Gross Earnings</div>
                             </div>
                           </div>
                           <div className="controllsRow">
-                            <div className="switchCurrency">
-                              View Data In US Dollars
+                            <div
+                              className="switchCurrency"
+                              onClick={() => setValueInUsd(!valueInUsd)}
+                            >
+                              {`View Data In ${
+                                valueInUsd
+                                  ? coinListObject &&
+                                    coinListObject[contractPreview.coin] &&
+                                    coinListObject[contractPreview.coin]
+                                      .coinName
+                                  : 'US Dollars'
+                              }`}
                             </div>
                             <div
                               className="btnSimulation"
