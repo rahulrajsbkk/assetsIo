@@ -1,13 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, Fragment } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import moment from 'moment';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { FormatCurrency, YesterdayToday } from '../../utils/FunctionTools';
 import { EarningsContext } from '../../context/EarningsContext';
-import { BankContext } from '../../context/Context';
 import TransactionInspector from '../TransactionInspector/TransactionInspector';
 
-function EarningsTransactionTable({ credit, debit }) {
+function EarningsTransactionTable() {
   const {
     coinSelected,
     loading,
@@ -16,7 +15,6 @@ function EarningsTransactionTable({ credit, debit }) {
     contractTransactions,
     liquidOrBond,
   } = useContext(EarningsContext);
-  const { coinListObject } = useContext(BankContext);
 
   let date = '';
 
@@ -72,7 +70,7 @@ function EarningsTransactionTable({ credit, debit }) {
                 }
               }
               return (
-                <>
+                <Fragment key={txn._id}>
                   {sameDay()}
                   <div className="vaults-itm">
                     <img src={coinSelected && coinSelected.coinImage} alt="" />
@@ -96,9 +94,8 @@ function EarningsTransactionTable({ credit, debit }) {
                           const rate =
                             (coinSelected &&
                               txn.coin &&
-                              coinListObject[txn.coin] &&
-                              coinListObject[txn.coin].price &&
-                              coinListObject[txn.coin].price.USD) ||
+                              coinSelected.price &&
+                              coinSelected.price.USD) ||
                             1;
                           setTiObject({
                             timestamp: txn.timestamp,
@@ -129,9 +126,8 @@ function EarningsTransactionTable({ credit, debit }) {
                           txn.usd_value /
                             ((coinSelected &&
                               txn.coin &&
-                              coinListObject[txn.coin] &&
-                              coinListObject[txn.coin].price &&
-                              coinListObject[txn.coin].price.USD) ||
+                              coinSelected.price &&
+                              coinSelected.price.USD) ||
                               1)) ||
                           0,
                         txn.coin
@@ -140,13 +136,6 @@ function EarningsTransactionTable({ credit, debit }) {
                       <span
                         className="expand"
                         onClick={() => {
-                          const rate =
-                            (coinSelected &&
-                              txn.coin &&
-                              coinListObject[txn.coin] &&
-                              coinListObject[txn.coin].price &&
-                              coinListObject[txn.coin].price.USD) ||
-                            1;
                           setTiObject({
                             timestamp: txn.timestamp,
                             title: `${
@@ -158,9 +147,8 @@ function EarningsTransactionTable({ credit, debit }) {
                               txn.usd_value /
                               (coinSelected &&
                                 txn.coin &&
-                                coinListObject[txn.coin] &&
-                                coinListObject[txn.coin].price &&
-                                coinListObject[txn.coin].price.USD),
+                                coinSelected.price &&
+                                coinSelected.price.USD),
                             coin: txn.coin,
                             current: txn.usd_value,
                           });
@@ -174,9 +162,8 @@ function EarningsTransactionTable({ credit, debit }) {
                             txn.usd_value /
                               ((coinSelected &&
                                 txn.coin &&
-                                coinListObject[txn.coin] &&
-                                coinListObject[txn.coin].price &&
-                                coinListObject[txn.coin].price.USD) ||
+                                coinSelected.price &&
+                                coinSelected.price.USD) ||
                                 1)) ||
                             0,
                           txn.coin
@@ -195,9 +182,8 @@ function EarningsTransactionTable({ credit, debit }) {
                           const rate =
                             (coinSelected &&
                               txn.coin &&
-                              coinListObject[txn.coin] &&
-                              coinListObject[txn.coin].price &&
-                              coinListObject[txn.coin].price.USD) ||
+                              coinSelected.price &&
+                              coinSelected.price.USD) ||
                             1;
                           setTiObject({
                             timestamp: txn.timestamp,
@@ -219,7 +205,7 @@ function EarningsTransactionTable({ credit, debit }) {
                       </span>
                     </div>
                   </div>
-                </>
+                </Fragment>
               );
             })
         )}

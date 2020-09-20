@@ -4,7 +4,6 @@ import moment from 'moment';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { VaultContext } from '../../context/VaultContext';
 import { FormatCurrency, YesterdayToday } from '../../utils/FunctionTools';
-import { BankContext } from '../../context/Context';
 import TransactionInspector from '../TransactionInspector/TransactionInspector';
 
 function VaultTransactionTable({ credit, debit }) {
@@ -15,7 +14,6 @@ function VaultTransactionTable({ credit, debit }) {
     menuTwo,
     dateSelected,
   } = useContext(VaultContext);
-  const { coinListObject } = useContext(BankContext);
 
   let date = '';
 
@@ -75,8 +73,6 @@ function VaultTransactionTable({ credit, debit }) {
                   );
                 }
               }
-
-              console.log('txn', txn);
               return (
                 <Fragment key={txn._id}>
                   {sameDay()}

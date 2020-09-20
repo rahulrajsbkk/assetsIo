@@ -150,6 +150,7 @@ function EarningsControlls() {
           </div>
           {userApps.map((app) => (
             <div
+              key={app.app_code}
               className={`appIcon ${
                 appSelected && appSelected.app_code === app.app_code
               }`}
