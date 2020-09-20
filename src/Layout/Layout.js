@@ -9,7 +9,7 @@ import LoginWrapper from '../components/LoginModal/LoginWrapper';
 import IceMechineFooter from '../components/Portfolio/PortfolioDashboard/IceMechineFooter';
 import WhatIsAssetsIo from '../components/WhatIsAssetsIo/WhatIsAssetsIo';
 
-function Layout({ children, active, className }) {
+function Layout({ children, active, className, hideFooter }) {
   const {
     email,
     openDefaultCoinSidebar,
@@ -18,7 +18,6 @@ function Layout({ children, active, className }) {
   } = useContext(BankContext);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [whatIsAssetIo, setWhatIsAssetIo] = useState(false);
-
   return (
     <>
       <div className="d-flex transaction-layout">
@@ -32,7 +31,7 @@ function Layout({ children, active, className }) {
         <div className="d-flex flex-column flex-grow-1 position-relative">
           <div className={`page-content ${className}`}>{children}</div>
           {active === 'portfolio' ? '' : <IceMechineFooter />}
-          {!email && footerShow ? (
+          {!email && footerShow && !hideFooter ? (
             <footer
               className="footer-main"
               onClick={() => {

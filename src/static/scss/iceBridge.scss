@@ -1,0 +1,34 @@
+.icedIndex .icedContainer .mainContent .content-section.bridge {
+  padding: 50px 90px;
+  .iceBridge {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    .heading {
+      display: flex;
+      font-size: 60px;
+      color: $primary-color;
+      font-weight: 700;
+      align-items: center;
+      line-height: 1;
+      img {
+        height: 55px;
+        width: auto;
+        margin-right: 20px;
+      }
+    }
+    .iceDesc {
+      margin-top: 15px;
+      font-size: 22px;
+      line-height: 1.9;
+    }
+    .whatBridgeSupport {
+      flex: 1;
+      .title {
+        color: $primary-color;
+        font-size: 30px;
+        font-weight: 600;
+      }
+    }
+  }
+}

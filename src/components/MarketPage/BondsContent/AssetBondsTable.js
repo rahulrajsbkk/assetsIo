@@ -5,7 +5,6 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import fullScreenIcon from '../../../static/images/fullScreen.svg';
 import fullScreenIconExit from '../../../static/images/fullScreenExit.svg';
 import BondsListTable from './BondsListTable';
-import allPlatformIcon from '../../../static/images/allPlatforms.svg';
 import { BankContext } from '../../../context/Context';
 import VaultContextProvider from '../../../context/VaultContext';
 import CoinDetailTable from '../EarnIntrest/CoinDetailTable';
@@ -44,41 +43,8 @@ function AssetBondsTable({
       }`}
     >
       <div className="assetTableControlls">
-        <div className={`bt-asset bond true`}>
-          By Bonds
-          <div
-            className="platform-select"
-            onClick={() => {
-              setContentSideBar({
-                head: (
-                  <div className="tab-itm order-1 true title">
-                    Select Platform
-                  </div>
-                ),
-                content: (
-                  <div
-                    className="coin"
-                    onClick={() => {
-                      setContentSideBar({});
-                    }}
-                  >
-                    <img
-                      className="coin-logo mr-2"
-                      src={allPlatformIcon}
-                      alt=""
-                    />
-                    <div className="coin-name">{'All Platforms'}</div>
-                  </div>
-                ),
-              });
-            }}
-          >
-            <div className="btn-togle mx-auto">
-              <img src={allPlatformIcon} alt="" />
-              {'All Platforms'}
-            </div>
-          </div>
-        </div>
+        <div className={`bt-asset bond true`}>By Bonds</div>
+        <div className={`bt-asset bond disable`}>By Asset</div>
         {coinToDetail ? (
           <div className="m-auto"></div>
         ) : (
