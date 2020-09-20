@@ -336,28 +336,30 @@
                 }
               }
               &.estimatedDays {
-                width: 200px;
+                padding: 0;
+                width: 220px;
                 .estimatedDaysIn {
-                  height: 34px;
+                  height: 45px;
                   display: flex;
-                  width: 65%;
-                  border: 1px solid $primary-color;
+                  border: 1px solid $vault-border-color;
+                  margin-right: 50px;
                   input {
                     padding: 0 15px;
                     width: 0;
                     flex-grow: 1;
                     border: none;
                     background: none;
+                    text-align: center;
                     -moz-appearance: textfield;
                   }
                   .btn-go {
                     height: 100%;
-                    width: 34px;
-                    background-color: $primary-color;
+                    width: 45px;
                     display: flex;
+                    border-left: 1px solid $vault-border-color;
                     justify-content: center;
                     align-items: center;
-                    color: white;
+                    color: $primary-color;
                   }
                   input::-webkit-outer-spin-button,
                   input::-webkit-inner-spin-button {
