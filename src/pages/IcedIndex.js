@@ -10,7 +10,7 @@ import backDouble from '../static/images/backDouble.svg';
 import IceSidebar from '../components/IceSidebar/IceSidebar';
 import IcePayouts from '../components/MarketPage/IcePayouts/IcePayouts';
 import IceIndices from '../components/MarketPage/IceIndices/IceIndices';
-import IceBridge from '../components/MarketPage/IceBridge/IceBridge';
+import IceTrust from '../components/MarketPage/IceTrust/IceTrust';
 
 function IcedIndex() {
   const [menuSelected, setMenuSelected] = useState('earn-intrest');
@@ -38,7 +38,7 @@ function IcedIndex() {
       case 'bridge':
         return (
           <>
-            <IceBridge />
+            <IceTrust />
           </>
         );
 

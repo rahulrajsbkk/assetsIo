@@ -8,20 +8,21 @@ import maker from '../../../static/images/marketLogos/maker.svg';
 import mortage from '../../../static/images/marketLogos/mortage.svg';
 import uniswap from '../../../static/images/marketLogos/uniswap.svg';
 
-function IceBridge() {
+function IceTrust() {
   return (
     <>
-      <div className="iceBridge">
+      <div className="iceTrust">
         <div className="heading">
           <img src={assetsLogo} alt="" />
-          Assets.io Bridge
+          DeFan Trusts
         </div>
         <p className="iceDesc">
-          The Assets.io Bridge Allows You To Transition Between CDP Smart
-          Contracts & Traditional Debt Instruments. You Can Leverage The Bridge
-          Inside A DEFI Assets Trust. Anyone Can Setup A Free Defi Assets Trust
-          Where They Can Manage, Convert, & Leverage Their DEFI & Traditional
-          Debt Instruments.
+          A Defan other wise known as Decentralized Financial Assets Network
+          Trust Is A Programmticaly Controlled Storge Which Allows You To
+          Transition Between CDP Smart Contracts & Traditional Debt Instruments.
+          You Can Leverage The Bridge Inside A DEFI Assets Trust. Anyone Can
+          Setup A Free Defi Assets Trust Where They Can Manage, Convert, &
+          Leverage Their DEFI & Traditional Debt Instruments.
         </p>
         <div className="whatBridgeSupport">
           <div className="title">What Doest The Bridge Support? </div>
@@ -100,4 +101,4 @@ function IceBridge() {
   );
 }
 
-export default IceBridge;
+export default IceTrust;
