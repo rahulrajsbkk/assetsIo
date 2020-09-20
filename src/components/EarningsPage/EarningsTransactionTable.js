@@ -93,11 +93,6 @@ function EarningsTransactionTable({ credit, debit }) {
                       <span
                         className="expand"
                         onClick={() => {
-                          console.log(
-                            'txn.earned_interest',
-                            txn.earned_interest
-                          );
-                          console.log('txn', txn);
                           const rate =
                             (coinSelected &&
                               txn.coin &&
@@ -145,11 +140,6 @@ function EarningsTransactionTable({ credit, debit }) {
                       <span
                         className="expand"
                         onClick={() => {
-                          console.log(
-                            'txn.earned_interest',
-                            txn.earned_interest
-                          );
-                          console.log('txn', txn);
                           const rate =
                             (coinSelected &&
                               txn.coin &&
@@ -203,11 +193,6 @@ function EarningsTransactionTable({ credit, debit }) {
                       <span
                         className="expand"
                         onClick={() => {
-                          console.log(
-                            'txn.earned_interest',
-                            txn.earned_interest
-                          );
-                          console.log('txn', txn);
                           const rate =
                             (coinSelected &&
                               txn.coin &&

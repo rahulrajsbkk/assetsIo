@@ -30,11 +30,11 @@ function TransactionInspector({ setOpenModal, tiObject }) {
             </div>
           </div>
           <div className="ti-row horiz">
-            <div className="w-50">
+            <div className="flex-50">
               <div className="label">Value In USD Then</div>
               <div className="value">${tiObject.current} USD</div>
             </div>
-            <div className="w-50">
+            <div className="flex-50">
               <div className="label">Value In USD Now</div>
               <div className="value">${tiObject.updated} USD</div>
             </div>
