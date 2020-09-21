@@ -68,7 +68,7 @@ function LayoutSidebar({ active }) {
         >
           <h5 className="d-flex py-3 menu-itm">
             <img src={portfolio} alt="" />
-            <span className="my-auto">My Net-Worth</span>
+            <span className="my-auto">Assets</span>
           </h5>
         </Link>
         <div
@@ -103,7 +103,7 @@ function LayoutSidebar({ active }) {
         >
           <h5 className="d-flex py-3 menu-itm">
             <img src={appstore} alt="" />
-            <span className="my-auto">Mobile Apps</span>
+            <span className="my-auto">Mobile</span>
           </h5>
         </Link>
         <div ref={menuEndRef} className="spacer" />

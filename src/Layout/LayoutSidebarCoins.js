@@ -113,7 +113,7 @@ function LayoutSidebarCoins({ active }) {
             >
               <h5 className="d-flex py-3 menu-itm">
                 <img src={portfolio} alt="" />
-                <span className="my-auto">My Net-Worth</span>
+                <span className="my-auto">Assets</span>
               </h5>
             </Link>
             <Link
@@ -148,7 +148,7 @@ function LayoutSidebarCoins({ active }) {
             >
               <h5 className="d-flex py-3 menu-itm">
                 <img src={appstore} alt="" />
-                <span className="my-auto">Mobile Apps</span>
+                <span className="my-auto">Mobile</span>
               </h5>
             </Link>
           </Scrollbars>
