@@ -27,7 +27,7 @@ function PortfolioSetDays() {
   const [boxStyle, setBoxStyle] = useState({ bottom: 20, left: 612 });
 
   useEffect(() => {
-    const baseWidth = ref.current.clientWidth - 725;
+    const baseWidth = ref.current.clientWidth - 825;
     const baseHeight = baseWidth * 0.384;
     setBoxStyle({
       bottom: 20 + (baseHeight * days) / totalDays,

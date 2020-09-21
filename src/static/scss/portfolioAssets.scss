@@ -153,12 +153,14 @@
     background-position-y: bottom;
     background-position-x: 600px;
     background-size: cover;
+    max-width: 1580px;
+    margin-left: auto;
     .range {
       z-index: 2;
       position: absolute;
       left: 600px;
       bottom: -72px;
-      width: calc((100% - 700px));
+      width: calc((100% - 800px));
       transform: skewY(-21deg);
       transform-origin: 0;
       -webkit-appearance: none;
