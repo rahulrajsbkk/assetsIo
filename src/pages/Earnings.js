@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import Layout from '../Layout/Index';
@@ -11,14 +11,19 @@ import { BankContext } from '../context/Context';
 
 function Earnings({ match }) {
   const { email } = useContext(BankContext);
+  const [openSelectApp, setOpenSelectApp] = useState(false);
+
   if (!email) {
     return <Redirect to="/" />;
   }
   return (
     <EarningsContextProvider>
-      <Layout active="earn" className="vaults">
+      <Layout active="earn" className={`vaults ${openSelectApp}`}>
         <EarningPageHead />
-        <EarningsControlls />
+        <EarningsControlls
+          openSelectApp={openSelectApp}
+          setOpenSelectApp={setOpenSelectApp}
+        />
         <EarningsTransactionTable
           credit={!(match.params.type === 'deposit')}
           debit={!(match.params.type === 'withdraw')}

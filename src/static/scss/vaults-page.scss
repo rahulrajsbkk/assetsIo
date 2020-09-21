@@ -198,6 +198,14 @@
           }
         }
       }
+      &.liquid {
+        border-radius: 6px 0 0 6px;
+        border-right: none;
+      }
+      &.bond {
+        border-radius: 0 6px 6px 0;
+        border-left: none;
+      }
     }
     .drop-select {
       cursor: pointer;
@@ -518,6 +526,23 @@
             max-width: 33.33%;
             font-size: 15px;
           }
+        }
+      }
+    }
+  }
+  &.true {
+    .head,
+    .vaults-list {
+      opacity: 0.25;
+    }
+    .controlls {
+      .search {
+        opacity: 0.25;
+      }
+      .drop-select {
+        &.liquid,
+        &.bond {
+          opacity: 0.25;
         }
       }
     }

@@ -1,13 +1,25 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+  Fragment,
+} from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
+import {
+  faSearch,
+  faTimes,
+  faCaretDown,
+  faCaretUp,
+} from '@fortawesome/free-solid-svg-icons';
 import moment from 'moment';
 import Skeleton from 'react-loading-skeleton';
 import { EarningsContext } from '../../context/EarningsContext';
 import assetLogo from '../../static/images/assetsLogo.svg';
+import OnOutsideClick from '../../utils/OnOutsideClick';
 
-function EarningsControlls() {
+function EarningsControlls({ openSelectApp, setOpenSelectApp }) {
   const {
     loading,
     earnTransactions,
@@ -21,7 +33,8 @@ function EarningsControlls() {
   } = useContext(EarningsContext);
   const [dateList, setDateList] = useState([]);
   const [searchStr, setSearchStr] = useState('');
-
+  const ref = useRef();
+  OnOutsideClick(ref, () => setOpenSelectApp(false));
   useEffect(() => {
     let dates = [];
     if (earnTransactions[0]) {
@@ -55,29 +68,62 @@ function EarningsControlls() {
   }, [earnTransactions]);
 
   return (
-    <>
+    <div ref={ref}>
       <div className="controlls">
         <div
-          className={`drop-select mr-3 ${liquidOrBond === 'Liquid'} ${
+          className={`drop-select liquid ${liquidOrBond === 'Liquid'} ${
             loading ? ' p-0' : ''
           }`}
-          onClick={() => setLiquidOrBond('Liquid')}
+          onClick={() => {
+            setLiquidOrBond('Liquid');
+            setOpenSelectApp(false);
+          }}
         >
           <div className="content">
             {loading ? <Skeleton width={230} height={40} /> : <>Liquid</>}
           </div>
         </div>
         <div
-          className={`drop-select mr-3 ${liquidOrBond === 'Bond'} ${
+          className={`drop-select bond ${liquidOrBond === 'Bond'} ${
             loading ? ' p-0' : ''
           }`}
-          onClick={() => setLiquidOrBond('Bond')}
+          onClick={() => {
+            setLiquidOrBond('Bond');
+            setOpenSelectApp(false);
+          }}
         >
           <div className="content">
             {loading ? <Skeleton width={140} height={40} /> : <>Bonds</>}
           </div>
         </div>
-        <div className={'search ml-auto' + (loading ? ' p-0' : '')}>
+
+        <div
+          className={`drop-select ml-4 ${loading ? ' p-0' : ''}`}
+          onClick={() => {
+            setOpenSelectApp(!openSelectApp);
+          }}
+        >
+          <div className="content">
+            {loading ? (
+              <Skeleton width={140} height={40} />
+            ) : (
+              <>
+                {`Earnings From ${
+                  (appSelected && appSelected.app_name) || 'All'
+                } Vaults`}
+                <FontAwesomeIcon
+                  className="ml-4"
+                  icon={openSelectApp ? faCaretUp : faCaretDown}
+                />
+              </>
+            )}
+          </div>
+        </div>
+
+        <div
+          onClick={() => setOpenSelectApp(false)}
+          className={'search ml-auto' + (loading ? ' p-0' : '')}
+        >
           <div className="content">
             {loading ? (
               <Skeleton width={200} height={40} />
@@ -134,36 +180,38 @@ function EarningsControlls() {
           )}
         </div>
       </div>
-      {liquidOrBond === 'Liquid' ? (
+      {openSelectApp && liquidOrBond === 'Liquid' ? (
         <Scrollbars
           className="assetApps"
           renderThumbHorizontal={() => <div style={{ opacity: 0 }} />}
           renderThumbVertical={() => <div style={{ opacity: 0 }} />}
           renderView={(props) => <div {...props} className="view" />}
         >
-          <div
-            className={`appIcon ${appSelected === null}`}
-            onClick={() => setAppSelected(null)}
-          >
-            A<div className="appTooltip">All</div>
-          </div>
-          {userApps.map((app) => (
+          <div className="d-flex" onClick={() => setOpenSelectApp(false)}>
             <div
-              key={app.app_code}
-              className={`appIcon ${
-                appSelected && appSelected.app_code === app.app_code
-              }`}
-              onClick={() => setAppSelected(app)}
+              className={`appIcon ${appSelected === null}`}
+              onClick={() => setAppSelected(null)}
             >
-              <img src={app.app_icon || assetLogo} alt="" />
-              <div className="appTooltip">{app.app_name}</div>
+              A<div className="appTooltip">All</div>
             </div>
-          ))}
+            {userApps.map((app) => (
+              <div
+                key={app.app_code}
+                className={`appIcon ${
+                  appSelected && appSelected.app_code === app.app_code
+                }`}
+                onClick={() => setAppSelected(app)}
+              >
+                <img src={app.app_icon || assetLogo} alt="" />
+                <div className="appTooltip">{app.app_name}</div>
+              </div>
+            ))}
+          </div>
         </Scrollbars>
       ) : (
         ''
       )}
-    </>
+    </div>
   );
 }
 
