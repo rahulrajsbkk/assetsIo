@@ -30,7 +30,7 @@ function Layout({ children, active, className, hideFooter }) {
         )}
         <div className="d-flex flex-column flex-grow-1 position-relative">
           <div className={`page-content ${className}`}>{children}</div>
-          {active === 'portfolio' ? '' : <IceMechineFooter />}
+          {active === 'portfolio' || hideFooter ? '' : <IceMechineFooter />}
           {!email && footerShow && !hideFooter ? (
             <footer
               className="footer-main"
