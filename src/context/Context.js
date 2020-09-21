@@ -251,6 +251,8 @@ function BankContextProvider({ children }) {
     );
   }, []);
 
+  const [iceSidebarOpen, setIceSidebarOpen] = useState(false);
+
   return (
     <BankContext.Provider
       value={{
@@ -284,6 +286,8 @@ function BankContextProvider({ children }) {
         conractsObj,
         coinNameObject,
         getIcedContracts,
+        iceSidebarOpen,
+        setIceSidebarOpen,
       }}
     >
       {children}

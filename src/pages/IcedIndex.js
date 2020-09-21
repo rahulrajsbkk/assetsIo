@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import Layout from '../Layout/Index';
 import EarnIntrest from '../components/MarketPage/EarnIntrest/EarnIntrest';
@@ -11,8 +11,10 @@ import IceSidebar from '../components/IceSidebar/IceSidebar';
 import IcePayouts from '../components/MarketPage/IcePayouts/IcePayouts';
 import IceIndices from '../components/MarketPage/IceIndices/IceIndices';
 import IceTrust from '../components/MarketPage/IceTrust/IceTrust';
+import { BankContext } from '../context/Context';
 
 function IcedIndex() {
+  const { iceSidebarOpen, setIceSidebarOpen } = useContext(BankContext);
   const [menuSelected, setMenuSelected] = useState('earn-intrest');
   const { width } = useWindowDimensions();
   function getPageContent(tab) {
@@ -58,8 +60,6 @@ function IcedIndex() {
   ];
   const [detailIndex, setDetailIndex] = useState(null);
 
-  const [iceOpen, setIceOpen] = useState(false);
-
   return (
     <IndexContextProvider>
       <Layout
@@ -70,7 +70,7 @@ function IcedIndex() {
         hideFooter={menuSelected === 'bridge'}
       >
         <div className="icedContainer">
-          <div className={`mainContent ${iceOpen}`}>
+          <div className={`mainContent ${iceSidebarOpen}`}>
             {width > 768 ? (
               <div className="tab">
                 <div
@@ -110,10 +110,10 @@ function IcedIndex() {
                   Indicies
                 </div>
                 <div
-                  onClick={() => setIceOpen(!iceOpen)}
+                  onClick={() => setIceSidebarOpen(!iceSidebarOpen)}
                   className={`tab-itm ice ${menuSelected === 'collateral'}`}
                 >
-                  <img src={iceOpen ? backDouble : iceLogo} alt="" />
+                  <img src={iceSidebarOpen ? backDouble : iceLogo} alt="" />
                 </div>
               </div>
             ) : (
@@ -125,7 +125,7 @@ function IcedIndex() {
                 <div
                   className={`overlayComingSoon det-${
                     detailIndex + 3
-                  } ${iceOpen}`}
+                  } ${iceSidebarOpen}`}
                   onMouseEnter={() => setDetailIndex(detailIndex)}
                 >
                   <div
@@ -142,7 +142,7 @@ function IcedIndex() {
               )}
             </div>
           </div>
-          {iceOpen ? <IceSidebar /> : ''}
+          {iceSidebarOpen ? <IceSidebar /> : ''}
         </div>
       </Layout>
     </IndexContextProvider>

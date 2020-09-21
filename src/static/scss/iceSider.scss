@@ -1,0 +1,109 @@
+.iceSidebar {
+  flex: 0 0 480px;
+  border-left: 1px $vault-border-color solid;
+  display: flex;
+  flex-direction: column;
+  .head {
+    padding: 40px 10px 0px 50px;
+    border-bottom: 1px solid $vault-border-color;
+    flex: 0 0 250px;
+    display: flex;
+    flex-direction: column;
+    .iceLogo {
+      height: 52px;
+      margin-right: auto;
+    }
+    .poweredBy {
+      display: flex;
+      color: #186ab4;
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+      text-decoration: none;
+      img {
+        align-items: center;
+        height: 25px;
+        margin-left: 10px;
+      }
+    }
+    .buttons {
+      margin: 30px 0;
+      display: flex;
+      padding: 8px 0;
+      .btn-filter {
+        cursor: pointer;
+        border: 1px solid $vault-border-color;
+        color: $primary-color;
+        font-weight: 600;
+        width: 0;
+        flex: 0 0 31%;
+        margin-right: 3.5%;
+        line-height: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        padding: 10px 0;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+      &.true {
+        margin-bottom: 10px;
+      }
+      &.sub {
+        margin-top: 0;
+        margin-bottom: 10px;
+        padding-top: 0;
+      }
+    }
+  }
+  .payoutsHead {
+    padding: 25px 50px;
+    border-bottom: 1px $vault-border-color solid;
+    h6 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      padding: 10px 0;
+      margin: 0;
+      span {
+        font-size: 16px;
+        font-weight: bold;
+      }
+    }
+  }
+  .iceEarningList {
+    .earningList {
+      display: flex;
+      flex-direction: column;
+      padding: 40px 0;
+      .day {
+        font-size: 14px;
+        font-weight: 600;
+        padding: 0 50px;
+        margin: 10px 0;
+      }
+      .transaction {
+        margin: 8px 50px;
+        justify-content: space-between;
+        display: flex;
+        padding: 33px 30px;
+        border: 1px solid $vault-border-color;
+        align-items: center;
+        h6 {
+          display: flex;
+          align-items: center;
+          margin: 0;
+          font-size: 17px;
+          line-height: 1;
+          img {
+            height: 18px;
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+  }
+}

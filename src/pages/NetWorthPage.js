@@ -6,9 +6,11 @@ import { BankContext } from '../context/Context';
 import HeadTabs from '../components/HeadTabs/HeadTabs';
 import NetWorthChart from '../components/NetWorthPage/NetWorthChart';
 import NetWorthCards from '../components/NetWorthPage/NetWorthCards';
+import IceSidebar from '../components/IceSidebar/IceSidebar';
 
 function NetWorthPage({ match }) {
-  const { email } = useContext(BankContext);
+  const { email, iceSidebarOpen } = useContext(BankContext);
+
   if (!email) {
     return <Redirect to="/" />;
   }
@@ -16,8 +18,11 @@ function NetWorthPage({ match }) {
     <Layout active="networth" className="vault-content">
       <HeadTabs />
       <div className="netWorthLayout">
-        <NetWorthChart match={match} />
-        <NetWorthCards />
+        <div className={`netWorthContent ${iceSidebarOpen}`}>
+          <NetWorthChart match={match} />
+          <NetWorthCards />
+        </div>
+        {iceSidebarOpen ? <IceSidebar /> : ''}
       </div>
     </Layout>
   );
