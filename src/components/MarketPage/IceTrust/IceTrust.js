@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import assetsLogo from '../../../static/images/assetsLogo.svg';
 import Scrollbars from 'react-custom-scrollbars';
 
@@ -7,8 +7,10 @@ import curve from '../../../static/images/marketLogos/curve.svg';
 import maker from '../../../static/images/marketLogos/maker.svg';
 import mortage from '../../../static/images/marketLogos/mortage.svg';
 import uniswap from '../../../static/images/marketLogos/uniswap.svg';
+import CreateDefiTrustWrapper from '../../CreateDefiTrust/CreateDefiTrustWrapper';
 
 function IceTrust() {
+  const [openDefiLogin, setOpenDefiLogin] = useState(false);
   return (
     <>
       <div className="iceTrust">
@@ -96,7 +98,17 @@ function IceTrust() {
           </div>
         </div>
       </div>
-      <div className="footer-main bridge-footer">Create DEFI Assets Trust</div>
+      <div
+        className="footer-main bridge-footer"
+        onClick={() => setOpenDefiLogin(true)}
+      >
+        Create DEFI Assets Trust
+      </div>
+      {openDefiLogin ? (
+        <CreateDefiTrustWrapper setOpenDefiLogin={setOpenDefiLogin} />
+      ) : (
+        ''
+      )}
     </>
   );
 }
