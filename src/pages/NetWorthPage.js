@@ -6,7 +6,6 @@ import { BankContext } from '../context/Context';
 import HeadTabs from '../components/HeadTabs/HeadTabs';
 import NetWorthChart from '../components/NetWorthPage/NetWorthChart';
 import NetWorthCards from '../components/NetWorthPage/NetWorthCards';
-import NetWorthContextProvider from '../context/ NetWorthContext';
 
 function NetWorthPage({ match }) {
   const { email } = useContext(BankContext);
@@ -15,13 +14,11 @@ function NetWorthPage({ match }) {
   }
   return (
     <Layout active="networth" className="vault-content">
-      <NetWorthContextProvider>
-        <HeadTabs />
-        <div className="netWorthLayout">
-          <NetWorthChart match={match} />
-          <NetWorthCards />
-        </div>
-      </NetWorthContextProvider>
+      <HeadTabs />
+      <div className="netWorthLayout">
+        <NetWorthChart match={match} />
+        <NetWorthCards />
+      </div>
     </Layout>
   );
 }

@@ -11,10 +11,13 @@ import planB from '../static/images/sidebar-icons/planB.svg';
 import appstore from '../static/images/sidebar-icons/appstore.svg';
 import { BankContext } from '../context/Context';
 import AssetPriceOrRates from './AssetPriceOrRates';
+import { NetWorthContext } from '../context/ NetWorthContext';
+import { FormatCurrency } from '../utils/FunctionTools';
 
 function LayoutSidebar({ active }) {
   const history = useHistory();
   const { username, name, profileImg, login } = useContext(BankContext);
+  const { totalBalance } = useContext(NetWorthContext);
 
   const menuEndRef = useRef(null);
 
@@ -35,14 +38,7 @@ function LayoutSidebar({ active }) {
         <img src={profileImg ? profileImg : guest} alt="" />
         <div className="col my-auto">
           <h5>{name ? name : username}&nbsp;</h5>
-          <div
-            className="getStartedBtn"
-            onClick={() => {
-              login();
-            }}
-          >
-            Logout
-          </div>
+          <div className="getStartedBtn">${FormatCurrency(totalBalance)}</div>
         </div>
       </div>
       <Scrollbars

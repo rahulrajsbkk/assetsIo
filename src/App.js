@@ -4,13 +4,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Routes from './Routes';
 import BankContextProvider from './context/Context';
 import PortfolioContextProvider from './context/PortfolioContext';
+import NetWorthContextProvider from './context/ NetWorthContext';
 
 const App = () => (
   <BankContextProvider>
     <PortfolioContextProvider>
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
+      <NetWorthContextProvider>
+        <BrowserRouter>
+          <Routes />
+        </BrowserRouter>
+      </NetWorthContextProvider>
     </PortfolioContextProvider>
   </BankContextProvider>
 );

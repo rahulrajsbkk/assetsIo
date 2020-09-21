@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Scrollbars } from 'react-custom-scrollbars';
+import { Link, useHistory } from 'react-router-dom';
 
 import settingsIcon from '../static/images/sidebar-icons/settings.svg';
 import selectIcon from '../static/images/sidebar-icons/selected.svg';
@@ -14,8 +15,9 @@ import appstore from '../static/images/sidebar-icons/appstore.svg';
 import allPlatforms from '../static/images/allPlatforms.svg';
 import { BankContext } from '../context/Context';
 import LoginWrapper from '../components/LoginModal/LoginWrapper';
-import { Link, useHistory } from 'react-router-dom';
 import SidebarSettings from './SidebarSettings';
+import { NetWorthContext } from '../context/ NetWorthContext';
+import { FormatCurrency } from '../utils/FunctionTools';
 
 function LayoutSidebarCoins({ active }) {
   const {
@@ -29,6 +31,7 @@ function LayoutSidebarCoins({ active }) {
     login,
     setOpenDefaultCoinSidebar,
   } = useContext(BankContext);
+  const { totalBalance } = useContext(NetWorthContext);
   const history = useHistory();
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [onLoginPage, setOnLoginPage] = useState('');
@@ -68,13 +71,8 @@ function LayoutSidebarCoins({ active }) {
           <div className="col my-auto">
             <h5>{email ? (name ? name : username) : 'Assets.io'}&nbsp;</h5>
             {email ? (
-              <div
-                className="getStartedBtn"
-                onClick={() => {
-                  login();
-                }}
-              >
-                Logout
+              <div className="getStartedBtn">
+                ${FormatCurrency(totalBalance)}
               </div>
             ) : (
               <div

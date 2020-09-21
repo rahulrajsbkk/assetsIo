@@ -535,6 +535,11 @@ function NetWorthContextProvider({ children }) {
   return (
     <NetWorthContext.Provider
       value={{
+        totalBalance:
+          fiatBalance +
+          cryptoBalance +
+          icedValues.crypto.value +
+          icedValues.fiat.value,
         loadingAppBalance, //Show Balance In Loading State
         fiatBalance,
         cryptoBalance,
