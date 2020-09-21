@@ -6,7 +6,6 @@ import moment from 'moment';
 import Skeleton from 'react-loading-skeleton';
 import { EarningsContext } from '../../context/EarningsContext';
 import assetLogo from '../../static/images/assetsLogo.svg';
-import { IsValidURL } from '../../utils/FunctionTools';
 
 function EarningsControlls() {
   const {
@@ -156,7 +155,7 @@ function EarningsControlls() {
               }`}
               onClick={() => setAppSelected(app)}
             >
-              <img src={IsValidURL(app.app_icon) || assetLogo} alt="" />
+              <img src={app.app_icon || assetLogo} alt="" />
               <div className="appTooltip">{app.app_name}</div>
             </div>
           ))}
