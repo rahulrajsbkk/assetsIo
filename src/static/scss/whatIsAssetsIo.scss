@@ -1,0 +1,222 @@
+.whatIsAssetsIo {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: white;
+  z-index: 5;
+  padding: 60px 80px;
+  display: flex;
+  flex-direction: column;
+  .closeWhatIsAsset {
+    position: absolute;
+    top: 60px;
+    right: 80px;
+    cursor: pointer;
+    height: 25px;
+  }
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .logoSvg {
+      height: 40px;
+    }
+  }
+  .subTitle {
+    font-size: 20px;
+    margin-top: 45px;
+    width: 90%;
+    line-height: 1.8;
+  }
+  .cardsHelp {
+    padding: 20px 0;
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 20px 20px;
+    .helpCard {
+      position: relative;
+      border: 1px solid $vault-border-color;
+      display: flex;
+      > .front,
+      > .back {
+        display: flex;
+        transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition-duration: 0.5s;
+        transition-property: transform, opacity;
+        flex: 1;
+      }
+      > .front {
+        transform: rotateY(0deg);
+        background-color: white;
+        justify-content: center;
+        align-items: center;
+        h5 {
+          font-size: 28px;
+          font-weight: 600;
+        }
+      }
+      > .back {
+        position: absolute;
+        opacity: 0;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        transform: rotateX(-180deg);
+        background-color: $primary-color;
+        flex-direction: column;
+        padding: 40px 60px;
+        h5,
+        p {
+          color: white;
+        }
+        h5 {
+          font-size: 24px;
+        }
+        p {
+          margin-top: 10px;
+          line-height: 1.8;
+          font-size: 14px;
+        }
+        .btnLetsGo {
+          background-color: white;
+          color: $primary-color;
+          padding: 6px 20px;
+          margin-right: auto;
+          font-weight: 600;
+          cursor: pointer;
+        }
+      }
+      &:hover {
+        > .front {
+          transform: rotateX(180deg);
+        }
+        > .back {
+          opacity: 1;
+          transform: rotateX(0deg);
+        }
+      }
+      &.disable {
+        border-color: $primary-color;
+        &:hover {
+          > .front {
+            transform: rotateX(0deg);
+          }
+        }
+      }
+    }
+  }
+  .playList {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .title {
+      font-size: 34px;
+      font-weight: bold;
+    }
+    .goBack {
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: underline;
+    }
+    .mainList {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      .ListAccordin {
+        margin-top: 20px;
+        border: solid 1px $vault-border-color;
+        display: flex;
+        flex-direction: column;
+        .head {
+          height: 55px;
+          padding: 0 50px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          font-size: 17px;
+          line-height: 1;
+          color: $primary-color;
+          .icon {
+            font-size: 24px;
+          }
+        }
+        .analyticsEarn {
+          height: 0;
+          flex-grow: 1;
+          display: none;
+          .menu {
+            flex: 0 0 25%;
+            border-right: 1px solid #e7e7e7;
+            position: relative;
+            .view {
+              padding: 20px 40px;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-evenly;
+              .menu-itm {
+                flex: 0 0 20%;
+                cursor: pointer;
+                color: #464b4e;
+                font-size: 16px;
+                margin-left: 10px;
+                opacity: 0.5;
+                &.true {
+                  font-size: 22px;
+                  font-weight: bold;
+                  margin: 0;
+                  opacity: 1;
+                }
+              }
+            }
+            &.true {
+              zoom: 0.9;
+            }
+          }
+          .content {
+            display: flex;
+            .textContent {
+              flex: 1;
+              padding: 50px;
+              h6 {
+                font-size: 22px;
+                font-weight: bold;
+              }
+              .textDetail {
+                font-size: 18px;
+              }
+            }
+            .palyerWrapper {
+              min-width: 320px;
+              flex: 0 0 320px;
+              border-left: 1px solid $vault-border-color;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              svg {
+                height: 40%;
+              }
+            }
+          }
+        }
+        &.true {
+          flex: 1;
+          margin-bottom: 10px;
+          .head {
+            background: $primary-color;
+            color: white;
+            font-weight: 600;
+          }
+          .analyticsEarn {
+            display: flex;
+          }
+        }
+      }
+    }
+  }
+}
