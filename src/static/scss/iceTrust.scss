@@ -75,4 +75,36 @@
     font-weight: 600;
     font-size: 26px;
   }
+  .iceTrustMobile {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    h3 {
+      font-size: 40px;
+      font-weight: bold;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    h5 {
+      font-size: 20px;
+      line-height: 1;
+    }
+    p {
+      font-size: 13px;
+      margin: 20px 0;
+    }
+    .btnLearnMore {
+      margin-top: 20px;
+      cursor: pointer;
+      width: 140px;
+      height: 40px;
+      background: $primary-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: 600;
+    }
+  }
 }
