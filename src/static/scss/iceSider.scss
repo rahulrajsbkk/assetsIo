@@ -101,6 +101,9 @@
           img {
             height: 18px;
             margin-right: 8px;
+            &.flag {
+              width: 35px;
+            }
           }
         }
       }

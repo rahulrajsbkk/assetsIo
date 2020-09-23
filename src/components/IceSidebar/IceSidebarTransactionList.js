@@ -56,11 +56,8 @@ function IceSidebarTransactionList({ globalEarnings, loading }) {
                   {FormatCurrency(txn.earned_interest, txn.coin)}
                 </h6>
                 <h6>
-                  <img
-                    src="https://icedvault.com/static/media/allPlatforms.aab1e804.svg"
-                    alt=""
-                  />
-                  Global
+                  <img className="flag" src={txn.countryData.image} alt="" />
+                  {txn.countryData.code}
                 </h6>
               </div>
             </Fragment>
