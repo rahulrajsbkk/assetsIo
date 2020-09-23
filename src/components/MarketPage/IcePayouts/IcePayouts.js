@@ -6,27 +6,34 @@ import moneyMarketLogo from '../../../static/images/moneyMarketLogo.svg';
 import { BankContext } from '../../../context/Context';
 import { Link } from 'react-router-dom';
 import IceSidebarTransactionList from '../../IceSidebar/IceSidebarTransactionList';
+import Skeleton from 'react-loading-skeleton';
 
 function IcePayouts() {
   const [earnStats, setEarnStats] = useState({});
   const [globalEarnings, setGlobalEarnings] = useState([]);
   const [coinType, setCoinType] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     Axios.get(
       `https://comms.globalxchange.com/coin/iced/interest/logs/get/all${
         coinType ? `?asset_type=${coinType}` : ''
       }`
-    ).then((res) => {
-      const { data } = res;
-      if (data.status) {
-        setEarnStats({
-          ...data,
-          interestLogs: [],
-        });
-        setGlobalEarnings(data.interestLogs);
-      }
-    });
+    )
+      .then((res) => {
+        const { data } = res;
+        if (data.status) {
+          setEarnStats({
+            ...data,
+            interestLogs: [],
+          });
+          setGlobalEarnings(data.interestLogs);
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [coinType]);
 
   const [menuUserTypes, setMenuUserTypes] = useState(false);
@@ -49,54 +56,80 @@ function IcePayouts() {
       <div className="payoutsHead">
         <div className="item">
           <div className="value">
-            <CountUp
-              onEnd={() => {
-                if (updateInterval)
-                  setTimeout(() => {
-                    togleDuration(duration);
-                  }, updateInterval * 1000);
-              }}
-              duration={duration}
-              start={0}
-              end={earnStats.interest_payments || 0}
-              decimals={0}
-            />
+            {loading ? (
+              <Skeleton width={60} />
+            ) : (
+              <CountUp
+                onEnd={() => {
+                  if (updateInterval)
+                    setTimeout(() => {
+                      togleDuration(duration);
+                    }, updateInterval * 1000);
+                }}
+                duration={duration}
+                start={0}
+                end={earnStats.interest_payments || 0}
+                decimals={0}
+              />
+            )}
           </div>
-          <div className="label">Payouts Till Date</div>
+          <div className="label">
+            {loading ? <Skeleton width={80} /> : 'Payouts Till Date'}
+          </div>
         </div>
         <div className="item">
           <div className="value">
-            $
-            <CountUp
-              duration={duration}
-              start={0}
-              end={earnStats.interest_paid || 0}
-              decimals={2}
-            />
+            {loading ? (
+              <Skeleton width={60} />
+            ) : (
+              <>
+                $
+                <CountUp
+                  duration={duration}
+                  start={0}
+                  end={earnStats.interest_paid || 0}
+                  decimals={2}
+                />
+              </>
+            )}
           </div>
-          <div className="label">Total Earnings</div>
+          <div className="label">
+            {loading ? <Skeleton width={80} /> : 'Total Earnings'}
+          </div>
         </div>
         <div className="item">
           <div className="value">
-            <CountUp
-              duration={duration}
-              start={0}
-              end={earnStats.contracts || 0}
-              decimals={0}
-            />
+            {loading ? (
+              <Skeleton width={60} />
+            ) : (
+              <CountUp
+                duration={duration}
+                start={0}
+                end={earnStats.contracts || 0}
+                decimals={0}
+              />
+            )}
           </div>
-          <div className="label">Contracts</div>
+          <div className="label">
+            {loading ? <Skeleton width={80} /> : 'Contracts'}
+          </div>
         </div>
         <div className="item">
           <div className="value">
-            <CountUp
-              duration={duration}
-              start={0}
-              end={earnStats.assets || 0}
-              decimals={0}
-            />
+            {loading ? (
+              <Skeleton width={60} />
+            ) : (
+              <CountUp
+                duration={duration}
+                start={0}
+                end={earnStats.assets || 0}
+                decimals={0}
+              />
+            )}
           </div>
-          <div className="label">Assets</div>
+          <div className="label">
+            {loading ? <Skeleton width={80} /> : 'Assets'}
+          </div>
         </div>
       </div>
       <div
@@ -173,7 +206,10 @@ function IcePayouts() {
       ) : (
         ''
       )}
-      <IceSidebarTransactionList globalEarnings={globalEarnings} />
+      <IceSidebarTransactionList
+        loading={loading}
+        globalEarnings={globalEarnings}
+      />
     </div>
   );
 }

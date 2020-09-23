@@ -6,27 +6,34 @@ import Axios from 'axios';
 import CountUp from 'react-countup';
 import { Link } from 'react-router-dom';
 import { BankContext } from '../../context/Context';
+import Skeleton from 'react-loading-skeleton';
 
 function IceSidebar() {
   const [earnStats, setEarnStats] = useState({});
   const [globalEarnings, setGlobalEarnings] = useState([]);
   const [coinType, setCoinType] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     Axios.get(
       `https://comms.globalxchange.com/coin/iced/interest/logs/get/all${
         coinType ? `?asset_type=${coinType}` : ''
       }`
-    ).then((res) => {
-      const { data } = res;
-      if (data.status) {
-        setEarnStats({
-          ...data,
-          interestLogs: [],
-        });
-        setGlobalEarnings(data.interestLogs);
-      }
-    });
+    )
+      .then((res) => {
+        const { data } = res;
+        if (data.status) {
+          setEarnStats({
+            ...data,
+            interestLogs: [],
+          });
+          setGlobalEarnings(data.interestLogs);
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [coinType]);
 
   const [menuUserTypes, setMenuUserTypes] = useState(false);
@@ -129,53 +136,62 @@ function IceSidebar() {
       </div>
 
       <div className="payoutsHead">
-        <h6>
-          Payouts Till Date
-          <CountUp
-            onEnd={() => {
-              if (updateInterval)
-                setTimeout(() => {
-                  togleDuration(duration);
-                }, updateInterval * 1000);
-            }}
-            duration={duration}
-            start={0}
-            end={earnStats.interest_payments || 0}
-            decimals={0}
-          />
-        </h6>
-        <h6>
-          Total Earnings
-          <span>
-            $
-            <CountUp
-              duration={duration}
-              start={0}
-              end={earnStats.interest_paid || 0}
-              decimals={2}
-            />
-          </span>
-        </h6>
-        <h6>
-          Contracts
-          <CountUp
-            duration={duration}
-            start={0}
-            end={earnStats.contracts || 0}
-            decimals={0}
-          />
-        </h6>
-        <h6>
-          Assets
-          <CountUp
-            duration={duration}
-            start={0}
-            end={earnStats.assets || 0}
-            decimals={0}
-          />
-        </h6>
+        {loading ? (
+          <Skeleton height={35} count={4} />
+        ) : (
+          <>
+            <h6>
+              Payouts Till Date
+              <CountUp
+                onEnd={() => {
+                  if (updateInterval)
+                    setTimeout(() => {
+                      togleDuration(duration);
+                    }, updateInterval * 1000);
+                }}
+                duration={duration}
+                start={0}
+                end={earnStats.interest_payments || 0}
+                decimals={0}
+              />
+            </h6>
+            <h6>
+              Total Earnings
+              <span>
+                $
+                <CountUp
+                  duration={duration}
+                  start={0}
+                  end={earnStats.interest_paid || 0}
+                  decimals={2}
+                />
+              </span>
+            </h6>
+            <h6>
+              Contracts
+              <CountUp
+                duration={duration}
+                start={0}
+                end={earnStats.contracts || 0}
+                decimals={0}
+              />
+            </h6>
+            <h6>
+              Assets
+              <CountUp
+                duration={duration}
+                start={0}
+                end={earnStats.assets || 0}
+                decimals={0}
+              />
+            </h6>
+          </>
+        )}
       </div>
-      <IceSidebarTransactionList globalEarnings={globalEarnings} />
+      <IceSidebarTransactionList
+        loading={loading}
+        globalEarnings={globalEarnings}
+      />
     </div>
   );
 }
