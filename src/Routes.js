@@ -27,6 +27,12 @@ function Routes() {
       <Route exact path="/index">
         <IcedIndex />
       </Route>
+      <Route exact path="/bonds">
+        <IcedIndex activeTab={'bonds'} />
+      </Route>
+      <Route exact path="/globalPayments">
+        <IcedIndex activeTab={'globalPayments'} />
+      </Route>
       <Route exact path="/">
         <>{email ? <NetWorthPage /> : <IcedIndex />}</>
       </Route>

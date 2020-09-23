@@ -18,7 +18,7 @@ function Earnings({ match }) {
   }
   return (
     <EarningsContextProvider>
-      <Layout active="earn" className={`vaults ${openSelectApp}`}>
+      <Layout active="earn" className={`vaults ${openSelectApp}`} footerMain>
         <EarningPageHead />
         <EarningsControlls
           openSelectApp={openSelectApp}

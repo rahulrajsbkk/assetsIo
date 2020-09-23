@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 
 import Layout from '../Layout/Index';
 import EarnIntrest from '../components/MarketPage/EarnIntrest/EarnIntrest';
@@ -13,7 +13,7 @@ import IceIndices from '../components/MarketPage/IceIndices/IceIndices';
 import IceTrust from '../components/MarketPage/IceTrust/IceTrust';
 import { BankContext } from '../context/Context';
 
-function IcedIndex() {
+function IcedIndex({ activeTab }) {
   const { iceSidebarOpen, setIceSidebarOpen } = useContext(BankContext);
   const [menuSelected, setMenuSelected] = useState('earn-intrest');
   const { width } = useWindowDimensions();
@@ -52,6 +52,10 @@ function IcedIndex() {
         );
     }
   }
+  useEffect(() => {
+    if (activeTab === 'bonds') setMenuSelected('bonds-tab');
+    if (activeTab === 'globalPayments') setMenuSelected('payouts');
+  }, [activeTab]);
 
   const details = [
     'Indicies Will Allow You To Create Your Own Index Funds In A Matter Of Seconds. Tap Into The Biggest Trends In The World Without The Risk Of Choosing The Right Asset. ',
@@ -63,11 +67,12 @@ function IcedIndex() {
   return (
     <IndexContextProvider>
       <Layout
-        active="index"
+        active={activeTab || 'index'}
         className="icedIndex"
         menuSelected={menuSelected}
         setMenuSelected={setMenuSelected}
         hideFooter={menuSelected === 'bridge'}
+        footerMain={Boolean(activeTab)}
       >
         <div className="icedContainer">
           <div className={`mainContent ${iceSidebarOpen}`}>

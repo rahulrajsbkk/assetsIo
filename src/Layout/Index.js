@@ -10,6 +10,7 @@ function MainLayout({
   setMenuSelected,
   menuSelected,
   hideFooter,
+  footerMain,
 }) {
   const { width } = useWindowDimensions();
   return (
@@ -28,6 +29,7 @@ function MainLayout({
           className={className}
           setMenuSelected={setMenuSelected}
           menuSelected={menuSelected}
+          footerMain={footerMain}
         />
       )}
     </>

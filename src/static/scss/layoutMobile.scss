@@ -110,6 +110,11 @@
         opacity: 0.8;
       }
       .tab-name {
+        text-decoration: none !important;
+        margin-top: 3px;
+        line-height: 1;
+        text-align: center;
+        color: $primary-color;
         font-size: 12px;
         font-weight: 600;
         display: none;
@@ -125,6 +130,9 @@
         .tab-name {
           display: block;
         }
+      }
+      &:hover {
+        text-decoration: none;
       }
     }
   }

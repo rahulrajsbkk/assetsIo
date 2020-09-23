@@ -17,7 +17,7 @@ function NetWorthPage({ match }) {
     return <Redirect to="/" />;
   }
   return (
-    <Layout active="networth" className="vault-content">
+    <Layout active="networth" className="vault-content" footerMain>
       <HeadTabs />
       <div className={`netWorthLayout ${netWorthMobileOpen}`}>
         <div className={`netWorthContent ${iceSidebarOpen}`}>

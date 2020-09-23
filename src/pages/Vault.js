@@ -16,7 +16,7 @@ function Vault({ match }) {
   }
   return (
     <VaultContextProvider>
-      <Layout active={`vaults-${match.params.type}`} className="vaults">
+      <Layout active={`vaults`} className="vaults" footerMain>
         <VaultPageHead />
         <VaultControlls />
         <VaultTransactionTable
