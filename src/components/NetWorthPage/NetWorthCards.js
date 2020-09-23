@@ -79,6 +79,7 @@ function NetWorthCards() {
         <div {...props} className="netWorthCardsListView" />
       )}
     >
+      <div className="stikyHeadMobile">Showing All Asset Types</div>
       {cardList.sort(GetSortOrder('value')).map((card, i) => (
         <div
           key={`${card.name}${i + assetClass + assetCoin + liquidity}`}

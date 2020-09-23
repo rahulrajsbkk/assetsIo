@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import Layout from '../Layout/Index';
 import { BankContext } from '../context/Context';
@@ -11,15 +11,20 @@ import IceSidebar from '../components/IceSidebar/IceSidebar';
 function NetWorthPage({ match }) {
   const { email, iceSidebarOpen } = useContext(BankContext);
 
+  const [netWorthMobileOpen, setNetWorthMobileOpen] = useState(false);
+
   if (!email) {
     return <Redirect to="/" />;
   }
   return (
     <Layout active="networth" className="vault-content">
       <HeadTabs />
-      <div className="netWorthLayout">
+      <div className={`netWorthLayout ${netWorthMobileOpen}`}>
         <div className={`netWorthContent ${iceSidebarOpen}`}>
-          <NetWorthChart match={match} />
+          <NetWorthChart
+            setNetWorthMobileOpen={setNetWorthMobileOpen}
+            match={match}
+          />
           <NetWorthCards />
         </div>
         {iceSidebarOpen ? <IceSidebar /> : ''}

@@ -9,7 +9,7 @@ import { NetWorthContext } from '../../context/ NetWorthContext';
 import { BankContext } from '../../context/Context';
 import Skeleton from 'react-loading-skeleton';
 
-function NetWorthChart({ match }) {
+function NetWorthChart({ match, setNetWorthMobileOpen }) {
   const [segment, setSegment] = useState(null);
   const {
     cardList,
@@ -149,7 +149,7 @@ function NetWorthChart({ match }) {
   return (
     <>
       <ContextMenuTrigger className="chartSection" id="same_unique_identifier">
-        <div className="breadCrumbs d-flex">
+        <div className="breadCrumbs">
           <span
             onContextMenuCapture={() => {
               setFilter('networth');
@@ -217,7 +217,7 @@ function NetWorthChart({ match }) {
           </h4>
         </div>
         <div className="chart-section mb-auto">
-          <div className="chart">
+          <div className="chart" onClick={() => setNetWorthMobileOpen(true)}>
             <div className="chartLogo">
               <img src={assetLogo} alt="" />
             </div>
@@ -232,6 +232,9 @@ function NetWorthChart({ match }) {
               segment={segment}
             />
           </div>
+        </div>
+        <div className="clickText">
+          Click The Assets Icon To See Your Portfolio Composition
         </div>
       </ContextMenuTrigger>
 

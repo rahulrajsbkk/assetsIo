@@ -1,243 +1,311 @@
-.netWorthLayout {
-  flex-grow: 1;
-  display: flex;
-  .netWorthContent {
+.vault-content {
+  .netWorthLayout {
+    flex-grow: 1;
     display: flex;
-    flex: 1;
-    .react-contextmenu-wrapper {
-      flex: 0 0 38%;
-      max-width: 38%;
+    .netWorthContent {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 80px 0 80px 130px;
-      .breadCrumbs {
-        font-size: 14px;
-        span {
-          cursor: pointer;
-          &:last-of-type {
-            font-weight: 600;
-            text-decoration: underline;
-          }
-        }
-      }
-      .total {
-        cursor: pointer;
-        margin-bottom: 20px;
-        h6 {
-          color: $primary-color;
-          font-size: 22px;
-        }
-        h4 {
-          color: $primary-color;
-          font-size: 45px;
-          font-weight: bold;
-        }
-      }
-      .chart-section {
-        display: flex;
-        .chart {
-          width: 300px;
-          flex: 0 0 300px;
-          position: relative;
-          transform-style: preserve-3d;
-          margin-right: 20px;
-          span {
-            width: 100%;
-            height: 100%;
-          }
-          .chartLogo {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transform: translate3d(0, 0, -1px);
-            img {
-              width: 45%;
-            }
-          }
-        }
-      }
-    }
-    .netWorthCardsList {
-      flex: 0 0 62%;
-      max-width: 62%;
-      .netWorthCardsListView {
+      flex: 1;
+      .react-contextmenu-wrapper {
+        flex: 0 0 38%;
+        max-width: 38%;
         display: flex;
         flex-direction: column;
-        border-left: $vault-border-color 1px solid;
-        .netWorthCard {
-          flex: 0 0 28%;
-          border-bottom: $vault-border-color 1px solid;
+        justify-content: center;
+        padding: 80px 0 80px 130px;
+        .breadCrumbs {
           display: flex;
-          .colorHighlight {
-            flex: 0 0 16px;
-            border-right: $vault-border-color 1px solid;
-          }
-          .bondsItem {
-            flex-grow: 1;
+          font-size: 14px;
+          span {
             cursor: pointer;
-            border-bottom: 1px solid $vault-border-color;
-            padding: 4% 6%;
-            display: flex;
-            flex-direction: column;
-            .coinPrice,
-            .labels,
-            .rates {
+            &:last-of-type {
+              font-weight: 600;
+              text-decoration: underline;
+            }
+          }
+        }
+        .total {
+          cursor: pointer;
+          margin-bottom: 20px;
+          h6 {
+            color: $primary-color;
+            font-size: 22px;
+          }
+          h4 {
+            color: $primary-color;
+            font-size: 45px;
+            font-weight: bold;
+          }
+        }
+        .chart-section {
+          display: flex;
+          .chart {
+            width: 300px;
+            flex: 0 0 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            margin-right: 20px;
+            span {
+              width: 100%;
+              height: 100%;
+            }
+            .chartLogo {
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
               display: flex;
-              justify-content: space-between;
-              color: $primary-color;
+              align-items: center;
+              justify-content: center;
+              transform: translate3d(0, 0, -1px);
+              img {
+                width: 45%;
+              }
             }
-            .coinPrice {
-              .img {
-                height: 44px;
+          }
+        }
+        .clickText {
+          display: none;
+        }
+      }
+      .netWorthCardsList {
+        flex: 0 0 62%;
+        max-width: 62%;
+        .netWorthCardsListView {
+          display: flex;
+          flex-direction: column;
+          border-left: $vault-border-color 1px solid;
+          .stikyHeadMobile {
+            display: none;
+          }
+          .netWorthCard {
+            flex: 0 0 28%;
+            border-bottom: $vault-border-color 1px solid;
+            display: flex;
+            .colorHighlight {
+              flex: 0 0 16px;
+              border-right: $vault-border-color 1px solid;
+            }
+            .bondsItem {
+              flex-grow: 1;
+              cursor: pointer;
+              border-bottom: 1px solid $vault-border-color;
+              padding: 4% 6%;
+              display: flex;
+              flex-direction: column;
+              .coinPrice,
+              .labels,
+              .rates {
                 display: flex;
-                align-items: center;
-                font-size: 23px;
-                font-weight: bold;
-                img {
-                  height: 80%;
-                  margin-right: 10px;
+                justify-content: space-between;
+                color: $primary-color;
+              }
+              .coinPrice {
+                .img {
+                  height: 44px;
+                  display: flex;
+                  align-items: center;
+                  font-size: 23px;
+                  font-weight: bold;
+                  img {
+                    height: 80%;
+                    margin-right: 10px;
+                  }
                 }
-              }
-              .title {
-                font-size: 23px;
-                font-weight: bold;
-              }
-            }
-            .labels {
-              font-size: 14px;
-            }
-            .rates {
-              margin-top: auto;
-              .ratesItem {
-                .value {
-                  font-size: 21px;
+                .title {
+                  font-size: 23px;
                   font-weight: bold;
                 }
-                .label {
-                  font-size: 14px;
+              }
+              .labels {
+                font-size: 14px;
+              }
+              .rates {
+                margin-top: auto;
+                .ratesItem {
+                  .value {
+                    font-size: 21px;
+                    font-weight: bold;
+                  }
+                  .label {
+                    font-size: 14px;
+                  }
                 }
               }
+              &:hover {
+                background: #00000006;
+              }
             }
-            &:hover {
-              background: #00000006;
-            }
-          }
-          &.liquidity {
-            flex: 0 0 50%;
-            .bondsItem {
-              padding: 14% 6%;
+            &.liquidity {
+              flex: 0 0 50%;
+              .bondsItem {
+                padding: 14% 6%;
+              }
             }
           }
         }
       }
-    }
-    .react-contextmenu {
-      background: $primary-color;
-      padding: 20px 30px;
-      z-index: 3;
-      .react-contextmenu-item {
-        cursor: pointer;
-        color: white;
-        font-weight: 600;
-        padding: 6px 0;
+      .react-contextmenu {
+        background: $primary-color;
+        padding: 20px 30px;
+        z-index: 3;
+        .react-contextmenu-item {
+          cursor: pointer;
+          color: white;
+          font-weight: 600;
+          padding: 6px 0;
+        }
       }
-    }
-    &.true {
-      zoom: 0.8;
+      &.true {
+        zoom: 0.8;
+      }
     }
   }
   @include mdportrait {
-    flex-direction: column;
-    .react-contextmenu-wrapper {
-      flex: unset;
-      max-width: 100%;
-      padding: 40px 20px;
-      .breadCrumbs {
-        font-size: 14px;
-        margin-bottom: 30px;
-      }
-      .total {
-        h6 {
-          font-size: 20px;
-          text-align: center;
-        }
-        h4 {
-          font-size: 40px;
-          text-align: center;
-        }
-      }
-      .chart-section {
-        .chart {
-          margin: 0 auto;
-          width: 260px;
-          flex: 0 0 260px;
-        }
-      }
+    .headTabsWrapper {
+      display: none;
     }
-    .netWorthCardsList {
-      flex: unset;
-      max-width: 100%;
-      .netWorthCardsListView {
-        // Todo: Remove Unused Styles
-        margin: 0 !important;
-        position: relative !important;
-        .netWorthCard {
-          flex: 0 0 28%;
-          border-bottom: $vault-border-color 1px solid;
-          display: flex;
-          .colorHighlight {
-            flex: 0 0 16px;
-            border-right: $vault-border-color 1px solid;
+    .netWorthLayout {
+      .netWorthContent {
+        flex-direction: column;
+        .react-contextmenu-wrapper {
+          flex: 1;
+          max-width: 100%;
+          padding: 40px 20px;
+          .breadCrumbs {
+            display: none;
           }
-          .bondsItem {
+          .total {
+            h6 {
+              font-size: 20px;
+              text-align: center;
+            }
+            h4 {
+              font-size: 40px;
+              text-align: center;
+            }
+          }
+          .chart-section {
+            .chart {
+              margin: 0 auto;
+              width: 200px;
+              flex: 0 0 200px;
+            }
+          }
+          .clickText {
             flex: 1;
-            cursor: pointer;
-            border-bottom: 1px solid $vault-border-color;
-            padding: 4% 6%;
             display: flex;
-            flex-direction: column;
-            .coinPrice {
-              .img {
-                height: 18px;
-                font-size: 16px;
-                img {
-                  margin-right: 10px;
-                }
-              }
-              .title {
-                font-size: 16px;
-              }
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: $primary-color;
+          }
+        }
+        .netWorthCardsList {
+          display: none;
+          flex: unset;
+          max-width: 100%;
+          .netWorthCardsListView {
+            .stikyHeadMobile {
+              display: flex;
+              background: $primary-color;
+              color: white;
+              font-size: 13px;
+              line-height: 1;
+              padding: 8px 20px;
+              font-weight: 600;
             }
-            .labels {
-              font-size: 10px;
-            }
-            .rates {
-              margin-top: auto;
-              .ratesItem {
-                .value {
-                  font-size: 15px;
-                  font-weight: bold;
+            .netWorthCard {
+              flex: 0 0 28%;
+              border-bottom: $vault-border-color 1px solid;
+              display: flex;
+              .colorHighlight {
+                flex: 0 0 16px;
+                border-right: $vault-border-color 1px solid;
+              }
+              .bondsItem {
+                flex: 1;
+                cursor: pointer;
+                border-bottom: 1px solid $vault-border-color;
+                padding: 4% 6%;
+                display: flex;
+                flex-direction: column;
+                .coinPrice {
+                  .img {
+                    height: 18px;
+                    font-size: 16px;
+                    img {
+                      margin-right: 10px;
+                    }
+                  }
+                  .title {
+                    font-size: 16px;
+                  }
                 }
-                .label {
+                .labels {
                   font-size: 10px;
                 }
+                .rates {
+                  margin-top: auto;
+                  .ratesItem {
+                    .value {
+                      font-size: 15px;
+                      font-weight: bold;
+                    }
+                    .label {
+                      font-size: 10px;
+                    }
+                  }
+                }
+                &:hover {
+                  background: #00000006;
+                }
+              }
+              &.liquidity {
+                flex: 0 0 50%;
+                .bondsItem {
+                  padding: 14% 6%;
+                }
               }
             }
-            &:hover {
-              background: #00000006;
+          }
+        }
+      }
+      &.true {
+        .netWorthContent {
+          .react-contextmenu-wrapper {
+            flex: unset;
+            display: flex;
+            flex-direction: row;
+            padding: 25px 20px;
+            justify-content: space-between;
+            .total {
+              margin: auto 0;
+              h6 {
+                font-size: 15px;
+                text-align: left;
+              }
+              h4 {
+                font-size: 28px;
+                text-align: left;
+                margin-bottom: 0;
+              }
+            }
+            .chart-section {
+              margin: 0 !important;
+              flex: 0 0 25%;
+              .chart {
+                margin: 0 !important;
+                width: unset;
+                flex: 1;
+              }
+            }
+            .clickText {
+              display: none;
             }
           }
-          &.liquidity {
-            flex: 0 0 50%;
-            .bondsItem {
-              padding: 14% 6%;
-            }
+          .netWorthCardsList {
+            display: flex;
           }
         }
       }
