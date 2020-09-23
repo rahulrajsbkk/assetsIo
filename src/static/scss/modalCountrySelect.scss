@@ -1,0 +1,66 @@
+.modalCountrySelect {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  .overlayClose {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+  }
+  .modalContent {
+    margin: auto;
+    z-index: 1;
+    width: 90%;
+    max-width: 500px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 50px 60px;
+    height: 500px;
+    .head {
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .searchCountry {
+      height: 45px;
+      border-radius: 0;
+      background: none;
+      border: 1px solid $vault-border-color;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+    }
+    .countryListScroll {
+      flex: 1;
+      .countryList {
+        display: flex;
+        flex-direction: column;
+        .listCountry {
+          flex: 0 0 25%;
+          display: flex;
+          padding: 0 10px;
+          justify-content: space-between;
+          align-items: center;
+          cursor: pointer;
+          .name {
+            font-size: 20px;
+            font-weight: 600;
+          }
+          .flag {
+            height: 40px;
+          }
+          &:hover {
+            background: whitesmoke;
+          }
+        }
+      }
+    }
+  }
+}

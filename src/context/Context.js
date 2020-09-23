@@ -5,6 +5,7 @@ import Toast from '../components/Toast/Toast';
 import allPlatforms from '../static/images/allPlatforms.svg';
 import loadImg from '../static/images/load.gif';
 import ModalConfirm from '../components/ModalConfirm/ModalConfirm';
+import SelectCountry from '../components/SelectCountry/SelectCountry';
 
 export const BankContext = createContext();
 
@@ -308,6 +309,7 @@ function BankContextProvider({ children }) {
       ) : (
         ''
       )}
+      <SelectCountry />
       <Toast show={toastShow} message={toastMessage} />
     </BankContext.Provider>
   );
