@@ -5,7 +5,7 @@
   .head {
     height: 30px;
     background-color: $primary-color;
-    padding: 0 6%;
+    padding: 0 35px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -22,7 +22,7 @@
         flex-grow: 1;
         cursor: pointer;
         border-bottom: 1px solid $vault-border-color;
-        padding: 4% 6%;
+        padding: 4% 35px;
         display: flex;
         flex-direction: column;
         .coinPrice,

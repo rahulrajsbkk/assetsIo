@@ -697,7 +697,11 @@
               display: none !important;
             }
             .col-b {
-              padding-left: 20px;
+              padding-left: 35px;
+            }
+            .col-c {
+              padding-right: 35px;
+              text-align: right;
             }
           }
           &.platform {
@@ -713,7 +717,11 @@
               display: none !important;
             }
             .col-b {
-              padding-left: 20px;
+              padding-left: 35px;
+            }
+            .col-d {
+              padding-right: 35px;
+              text-align: right;
             }
           }
           &.bonds {
