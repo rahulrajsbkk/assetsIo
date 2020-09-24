@@ -26,6 +26,7 @@ function PortfolioGrowAssets() {
     iceGrowTitle,
     setIceGrowTitle,
     pageOnClose,
+    coinCheckOut,
   } = useContext(PortfolioContext);
   const {
     coinListObject,
@@ -96,9 +97,9 @@ function PortfolioGrowAssets() {
         token,
         coin: coinContract,
         num_of_bonds: contractCount,
-        payCoin: coinContract,
         days: icingDays,
         profile_id: profileId,
+        payCoin: (coinCheckOut && coinCheckOut.coinSymbol) || coinContract,
       })
         .then((res) => {
           const { data } = res;
@@ -188,7 +189,7 @@ function PortfolioGrowAssets() {
             if (icingDays) setIcingStep(2);
           }}
         >
-          {icingStep === 2 ? (
+          {icingStep === 2 && coinCheckOut && coinCheckOut.coinSymbol ? (
             <div className="issueBond" onClick={createContract}>
               Issue My Bond
               <img src={next} alt="" />

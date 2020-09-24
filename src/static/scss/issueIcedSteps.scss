@@ -2,6 +2,7 @@
   flex-grow: 1;
   display: flex;
   justify-content: space-around;
+  position: relative;
   .issueBond,
   .bondOverview {
     flex: 0 0 40%;
@@ -38,7 +39,9 @@
         }
       }
       .exactAmt,
-      .boxContrtolls {
+      .boxContrtolls,
+      .headScroll,
+      .coinsListScroll {
         display: none;
       }
     }
@@ -139,6 +142,7 @@
             h6 {
               display: flex;
               align-items: center;
+              font-weight: 600;
               margin: 0;
               font-size: 20px;
               line-height: 1;
@@ -158,5 +162,98 @@
   .bondOverview {
     margin: 4% 0;
     border: 1px solid $vault-border-color;
+    display: flex;
+    flex-direction: column;
+    .days {
+      border: 1px $vault-border-color;
+      border-style: none solid solid none;
+      margin-right: auto;
+      font-size: 16px;
+      padding: 4px 15px;
+    }
+    .lionBond {
+      margin: 0 auto;
+      transform: translateY(-10px);
+    }
+    .valuationHead {
+      display: flex;
+      justify-content: space-between;
+      background: $primary-color;
+      align-items: center;
+      padding: 2px 6%;
+      font-size: 14px;
+      color: white;
+      span {
+        &:last-child {
+          font-weight: bold;
+        }
+      }
+    }
+    .valuationsScrl {
+      height: 0;
+      flex: 1;
+      color: $primary-color;
+      .valuationsView {
+        padding: 3% 6%;
+        display: flex;
+        flex-direction: column;
+        .listItem {
+          flex: 0 0 22%;
+          border: 1px solid $vault-border-color;
+          display: flex;
+          padding: 0 6%;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: auto;
+        }
+        .listDetail {
+          position: relative;
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          border: 1px solid $vault-border-color;
+          padding: 40px 50px;
+          .head {
+            line-height: 1;
+            font-size: 26px;
+            font-weight: 600;
+          }
+          .date {
+            font-size: 12px;
+          }
+          .item {
+            margin-top: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            .label {
+              font-weight: 600;
+            }
+            .value {
+              text-align: right;
+              .primary {
+                font-weight: 600;
+              }
+            }
+          }
+          .close {
+            cursor: pointer;
+            position: absolute;
+            top: 30px;
+            right: 55px;
+            font-size: 30px;
+          }
+        }
+      }
+    }
+  }
+  .issueIcedLoading {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    display: flex;
   }
 }

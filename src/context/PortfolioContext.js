@@ -13,6 +13,7 @@ function PortfolioContextProvider({ children }) {
   const [showGrowAssets, setShowGrowAssets] = useState(true);
   const [iceGrowTitle, setIceGrowTitle] = useState('');
   const [pageOnClose, setPageOnClose] = useState('/');
+  const [coinCheckOut, setCoinCheckOut] = useState({});
 
   return (
     <PortfolioContext.Provider
@@ -36,6 +37,8 @@ function PortfolioContextProvider({ children }) {
         setIceGrowTitle,
         pageOnClose,
         setPageOnClose,
+        coinCheckOut,
+        setCoinCheckOut,
       }}
     >
       {children}

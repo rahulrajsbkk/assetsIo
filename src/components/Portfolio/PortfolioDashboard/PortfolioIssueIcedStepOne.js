@@ -1,18 +1,35 @@
 import React, { useState, useContext, useEffect } from 'react';
+import Axios from 'axios';
 import Scrollbars from 'react-custom-scrollbars';
+import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
+
 import PortfolioIssueIcedChecckoutCoin from './PortfolioIssueIcedChecckoutCoin';
 import { PortfolioContext } from '../../../context/PortfolioContext';
 import { BankContext } from '../../../context/Context';
+import LionBond from '../../../components/SVGComponents/LionBond';
+import { FormatCurrency } from '../../../utils/FunctionTools';
+import LoadingAnim from '../../LoadingAnim/LoadingAnim';
 
 function PortfolioIssueIcedStepOne() {
-  const { coinContract = 'BTC' } = useContext(PortfolioContext);
-  const { conractsObj, coinListObject } = useContext(BankContext);
+  const {
+    coinContract,
+    icingDays,
+    contractCount,
+    setContractCount,
+    coinCheckOut,
+    setCoinCheckOut,
+    createContractLoading,
+  } = useContext(PortfolioContext);
+  const [contractResult, setContractResult] = useState({});
+  const { conractsObj, coinListObject, email, token, profileId } = useContext(
+    BankContext
+  );
 
-  const [stepIn, setStepIn] = useState(1);
+  const [stepIn, setStepIn] = useState(0);
   const [assetClass, setAssetClass] = useState('crypto');
-  const [coinObj, setCoinObj] = useState({});
   const [percent, setPercent] = useState('');
-  const [count, setCount] = useState('');
   const [contractRateUsd, setContractRateUsd] = useState(1);
   useEffect(() => {
     setContractRateUsd(
@@ -25,15 +42,16 @@ function PortfolioIssueIcedStepOne() {
           conractsObj[coinContract].amount) ||
         1
     );
-  }, [conractsObj, coinContract]);
+  }, [conractsObj, coinContract, coinListObject]);
 
   const onPercentChange = (e) => {
     if (!isNaN(e.target.value) && e.target.value <= 100) {
       setPercent(e.target.value);
-      setCount(
+      setContractCount(
         parseFloat(
           (
-            ((coinObj && coinObj.coinValueUSD) * (e.target.value / 100)) /
+            ((coinCheckOut && coinCheckOut.coinValueUSD) *
+              (e.target.value / 100)) /
             contractRateUsd
           ).toFixed(2)
         )
@@ -42,37 +60,39 @@ function PortfolioIssueIcedStepOne() {
   };
   const onCountChange = (e) => {
     if (!isNaN(e.target.value)) {
-      setCount(parseInt(e.target.value) || '');
+      setContractCount(parseInt(e.target.value) || '');
       setPercent(
         parseFloat(
           (
             (e.target.value * contractRateUsd * 100) /
-            (coinObj && coinObj.coinValueUSD)
+            (coinCheckOut && coinCheckOut.coinValueUSD)
           ).toFixed(2)
         )
       );
     }
   };
   const roundSimulation = (firtTime) => {
-    if (!Number.isInteger(count)) {
-      setCount(parseInt(count));
+    if (!Number.isInteger(contractCount)) {
+      setContractCount(parseInt(contractCount));
       setPercent(
         parseFloat(
           (
-            (parseInt(count) * contractRateUsd * 100) /
-            (coinObj && coinObj.coinValueUSD)
+            (parseInt(contractCount) * contractRateUsd * 100) /
+            (coinCheckOut && coinCheckOut.coinValueUSD)
           ).toFixed(2)
         )
       );
     }
     if (firtTime || percent > 100) {
-      const cnt = parseInt((coinObj && coinObj.coinValueUSD) / contractRateUsd);
-      setCount(cnt);
+      const cnt = parseInt(
+        (coinCheckOut && coinCheckOut.coinValueUSD) / contractRateUsd
+      );
+      setContractCount(cnt);
       setPercent(
         parseFloat(
           (
             (parseInt(cnt) * contractRateUsd * 100) /
-            (coinObj && coinObj.coinValueUSD)
+            (coinCheckOut && coinCheckOut.coinValueUSD)
           ).toFixed(2)
         )
       );
@@ -80,10 +100,263 @@ function PortfolioIssueIcedStepOne() {
   };
 
   useEffect(() => {
-    if (coinObj && coinObj.coinValueUSD && contractRateUsd && coinContract) {
+    if (
+      coinCheckOut &&
+      coinCheckOut.coinValueUSD &&
+      contractRateUsd &&
+      coinContract
+    ) {
       roundSimulation(true);
     }
-  }, [coinObj, contractRateUsd, coinContract]);
+    // eslint-disable-next-line
+  }, [coinCheckOut, contractRateUsd, coinContract]);
+
+  useEffect(() => {
+    Axios.post('https://comms.globalxchange.com/coin/iced/contract/create', {
+      email,
+      token,
+      coin: coinContract,
+      days: icingDays,
+      num_of_bonds: contractCount,
+      payCoin: (coinCheckOut && coinCheckOut.coinSymbol) || coinContract,
+      simulate: true,
+    }).then((res) => {
+      const { data } = res;
+      if (data.status) setContractResult(data);
+    });
+  }, [
+    coinContract,
+    email,
+    icingDays,
+    profileId,
+    contractCount,
+    token,
+    coinCheckOut,
+  ]);
+
+  const [listDetail, setListDetail] = useState(null);
+
+  const detailList = () => {
+    switch (listDetail) {
+      case 1:
+        return (
+          <div className="listDetail">
+            <div className="head">Issuance Details</div>
+            <div className="date">
+              {moment(contractResult && contractResult.start_timestamp).format(
+                '[Date: ] MMMM Do YYYY [At] hh:mm A z'
+              )}
+            </div>
+            <div className="item">
+              <div className="label">Quantity</div>
+              <div className="value">
+                <div className="primary">
+                  {(contractResult && contractResult.num_of_bonds) ||
+                    contractCount}{' '}
+                  Bond
+                </div>
+              </div>
+            </div>
+            <div className="item">
+              <div className="label">Cost Per Bond</div>
+              <div className="value">
+                <div className="primary">
+                  {FormatCurrency(
+                    contractResult && contractResult.contractCost,
+                    contractResult && contractResult.coin
+                  )}{' '}
+                  {contractResult && contractResult.coin}
+                </div>
+                <div className="secondary">
+                  ${FormatCurrency(contractRateUsd, 'USD')}
+                </div>
+              </div>
+            </div>
+            <div className="item">
+              <div className="label">Total Cost</div>
+              <div className="value">
+                <div className="primary">
+                  {FormatCurrency(
+                    contractResult && contractResult.investment,
+                    contractResult && contractResult.coin
+                  )}{' '}
+                  {contractResult && contractResult.coin}
+                </div>
+                <div className="secondary">
+                  $
+                  {FormatCurrency(
+                    contractResult && contractResult.investment_usd,
+                    'USD'
+                  )}
+                </div>
+              </div>
+            </div>
+            <FontAwesomeIcon
+              onClick={() => {
+                setListDetail(null);
+              }}
+              className="close"
+              icon={faCaretUp}
+            />
+          </div>
+        );
+      case 2:
+        return (
+          <div className="listDetail">
+            <div className="head">Redemption Details</div>
+            <div className="date">
+              {moment(
+                contractResult && contractResult.redemption_timestamp
+              ).format('[Date: ] MMMM Do YYYY [At] hh:mm A z')}
+            </div>
+            <div className="item">
+              <div className="label">Gross Redemption Value</div>
+              <div className="value">
+                <div className="primary">
+                  {FormatCurrency(
+                    contractResult && contractResult.contractCost,
+                    contractResult && contractResult.coin
+                  )}{' '}
+                  {contractResult && contractResult.coin}
+                </div>
+                <div className="secondary">
+                  ${FormatCurrency(contractRateUsd, 'USD')}
+                </div>
+              </div>
+            </div>
+            <div className="item">
+              <div className="label">Redemption Fee</div>
+              <div className="value">
+                <div className="primary">
+                  {FormatCurrency(
+                    contractResult && contractResult.redemptionFee,
+                    contractResult && contractResult.coin
+                  )}{' '}
+                  {contractResult && contractResult.coin}
+                </div>
+                <div className="secondary">
+                  $
+                  {FormatCurrency(
+                    contractResult && contractResult.redemptionFeeUSD,
+                    'USD'
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="item">
+              <div className="label">Gross Redemption Value</div>
+              <div className="value">
+                <div className="primary">
+                  {FormatCurrency(
+                    contractResult && contractResult.redemptionAmount,
+                    contractResult && contractResult.coin
+                  )}{' '}
+                  {contractResult && contractResult.coin}
+                </div>
+                <div className="secondary">
+                  $
+                  {FormatCurrency(
+                    contractResult && contractResult.redemptionAmountUSD,
+                    'USD'
+                  )}
+                </div>
+              </div>
+            </div>
+            <FontAwesomeIcon
+              onClick={() => {
+                setListDetail(null);
+              }}
+              className="close"
+              icon={faCaretUp}
+            />
+          </div>
+        );
+      case 3:
+        return (
+          <div className="listDetail">
+            <div className="head">Earning Power</div>
+            <div className="date">
+              {moment(contractResult && contractResult.start_timestamp).format(
+                '[Date: ] MMMM Do YYYY [At] hh:mm A z'
+              )}
+            </div>
+            <div className="item">
+              <div className="label">Quantity</div>
+              <div className="value">
+                <div className="primary">
+                  {(contractResult && contractResult.num_of_bonds) ||
+                    contractCount}{' '}
+                  Bond
+                </div>
+                <div className="secondary"></div>
+              </div>
+            </div>
+            <div className="item">
+              <div className="label">Cost Per Bond</div>
+              <div className="value">
+                <div className="primary">
+                  {FormatCurrency(
+                    contractResult && contractResult.contractCost,
+                    contractResult && contractResult.coin
+                  )}{' '}
+                  {contractResult && contractResult.coin}
+                </div>
+                <div className="secondary">
+                  ${FormatCurrency(contractRateUsd, 'USD')}
+                </div>
+              </div>
+            </div>
+            <div className="item">
+              <div className="label">Total Cost</div>
+              <div className="value">
+                <div className="primary">
+                  {FormatCurrency(
+                    contractResult && contractResult.investment,
+                    contractResult && contractResult.coin
+                  )}{' '}
+                  {contractResult && contractResult.coin}
+                </div>
+                <div className="secondary">
+                  $
+                  {FormatCurrency(
+                    contractResult && contractResult.investment_usd,
+                    'USD'
+                  )}
+                </div>
+              </div>
+            </div>
+            <FontAwesomeIcon
+              onClick={() => {
+                setListDetail(null);
+              }}
+              className="close"
+              icon={faCaretUp}
+            />
+          </div>
+        );
+      default:
+        return (
+          <>
+            <div className="listItem" onClick={() => setListDetail(1)}>
+              Issuance Details
+              <FontAwesomeIcon icon={faCaretDown} />
+            </div>
+            <div className="listItem" onClick={() => setListDetail(2)}>
+              Redemption Details
+              <FontAwesomeIcon icon={faCaretDown} />
+            </div>
+            <div className="listItem" onClick={() => setListDetail(3)}>
+              Earning Power
+              <FontAwesomeIcon icon={faCaretDown} />
+            </div>
+            <div className="listItem">
+              Net ROI
+              <FontAwesomeIcon icon={faCaretDown} />
+            </div>
+          </>
+        );
+    }
+  };
 
   return (
     <div className="issueIcedStepOne">
@@ -99,7 +372,7 @@ function PortfolioIssueIcedStepOne() {
         </div>
         <div className="exactAmt">
           <span>Exact Amount</span>
-          {percent > 100 || !Number.isInteger(count) ? (
+          {percent > 100 || !Number.isInteger(contractCount) ? (
             <span onClick={() => roundSimulation()}>Round Simulation</span>
           ) : (
             ''
@@ -107,25 +380,25 @@ function PortfolioIssueIcedStepOne() {
         </div>
         <div
           className={`boxContrtolls ${
-            coinObj && coinObj.coinName ? '' : 'dis'
+            coinCheckOut && coinCheckOut.coinName ? '' : 'dis'
           }`}
         >
           <div className="coin">
-            {(coinObj && coinObj.coinName) || assetClass}
+            {(coinCheckOut && coinCheckOut.coinName) || assetClass}
           </div>
           <input
             value={percent}
             onChange={onPercentChange}
             type="text"
             placeholder="0.00%"
-            readOnly={coinObj && coinObj.coinName ? false : true}
+            readOnly={coinCheckOut && coinCheckOut.coinName ? false : true}
           />
           <input
-            value={count}
+            value={contractCount}
             onChange={onCountChange}
             type="text"
             placeholder="1 Bond"
-            readOnly={coinObj && coinObj.coinName ? false : true}
+            readOnly={coinCheckOut && coinCheckOut.coinName ? false : true}
           />
         </div>
         <Scrollbars
@@ -154,12 +427,47 @@ function PortfolioIssueIcedStepOne() {
           <div className="assetClass">Influence</div>
         </Scrollbars>
         <PortfolioIssueIcedChecckoutCoin
-          coinObj={coinObj}
-          setCoinObj={setCoinObj}
+          setCoinObj={setCoinCheckOut}
+          coinObj={coinCheckOut}
           assetClass={assetClass}
         />
       </div>
-      <div className="bondOverview"></div>
+      <div className="bondOverview">
+        <div className="days">{icingDays} Days</div>
+        <LionBond
+          text={`${
+            coinListObject &&
+            coinListObject[coinContract] &&
+            coinListObject[coinContract].coinName &&
+            coinListObject[coinContract].coinName.toUpperCase()
+          } BOND`}
+        />
+        <div className="valuationHead">
+          <span>Value Of Bond</span>
+          <span>
+            $
+            {FormatCurrency(
+              contractResult && contractResult.voc_usd,
+              contractResult && contractResult.coin
+            )}
+          </span>
+        </div>
+        <Scrollbars
+          className="valuationsScrl"
+          renderThumbHorizontal={() => <div />}
+          renderThumbVertical={() => <div />}
+          renderView={(props) => <div {...props} className="valuationsView" />}
+        >
+          {detailList()}
+        </Scrollbars>
+      </div>
+      {createContractLoading ? (
+        <div className="issueIcedLoading">
+          <LoadingAnim />
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 }
