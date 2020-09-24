@@ -60,6 +60,7 @@
     }
   }
   .chartNSlider {
+    touch-action: none;
     position: relative;
     margin-top: auto;
     overflow: hidden;
