@@ -8,13 +8,14 @@ import { ReactComponent as GraphTriangle } from '../static/images/mobileGraph.sv
 import MobileLayout from '../Layout/MobileLayout';
 import { useHistory } from 'react-router-dom';
 
-function IceMechineMobile() {
+function IceMechineMobile({ match }) {
   const history = useHistory();
   const [days, setDays] = useState(0);
   const [totalDays, setTotalDays] = useState(365);
 
   const {
     coinContract,
+    setCoinContract,
     setIcingDays,
     createContractLoading,
     setCreateContractLoading,
@@ -30,6 +31,15 @@ function IceMechineMobile() {
   } = useContext(BankContext);
 
   const [contractDayStats, setContractDayStats] = useState([]);
+  useEffect(() => {
+    if (!coinContract) {
+      if (match && match.params && match.params.coin) {
+        setCoinContract(match.params.coin);
+      } else {
+        history.push('/bonds');
+      }
+    }
+  }, [coinContract]);
   useEffect(() => {
     if (totalDays && coinContract && conractsObj && conractsObj[coinContract])
       Axios.get(

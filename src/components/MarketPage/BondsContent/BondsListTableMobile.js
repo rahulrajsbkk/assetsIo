@@ -51,7 +51,7 @@ function BondsListTableMobile({ assetTab }) {
                 key={key}
                 onClick={() => {
                   setCoinContract(key);
-                  history.push('/iceAssetMobile');
+                  history.push(`/iceAssetMobile/${key}`);
                 }}
               >
                 <div className="coinPrice">

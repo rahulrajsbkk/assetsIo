@@ -16,7 +16,7 @@ function Routes() {
   return (
     <Switch>
       <Route exact path="/iceAsset" component={Portfolio} />
-      <Route exact path="/iceAssetMobile" component={IceMechineMobile} />
+      <Route exact path="/iceAssetMobile/:coin" component={IceMechineMobile} />
       <Route exact path="/net-worth" component={NetWorthPage} />
       <Route
         exact

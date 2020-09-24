@@ -91,7 +91,11 @@ function BondsListTable({ assetTab, setCoinToDetail }) {
         <tbody className="tableContent">
           {Object.entries(conractsObj).map(([key, value], i) => {
             const openedDetail = contract && contract._id === value._id;
-            if (coinListObject[key].asset_type === assetType)
+            if (
+              coinListObject &&
+              coinListObject[key] &&
+              coinListObject[key].asset_type === assetType
+            )
               return (
                 <Fragment key={value._id}>
                   <tr className={`${contract && contract._id === value._id}`}>
