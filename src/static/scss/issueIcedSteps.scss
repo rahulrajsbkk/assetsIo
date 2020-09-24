@@ -1,0 +1,162 @@
+.issueIcedStepOne {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-around;
+  .issueBond,
+  .bondOverview {
+    flex: 0 0 40%;
+  }
+  .issueBond {
+    display: flex;
+    flex-direction: column;
+    color: $primary-color;
+    &.step-0 {
+      justify-content: center;
+      .head {
+        color: $primary-color;
+        font-size: 40px;
+        font-weight: bold;
+      }
+      p.desc {
+        font-size: 16px;
+        line-height: 2;
+      }
+      .btnLetsDoIt {
+        cursor: pointer;
+        padding: 0 30px;
+        border: 1px solid $primary-color;
+        height: 40px;
+        min-width: 150px;
+        margin-right: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:hover {
+          background: $primary-color;
+          color: white;
+          font-weight: 600;
+        }
+      }
+      .exactAmt,
+      .boxContrtolls {
+        display: none;
+      }
+    }
+    &.step-1 {
+      padding-top: 4%;
+      padding-right: 4%;
+      .head {
+        line-height: 1;
+        color: $primary-color;
+        font-size: 36px;
+        font-weight: bold;
+      }
+      p.desc,
+      .btnLetsDoIt {
+        display: none;
+      }
+      .exactAmt {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
+        text-decoration: underline;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .boxContrtolls {
+        margin-top: 4px;
+        border: 1px solid $vault-border-color;
+        height: 50px;
+        display: flex;
+        .coin,
+        input {
+          flex: 0 0 33.33%;
+          border: none;
+          background: none;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          font-weight: 600;
+        }
+        .coin {
+          text-transform: capitalize;
+        }
+        input {
+          width: 0;
+          margin: auto 0;
+          border-left: 1px solid $vault-border-color;
+          &:valid {
+            &::after {
+              position: absolute;
+              top: 2px;
+              right: 0.5em;
+              transition: all 0.05s ease-in-out;
+            }
+          }
+        }
+        &.dis {
+          opacity: 0.4;
+        }
+      }
+      .headScroll {
+        margin-top: 10px;
+        height: 40px !important;
+        .scrollList {
+          display: flex;
+          .assetClass {
+            cursor: pointer;
+            order: 1;
+            white-space: nowrap;
+            font-weight: 600;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            opacity: 0.3;
+            margin-right: 15px;
+            &.true {
+              order: 0;
+              opacity: 1;
+            }
+          }
+        }
+      }
+      .coinsListScroll {
+        height: 0;
+        flex: 1;
+        .coinsList {
+          display: flex;
+          flex-direction: column;
+          padding: 1px;
+          .coin {
+            opacity: 0.6;
+            margin: 8px 0;
+            justify-content: space-between;
+            display: flex;
+            padding: 32px 30px;
+            border: 1px solid $vault-border-color;
+            align-items: center;
+            h6 {
+              display: flex;
+              align-items: center;
+              margin: 0;
+              font-size: 20px;
+              line-height: 1;
+              img {
+                height: 20px;
+                margin-right: 8px;
+              }
+            }
+            &.true {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+  .bondOverview {
+    margin: 4% 0;
+    border: 1px solid $vault-border-color;
+  }
+}

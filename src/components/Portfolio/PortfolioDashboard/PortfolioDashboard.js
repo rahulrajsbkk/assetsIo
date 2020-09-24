@@ -5,6 +5,7 @@ import PortfolioGrowAssets from './PortfolioGrowAssets';
 import PortfolioAssets from './PortfolioAssets';
 import PortfolioSetDays from './PortfolioSetDays';
 import PortfolioIssueIcedAsset from './PortfolioIssueIcedAsset';
+import PortfolioIssueIcedStepOne from './PortfolioIssueIcedStepOne';
 
 function PortfolioDashboard() {
   const { icingStep } = useContext(PortfolioContext);
@@ -12,7 +13,8 @@ function PortfolioDashboard() {
   const icingAssetSteps = [
     <PortfolioAssets />,
     <PortfolioSetDays />,
-    <PortfolioIssueIcedAsset />,
+    // <PortfolioIssueIcedAsset />,
+    <PortfolioIssueIcedStepOne />,
   ];
 
   const getDashContent = () => {
