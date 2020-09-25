@@ -39,7 +39,7 @@ function PortfolioIssueIcedAsset() {
     <div className="portfolioAssets issueIced">
       <div className="textNValuation">
         <div className="assetsText">
-          <div className="title">Issue Iced Asset</div>
+          <div className="title">Issue Bond</div>
           <div className="detail">
             Now That You Have Established The Parameters For Your Bond, You Are
             Ready To Convert Your Liquid Asset Into Ice. Here Are The Final

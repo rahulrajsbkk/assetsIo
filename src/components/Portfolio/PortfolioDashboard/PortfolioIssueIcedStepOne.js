@@ -4,6 +4,7 @@ import Scrollbars from 'react-custom-scrollbars';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
+import { useHistory } from 'react-router-dom';
 
 import PortfolioIssueIcedChecckoutCoin from './PortfolioIssueIcedChecckoutCoin';
 import { PortfolioContext } from '../../../context/PortfolioContext';
@@ -11,8 +12,10 @@ import { BankContext } from '../../../context/Context';
 import LionBond from '../../../components/SVGComponents/LionBond';
 import { FormatCurrency, FormatNumber } from '../../../utils/FunctionTools';
 import LoadingAnim from '../../LoadingAnim/LoadingAnim';
+import defTrustIcon from '../../../static/images/defineTrust.svg';
 
 function PortfolioIssueIcedStepOne() {
+  const history = useHistory();
   const {
     coinContract,
     icingDays,
@@ -21,16 +24,29 @@ function PortfolioIssueIcedStepOne() {
     coinCheckOut,
     setCoinCheckOut,
     createContractLoading,
+    iceEnable,
+    setIcingStep,
+    setCreateContractLoading,
+    setShowGrowAssets,
+    setIceGrowTitle,
+    pageOnClose,
   } = useContext(PortfolioContext);
   const [contractResult, setContractResult] = useState({});
-  const { conractsObj, coinListObject, email, token, profileId } = useContext(
-    BankContext
-  );
+  const {
+    conractsObj,
+    coinListObject,
+    email,
+    token,
+    profileId,
+    tostShowOn,
+    getIcedContracts,
+  } = useContext(BankContext);
 
   const [stepIn, setStepIn] = useState(0);
   const [assetClass, setAssetClass] = useState('crypto');
   const [percent, setPercent] = useState('');
   const [contractRateUsd, setContractRateUsd] = useState(1);
+  const [password, setPassword] = useState('');
   useEffect(() => {
     setContractRateUsd(
       (conractsObj[coinContract] &&
@@ -512,6 +528,81 @@ function PortfolioIssueIcedStepOne() {
             />
           </div>
         );
+      case 7:
+        return (
+          <div className="listDetail">
+            <div className="head">Net ROI</div>
+            <div className="item">
+              <div className="label">Total Investment</div>
+              <div className="value">
+                <div className="primary">
+                  {FormatCurrency(
+                    contractResult && contractResult.investment,
+                    contractResult && contractResult.coin
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="item">
+              <div className="label">Term Earnings</div>
+              <div className="value">
+                <div className="primary">
+                  {FormatCurrency(
+                    contractResult && contractResult.earningPower,
+                    contractResult && contractResult.coin
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="item">
+              <div className="label">Issuance Fees</div>
+              <div className="value">
+                <div className="primary">
+                  {FormatCurrency(
+                    contractResult && contractResult.redemptionFee,
+                    contractResult && contractResult.coin
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="item">
+              <div className="label">Net Term Earnings</div>
+              <div className="value">
+                <div className="primary">
+                  {FormatCurrency(
+                    contractResult &&
+                      contractResult.earningPower -
+                        contractResult.redemptionFee,
+                    contractResult && contractResult.coin
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="item big">
+              <div className="label">Net ROI</div>
+              <div className="value">
+                <div className="primary up">
+                  {FormatNumber(
+                    contractResult &&
+                      (contractResult.earningPower /
+                        contractResult.investment) *
+                        100,
+                    2
+                  )}
+                  %
+                </div>
+              </div>
+            </div>
+            <FontAwesomeIcon
+              onClick={() => {
+                setListDetail(null);
+              }}
+              className="close"
+              icon={faCaretUp}
+            />
+          </div>
+        );
+
       default:
         return (
           <>
@@ -545,6 +636,59 @@ function PortfolioIssueIcedStepOne() {
             </div>
           </>
         );
+    }
+  };
+
+  const createContract = () => {
+    if (!createContractLoading) {
+      setCreateContractLoading(true);
+
+      Axios.post('https://gxauth.apimachine.com/gx/user/login', {
+        email,
+        password,
+      })
+        .then((response) => {
+          const { data } = response;
+          if (data.status || data.mfa) {
+            Axios.post(
+              'https://comms.globalxchange.com/coin/iced/contract/create',
+              {
+                email,
+                token,
+                coin: coinContract,
+                num_of_bonds: contractCount,
+                days: icingDays,
+                profile_id: profileId,
+                payCoin:
+                  (coinCheckOut && coinCheckOut.coinSymbol) || coinContract,
+              }
+            )
+              .then((res) => {
+                const { data } = res;
+                tostShowOn(data.message);
+                if (data.status) {
+                  setIcingStep(0);
+                  setIceGrowTitle('');
+                  setShowGrowAssets(false);
+                  getIcedContracts();
+                  history.push('/');
+                } else {
+                  tostShowOn(data.message);
+                }
+              })
+              .catch((err) => {
+                tostShowOn(err.message || 'Something Went Wrong On Purchase');
+              })
+              .finally(() => {
+                setCreateContractLoading(false);
+              });
+          } else {
+            tostShowOn('Login Failed');
+          }
+        })
+        .catch(() => {
+          setCreateContractLoading(false);
+        });
     }
   };
 
@@ -622,8 +766,13 @@ function PortfolioIssueIcedStepOne() {
           assetClass={assetClass}
         />
       </div>
-      <div className="bondOverview">
-        <div className="days">{icingDays} Days</div>
+      <div className={`bondOverview ${iceEnable}`}>
+        <div
+          className="days"
+          style={{ visibility: iceEnable ? 'hidden' : 'unset' }}
+        >
+          {icingDays} Days
+        </div>
         <LionBond
           text={`${
             coinListObject &&
@@ -632,24 +781,51 @@ function PortfolioIssueIcedStepOne() {
             coinListObject[coinContract].coinName.toUpperCase()
           } BOND`}
         />
-        <div className="valuationHead">
-          <span>Value Of Bond</span>
-          <span>
-            $
-            {FormatCurrency(
-              contractResult && contractResult.voc_usd,
-              contractResult && contractResult.coin
-            )}
-          </span>
-        </div>
-        <Scrollbars
-          className="valuationsScrl"
-          renderThumbHorizontal={() => <div />}
-          renderThumbVertical={() => <div />}
-          renderView={(props) => <div {...props} className="valuationsView" />}
-        >
-          {detailList()}
-        </Scrollbars>
+        {iceEnable ? (
+          <>
+            <div className="valuationHead big">
+              Sign The Digital Trust Certificate To Issue This Bond
+            </div>
+            <div className="bondPass">
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type="password"
+                className="text-pass"
+                placeholder="Enter Your Password"
+              />
+              <img
+                className="def-trust"
+                onClick={createContract}
+                src={defTrustIcon}
+                alt=""
+              />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="valuationHead">
+              <span>Value Of Bond</span>
+              <span>
+                $
+                {FormatCurrency(
+                  contractResult && contractResult.voc_usd,
+                  contractResult && contractResult.coin
+                )}
+              </span>
+            </div>
+            <Scrollbars
+              className="valuationsScrl"
+              renderThumbHorizontal={() => <div />}
+              renderThumbVertical={() => <div />}
+              renderView={(props) => (
+                <div {...props} className="valuationsView" />
+              )}
+            >
+              {detailList()}
+            </Scrollbars>
+          </>
+        )}
       </div>
       {createContractLoading ? (
         <div className="issueIcedLoading">

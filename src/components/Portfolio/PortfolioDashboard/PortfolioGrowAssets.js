@@ -27,15 +27,9 @@ function PortfolioGrowAssets() {
     setIceGrowTitle,
     pageOnClose,
     coinCheckOut,
+    setIceEnable,
   } = useContext(PortfolioContext);
-  const {
-    coinListObject,
-    email,
-    token,
-    profileId,
-    tostShowOn,
-    getIcedContracts,
-  } = useContext(BankContext);
+  const { coinListObject } = useContext(BankContext);
 
   const getCoinLogo = () => {
     switch (coinContract) {
@@ -88,38 +82,6 @@ function PortfolioGrowAssets() {
       <h6>Asset</h6>
     </div>
   );
-
-  const createContract = () => {
-    if (!createContractLoading) {
-      setCreateContractLoading(true);
-      Axios.post('https://comms.globalxchange.com/coin/iced/contract/create', {
-        email,
-        token,
-        coin: coinContract,
-        num_of_bonds: contractCount,
-        days: icingDays,
-        profile_id: profileId,
-        payCoin: (coinCheckOut && coinCheckOut.coinSymbol) || coinContract,
-      })
-        .then((res) => {
-          const { data } = res;
-          tostShowOn(data.message);
-          if (data.status) {
-            setIcingStep(0);
-            setIceGrowTitle('');
-            setShowGrowAssets(false);
-            getIcedContracts();
-            history.push(pageOnClose);
-          }
-        })
-        .catch((err) => {
-          tostShowOn(err.message || 'Something Went Wrong On Purchase');
-        })
-        .finally(() => {
-          setCreateContractLoading(false);
-        });
-    }
-  };
 
   return (
     <div className={`growAssets ${showGrowAssets}`}>
@@ -190,12 +152,17 @@ function PortfolioGrowAssets() {
           }}
         >
           {icingStep === 2 && coinCheckOut && coinCheckOut.coinSymbol ? (
-            <div className="issueBond" onClick={createContract}>
+            <div
+              className="issueBond"
+              onClick={() => {
+                setIceEnable(true);
+              }}
+            >
               Issue My Bond
               <img src={next} alt="" />
             </div>
           ) : (
-            'Issue Iced Asset'
+            'Issue Bond'
           )}
         </div>
       </div>
