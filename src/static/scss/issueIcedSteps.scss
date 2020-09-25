@@ -198,13 +198,17 @@
         display: flex;
         flex-direction: column;
         .listItem {
-          flex: 0 0 22%;
+          flex: 0 0 25%;
+          min-height: 42px;
           border: 1px solid $vault-border-color;
           display: flex;
           padding: 0 6%;
           align-items: center;
           justify-content: space-between;
-          margin-bottom: auto;
+          margin-bottom: 20px;
+          &.sub {
+            flex: 0 0 30%;
+          }
         }
         .listDetail {
           position: relative;
@@ -233,6 +237,12 @@
               text-align: right;
               .primary {
                 font-weight: 600;
+                &.up {
+                  color: $primary-green;
+                }
+                &.down {
+                  color: $primary-red;
+                }
               }
             }
           }
@@ -242,6 +252,27 @@
             top: 30px;
             right: 55px;
             font-size: 30px;
+          }
+          &.sub {
+            margin-top: 15px;
+            padding: 20px;
+            .subHead {
+              font-size: 20px;
+              font-weight: 600;
+              margin-bottom: 10px;
+            }
+            p {
+              font-size: 13px;
+            }
+            .nb {
+              font-size: 14px;
+              font-weight: 600;
+            }
+            .close {
+              top: 15px;
+              right: 25px;
+              font-size: 26px;
+            }
           }
         }
       }

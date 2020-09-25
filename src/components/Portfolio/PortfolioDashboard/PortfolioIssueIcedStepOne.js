@@ -9,7 +9,7 @@ import PortfolioIssueIcedChecckoutCoin from './PortfolioIssueIcedChecckoutCoin';
 import { PortfolioContext } from '../../../context/PortfolioContext';
 import { BankContext } from '../../../context/Context';
 import LionBond from '../../../components/SVGComponents/LionBond';
-import { FormatCurrency } from '../../../utils/FunctionTools';
+import { FormatCurrency, FormatNumber } from '../../../utils/FunctionTools';
 import LoadingAnim from '../../LoadingAnim/LoadingAnim';
 
 function PortfolioIssueIcedStepOne() {
@@ -135,6 +135,73 @@ function PortfolioIssueIcedStepOne() {
   ]);
 
   const [listDetail, setListDetail] = useState(null);
+  const [feesDetail, setFeesDetail] = useState(null);
+  const feesItem = () => {
+    switch (feesDetail) {
+      case 1:
+        return (
+          <div className="listDetail sub">
+            <div className="subHead">Broker Fees</div>
+            <p>
+              Broker Fees Are Deducted From You Gross Daily Earnings At A Rate
+              Of {FormatNumber(contractResult && contractResult.feeRate, 2)}%.
+              Therefore If You Are Earning $10.00 USD Today Your Broker Fee
+              Would Be $
+              {FormatNumber(10 * (contractResult && contractResult.feeRate), 2)}{' '}
+              USD
+            </p>
+            <p className="nb">All Values In This Bond Is Post Broker Fees</p>
+            <FontAwesomeIcon
+              onClick={() => {
+                setFeesDetail(null);
+              }}
+              className="close"
+              icon={faCaretUp}
+            />
+          </div>
+        );
+      case 2:
+        return (
+          <div className="listDetail sub">
+            <div className="subHead">Issuance Fee</div>
+            <p>
+              Issuance Fees Are Deducted From The Bond Upon Redemption. Daily
+              Earning Power And Term Earning Power Calculations Are Pre-Issuance
+              Fee While Net ROI Calculations Are Post Issuance Fees
+            </p>
+            <p className="nb">All Values In This Bond Is Post Broker Fees</p>
+            <FontAwesomeIcon
+              onClick={() => {
+                setFeesDetail(null);
+              }}
+              className="close"
+              icon={faCaretUp}
+            />
+          </div>
+        );
+
+      default:
+        return (
+          <>
+            <div className="listItem sub mt-2" onClick={() => setFeesDetail(1)}>
+              Broker Fees
+              <FontAwesomeIcon icon={faCaretDown} />
+            </div>
+            <div className="listItem sub" onClick={() => setFeesDetail(2)}>
+              Issuance Fee
+              <FontAwesomeIcon icon={faCaretDown} />
+            </div>
+            <FontAwesomeIcon
+              onClick={() => {
+                setListDetail(null);
+              }}
+              className="close"
+              icon={faCaretUp}
+            />
+          </>
+        );
+    }
+  };
 
   const detailList = () => {
     switch (listDetail) {
@@ -274,57 +341,150 @@ function PortfolioIssueIcedStepOne() {
       case 3:
         return (
           <div className="listDetail">
-            <div className="head">Earning Power</div>
-            <div className="date">
-              {moment(contractResult && contractResult.start_timestamp).format(
-                '[Date: ] MMMM Do YYYY [At] hh:mm A z'
-              )}
-            </div>
+            <div className="head">Daily Earning Power</div>
+            <div className="date">{`${icingDays} Payments`}</div>
             <div className="item">
-              <div className="label">Quantity</div>
+              <div className="label">Daily Interest Rate</div>
               <div className="value">
                 <div className="primary">
-                  {(contractResult && contractResult.num_of_bonds) ||
-                    contractCount}{' '}
-                  Bond
+                  {FormatNumber(
+                    contractResult && contractResult.interestRate,
+                    3
+                  )}
                 </div>
-                <div className="secondary"></div>
               </div>
             </div>
             <div className="item">
               <div className="label">Cost Per Bond</div>
               <div className="value">
                 <div className="primary">
-                  {FormatCurrency(
-                    contractResult && contractResult.contractCost,
-                    contractResult && contractResult.coin
-                  )}{' '}
-                  {contractResult && contractResult.coin}
-                </div>
-                <div className="secondary">
-                  ${FormatCurrency(contractRateUsd, 'USD')}
-                </div>
-              </div>
-            </div>
-            <div className="item">
-              <div className="label">Total Cost</div>
-              <div className="value">
-                <div className="primary">
-                  {FormatCurrency(
-                    contractResult && contractResult.investment,
-                    contractResult && contractResult.coin
+                  {FormatNumber(
+                    contractResult && contractResult.interestValue,
+                    5
                   )}{' '}
                   {contractResult && contractResult.coin}
                 </div>
                 <div className="secondary">
                   $
                   {FormatCurrency(
-                    contractResult && contractResult.investment_usd,
+                    contractResult && contractResult.interestValueUsd,
                     'USD'
                   )}
                 </div>
               </div>
             </div>
+            <FontAwesomeIcon
+              onClick={() => {
+                setListDetail(null);
+              }}
+              className="close"
+              icon={faCaretUp}
+            />
+          </div>
+        );
+      case 4:
+        return (
+          <div className="listDetail">
+            <div className="head">Term Earning Power</div>
+            <div className="date">{`${icingDays} Payments`}</div>
+            <div className="item">
+              <div className="label">Daily Interest Rate</div>
+              <div className="value">
+                <div className="primary">
+                  {FormatNumber(
+                    contractResult && contractResult.interestRate * icingDays,
+                    3
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="item">
+              <div className="label">Cost Per Bond</div>
+              <div className="value">
+                <div className="primary">
+                  {FormatNumber(
+                    contractResult && contractResult.interestValue * icingDays,
+                    5
+                  )}{' '}
+                  {contractResult && contractResult.coin}
+                </div>
+                <div className="secondary">
+                  $
+                  {FormatCurrency(
+                    contractResult &&
+                      contractResult.interestValueUsd * icingDays,
+                    'USD'
+                  )}
+                </div>
+              </div>
+            </div>
+            <FontAwesomeIcon
+              onClick={() => {
+                setListDetail(null);
+              }}
+              className="close"
+              icon={faCaretUp}
+            />
+          </div>
+        );
+      case 5:
+        return (
+          <div className="listDetail">
+            <div className="head">Interest Rate Mechanics</div>
+            <div className="date">
+              Daily Rate =&nbsp;
+              {FormatNumber(contractResult && contractResult.interestRate, 3)}%
+            </div>
+            <div className="item">
+              <div className="label">Base Compression Rate</div>
+              <div className="value">
+                <div className="primary">
+                  {FormatNumber(
+                    contractResult && contractResult.base_compression_rate,
+                    3
+                  )}
+                  %
+                </div>
+              </div>
+            </div>
+            <div className="item">
+              <div className="label">Interest Rate Velocity</div>
+              <div className="value">
+                <div className="primary up">
+                  {FormatNumber(
+                    contractResult && contractResult.base_velocity,
+                    2
+                  )}
+                  %
+                </div>
+              </div>
+            </div>
+            <div className="item">
+              <div className="label">Velocity Acceleration Factor</div>
+              <div className="value">
+                <div className="primary down">
+                  {FormatNumber(
+                    contractResult && -contractResult.acceleration,
+                    2
+                  )}
+                </div>
+              </div>
+            </div>
+            <FontAwesomeIcon
+              onClick={() => {
+                setListDetail(null);
+              }}
+              className="close"
+              icon={faCaretUp}
+            />
+          </div>
+        );
+      case 6:
+        return (
+          <div className="listDetail">
+            <div className="head">Fees</div>
+            <div className="date">2 Fee Structures</div>
+            {feesItem()}
             <FontAwesomeIcon
               onClick={() => {
                 setListDetail(null);
@@ -346,10 +506,22 @@ function PortfolioIssueIcedStepOne() {
               <FontAwesomeIcon icon={faCaretDown} />
             </div>
             <div className="listItem" onClick={() => setListDetail(3)}>
-              Earning Power
+              Daily Earning Power
               <FontAwesomeIcon icon={faCaretDown} />
             </div>
-            <div className="listItem">
+            <div className="listItem" onClick={() => setListDetail(4)}>
+              Term Earning Power
+              <FontAwesomeIcon icon={faCaretDown} />
+            </div>
+            <div className="listItem" onClick={() => setListDetail(5)}>
+              Interest Rate Mechanics
+              <FontAwesomeIcon icon={faCaretDown} />
+            </div>
+            <div className="listItem" onClick={() => setListDetail(6)}>
+              Fees
+              <FontAwesomeIcon icon={faCaretDown} />
+            </div>
+            <div className="listItem" onClick={() => setListDetail(7)}>
               Net ROI
               <FontAwesomeIcon icon={faCaretDown} />
             </div>
