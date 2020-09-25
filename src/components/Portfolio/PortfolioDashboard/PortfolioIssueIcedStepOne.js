@@ -169,7 +169,25 @@ function PortfolioIssueIcedStepOne() {
               Earning Power And Term Earning Power Calculations Are Pre-Issuance
               Fee While Net ROI Calculations Are Post Issuance Fees
             </p>
-            <p className="nb">All Values In This Bond Is Post Broker Fees</p>
+            <div className="item">
+              <div className="label">Issuance Fee</div>
+              <div className="value">
+                <div className="primary">
+                  {FormatCurrency(
+                    contractResult && contractResult.redemptionFee,
+                    contractResult && contractResult.coin
+                  )}{' '}
+                  {contractResult && contractResult.coin}
+                </div>
+                <div className="secondary">
+                  $
+                  {FormatCurrency(
+                    contractResult && contractResult.redemptionFeeUSD,
+                    'USD'
+                  )}
+                </div>
+              </div>
+            </div>
             <FontAwesomeIcon
               onClick={() => {
                 setFeesDetail(null);
