@@ -109,6 +109,10 @@
         }
       }
     }
+
+    &.opacive {
+      opacity: 0.3;
+    }
     @include mdportrait {
       flex: 0 0 170px !important;
       .head {

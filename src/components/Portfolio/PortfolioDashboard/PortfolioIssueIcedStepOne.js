@@ -683,10 +683,12 @@ function PortfolioIssueIcedStepOne() {
                 setCreateContractLoading(false);
               });
           } else {
+            setCreateContractLoading(false);
             tostShowOn('Login Failed');
           }
         })
-        .catch(() => {
+        .catch((err) => {
+          tostShowOn(err.message || 'Something Went Wrong On Login');
           setCreateContractLoading(false);
         });
     }
@@ -694,7 +696,9 @@ function PortfolioIssueIcedStepOne() {
 
   return (
     <div className="issueIcedStepOne">
-      <div className={`issueBond step-${stepIn}`}>
+      <div
+        className={`issueBond step-${stepIn} ${iceEnable ? ' opacive' : ''}`}
+      >
         <div className="head">Issue Your Bond</div>
         <p className="desc">
           Now That You Have Established The Parameters For Your Bond, You Are

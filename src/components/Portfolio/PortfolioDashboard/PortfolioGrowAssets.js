@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import Axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useHistory } from 'react-router-dom';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
@@ -17,10 +16,8 @@ function PortfolioGrowAssets() {
     setIcingStep,
     icingStep,
     coinContract,
-    contractCount,
     icingDays,
     createContractLoading,
-    setCreateContractLoading,
     showGrowAssets,
     setShowGrowAssets,
     iceGrowTitle,
@@ -28,6 +25,7 @@ function PortfolioGrowAssets() {
     pageOnClose,
     coinCheckOut,
     setIceEnable,
+    iceEnable,
   } = useContext(PortfolioContext);
   const { coinListObject } = useContext(BankContext);
 
@@ -84,7 +82,9 @@ function PortfolioGrowAssets() {
   );
 
   return (
-    <div className={`growAssets ${showGrowAssets}`}>
+    <div
+      className={`growAssets ${showGrowAssets} ${iceEnable ? 'opacive' : ''}`}
+    >
       <div className={`head ${showGrowAssets}`}>
         <div
           className="textNBtns"
