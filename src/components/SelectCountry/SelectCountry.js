@@ -9,7 +9,7 @@ function SelectCountry({}) {
   const [countryList, setCountryList] = useState([]);
   const [searchStr, setSearchStr] = useState('');
   useEffect(() => {
-    if (email)
+    if (email && token)
       Axios.get(
         `https://comms.globalxchange.com/coin/iced/get/country/data?email=${email}`
       ).then((res) => {
@@ -50,7 +50,7 @@ function SelectCountry({}) {
   };
   return (
     <>
-      {openModal ? (
+      {openModal && email && token ? (
         <div className="modalCountrySelect">
           <div className="overlayClose" />
           <div className="modalContent">
