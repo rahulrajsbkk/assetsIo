@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useState,
-  useEffect,
-  useRef,
-  Fragment,
-} from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {

@@ -3,7 +3,7 @@ import { BankContext } from '../../context/Context';
 import Scrollbars from 'react-custom-scrollbars';
 import Axios from 'axios';
 
-function SelectCountry({}) {
+function SelectCountry() {
   const { email, token, tostShowOn } = useContext(BankContext);
   const [openModal, setOpenModal] = useState(false);
   const [countryList, setCountryList] = useState([]);
@@ -20,7 +20,7 @@ function SelectCountry({}) {
           }
         }
       });
-  }, [email]);
+  }, [email, token]);
   useEffect(() => {
     if (openModal)
       Axios.get(

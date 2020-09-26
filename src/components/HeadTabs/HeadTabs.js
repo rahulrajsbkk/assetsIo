@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { NetWorthContext } from '../../context/ NetWorthContext';
 import HeadTabItem from './HeadTabItem';
 import iceLogo from '../../static/images/logo.svg';

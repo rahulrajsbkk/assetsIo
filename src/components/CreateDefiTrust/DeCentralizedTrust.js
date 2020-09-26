@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import React from 'react';
 
 function DeCentralizedTrust() {
-  const [showPass, setShowPass] = useState(false);
   return (
     <div className="login-enter decentralised">
       <h2 className="login-text">Decentralized</h2>

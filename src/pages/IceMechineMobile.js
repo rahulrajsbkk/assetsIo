@@ -39,6 +39,7 @@ function IceMechineMobile({ match }) {
         history.push('/bonds');
       }
     }
+    // eslint-disable-next-line
   }, [coinContract]);
   useEffect(() => {
     if (totalDays && coinContract && conractsObj && conractsObj[coinContract])

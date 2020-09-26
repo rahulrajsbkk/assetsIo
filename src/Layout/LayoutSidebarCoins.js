@@ -28,7 +28,6 @@ function LayoutSidebarCoins({ active }) {
     coinList,
     defaultCoin,
     setDefaultCoin,
-    login,
     setOpenDefaultCoinSidebar,
   } = useContext(BankContext);
   const { totalBalance } = useContext(NetWorthContext);

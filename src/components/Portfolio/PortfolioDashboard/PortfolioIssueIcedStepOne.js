@@ -29,7 +29,6 @@ function PortfolioIssueIcedStepOne() {
     setCreateContractLoading,
     setShowGrowAssets,
     setIceGrowTitle,
-    pageOnClose,
   } = useContext(PortfolioContext);
   const [contractResult, setContractResult] = useState({});
   const {

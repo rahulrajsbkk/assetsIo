@@ -16,7 +16,7 @@ import { FormatCurrency } from '../utils/FunctionTools';
 
 function LayoutSidebar({ active }) {
   const history = useHistory();
-  const { username, name, profileImg, login } = useContext(BankContext);
+  const { username, name, profileImg } = useContext(BankContext);
   const { totalBalance } = useContext(NetWorthContext);
 
   const menuEndRef = useRef(null);

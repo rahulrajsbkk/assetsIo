@@ -12,14 +12,9 @@ import { FormatNumber, FormatCurrency } from '../../../utils/FunctionTools';
 
 function BondsListTable({ assetTab, setCoinToDetail }) {
   const history = useHistory();
-  const {
-    email,
-    coinListObject,
-    tostShowOn,
-    convertCoin,
-    defaultCoin,
-    updateInterval,
-  } = useContext(BankContext);
+  const { email, coinListObject, tostShowOn, updateInterval } = useContext(
+    BankContext
+  );
   const { conractsObj } = useContext(IndexContext);
   const { setCoinContract, setIcingStep, setIcingDays } = useContext(
     PortfolioContext
@@ -136,7 +131,7 @@ function BondsListTable({ assetTab, setCoinToDetail }) {
                             : 2
                         }
                       />{' '}
-                      {defaultCoin.coin ? defaultCoin.coin : key}
+                      {key}
                     </td>
                     <td
                       className="dayChange false"
