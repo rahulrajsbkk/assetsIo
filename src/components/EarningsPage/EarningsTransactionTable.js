@@ -106,8 +106,8 @@ function EarningsTransactionTable() {
                             timestamp: txn.timestamp,
                             title: `${
                               txn.deposit
-                                ? 'Credit From Instest Payment'
-                                : 'Withdraw From Instest Payment'
+                                ? 'Credit From Interest Payment'
+                                : 'Withdraw From Interest Payment'
                             }`,
                             amount: txn.earned_interest,
                             coin: txn.coin,
