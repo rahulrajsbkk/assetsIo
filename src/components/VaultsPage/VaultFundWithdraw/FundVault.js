@@ -140,25 +140,6 @@ function FundVault({
           isDeposit={isDeposit}
           setOpenModal={setOpenModal}
         />
-        // <div className="deposit-card">
-        //   <div className="title">{fundOrWithdraw}</div>
-        //   {loading ? (
-        //     <div className="m-auto">
-        //       <Lottie options={defaultOptions} height={150} width={150} />
-        //     </div>
-        //   ) : (
-        //     <SetAmount
-        // appFrom={appFrom}
-        // coinObject={coinObject}
-        // setCoinObject={setCoinObject}
-        // price={price}
-        // transCoin={transCoin}
-        // setTransCoin={setTransCoin}
-        // isDeposit={isDeposit}
-        // setOpenModal={setOpenModal}
-        //     />
-        //   )}
-        // </div>
       )}
       )}
     </div>

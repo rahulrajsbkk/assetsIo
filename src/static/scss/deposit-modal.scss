@@ -138,12 +138,13 @@ $bg-color: #b2b3c7;
             font-weight: 600;
           }
           .amount {
-            flex: 0 0 20%;
+            flex: 1;
             font-size: 22px;
             font-weight: 600;
-            margin: 0 auto;
+            margin: 0;
             margin-left: auto;
             display: flex;
+            justify-content: flex-end;
             align-items: center;
             input {
               line-height: 1;
