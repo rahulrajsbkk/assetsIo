@@ -10,6 +10,7 @@ import * as animationData from '../../../static/animations/cpu-loading.json';
 import { BankContext } from '../../../context/Context';
 import SelectVault from './Fund/SelectVault/SelectVault';
 import SelectCoinDirection from './Fund/SelectCoinDirection/SelectCoinDirection';
+import SelectAndConfirmAmount from './Fund/SelectAndConfirmAmount/SelectAndConfirmAmount';
 
 function FundVault({
   fundOrWithdraw = 'Deposit',
@@ -130,25 +131,34 @@ function FundVault({
           loading={loading}
         />
       ) : (
-        <div className="deposit-card">
-          <div className="title">{fundOrWithdraw}</div>
-          {loading ? (
-            <div className="m-auto">
-              <Lottie options={defaultOptions} height={150} width={150} />
-            </div>
-          ) : (
-            <SetAmount
-              appFrom={appFrom}
-              coinObject={coinObject}
-              setCoinObject={setCoinObject}
-              price={price}
-              transCoin={transCoin}
-              setTransCoin={setTransCoin}
-              isDeposit={isDeposit}
-              setOpenModal={setOpenModal}
-            />
-          )}
-        </div>
+        <SelectAndConfirmAmount
+          coinObject={coinObject}
+          setCoinObject={setCoinObject}
+          appFrom={appFrom}
+          transCoin={transCoin}
+          setTransCoin={setTransCoin}
+          isDeposit={isDeposit}
+          setOpenModal={setOpenModal}
+        />
+        // <div className="deposit-card">
+        //   <div className="title">{fundOrWithdraw}</div>
+        //   {loading ? (
+        //     <div className="m-auto">
+        //       <Lottie options={defaultOptions} height={150} width={150} />
+        //     </div>
+        //   ) : (
+        //     <SetAmount
+        // appFrom={appFrom}
+        // coinObject={coinObject}
+        // setCoinObject={setCoinObject}
+        // price={price}
+        // transCoin={transCoin}
+        // setTransCoin={setTransCoin}
+        // isDeposit={isDeposit}
+        // setOpenModal={setOpenModal}
+        //     />
+        //   )}
+        // </div>
       )}
       )}
     </div>

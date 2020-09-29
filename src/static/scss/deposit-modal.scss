@@ -109,6 +109,86 @@ $bg-color: #b2b3c7;
           }
         }
       }
+      &.detail {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .label {
+          font-size: 20px;
+          margin-bottom: 0.5rem;
+        }
+        .asset-item {
+          flex: 0 0 30%;
+          max-height: 30%;
+          border: 1px solid $vault-border-color;
+          margin-bottom: 15px;
+          padding: 0 60px;
+          display: flex;
+          align-items: center;
+          cursor: auto;
+          .icon {
+            height: 40px;
+            width: 60px;
+            object-fit: contain;
+          }
+          .name {
+            flex: 0 0 30%;
+            margin-left: 15px;
+            font-size: 22px;
+            font-weight: 600;
+          }
+          .amount {
+            flex: 0 0 20%;
+            font-size: 22px;
+            font-weight: 600;
+            margin: 0 auto;
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            input {
+              line-height: 1;
+              border: none;
+              background: none;
+              text-align: right;
+            }
+            small {
+              margin-top: auto;
+              font-size: 16px;
+            }
+          }
+        }
+        .buttons {
+          margin-left: auto;
+          display: flex;
+          .deposit {
+            cursor: pointer;
+            border-radius: 3px;
+            border: 1px solid $primary-color;
+            margin-left: 12px;
+            width: 130px;
+            height: 40px;
+            background: $primary-color;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+            &:hover {
+              background: white;
+              color: $primary-color;
+            }
+            &.inv {
+              background: white;
+              color: $primary-color;
+              &:hover {
+                background: $primary-color;
+                color: white;
+              }
+            }
+          }
+        }
+      }
     }
     .footer {
       height: 65px;
