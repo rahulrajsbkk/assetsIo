@@ -8,6 +8,7 @@ import SelectCoin from './Fund/SelectCoin/SelectCoin';
 import SetAmount from './Fund/SetAmount/SetAmount';
 import * as animationData from '../../../static/animations/cpu-loading.json';
 import { BankContext } from '../../../context/Context';
+import SelectVault from './Fund/SelectVault/SelectVault';
 
 function FundVault({
   fundOrWithdraw = 'Deposit',
@@ -36,33 +37,70 @@ function FundVault({
   };
   const [loading, setLoading] = useState(true);
   const [priceList, setPriceList] = useState([]);
+
+  const [selectVault, setSelectVault] = useState(true);
+  const [appFrom, setAppFrom] = useState({});
+
   useEffect(() => {
-    setLoading(true);
-    if (coinListObject && coinListObject.USD)
-      Axios.get(
-        `https://comms.globalxchange.com/coin/vault/coins_data?email=${email}`
-      )
-        .then((res) => {
-          if (res.data.status) {
-            const coin = res.data.coins;
-            setPriceList(coin);
-            const priceObj = {};
-            coin.forEach((value) => {
-              priceObj[value.coinSymbol] = {
-                coinValue: value.coinValue,
-                value: value.coinValueUSD,
-                sym: value.symbol,
-                symbol: value.coinSymbol,
-                price: coinListObject[value.coinSymbol].price.USD,
-              };
+    if (appFrom.app_code) {
+      if (appFrom.app_code === 'gx') {
+        setLoading(true);
+        if (coinListObject && coinListObject.USD)
+          Axios.get(
+            `https://comms.globalxchange.com/coin/vault/coins_data?email=${email}`
+          )
+            .then((res) => {
+              if (res.data.status) {
+                const coin = res.data.coins;
+                setPriceList(coin);
+                const priceObj = {};
+                coin.forEach((value) => {
+                  priceObj[value.coinSymbol] = {
+                    coinValue: value.coinValue,
+                    value: value.coinValueUSD,
+                    sym: value.symbol,
+                    symbol: value.coinSymbol,
+                    price: coinListObject[value.coinSymbol].price.USD,
+                  };
+                });
+                setPrice(priceObj);
+              }
+            })
+            .finally(() => {
+              setLoading(false);
             });
-            setPrice(priceObj);
+      } else {
+        Axios.post(
+          'https://comms.globalxchange.com/coin/vault/service/coins/get',
+          {
+            app_code: appFrom.app_code,
+            profile_id: appFrom.profile_id,
           }
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-  }, [email, coinListObject]);
+        )
+          .then((res) => {
+            const { data } = res;
+            if (data.status) {
+              const { coins_data } = data;
+              setPriceList(coins_data);
+              const priceObj = {};
+              coins_data.forEach((value) => {
+                priceObj[value.coinSymbol] = {
+                  coinValue: value.coinValue,
+                  value: value.coinValueUSD,
+                  sym: value.symbol,
+                  symbol: value.coinSymbol,
+                  price: coinListObject[value.coinSymbol].price.USD,
+                };
+              });
+              setPrice(priceObj);
+            }
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      }
+    }
+  }, [appFrom, coinListObject]);
 
   return (
     <div className={`deposit-modal ${openModal ? '' : 'd-none'}`}>
@@ -72,35 +110,44 @@ function FundVault({
         tabIndex="-1"
         onClick={() => setOpenModal(false)}
       />
-      <div className="deposit-card">
-        <div className="title">{fundOrWithdraw}</div>
-        {loading ? (
-          <div className="m-auto">
-            <Lottie options={defaultOptions} height={150} width={150} />
-          </div>
-        ) : transCoin === '' || !isCoinSelected ? (
-          <SelectCoin
-            isDeposit={isDeposit}
-            setCoinObject={setCoinObject}
-            setIsCoinSelected={setIsCoinSelected}
-            price={price}
-            transCoin={transCoin}
-            setTransCoin={setTransCoin}
-            fundOrWithdraw={fundOrWithdraw}
-            priceList={priceList}
-          />
-        ) : (
-          <SetAmount
-            coinObject={coinObject}
-            setCoinObject={setCoinObject}
-            price={price}
-            transCoin={transCoin}
-            setTransCoin={setTransCoin}
-            isDeposit={isDeposit}
-            setOpenModal={setOpenModal}
-          />
-        )}
-      </div>
+      {selectVault ? (
+        <SelectVault
+          setAppFrom={setAppFrom}
+          setSelectVault={setSelectVault}
+          isDeposit={isDeposit}
+        />
+      ) : (
+        <div className="deposit-card">
+          <div className="title">{fundOrWithdraw}</div>
+          {loading ? (
+            <div className="m-auto">
+              <Lottie options={defaultOptions} height={150} width={150} />
+            </div>
+          ) : transCoin === '' || !isCoinSelected ? (
+            <SelectCoin
+              isDeposit={isDeposit}
+              setCoinObject={setCoinObject}
+              setIsCoinSelected={setIsCoinSelected}
+              price={price}
+              transCoin={transCoin}
+              setTransCoin={setTransCoin}
+              fundOrWithdraw={fundOrWithdraw}
+              priceList={priceList}
+            />
+          ) : (
+            <SetAmount
+              appFrom={appFrom}
+              coinObject={coinObject}
+              setCoinObject={setCoinObject}
+              price={price}
+              transCoin={transCoin}
+              setTransCoin={setTransCoin}
+              isDeposit={isDeposit}
+              setOpenModal={setOpenModal}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 }

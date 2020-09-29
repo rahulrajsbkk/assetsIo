@@ -11,7 +11,14 @@ import { BankContext } from '../../../../../context/Context';
 import { VaultContext } from '../../../../../context/VaultContext';
 import logo from '../../../../../static/images/logo.svg';
 
-function SetAmount({ coinObject, price, transCoin, isDeposit, setOpenModal }) {
+function SetAmount({
+  coinObject,
+  price,
+  transCoin,
+  isDeposit,
+  setOpenModal,
+  appFrom,
+}) {
   const {
     email,
     token,
@@ -35,23 +42,88 @@ function SetAmount({ coinObject, price, transCoin, isDeposit, setOpenModal }) {
   const [loading, setLoading] = useState(false);
   const [messageobj, setMessage] = useState('');
   const depositWithdraw = async () => {
-    const data = {
-      email: email,
-      token: token,
-      amount: parseFloat(isDeposit ? depositAsset : selectedCoinAmount), // amount you need to be credited in SUbVAult:GXVAult
-      from_coin: isDeposit ? transCoin : coinSelected.coinSymbol, // coin from GXVAULT:SUBVAULT
-      to_coin: isDeposit ? coinSelected.coinSymbol : transCoin, // to COIN in SUBVAULT:GXVAULT
-      identifier: uuidv4(), // unique Identifier
-      app_code: 'ice',
-      profile_id: profileId,
-    };
     const isValidTkn = await validateToken(email, token);
-
-    isValidTkn &&
+    if (appFrom.app_code === 'gx') {
+      const data = {
+        email: email,
+        token: token,
+        amount: parseFloat(isDeposit ? depositAsset : selectedCoinAmount), // amount you need to be credited in SUbVAult:GXVAult
+        from_coin: isDeposit ? transCoin : coinSelected.coinSymbol, // coin from GXVAULT:SUBVAULT
+        to_coin: isDeposit ? coinSelected.coinSymbol : transCoin, // to COIN in SUBVAULT:GXVAULT
+        identifier: uuidv4(), // unique Identifier
+        app_code: 'ice',
+        profile_id: profileId,
+      };
+      isValidTkn &&
+        Axios.post(
+          `https://comms.globalxchange.com/coin/vault/service/${
+            isDeposit ? 'fund' : 'withdraw'
+          }/gx`,
+          data
+        )
+          .then((res) => {
+            const { data } = res;
+            setMessage(data);
+            if (data.status) {
+              tostShowOn('Transaction Succes');
+              setOpenModal(false);
+            } else {
+              tostShowOn(data.message);
+            }
+          })
+          .catch((err) => {
+            setMessage({
+              status: false,
+              message: err.message ? err.err : 'Something Went Wrong',
+            });
+            tostShowOn(err.message ? err.err : 'Something Went Wrong');
+          })
+          .finally(() => {
+            setLoading(false);
+            updateBalance();
+          });
+    } else {
+      const data = isDeposit
+        ? {
+            encryption_data: {
+              token: token,
+              email: email,
+              from: {
+                app_code: appFrom.app_code,
+                profile_id: appFrom.profile_id,
+                coin: transCoin,
+              },
+              to: {
+                app_code: 'ice',
+                profile_id: profileId,
+                coin: coinSelected.coinSymbol,
+              },
+              to_amount: depositAsset, // the amount to be received in to COIN, here in the example, 100=>100 INR, as it is the to COIN
+              identifier: uuidv4(), // unique txn identifier
+              transfer_for: `Deposit To Ice From ${appFrom.app_name}`, // where or why this transfer is for
+            },
+          }
+        : {
+            encryption_data: {
+              token: token,
+              email: email,
+              from: {
+                app_code: 'ice',
+                profile_id: profileId,
+                coin: coinSelected.coinSymbol,
+              },
+              to: {
+                app_code: appFrom.app_code,
+                profile_id: appFrom.profile_id,
+                coin: transCoin,
+              },
+              to_amount: selectedCoinAmount, // the amount to be received in to COIN, here in the example, 100=>100 INR, as it is the to COIN
+              identifier: uuidv4(), // unique txn identifier
+              transfer_for: `Deposit To ${appFrom.app_name} From Ice`, // where or why this transfer is for
+            },
+          };
       Axios.post(
-        `https://comms.globalxchange.com/coin/vault/service/${
-          isDeposit ? 'fund' : 'withdraw'
-        }/gx`,
+        'https://comms.globalxchange.com/coin/vault/service/transfer',
         data
       )
         .then((res) => {
@@ -75,6 +147,7 @@ function SetAmount({ coinObject, price, transCoin, isDeposit, setOpenModal }) {
           setLoading(false);
           updateBalance();
         });
+    }
   };
   const [selectedCoinAmount, setSelectedCoinAmount] = useState('');
   const selectedChange = (e) => {

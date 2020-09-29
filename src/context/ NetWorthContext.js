@@ -557,6 +557,7 @@ function NetWorthContextProvider({ children }) {
         setTabData,
         tabIndex,
         setTabIndex,
+        userApps,
       }}
     >
       {children}
