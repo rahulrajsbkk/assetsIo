@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Scrollbars from 'react-custom-scrollbars';
@@ -7,6 +7,7 @@ import { NetWorthContext } from '../../../../../context/ NetWorthContext';
 
 function SelectVault({ isDeposit, setAppFrom, setSelectVault }) {
   const { userApps } = useContext(NetWorthContext);
+  const [search, setSearch] = useState('');
   return (
     <div className="select-vault">
       <div className="head">
@@ -18,7 +19,12 @@ function SelectVault({ isDeposit, setAppFrom, setSelectVault }) {
         <div className="selectAppHead">
           <div className="titleAppSelect">Select The App</div>
           <label className="searcWraper">
-            <input type="search" placeholder="Search Your Registered Apps" />
+            <input
+              type="search"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search Your Registered Apps"
+            />
             <FontAwesomeIcon icon={faSearch} />
           </label>
         </div>
@@ -29,18 +35,24 @@ function SelectVault({ isDeposit, setAppFrom, setSelectVault }) {
           renderThumbVertical={() => <div />}
         >
           {userApps &&
-            userApps.map((app) => (
-              <div
-                className="appGrid"
-                key={app.app_code}
-                onClick={() => {
-                  setAppFrom(app);
-                  setSelectVault(false);
-                }}
-              >
-                <img src={app.app_icon || logoWtBg} alt="" />
-              </div>
-            ))}
+            userApps
+              .filter(
+                (app) =>
+                  app.app_name.toLowerCase().includes(search.toLowerCase()) ||
+                  app.app_code.toLowerCase().includes(search.toLowerCase())
+              )
+              .map((app) => (
+                <div
+                  className="appGrid"
+                  key={app.app_code}
+                  onClick={() => {
+                    setAppFrom(app);
+                    setSelectVault(false);
+                  }}
+                >
+                  <img src={app.app_icon || logoWtBg} alt="" />
+                </div>
+              ))}
         </Scrollbars>
       </div>
       <div
