@@ -4,12 +4,15 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useContext, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid/dist';
+import jwt from 'jsonwebtoken';
 import Axios from 'axios';
 import Lottie from 'react-lottie';
 import * as animationData from '../../../../../static/animations/cpu-loading.json';
 import { BankContext } from '../../../../../context/Context';
 import { VaultContext } from '../../../../../context/VaultContext';
 import logo from '../../../../../static/images/logo.svg';
+
+const key = 'HUBQTVce7cUde4F';
 
 function SetAmount({
   coinObject,
@@ -85,46 +88,43 @@ function SetAmount({
     } else {
       const data = isDeposit
         ? {
-            encryption_data: {
-              token: token,
-              email: email,
-              from: {
-                app_code: appFrom.app_code,
-                profile_id: appFrom.profile_id,
-                coin: transCoin,
-              },
-              to: {
-                app_code: 'ice',
-                profile_id: profileId,
-                coin: coinSelected.coinSymbol,
-              },
-              to_amount: depositAsset, // the amount to be received in to COIN, here in the example, 100=>100 INR, as it is the to COIN
-              identifier: uuidv4(), // unique txn identifier
-              transfer_for: `Deposit To Ice From ${appFrom.app_name}`, // where or why this transfer is for
+            token: token,
+            email: email,
+            from: {
+              app_code: appFrom.app_code,
+              profile_id: appFrom.profile_id,
+              coin: transCoin,
             },
+            to: {
+              app_code: 'ice',
+              profile_id: profileId,
+              coin: coinSelected.coinSymbol,
+            },
+            to_amount: depositAsset, // the amount to be received in to COIN, here in the example, 100=>100 INR, as it is the to COIN
+            identifier: uuidv4(), // unique txn identifier
+            transfer_for: `Deposit To Ice From ${appFrom.app_name}`, // where or why this transfer is for
           }
         : {
-            encryption_data: {
-              token: token,
-              email: email,
-              from: {
-                app_code: 'ice',
-                profile_id: profileId,
-                coin: coinSelected.coinSymbol,
-              },
-              to: {
-                app_code: appFrom.app_code,
-                profile_id: appFrom.profile_id,
-                coin: transCoin,
-              },
-              to_amount: selectedCoinAmount, // the amount to be received in to COIN, here in the example, 100=>100 INR, as it is the to COIN
-              identifier: uuidv4(), // unique txn identifier
-              transfer_for: `Deposit To ${appFrom.app_name} From Ice`, // where or why this transfer is for
+            token: token,
+            email: email,
+            from: {
+              app_code: 'ice',
+              profile_id: profileId,
+              coin: coinSelected.coinSymbol,
             },
+            to: {
+              app_code: appFrom.app_code,
+              profile_id: appFrom.profile_id,
+              coin: transCoin,
+            },
+            to_amount: selectedCoinAmount, // the amount to be received in to COIN, here in the example, 100=>100 INR, as it is the to COIN
+            identifier: uuidv4(), // unique txn identifier
+            transfer_for: `Deposit To ${appFrom.app_name} From Ice`, // where or why this transfer is for
           };
+      let encoded = jwt.sign(data, key, { algorithm: 'HS512' });
       Axios.post(
         'https://comms.globalxchange.com/coin/vault/service/transfer',
-        data
+        { data: encoded }
       )
         .then((res) => {
           const { data } = res;
