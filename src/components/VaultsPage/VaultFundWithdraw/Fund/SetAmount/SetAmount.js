@@ -33,7 +33,7 @@ function SetAmount({ coinObject, price, transCoin, isDeposit, setOpenModal }) {
 
   const [loading, setLoading] = useState(false);
   const [messageobj, setMessage] = useState('');
-  const depositWithdraw = () => {
+  const depositWithdraw = async () => {
     const data = {
       email: email,
       token: token,
@@ -44,34 +44,36 @@ function SetAmount({ coinObject, price, transCoin, isDeposit, setOpenModal }) {
       app_code: 'ice',
       profile_id: profileId,
     };
+    const isValidTkn = await validateToken(email, token);
 
-    Axios.post(
-      `https://comms.globalxchange.com/coin/vault/service/${
-        isDeposit ? 'fund' : 'withdraw'
-      }/gx`,
-      data
-    )
-      .then((res) => {
-        const { data } = res;
-        setMessage(data);
-        if (data.status) {
-          tostShowOn('Transaction Succes');
-          setOpenModal(false);
-        } else {
-          tostShowOn(data.message);
-        }
-      })
-      .catch((err) => {
-        setMessage({
-          status: false,
-          message: err.message ? err.err : 'Something Went Wrong',
+    isValidTkn &&
+      Axios.post(
+        `https://comms.globalxchange.com/coin/vault/service/${
+          isDeposit ? 'fund' : 'withdraw'
+        }/gx`,
+        data
+      )
+        .then((res) => {
+          const { data } = res;
+          setMessage(data);
+          if (data.status) {
+            tostShowOn('Transaction Succes');
+            setOpenModal(false);
+          } else {
+            tostShowOn(data.message);
+          }
+        })
+        .catch((err) => {
+          setMessage({
+            status: false,
+            message: err.message ? err.err : 'Something Went Wrong',
+          });
+          tostShowOn(err.message ? err.err : 'Something Went Wrong');
+        })
+        .finally(() => {
+          setLoading(false);
+          updateBalance();
         });
-        tostShowOn(err.message ? err.err : 'Something Went Wrong');
-      })
-      .finally(() => {
-        setLoading(false);
-        updateBalance();
-      });
   };
   const [selectedCoinAmount, setSelectedCoinAmount] = useState('');
   const selectedChange = (e) => {

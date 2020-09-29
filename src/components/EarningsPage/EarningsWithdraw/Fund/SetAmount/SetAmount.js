@@ -12,9 +12,14 @@ import { EarningsContext } from '../../../../../context/EarningsContext';
 import { FormatCurrency } from '../../../../../utils/FunctionTools';
 
 function SetAmount({ setOpenModal }) {
-  const { coinListObject, email, token, profileId, tostShowOn } = useContext(
-    BankContext
-  );
+  const {
+    coinListObject,
+    email,
+    token,
+    profileId,
+    tostShowOn,
+    validateToken,
+  } = useContext(BankContext);
   const {
     coinSelected,
     liquidEarningBalances,
@@ -72,8 +77,10 @@ function SetAmount({ setOpenModal }) {
 
   const [loading, setLoading] = useState(false);
 
-  const withdraw = () => {
-    if (coinSelected && coinSelected.coinSymbol) {
+  const withdraw = async () => {
+    const isValidTkn = await validateToken(email, token);
+    console.log('isValidTkn', isValidTkn);
+    if (isValidTkn && coinSelected && coinSelected.coinSymbol) {
       if (appSelected && appSelected.app_code && liquidOrBond === 'Liquid') {
         setLoading(true);
         Axios.post(

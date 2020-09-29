@@ -53,8 +53,9 @@ function IceMechineMobile({ match }) {
       });
   }, [totalDays, coinContract, conractsObj]);
 
-  const createContract = () => {
-    if (!createContractLoading) {
+  const createContract = async () => {
+    const isValidTkn = await validateToken(email, token);
+    if (isValidTkn && !createContractLoading) {
       setCreateContractLoading(true);
       Axios.post('https://comms.globalxchange.com/coin/iced/contract/create', {
         email,

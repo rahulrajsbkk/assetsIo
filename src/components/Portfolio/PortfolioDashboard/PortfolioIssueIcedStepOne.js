@@ -39,6 +39,7 @@ function PortfolioIssueIcedStepOne() {
     profileId,
     tostShowOn,
     getIcedContracts,
+    validateToken,
   } = useContext(BankContext);
 
   const [stepIn, setStepIn] = useState(0);
@@ -127,18 +128,26 @@ function PortfolioIssueIcedStepOne() {
   }, [coinCheckOut, contractRateUsd, coinContract]);
 
   useEffect(() => {
-    Axios.post('https://comms.globalxchange.com/coin/iced/contract/create', {
-      email,
-      token,
-      coin: coinContract,
-      days: icingDays,
-      num_of_bonds: contractCount,
-      payCoin: (coinCheckOut && coinCheckOut.coinSymbol) || coinContract,
-      simulate: true,
-    }).then((res) => {
-      const { data } = res;
-      if (data.status) setContractResult(data);
-    });
+    const fun = async () => {
+      const isValidTkn = await validateToken(email, token);
+      isValidTkn &&
+        Axios.post(
+          'https://comms.globalxchange.com/coin/iced/contract/create',
+          {
+            email,
+            token,
+            coin: coinContract,
+            days: icingDays,
+            num_of_bonds: contractCount,
+            payCoin: (coinCheckOut && coinCheckOut.coinSymbol) || coinContract,
+            simulate: true,
+          }
+        ).then((res) => {
+          const { data } = res;
+          if (data.status) setContractResult(data);
+        });
+    };
+    fun();
   }, [
     coinContract,
     email,

@@ -6,6 +6,7 @@ import allPlatforms from '../static/images/allPlatforms.svg';
 import loadImg from '../static/images/load.gif';
 import ModalConfirm from '../components/ModalConfirm/ModalConfirm';
 import SelectCountry from '../components/SelectCountry/SelectCountry';
+import ModalSessionExpired from '../components/ModalSessionExpired/ModalSessionExpired';
 
 export const BankContext = createContext();
 
@@ -254,6 +255,23 @@ function BankContextProvider({ children }) {
 
   const [iceSidebarOpen, setIceSidebarOpen] = useState(false);
 
+  const [modalSessionExpOpen, setModalSessionExpOpen] = useState(false);
+  const validateToken = async (paramEmail, paramToken) => {
+    const res = await Axios.post(
+      'https://comms.globalxchange.com/coin/verifyToken',
+      {
+        email: paramEmail,
+        token: paramToken,
+      }
+    );
+    if (res.data && res.data.status) {
+      return true;
+    } else {
+      setModalSessionExpOpen(true);
+      return false;
+    }
+  };
+
   return (
     <BankContext.Provider
       value={{
@@ -289,6 +307,7 @@ function BankContextProvider({ children }) {
         getIcedContracts,
         iceSidebarOpen,
         setIceSidebarOpen,
+        validateToken,
       }}
     >
       {children}
@@ -310,6 +329,15 @@ function BankContextProvider({ children }) {
         ''
       )}
       <SelectCountry />
+      {modalSessionExpOpen ? (
+        <ModalSessionExpired
+          onClose={() => {
+            setModalSessionExpOpen(false);
+          }}
+        />
+      ) : (
+        ''
+      )}
       <Toast show={toastShow} message={toastMessage} />
     </BankContext.Provider>
   );
