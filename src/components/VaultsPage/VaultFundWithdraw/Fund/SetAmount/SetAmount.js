@@ -19,6 +19,7 @@ function SetAmount({ coinObject, price, transCoin, isDeposit, setOpenModal }) {
     profileId,
     tostShowOn,
     coinListObject,
+    validateToken,
   } = useContext(BankContext);
   const { updateBalance, coinSelected } = useContext(VaultContext);
   const [depositAsset, setDepositAsset] = useState('');

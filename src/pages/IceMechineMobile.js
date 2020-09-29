@@ -28,6 +28,7 @@ function IceMechineMobile({ match }) {
     tostShowOn,
     getIcedContracts,
     conractsObj,
+    validateToken,
   } = useContext(BankContext);
 
   const [contractDayStats, setContractDayStats] = useState([]);
