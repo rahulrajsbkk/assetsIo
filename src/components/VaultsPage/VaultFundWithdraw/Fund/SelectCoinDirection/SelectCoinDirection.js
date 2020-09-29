@@ -27,6 +27,15 @@ function SelectCoinDirection({
 
   const [searchList, setSearchList] = useState(priceList);
 
+  const [totalVaultUsd, setTotalVaultUsd] = useState(0);
+  useEffect(() => {
+    let total = 0;
+    priceList.forEach((price) => {
+      total += price.coinValueUSD;
+    });
+    setTotalVaultUsd(total);
+  }, [priceList]);
+
   useEffect(() => {
     setSearchList(
       priceList.filter(
@@ -54,7 +63,7 @@ function SelectCoinDirection({
               value={searchStr}
               onChange={(e) => setSearchStr(e.target.value)}
               type="search"
-              placeholder="Search Your Registered Apps"
+              placeholder="What Vault Are You Looking For? "
             />
             <FontAwesomeIcon icon={faSearch} />
           </label>
@@ -95,7 +104,7 @@ function SelectCoinDirection({
       <div className="footer" onClick={() => {}}>
         <span className="label">Total Balance</span>
         <span className="value">
-          ${FormatCurrency(0, 'USD')}
+          ${FormatCurrency(totalVaultUsd, 'USD')}
           <small>USD</small>
         </span>
       </div>
