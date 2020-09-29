@@ -4,11 +4,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Lottie from 'react-lottie';
 import Axios from 'axios';
-import SelectCoin from './Fund/SelectCoin/SelectCoin';
+// import SelectCoin from './Fund/SelectCoin/SelectCoin';
 import SetAmount from './Fund/SetAmount/SetAmount';
 import * as animationData from '../../../static/animations/cpu-loading.json';
 import { BankContext } from '../../../context/Context';
 import SelectVault from './Fund/SelectVault/SelectVault';
+import SelectCoinDirection from './Fund/SelectCoinDirection/SelectCoinDirection';
 
 function FundVault({
   fundOrWithdraw = 'Deposit',
@@ -116,6 +117,18 @@ function FundVault({
           setSelectVault={setSelectVault}
           isDeposit={isDeposit}
         />
+      ) : transCoin === '' ? (
+        <SelectCoinDirection
+          appFrom={appFrom}
+          isDeposit={isDeposit}
+          setCoinObject={setCoinObject}
+          setIsCoinSelected={setIsCoinSelected}
+          price={price}
+          transCoin={transCoin}
+          setTransCoin={setTransCoin}
+          priceList={priceList}
+          loading={loading}
+        />
       ) : (
         <div className="deposit-card">
           <div className="title">{fundOrWithdraw}</div>
@@ -123,17 +136,6 @@ function FundVault({
             <div className="m-auto">
               <Lottie options={defaultOptions} height={150} width={150} />
             </div>
-          ) : transCoin === '' || !isCoinSelected ? (
-            <SelectCoin
-              isDeposit={isDeposit}
-              setCoinObject={setCoinObject}
-              setIsCoinSelected={setIsCoinSelected}
-              price={price}
-              transCoin={transCoin}
-              setTransCoin={setTransCoin}
-              fundOrWithdraw={fundOrWithdraw}
-              priceList={priceList}
-            />
           ) : (
             <SetAmount
               appFrom={appFrom}
@@ -147,6 +149,7 @@ function FundVault({
             />
           )}
         </div>
+      )}
       )}
     </div>
   );

@@ -49,7 +49,7 @@ function SelectVault({ isDeposit, setAppFrom, setSelectVault }) {
           setAppFrom({
             app_code: 'gx',
             profile_id: '',
-            app_name: '',
+            app_name: 'GX Nitrous',
             app_icon: '',
           });
           setSelectVault(false);
@@ -63,8 +63,3 @@ function SelectVault({ isDeposit, setAppFrom, setSelectVault }) {
 }
 
 export default SelectVault;
-
-// app_code: 'ice';
-// app_icon: 'https://chatsgx.s3-us-east-2.amazonaws.com/shorupan@gmail.com/1600250614453.png';
-// app_name: 'Assets.io';
-// profile_id: 'iceu1f42cc0279214t1595785867080';

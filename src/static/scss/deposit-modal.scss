@@ -45,8 +45,15 @@ $bg-color: #b2b3c7;
         align-items: center;
         margin-right: 70px;
         .titleAppSelect {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
           font-size: 26px;
           font-weight: 600;
+          .subText {
+            font-size: 15px;
+            font-weight: normal;
+          }
         }
         .searcWraper {
           height: 45px;
@@ -67,6 +74,7 @@ $bg-color: #b2b3c7;
       .scrollWrap {
         margin-top: 50px;
         height: 0 !important;
+        width: unset !important;
         flex: 1;
         .gridApps {
           padding: 0;
@@ -114,6 +122,99 @@ $bg-color: #b2b3c7;
         font-weight: 600;
         text-decoration: underline;
         margin-left: 6px;
+      }
+    }
+    &.coin {
+      .content {
+        padding: 50px 70px;
+        .selectAppHead {
+          margin-right: 0;
+        }
+        .coinListWrap {
+          margin-top: 30px;
+          height: 0 !important;
+          width: unset !important;
+          flex: 1;
+          .coinList {
+            padding: 0 1px;
+            display: flex;
+            flex-direction: column;
+            .asset-item {
+              flex: 0 0 30%;
+              max-height: 30%;
+              border: 1px solid $vault-border-color;
+              margin-bottom: 15px;
+              padding: 0 60px;
+              display: flex;
+              align-items: center;
+              cursor: auto;
+              .icon {
+                height: 40px;
+                width: 60px;
+                object-fit: contain;
+              }
+              .name {
+                flex: 0 0 30%;
+                margin-left: 15px;
+                font-size: 22px;
+                font-weight: 600;
+              }
+              .amount {
+                flex: 0 0 20%;
+                font-size: 22px;
+                font-weight: 600;
+                margin-right: auto;
+                small {
+                  font-size: 14px;
+                }
+              }
+              .deposit {
+                cursor: pointer;
+                border: 1px solid $primary-color;
+                margin-left: 12px;
+                width: 130px;
+                height: 40px;
+                background: $primary-color;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: 600;
+                color: white;
+                &:hover {
+                  background: white;
+                  color: $primary-color;
+                }
+                &.inv {
+                  background: white;
+                  color: $primary-color;
+                  &:hover {
+                    background: $primary-color;
+                    color: white;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      .footer {
+        padding: 0 70px;
+        height: 70px;
+        background: $primary-color;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        .label {
+          font-size: 21px;
+        }
+        .value {
+          font-size: 23px;
+          small {
+            font-size: 17px;
+          }
+        }
       }
     }
   }
