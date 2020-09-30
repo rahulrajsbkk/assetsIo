@@ -130,7 +130,7 @@ function LoginModal({ onClose, onLogin }) {
                           {loading ? (
                             <FontAwesomeIcon icon={faSpinner} spin />
                           ) : (
-                            'LOGIN'
+                            'Continue'
                           )}
                         </button>
                         {width < 768 ? (

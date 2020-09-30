@@ -61,6 +61,7 @@ function Signup({ setFirstLogin, onClose }) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [pin, setPin] = useState('');
+  const [refAffiliate, setRefAffiliate] = useState('');
 
   useEffect(() => {
     setIsValid({
@@ -106,7 +107,7 @@ function Signup({ setFirstLogin, onClose }) {
       username: uname,
       email: email,
       password: password,
-      ref_affiliate: '1',
+      ref_affiliate: refAffiliate || 1,
       account_type: 'Personal',
       signedup_app: 'ice',
     })
@@ -151,6 +152,57 @@ function Signup({ setFirstLogin, onClose }) {
   const getStep = (step) => {
     switch (step) {
       case 1:
+        return (
+          <div className="signup-form d-flex flex-column flex-grow-1 mx-5">
+            <Fade bottom>
+              <div className="group">
+                <input
+                  type="text"
+                  name="uname"
+                  value={uname}
+                  onChange={uNameValidate}
+                  required="required"
+                />
+                <span className="highlight" />
+                <span className="bar" />
+                <label>SELECT USERNAME</label>
+                {isValid.uname ? trueCircle : falseCircle}
+              </div>
+            </Fade>
+            <Fade bottom>
+              <div className="group">
+                <input
+                  type="text"
+                  name="email"
+                  value={email}
+                  onChange={emailValidate}
+                  required="required"
+                />
+                <span className="highlight" />
+                <span className="bar" />
+                <label>ENTER EMAIL</label>
+                {isValid.email ? trueCircle : falseCircle}
+              </div>
+            </Fade>
+            <Fade bottom>
+              <div className="group ">
+                <button
+                  type="submit"
+                  disabled={!(isValid.email && isValid.uname)}
+                  className="btn btn-darkblue mb-5"
+                  onClick={() => {
+                    if (isValid.email && isValid.uname) {
+                      setStep(2);
+                    }
+                  }}
+                >
+                  Continue
+                </button>
+              </div>
+            </Fade>
+          </div>
+        );
+      case 2:
         return (
           <div className="signup-form mx-5">
             <Fade bottom>
@@ -202,7 +254,7 @@ function Signup({ setFirstLogin, onClose }) {
             </Fade>
           </div>
         );
-      case 2:
+      case 3:
         return (
           <div className="d-flex flex-column signup-form mx-5 flex-grow-1">
             <Fade bottom>
@@ -239,7 +291,7 @@ function Signup({ setFirstLogin, onClose }) {
             </Fade>
           </div>
         );
-      case 3:
+      case 4:
         return (
           <div className="d-flex flex-column signup-form mx-5 flex-grow-1">
             <Fade bottom>
@@ -277,7 +329,7 @@ function Signup({ setFirstLogin, onClose }) {
             </Fade>
           </div>
         );
-      case 4:
+      case 5:
         return (
           <div className="d-flex flex-column signup-form mx-5 flex-grow-1">
             <div className="lottie">
@@ -301,48 +353,33 @@ function Signup({ setFirstLogin, onClose }) {
         return (
           <div className="signup-form d-flex flex-column flex-grow-1 mx-5">
             <Fade bottom>
-              <div className="group">
+              <div className="group my-auto">
                 <input
                   type="text"
                   name="uname"
-                  value={uname}
-                  onChange={uNameValidate}
+                  value={refAffiliate}
+                  onChange={(e) => setRefAffiliate(e.target.value)}
                   required="required"
                 />
                 <span className="highlight" />
                 <span className="bar" />
-                <label>SELECT USERNAME</label>
-                {isValid.uname ? trueCircle : falseCircle}
+                <label>Enter BrokerSync Code</label>
+                <div className="whatIs">What Is A BrokerSync Code?</div>
               </div>
             </Fade>
             <Fade bottom>
-              <div className="group">
-                <input
-                  type="text"
-                  name="email"
-                  value={email}
-                  onChange={emailValidate}
-                  required="required"
-                />
-                <span className="highlight" />
-                <span className="bar" />
-                <label>ENTER EMAIL</label>
-                {isValid.email ? trueCircle : falseCircle}
-              </div>
-            </Fade>
-            <Fade bottom>
-              <div className="group ">
+              <div className="group mt-0 mb-3">
                 <button
                   type="submit"
                   disabled={!(isValid.email && isValid.uname)}
-                  className="btn btn-darkblue mb-5"
+                  className="btn btn-darkblue"
                   onClick={() => {
                     if (isValid.email && isValid.uname) {
                       setStep(1);
                     }
                   }}
                 >
-                  NEXT STEP
+                  Continue
                 </button>
               </div>
             </Fade>
