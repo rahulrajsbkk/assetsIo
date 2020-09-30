@@ -125,7 +125,7 @@ function LoginModal({ onClose, onLogin }) {
                         <button
                           type="submit"
                           disabled={loading}
-                          className="btn btn-darkblue mb-3"
+                          className="btn btn-darkblue mb-5"
                         >
                           {loading ? (
                             <FontAwesomeIcon icon={faSpinner} spin />

@@ -165,7 +165,7 @@ function Signup({ setFirstLogin, onClose }) {
                 />
                 <span className="highlight" />
                 <span className="bar" />
-                <label>SELECT USERNAME</label>
+                <label>Select Username</label>
                 {isValid.uname ? trueCircle : falseCircle}
               </div>
             </Fade>
@@ -180,7 +180,7 @@ function Signup({ setFirstLogin, onClose }) {
                 />
                 <span className="highlight" />
                 <span className="bar" />
-                <label>ENTER EMAIL</label>
+                <label>Enter Email</label>
                 {isValid.email ? trueCircle : falseCircle}
               </div>
             </Fade>
@@ -216,7 +216,7 @@ function Signup({ setFirstLogin, onClose }) {
                 />
                 <span className="highlight" />
                 <span className="bar" />
-                <label>ENTER PASSWORD</label>
+                <label>Enter Password</label>
               </div>
               <div className="conditions">
                 <h3>The Password Checklist</h3>
@@ -268,7 +268,7 @@ function Signup({ setFirstLogin, onClose }) {
                 />
                 <span className="highlight" />
                 <span className="bar" />
-                <label>TYPE PASSWORD AGAIN</label>
+                <label>Type Password Again</label>
                 {isValid.confirmPassword ? trueCircle : falseCircle}
               </div>
             </Fade>
@@ -368,15 +368,12 @@ function Signup({ setFirstLogin, onClose }) {
               </div>
             </Fade>
             <Fade bottom>
-              <div className="group mt-0 mb-3">
+              <div className="group mt-0 mb-5">
                 <button
                   type="submit"
-                  disabled={!(isValid.email && isValid.uname)}
                   className="btn btn-darkblue"
                   onClick={() => {
-                    if (isValid.email && isValid.uname) {
-                      setStep(1);
-                    }
+                    setStep(1);
                   }}
                 >
                   Continue
@@ -400,7 +397,7 @@ function Signup({ setFirstLogin, onClose }) {
         }}
       />
       <h2 className="mt-5 mb-0 mx-5 signup-text">Signup</h2>
-      <div className="gx-account-text mx-5">If You Don’t Have A GX Account</div>
+      <div className="gx-account-text mx-5">Create Your Account In Seconds</div>
       {getStep(step)}
     </div>
   );
