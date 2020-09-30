@@ -1,13 +1,26 @@
-import React, { useContext, Fragment } from 'react';
+import React, { useContext, Fragment, useState } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import moment from 'moment';
 import { BankContext } from '../../context/Context';
 import { YesterdayToday, FormatCurrency } from '../../utils/FunctionTools';
 import Skeleton from 'react-loading-skeleton';
+import TransactionInspector from '../TransactionInspector/TransactionInspector';
 
 function IceSidebarTransactionList({ globalEarnings, loading }) {
   let date = '';
   const { coinListObject } = useContext(BankContext);
+  const [tiObject, setTiObject] = useState(false);
+
+  const checkIsExpandValue = (num, coin) => {
+    if (coin === 'BTC' || coin === 'ETH') {
+      if (num < 0.0001) return true;
+      else return false;
+    } else {
+      if (num < 0.01) return true;
+      else return false;
+    }
+  };
+
   return (
     <>
       <Scrollbars
@@ -43,7 +56,12 @@ function IceSidebarTransactionList({ globalEarnings, loading }) {
           return (
             <Fragment key={txn._id}>
               {sameDay()}
-              <div className="transaction">
+              <div
+                className={`transaction ${checkIsExpandValue(
+                  txn.earned_interest,
+                  txn.coin
+                )}`}
+              >
                 <h6>
                   <img
                     src={
@@ -53,7 +71,24 @@ function IceSidebarTransactionList({ globalEarnings, loading }) {
                     }
                     alt=""
                   />
-                  {FormatCurrency(txn.earned_interest, txn.coin)}
+                  <span className="value">
+                    {FormatCurrency(txn.earned_interest, txn.coin)}
+                  </span>
+                  <span
+                    className="expand"
+                    onClick={() => {
+                      setTiObject({
+                        timestamp: txn.timestamp,
+                        title: 'Credit From Interest Payment',
+                        amount: txn.earned_interest,
+                        coin: txn.coin,
+                        current: txn.earned_usd_value,
+                        updated: '',
+                      });
+                    }}
+                  >
+                    Expand
+                  </span>
                 </h6>
                 <h6>
                   <img className="flag" src={txn.countryData.image} alt="" />
@@ -64,6 +99,11 @@ function IceSidebarTransactionList({ globalEarnings, loading }) {
           );
         })}
       </Scrollbars>
+      {tiObject ? (
+        <TransactionInspector setOpenModal={setTiObject} tiObject={tiObject} />
+      ) : (
+        ''
+      )}
     </>
   );
 }

@@ -105,6 +105,24 @@
               width: 35px;
             }
           }
+          .value {
+            display: block;
+          }
+          .expand {
+            text-decoration: underline;
+            cursor: pointer;
+            display: none;
+          }
+        }
+        &.true {
+          h6 {
+            .value {
+              display: none;
+            }
+            .expand {
+              display: block;
+            }
+          }
         }
       }
     }

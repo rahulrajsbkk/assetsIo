@@ -113,6 +113,24 @@
             height: 16px;
             margin-right: 8px;
           }
+          .value {
+            display: block;
+          }
+          .expand {
+            display: none;
+            text-decoration: underline;
+            cursor: pointer;
+          }
+        }
+        &.true {
+          h6 {
+            .value {
+              display: none;
+            }
+            .expand {
+              display: block;
+            }
+          }
         }
       }
     }
