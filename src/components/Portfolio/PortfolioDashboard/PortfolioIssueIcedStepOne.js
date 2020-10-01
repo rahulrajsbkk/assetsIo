@@ -148,6 +148,7 @@ function PortfolioIssueIcedStepOne() {
         });
     };
     fun();
+    // eslint-disable-next-line
   }, [
     coinContract,
     email,

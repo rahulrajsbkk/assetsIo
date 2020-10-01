@@ -203,7 +203,7 @@ function SelectAndConfirmAmount({
             <img
               src={coinListObject && coinListObject[transCoin].coinImage}
               className="icon my-auto"
-              alt
+              alt=""
             />
             <div className="name">
               {coinListObject && coinListObject[transCoin].coinName}
@@ -231,7 +231,7 @@ function SelectAndConfirmAmount({
                 coinListObject[coinSelected.coinSymbol].coinImage
               }
               className="icon my-auto"
-              alt
+              alt=""
             />
             <div className="name">
               {coinListObject &&

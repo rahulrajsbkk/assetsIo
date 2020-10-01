@@ -2,22 +2,13 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect, useContext } from 'react';
-import Lottie from 'react-lottie';
 import Axios from 'axios';
-// import SelectCoin from './Fund/SelectCoin/SelectCoin';
-import SetAmount from './Fund/SetAmount/SetAmount';
-import * as animationData from '../../../static/animations/cpu-loading.json';
 import { BankContext } from '../../../context/Context';
 import SelectVault from './Fund/SelectVault/SelectVault';
 import SelectCoinDirection from './Fund/SelectCoinDirection/SelectCoinDirection';
 import SelectAndConfirmAmount from './Fund/SelectAndConfirmAmount/SelectAndConfirmAmount';
 
-function FundVault({
-  fundOrWithdraw = 'Deposit',
-  openModal,
-  setOpenModal,
-  isDeposit,
-}) {
+function FundVault({ openModal, setOpenModal, isDeposit }) {
   const [transCoin, setTransCoin] = useState('');
   const { email, coinListObject } = useContext(BankContext);
   const [coinObject, setCoinObject] = useState({
@@ -25,18 +16,13 @@ function FundVault({
     symbol: 'USD',
     price: 1,
   });
-  const [isCoinSelected, setIsCoinSelected] = useState(false);
   const [price, setPrice] = useState({
     USD: 0,
     BTC: 0,
     ETH: 0,
     USDT: 0,
   });
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData.default,
-  };
+
   const [loading, setLoading] = useState(true);
   const [priceList, setPriceList] = useState([]);
 
@@ -102,7 +88,7 @@ function FundVault({
           });
       }
     }
-  }, [appFrom, coinListObject]);
+  }, [appFrom, coinListObject, email]);
 
   return (
     <div className={`deposit-modal ${openModal ? '' : 'd-none'}`}>
@@ -123,7 +109,6 @@ function FundVault({
           appFrom={appFrom}
           isDeposit={isDeposit}
           setCoinObject={setCoinObject}
-          setIsCoinSelected={setIsCoinSelected}
           price={price}
           transCoin={transCoin}
           setTransCoin={setTransCoin}

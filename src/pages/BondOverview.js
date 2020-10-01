@@ -47,7 +47,7 @@ function BondOverview({ match }) {
       })
       .finally(() => {
         setLoading(false);
-      });
+      }); // eslint-disable-next-line
   }, [contractId]);
 
   console.log('contract', contract);
@@ -550,7 +550,7 @@ function BondOverview({ match }) {
               <div className="vaults-itm">
                 <img
                   src="https://apimachine-s3.s3.us-east-2.amazonaws.com/coinImages/ethereumCoin.png"
-                  alt
+                  alt=""
                 />
                 <div className="name-n-date mr-auto">
                   <div className="name">A ice Debit from Iced Contract</div>
@@ -565,7 +565,7 @@ function BondOverview({ match }) {
               <div className="vaults-itm">
                 <img
                   src="https://apimachine-s3.s3.us-east-2.amazonaws.com/coinImages/ethereumCoin.png"
-                  alt
+                  alt=""
                 />
                 <div className="name-n-date mr-auto">
                   <div className="name">
@@ -582,7 +582,7 @@ function BondOverview({ match }) {
               <div className="vaults-itm">
                 <img
                   src="https://apimachine-s3.s3.us-east-2.amazonaws.com/coinImages/ethereumCoin.png"
-                  alt
+                  alt=""
                 />
                 <div className="name-n-date mr-auto">
                   <div className="name">
@@ -598,7 +598,7 @@ function BondOverview({ match }) {
               <div className="vaults-itm">
                 <img
                   src="https://apimachine-s3.s3.us-east-2.amazonaws.com/coinImages/ethereumCoin.png"
-                  alt
+                  alt=""
                 />
                 <div className="name-n-date mr-auto">
                   <div className="name">A ice credit from Traded from BTC</div>
@@ -612,7 +612,7 @@ function BondOverview({ match }) {
               <div className="vaults-itm">
                 <img
                   src="https://apimachine-s3.s3.us-east-2.amazonaws.com/coinImages/ethereumCoin.png"
-                  alt
+                  alt=""
                 />
                 <div className="name-n-date mr-auto">
                   <div className="name">
