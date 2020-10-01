@@ -477,7 +477,6 @@ function BondOverview({ match }) {
             />
           </div>
         );
-
       default:
         return (
           <>
@@ -513,6 +512,7 @@ function BondOverview({ match }) {
         );
     }
   };
+  console.log('coinListObject', coinListObject);
   return (
     <Layout active="moneyMarkets" className="bondOverview" hideFooter>
       {loading ? (
@@ -545,7 +545,12 @@ function BondOverview({ match }) {
                 }}
               />
             </div>
-            <div className="bondTitle">Bitcoin Bond - 23416167</div>
+            <div className="bondTitle">
+              {coinListObject &&
+                coinListObject[contract.coin] &&
+                coinListObject[contract.coin].coinName}{' '}
+              Bond - {contractId}
+            </div>
             <Scrollbars
               autoHide
               className="earnings"
@@ -633,7 +638,13 @@ function BondOverview({ match }) {
             </Scrollbars>
           </div>
           <div className="bondCertificate">
-            <LionBond text="BITCOIN BOND" />
+            <LionBond
+              text={`${
+                coinListObject &&
+                coinListObject[contract.coin] &&
+                coinListObject[contract.coin].coinName
+              } BOND`}
+            />
             <div className="header">
               <div className="label">Value Of Bond</div>
               <div className="value">
