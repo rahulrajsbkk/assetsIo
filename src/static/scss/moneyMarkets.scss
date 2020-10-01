@@ -142,7 +142,7 @@
       width: 34%;
       height: auto;
     }
-    .head {
+    .header {
       padding: 10px 50px;
       display: flex;
       color: white;
@@ -165,14 +165,95 @@
         padding: 30px 50px 10px 50px;
         display: flex;
         flex-direction: column;
+        // .listItem {
+        //   margin: 10px 0;
+        //   flex: 1;
+        //   border: 1px solid $vault-border-color;
+        //   flex: 1;
+        //   display: flex;
+        //   align-items: center;
+        //   justify-content: center;
+        // }
         .listItem {
-          margin: 10px 0;
           flex: 1;
+          min-height: 42px;
           border: 1px solid $vault-border-color;
+          display: flex;
+          padding: 0 6%;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 20px;
+          &.sub {
+            flex: 0 0 30%;
+          }
+        }
+        .listDetail {
+          position: relative;
           flex: 1;
           display: flex;
-          align-items: center;
-          justify-content: center;
+          flex-direction: column;
+          border: 1px solid $vault-border-color;
+          padding: 40px 50px;
+          .head {
+            line-height: 1;
+            font-size: 26px;
+            font-weight: 600;
+          }
+          .date {
+            font-size: 12px;
+          }
+          .item {
+            margin-top: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            .label {
+              font-weight: 600;
+            }
+            .value {
+              text-align: right;
+              .primary {
+                font-weight: 600;
+                &.up {
+                  color: $primary-green;
+                }
+                &.down {
+                  color: $primary-red;
+                }
+              }
+            }
+            &.big {
+              font-size: 20px;
+            }
+          }
+          .close {
+            cursor: pointer;
+            position: absolute;
+            top: 30px;
+            right: 55px;
+            font-size: 30px;
+          }
+          &.sub {
+            margin-top: 15px;
+            padding: 20px;
+            .subHead {
+              font-size: 20px;
+              font-weight: 600;
+              margin-bottom: 10px;
+            }
+            p {
+              font-size: 13px;
+            }
+            .nb {
+              font-size: 14px;
+              font-weight: 600;
+            }
+            .close {
+              top: 15px;
+              right: 25px;
+              font-size: 26px;
+            }
+          }
         }
       }
     }
