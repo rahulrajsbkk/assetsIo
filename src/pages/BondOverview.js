@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useContext, useState, useEffect } from 'react';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import Axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,7 +17,7 @@ import { FormatCurrency, FormatNumber } from '../utils/FunctionTools';
 
 function BondOverview({ match }) {
   const [searchStr, setSearch] = useState('');
-  const { email, tostShowOn, coinListObject } = useContext(BankContext);
+  const { tostShowOn, coinListObject } = useContext(BankContext);
   const [contractId, setContractId] = useState(
     (match && match.params && match.params.id) || ''
   );
@@ -513,9 +513,6 @@ function BondOverview({ match }) {
         );
     }
   };
-  if (!email) {
-    return <Redirect to="/" />;
-  }
   return (
     <Layout active="moneyMarkets" className="bondOverview" hideFooter>
       {loading ? (

@@ -178,6 +178,17 @@ function LayoutSidebarCoins({ active }) {
                 <span className="my-auto">Index</span>
               </h5>
             </Link>
+            <Link
+              to="/moneyMarkets"
+              className={`menu-itm${
+                active === 'moneyMarkets' ? ' active' : ''
+              }`}
+            >
+              <h5 className="d-flex py-3 menu-itm">
+                <img src={moneyMarkets} alt="" />
+                <span className="my-auto">MoneyMarkets</span>
+              </h5>
+            </Link>
             <div
               onClick={() => {
                 setLoginModalOpen(true);
