@@ -528,7 +528,15 @@ function BondOverview({ match }) {
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search Any Asset Hash..."
               />
-              <img src={paste} alt="" />
+              <img
+                src={paste}
+                alt=""
+                onClick={() => {
+                  navigator.clipboard
+                    .readText()
+                    .then((clipText) => setSearch(clipText));
+                }}
+              />
               <img
                 src={search}
                 alt=""

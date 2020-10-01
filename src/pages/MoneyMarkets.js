@@ -14,14 +14,22 @@ function MoneyMarkets() {
   return (
     <Layout active="moneyMarkets" className="moneyMarkets" hideFooter>
       <img src={moneyMarketLogo} className="moneyMarketLogo" alt="" />
-      <div className="searchWrapper">
+      <label className="searchWrapper">
         <input
           type="text"
           value={searchStr}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search Any Asset Hash..."
         />
-        <img src={paste} alt="" />
+        <img
+          src={paste}
+          onClick={() => {
+            navigator.clipboard
+              .readText()
+              .then((clipText) => setSearch(clipText));
+          }}
+          alt=""
+        />
         <img
           src={search}
           alt=""
@@ -30,7 +38,7 @@ function MoneyMarkets() {
             else toastShowOn('Enter A Valid Asset Hash');
           }}
         />
-      </div>
+      </label>
     </Layout>
   );
 }
