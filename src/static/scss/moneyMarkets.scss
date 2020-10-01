@@ -4,13 +4,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
   .moneyMarketLogo {
-    width: 35%;
+    position: absolute;
+    width: 25%;
+    bottom: 60%;
   }
   .searchWrapper {
-    margin: 50px 0;
-    width: 65%;
-    height: 70px;
+    width: 55%;
+    height: 65px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
     border-radius: 12px;
     display: flex;
