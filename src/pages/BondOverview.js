@@ -642,7 +642,8 @@ function BondOverview({ match }) {
               text={`${
                 coinListObject &&
                 coinListObject[contract.coin] &&
-                coinListObject[contract.coin].coinName
+                coinListObject[contract.coin].coinName &&
+                coinListObject[contract.coin].coinName.toUpperCase()
               } BOND`}
             />
             <div className="header">
