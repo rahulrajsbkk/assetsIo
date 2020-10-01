@@ -36,7 +36,7 @@ function SidebarSettings({ tabItem, setTabItem, defTab }) {
           className="settingsMenu"
           onClick={() => {
             populateModal(
-              'Are You Sure To Logout Of This System',
+              'Are You Sure You Want To Logout',
               () => {},
               () => login()
             );

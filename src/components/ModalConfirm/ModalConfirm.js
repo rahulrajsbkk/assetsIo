@@ -1,6 +1,6 @@
 import React from 'react';
 
-import logo from '../../static/images/logo.svg';
+import logo from '../../static/images/assetsLogo.svg';
 
 function ModalConfirm({ onClose, onConfirm, text, setOpenModal }) {
   return (
@@ -17,7 +17,7 @@ function ModalConfirm({ onClose, onConfirm, text, setOpenModal }) {
       <div className="modalContent">
         <div className="head">
           <img src={logo} alt="" />
-          <h5>IcedVault</h5>
+          <h5>Assets.io</h5>
         </div>
         <div className="contents">
           <div className="text">{text}</div>
