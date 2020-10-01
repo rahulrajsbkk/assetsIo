@@ -10,8 +10,10 @@ import { BankContext } from './context/Context';
 import Earnings from './pages/Earnings';
 import NetWorthPage from './pages/NetWorthPage';
 import IceMechineMobile from './pages/IceMechineMobile';
+import MoneyMarkets from './pages/MoneyMarkets';
+import BondOverview from './pages/BondOverview';
 
-function Routes() {
+function Routes({ match }) {
   const { email } = useContext(BankContext);
   return (
     <Switch>
@@ -41,6 +43,8 @@ function Routes() {
       <Route exact path="/vault/:type" component={Vault} />
       <Route exact path="/mobile-apps" component={MobileApps} />
       <Route exact path="/markets" component={Markets} />
+      <Route exact path="/moneyMarkets" component={MoneyMarkets} />
+      <Route exact path="/bonds/:id" component={BondOverview} />
     </Switch>
   );
 }

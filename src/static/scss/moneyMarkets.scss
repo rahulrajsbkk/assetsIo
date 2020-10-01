@@ -1,0 +1,207 @@
+.moneyMarkets {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .moneyMarketLogo {
+    width: 35%;
+  }
+  .searchWrapper {
+    margin: 50px 0;
+    width: 65%;
+    height: 70px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    input {
+      padding: 0 10px;
+      height: 100%;
+      width: 0;
+      flex: 1;
+      border: none;
+      background: none;
+    }
+    img {
+      height: 40%;
+      width: auto;
+      margin-left: 15px;
+    }
+  }
+}
+.bondOverview {
+  flex: 1;
+  display: flex;
+  .overView {
+    flex: 0 0 60%;
+    padding: 70px;
+    display: flex;
+    flex-direction: column;
+    .searchWrapper {
+      height: 55px;
+      border: 1px solid $vault-border-color;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      padding: 0 30px;
+      margin-bottom: 40px;
+      input {
+        padding: 0 10px;
+        height: 100%;
+        width: 0;
+        flex: 1;
+        border: none;
+        background: none;
+      }
+      img {
+        height: 40%;
+        width: auto;
+        margin-left: 15px;
+      }
+    }
+    .bondTitle {
+      font-size: 26px;
+      font-weight: bold;
+    }
+    .earnings {
+      margin-top: 30px;
+      width: unset !important;
+      height: unset !important;
+      flex: 1;
+      .vaultsView {
+        .day {
+          margin-top: 1rem;
+          font-size: 16px;
+          line-height: 1;
+          padding: 6px 0;
+          font-weight: bold;
+        }
+        .vaults-itm {
+          display: flex;
+          margin-left: 20px;
+          height: 90px;
+          img {
+            background: #ffeae9;
+            height: 40px;
+            width: 40px;
+            border-radius: 20px;
+            margin: auto 20px;
+          }
+          .name-n-date {
+            height: 100%;
+            display: flex;
+            line-height: 1;
+            flex-direction: column;
+            justify-content: center;
+            .name {
+              font-weight: 600;
+              font-size: 18px;
+            }
+            .date {
+              font-size: 11px;
+            }
+          }
+          .credit {
+            flex: 12%;
+            max-width: 12%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            margin-right: 20px;
+            .expand {
+              display: none;
+            }
+            &.true {
+              text-decoration: underline;
+              .value {
+                display: none;
+              }
+              .expand {
+                cursor: pointer;
+                display: block;
+              }
+            }
+          }
+          &:hover {
+            background: #f8f9fa;
+          }
+        }
+      }
+    }
+  }
+  .bondCertificate {
+    flex: 0 0 40%;
+    border-left: 1px solid $vault-border-color;
+    display: flex;
+    flex-direction: column;
+    .lionBond {
+      margin: 30px auto 20px auto;
+      width: 34%;
+      height: auto;
+    }
+    .head {
+      padding: 10px 50px;
+      display: flex;
+      color: white;
+      background: $primary-color;
+      justify-content: space-between;
+      align-items: center;
+      .label {
+        font-size: 15px;
+      }
+      .value {
+        font-weight: 600;
+        font-size: 17px;
+      }
+    }
+    .bondDetailScroll {
+      flex: 1;
+      height: unset !important;
+      width: unset !important;
+      .view {
+        padding: 30px 50px 10px 50px;
+        display: flex;
+        flex-direction: column;
+        .listItem {
+          margin: 10px 0;
+          flex: 1;
+          border: 1px solid $vault-border-color;
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+    .footerButtons {
+      padding: 0 50px 30px 50px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .btn-50,
+      .btn-100 {
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 600;
+      }
+      .btn-50 {
+        height: 50px;
+        flex: 0 0 48.5%;
+        margin-bottom: 15px;
+        border: 1px solid $primary-color;
+        color: $primary-color;
+      }
+      .btn-100 {
+        height: 50px;
+        flex: 0 0 100%;
+        background: $primary-color;
+        color: white;
+      }
+    }
+  }
+}

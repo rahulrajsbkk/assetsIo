@@ -9,6 +9,7 @@ import earnings from '../static/images/sidebar-icons/earnings.svg';
 import portfolio from '../static/images/sidebar-icons/portfolio.svg';
 import planB from '../static/images/sidebar-icons/planB.svg';
 import appstore from '../static/images/sidebar-icons/appstore.svg';
+import moneyMarkets from '../static/images/sidebar-icons/moneyMarkets.svg';
 import { BankContext } from '../context/Context';
 import AssetPriceOrRates from './AssetPriceOrRates';
 import { NetWorthContext } from '../context/ NetWorthContext';
@@ -56,6 +57,15 @@ function LayoutSidebar({ active }) {
           <h5 className="d-flex py-3 menu-itm">
             <img src={iced} alt="" />
             <span className="my-auto">Index</span>
+          </h5>
+        </Link>
+        <Link
+          to="/moneyMarkets"
+          className={`menu-itm${active === 'moneyMarkets' ? ' active' : ''}`}
+        >
+          <h5 className="d-flex py-3 menu-itm">
+            <img src={moneyMarkets} alt="" />
+            <span className="my-auto">MoneyMarkets</span>
           </h5>
         </Link>
         <Link

@@ -10,6 +10,7 @@ import card from '../static/images/sidebar-icons/card.svg';
 import earnings from '../static/images/sidebar-icons/earnings.svg';
 import iced from '../static/images/logo.svg';
 import portfolio from '../static/images/sidebar-icons/portfolio.svg';
+import moneyMarkets from '../static/images/sidebar-icons/moneyMarkets.svg';
 import planB from '../static/images/sidebar-icons/planB.svg';
 import appstore from '../static/images/sidebar-icons/appstore.svg';
 import allPlatforms from '../static/images/allPlatforms.svg';
@@ -102,6 +103,17 @@ function LayoutSidebarCoins({ active }) {
               <h5 className="d-flex py-3 menu-itm">
                 <img src={iced} alt="" />
                 <span className="my-auto">Index</span>
+              </h5>
+            </Link>
+            <Link
+              to="/moneyMarkets"
+              className={`menu-itm${
+                active === 'moneyMarkets' ? ' active' : ''
+              }`}
+            >
+              <h5 className="d-flex py-3 menu-itm">
+                <img src={moneyMarkets} alt="" />
+                <span className="my-auto">MoneyMarkets</span>
               </h5>
             </Link>
             <Link
