@@ -17,7 +17,7 @@ import { FormatCurrency, FormatNumber } from '../utils/FunctionTools';
 
 function BondOverview({ match }) {
   const [searchStr, setSearch] = useState('');
-  const { tostShowOn, coinListObject } = useContext(BankContext);
+  const { tostShowOn, coinListObject, email } = useContext(BankContext);
   const [contractId, setContractId] = useState(
     (match && match.params && match.params.id) || ''
   );
@@ -644,7 +644,13 @@ function BondOverview({ match }) {
             <div className="footerButtons">
               <div className="btn-50">Asset Proof</div>
               <div className="btn-50">Share</div>
-              <div className="btn-100">Trade</div>
+              <div
+                className={`btn-100 ${
+                  email && email === contract.email ? '' : 'disable'
+                }`}
+              >
+                Trade
+              </div>
             </div>
           </div>
         </>
