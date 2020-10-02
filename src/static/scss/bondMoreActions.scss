@@ -1,0 +1,88 @@
+.moreActionsWrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  .overlayClose {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.57);
+  }
+  .contentCard {
+    margin: auto;
+    z-index: 1;
+    min-width: 40%;
+    min-height: 40%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    .head {
+      padding: 0 40px;
+      height: 70px;
+      background: $primary-color;
+      display: flex;
+      align-items: center;
+      color: white;
+      font-size: 25px;
+      font-weight: 600;
+      img {
+        height: 40%;
+        filter: brightness(0) invert(1);
+        margin-right: 15px;
+      }
+    }
+    .content {
+      flex: 1;
+      padding: 50px;
+      .label,
+      .bondId {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .label {
+        margin-top: 35px;
+        font-size: 18px;
+        .btnChange {
+          font-weight: 600;
+          text-decoration: underline;
+          opacity: 0.5;
+        }
+        &:first-of-type {
+          margin-top: 0;
+        }
+      }
+      .bondId {
+        font-size: 26px;
+        font-weight: 600;
+      }
+      .buttonBox {
+        margin-top: 15px;
+        width: 40%;
+        height: 50px;
+        border: 1px solid $primary-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 600;
+      }
+    }
+    .footerBtn {
+      cursor: pointer;
+      height: 55px;
+      background: $primary-color;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+}

@@ -119,6 +119,9 @@
               }
               .labels {
                 font-size: 14px;
+                .moreActions {
+                  text-decoration: underline;
+                }
               }
               .rates {
                 margin-top: auto;

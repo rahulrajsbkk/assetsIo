@@ -5,6 +5,7 @@ import { NetWorthContext } from '../../context/ NetWorthContext';
 import { BankContext } from '../../context/Context';
 import ModalAlertUpdate from './ModalAlertUpdate';
 import Skeleton from 'react-loading-skeleton';
+import BondMoreActionsModal from '../BondMoreActionsModal/BondMoreActionsModal';
 
 function NetWorthCards() {
   const {
@@ -68,6 +69,17 @@ function NetWorthCards() {
   }, [assetClass, assetCoin, liquidity, coinNameObject]);
 
   const [modalAsset, setModalAsset] = useState(false);
+
+  const [bondActionOpen, setBondActionOpen] = useState(false);
+  const [bondId, setBondId] = useState('');
+  const openBondAction = (id) => {
+    setBondActionOpen(true);
+    setBondId(id);
+  };
+  const closeBondAction = () => {
+    setBondActionOpen(false);
+    setBondId('');
+  };
 
   return (
     <Scrollbars
@@ -154,6 +166,20 @@ function NetWorthCards() {
                 <span>
                   {!isNaN(card.assets) && FormatNumber(card.assets, 0)}{' '}
                   {card.assetText}
+                  {liquidity === 'Bonds' ? (
+                    <>
+                      {' '}
+                      |{' '}
+                      <span
+                        className="moreActions"
+                        onClick={() => openBondAction(card.id)}
+                      >
+                        More Actions
+                      </span>
+                    </>
+                  ) : (
+                    ''
+                  )}
                 </span>
               )}
               {loadingAppBalance ? (
@@ -234,6 +260,11 @@ function NetWorthCards() {
           setOpenModal={setModalAsset}
           assetClass={modalAsset}
         />
+      ) : (
+        ''
+      )}
+      {bondActionOpen ? (
+        <BondMoreActionsModal bondId={bondId} onClose={closeBondAction} />
       ) : (
         ''
       )}

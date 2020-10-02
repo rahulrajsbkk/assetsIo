@@ -312,6 +312,7 @@ function NetWorthContextProvider({ children }) {
             type: 'app',
             assets: contract.days,
             assetText: 'Day Bond',
+            id: contract._id,
           });
         });
         setCardList(arr);
