@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import Axios from 'axios';
@@ -13,7 +13,12 @@ import search from '../static/images/search.svg';
 import Scrollbars from 'react-custom-scrollbars';
 import LionBond from '../components/SVGComponents/LionBond';
 import LoadingAnim from '../components/LoadingAnim/LoadingAnim';
-import { FormatCurrency, FormatNumber } from '../utils/FunctionTools';
+import {
+  FormatCurrency,
+  FormatNumber,
+  YesterdayToday,
+} from '../utils/FunctionTools';
+import TransactionInspector from '../components/TransactionInspector/TransactionInspector';
 
 function BondOverview({ match }) {
   const [searchStr, setSearch] = useState('');
@@ -512,7 +517,33 @@ function BondOverview({ match }) {
         );
     }
   };
-  console.log('coinListObject', coinListObject);
+  const [contractEarnings, setContractEarnings] = useState([]);
+  const [contractEarningsOverView, setContractEarningsView] = useState({});
+  useEffect(() => {
+    Axios.get(
+      `https://comms.globalxchange.com/coin/iced/interest/logs/get?email=shorupan@gmail.com&contract_id=${contractId}`
+    ).then((res) => {
+      const { data } = res;
+      if (data.status) {
+        setContractEarningsView({ ...data, interestLogs: undefined });
+        setContractEarnings(data.interestLogs);
+      }
+    });
+  }, [contractId]);
+
+  const checkIsExpandValue = (num, coin) => {
+    if (coin === 'BTC' || coin === 'ETH') {
+      if (num && num < 0.0001) return true;
+      else return false;
+    } else {
+      if (num && num < 0.01) return true;
+      else return false;
+    }
+  };
+
+  const [tiObject, setTiObject] = useState(false);
+  let date = '';
+  let coinSelected = coinListObject && coinListObject[contract.coin];
   return (
     <Layout active="moneyMarkets" className="bondOverview" hideFooter>
       {loading ? (
@@ -551,11 +582,107 @@ function BondOverview({ match }) {
                 coinListObject[contract.coin].coinName}{' '}
               Bond - {contractId}
             </div>
+            <div className="bondValues">
+              <div className="item">
+                <div className="label">Payments Till Date</div>
+                <div className="value">
+                  {contractEarningsOverView &&
+                    contractEarningsOverView.interest_payments}
+                </div>
+              </div>
+              <div className="item">
+                <div className="label">Total Paid Interest</div>
+                <div className="value">
+                  {FormatCurrency(
+                    contractEarningsOverView &&
+                      contractEarningsOverView.interest_paid,
+                    contract && contract.coin
+                  )}
+                  {contract.coin} | $
+                  {FormatCurrency(
+                    contractEarningsOverView &&
+                      contractEarningsOverView.interest_paid_usd
+                  )}USD
+                </div>
+              </div>
+              <div className="item">
+                <div className="label">Total Remaining Interest</div>
+                <div className="value">
+                  {FormatCurrency(
+                    contractEarningsOverView &&
+                      contractEarningsOverView.interest_remaining,
+                    contract && contract.coin
+                  )}
+                  {contract.coin} | $
+                  {FormatCurrency(
+                    contractEarningsOverView &&
+                      contractEarningsOverView.interest_remaining_usd
+                  )}
+                  USD
+                </div>
+              </div>
+            </div>
             <Scrollbars
               autoHide
               className="earnings"
               renderView={(props) => <div {...props} className="vaultsView" />}
             >
+              {contractEarnings.map((txn) => {
+                console.log('txn', txn);
+                function sameDay() {
+                  if (moment(txn.timestamp).format('MMDDYYYY') === date) {
+                  } else {
+                    date = moment(txn.timestamp).format('MMDDYYYY');
+                    return (
+                      <div className="day">{YesterdayToday(txn.timestamp)}</div>
+                    );
+                  }
+                }
+                return (
+                  <Fragment key={txn._id}>
+                    {sameDay()}
+                    <div className="vaults-itm">
+                      <img
+                        src={coinSelected && coinSelected.coinImage}
+                        alt=""
+                      />
+                      <div className="name-n-date mr-auto">
+                        <div className="name">{txn.pid || txn.reason}</div>
+                        <div className="date">
+                          {moment(txn.timestamp).format(
+                            'MMMM Do YYYY [at] h:mm:ss A zz'
+                          )}
+                        </div>
+                      </div>
+                      <div
+                        className={`credit ${checkIsExpandValue(
+                          txn.earned_interest || 0,
+                          txn.coin
+                        )}`}
+                      >
+                        <span
+                          className="expand"
+                          onClick={() => {
+                            setTiObject({
+                              timestamp: txn.timestamp,
+                              title: `${'Credit From Interest Payment'}`,
+                              amount: txn.earned_interest,
+                              coin: txn.coin,
+                              current: txn.earned_usd_value,
+                              updated: txn.earned_usd_value,
+                            });
+                          }}
+                        >
+                          Expand
+                        </span>
+                        <span className="value">
+                          {FormatCurrency(txn.earned_interest, txn.coin)}
+                        </span>
+                      </div>
+                    </div>
+                  </Fragment>
+                );
+              })}
               <div className="day">September 5th 2020</div>
               <div className="vaults-itm">
                 <img
@@ -569,70 +696,6 @@ function BondOverview({ match }) {
                 <div className="credit false">
                   <span className="expand">Expand</span>
                   <span className="value">0.0000</span>
-                </div>
-              </div>
-              <div className="day">August 24th 2020</div>
-              <div className="vaults-itm">
-                <img
-                  src="https://apimachine-s3.s3.us-east-2.amazonaws.com/coinImages/ethereumCoin.png"
-                  alt=""
-                />
-                <div className="name-n-date mr-auto">
-                  <div className="name">
-                    A ice credit from Fund from GXVault
-                  </div>
-                  <div className="date">August 24th 2020 at 12:31:24 AM </div>
-                </div>
-                <div className="credit false">
-                  <span className="expand">Expand</span>
-                  <span className="value">0.0026</span>
-                </div>
-              </div>
-              <div className="day">August 13th 2020</div>
-              <div className="vaults-itm">
-                <img
-                  src="https://apimachine-s3.s3.us-east-2.amazonaws.com/coinImages/ethereumCoin.png"
-                  alt=""
-                />
-                <div className="name-n-date mr-auto">
-                  <div className="name">
-                    A ice Debit from Withdraw to GXVault
-                  </div>
-                  <div className="date">August 13th 2020 at 4:04:09 AM </div>
-                </div>
-                <div className="credit false">
-                  <span className="expand">Expand</span>
-                  <span className="value">0.0000</span>
-                </div>
-              </div>
-              <div className="vaults-itm">
-                <img
-                  src="https://apimachine-s3.s3.us-east-2.amazonaws.com/coinImages/ethereumCoin.png"
-                  alt=""
-                />
-                <div className="name-n-date mr-auto">
-                  <div className="name">A ice credit from Traded from BTC</div>
-                  <div className="date">August 13th 2020 at 4:04:05 AM </div>
-                </div>
-                <div className="credit false">
-                  <span className="expand">Expand</span>
-                  <span className="value">1.0000</span>
-                </div>
-              </div>
-              <div className="vaults-itm">
-                <img
-                  src="https://apimachine-s3.s3.us-east-2.amazonaws.com/coinImages/ethereumCoin.png"
-                  alt=""
-                />
-                <div className="name-n-date mr-auto">
-                  <div className="name">
-                    A ice credit from Fund Iced From GX Vault
-                  </div>
-                  <div className="date">August 13th 2020 at 2:52:21 AM </div>
-                </div>
-                <div className="credit false">
-                  <span className="expand">Expand</span>
-                  <span className="value">1.0000</span>
                 </div>
               </div>
             </Scrollbars>
@@ -674,6 +737,11 @@ function BondOverview({ match }) {
             </div>
           </div>
         </>
+      )}
+      {tiObject ? (
+        <TransactionInspector setOpenModal={setTiObject} tiObject={tiObject} />
+      ) : (
+        ''
       )}
     </Layout>
   );

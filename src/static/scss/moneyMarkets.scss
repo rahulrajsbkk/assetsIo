@@ -38,10 +38,11 @@
   display: flex;
   .overView {
     flex: 0 0 60%;
-    padding: 70px;
+    padding: 70px 0;
     display: flex;
     flex-direction: column;
     .searchWrapper {
+      margin: 0 70px;
       height: 55px;
       border: 1px solid $vault-border-color;
       border-radius: 8px;
@@ -64,8 +65,22 @@
       }
     }
     .bondTitle {
+      margin: 0 70px;
       font-size: 26px;
       font-weight: bold;
+    }
+    .bondValues {
+      padding: 20px 70px;
+      border-bottom: 1px solid $vault-border-color;
+      .item {
+        margin: 40px 0;
+        display: flex;
+        justify-content: space-between;
+        font-size: 18px;
+        .value {
+          font-weight: 600;
+        }
+      }
     }
     .earnings {
       margin-top: 30px;
@@ -73,6 +88,7 @@
       height: unset !important;
       flex: 1;
       .vaultsView {
+        padding: 0 70px;
         .day {
           margin-top: 1rem;
           font-size: 16px;
