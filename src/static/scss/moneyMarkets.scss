@@ -32,6 +32,25 @@
       margin-left: 15px;
     }
   }
+  @include mdportrait {
+    .moneyMarketLogo {
+      width: 65%;
+    }
+    .searchWrapper {
+      width: 85%;
+      height: 55px;
+      border-radius: 8px;
+      padding: 0 10px;
+      input {
+        font-size: 14px;
+      }
+      img {
+        height: 35%;
+        width: auto;
+        margin-left: 15px;
+      }
+    }
+  }
 }
 .bondOverview {
   flex: 1;
