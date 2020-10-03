@@ -322,4 +322,162 @@
       }
     }
   }
+  @include mdportrait {
+    flex-direction: column;
+    flex: unset;
+    padding: 0;
+    .overView {
+      flex: unset;
+      padding: 20px 0;
+      .searchWrapper {
+        margin: 0 20px;
+        padding: 0 20px;
+        height: 45px;
+        margin-bottom: 20px;
+        input {
+          font-size: 14px;
+        }
+      }
+      .bondTitle {
+        margin: 0 30px;
+        font-size: 20px;
+      }
+      .bondValues {
+        padding: 0 30px;
+        .item {
+          margin: 20px 0;
+          font-size: 13px;
+          .value {
+            text-align: right;
+          }
+        }
+      }
+      .earnings {
+        margin-top: 30px;
+        width: unset !important;
+        height: unset !important;
+        flex: 1;
+        .vaultsView {
+          position: relative !important;
+          padding: 0 30px;
+          .day {
+            margin-top: 0.25rem;
+            font-size: 14px;
+          }
+          .vaults-itm {
+            display: flex;
+            align-items: center;
+            height: 60px;
+            margin: 0;
+            img {
+              height: 25px;
+              width: 25px;
+              margin: 0 10px;
+            }
+            .name-n-date {
+              margin: 0 !important;
+              flex: 1;
+              .name {
+                font-size: 14px;
+              }
+              .date {
+                font-size: 9px;
+              }
+            }
+            .credit {
+              flex: unset !important;
+              max-width: unset !important;
+              margin: 0;
+              .expand {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+    .bondCertificate {
+      flex: unset;
+      border-top: 1px solid $vault-border-color;
+      .lionBond {
+        margin: 20px auto 15px auto;
+        width: 44%;
+      }
+      .header {
+        padding: 6px 20px;
+        .label {
+          font-size: 13px;
+        }
+        .value {
+          font-size: 14px;
+        }
+      }
+      .bondDetailScroll {
+        flex: 1;
+        .view {
+          padding: 20px 20px 10px 20px;
+          display: flex;
+          flex-direction: column;
+          position: relative !important;
+
+          .listDetail {
+            padding: 25px 30px;
+            .head {
+              font-size: 22px;
+              width: 85%;
+            }
+            .date {
+              font-size: 11px;
+            }
+            .item {
+              margin-bottom: 13px;
+              display: flex;
+              font-size: 13px;
+              .label {
+                font-weight: 600;
+              }
+              .value {
+                text-align: right;
+                .primary {
+                  font-weight: 600;
+                }
+              }
+              &.big {
+                font-size: 20px;
+              }
+            }
+            .close {
+              top: 30px;
+              right: 25px;
+              font-size: 30px;
+            }
+            &.sub {
+              margin-top: 15px;
+              padding: 20px;
+              .subHead {
+                font-size: 20px;
+                font-weight: 600;
+                margin-bottom: 10px;
+              }
+              p {
+                font-size: 13px;
+              }
+              .nb {
+                font-size: 14px;
+                font-weight: 600;
+              }
+              .close {
+                top: 15px;
+                right: 25px;
+                font-size: 26px;
+              }
+            }
+          }
+        }
+      }
+      .footerButtons {
+        padding: 0 20px 20px 20px;
+      }
+    }
+  }
 }
