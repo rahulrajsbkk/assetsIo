@@ -43,7 +43,7 @@ function NetWorthContextProvider({ children }) {
       if (coinListObject && coinListObject[contract._id]) {
         let totalContractVoc = 0;
         contract.contracts.forEach((contr) => {
-          totalContractVoc += contr.voc_usd;
+          if (contr.status === 'active') totalContractVoc += contr.voc_usd;
         });
         if (coinListObject[contract._id].type === 'crypto') {
           contractsVal.crypto.value =
@@ -385,22 +385,24 @@ function NetWorthContextProvider({ children }) {
         icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
           coinNameObject[assetCoin].coinSymbol
         ].contracts.forEach((contract, i) => {
-          arr.push({
-            img: assetLogo,
-            name: 'Assets.io',
-            value: contract.voc_usd,
-            color: colors(i),
-            percent:
-              (contract.voc_usd /
-                icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
-                  coinNameObject[assetCoin].coinSymbol
-                ].value) *
-              100,
-            type: 'app',
-            assets: contract.days,
-            assetText: 'Day Bond',
-            id: contract._id,
-          });
+          if ((contract.status = 'active'))
+            arr.push({
+              img: assetLogo,
+              name: 'Assets.io',
+              value: contract.voc_usd,
+              color: colors(i),
+              percent:
+                (contract.voc_usd /
+                  icedValues[
+                    assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'
+                  ][coinNameObject[assetCoin].coinSymbol].value) *
+                100,
+              type: 'app',
+              assets: contract.days,
+              assetText: 'Day Bond',
+              id: contract._id,
+              status: contract.status,
+            });
         });
         setCardList(arr);
         setSelectedTotalBalance(
