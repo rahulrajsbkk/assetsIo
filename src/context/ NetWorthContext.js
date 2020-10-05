@@ -168,6 +168,60 @@ function NetWorthContextProvider({ children }) {
     };
     let totalFiat = 0;
     let totalCrypto = 0;
+    const resZero = await Axios.get(
+      `https://comms.globalxchange.com/coin/vault/coins_data?email=${email}`
+    );
+    const dataZero = resZero.data;
+
+    let cryptoBalance = 0;
+    let fiatBalance = 0;
+    if (dataZero && dataZero.coins && Array.isArray(dataZero.coins))
+      dataZero.coins.forEach((coin) => {
+        if (coin.type === 'fiat') {
+          fiatBalance += coin.coinValueUSD;
+        } else if (coin.type === 'crypto') {
+          cryptoBalance += coin.coinValueUSD;
+        }
+      });
+    totalCrypto += cryptoBalance;
+    totalFiat += fiatBalance;
+    obj['nitrous'] = {
+      coins_data:
+        dataZero && dataZero.coins && Array.isArray(dataZero.coins)
+          ? dataZero.coins
+          : [],
+      cryptoBalance,
+      fiatBalance,
+      totalBalance: cryptoBalance + fiatBalance,
+    };
+    let coinsData = [];
+    if (obj.total.coins_data) {
+      obj.total.coins_data.forEach((element, i) => {
+        coinsData.push({
+          ...element,
+          coinValue:
+            ((dataZero &&
+              dataZero.coins &&
+              dataZero.coins[i] &&
+              dataZero.coins[i].coinValue) ||
+              0) + element.coinValue,
+          coinValueUSD:
+            ((dataZero &&
+              dataZero.coins_data &&
+              dataZero.coins[i] &&
+              dataZero.coins[i].coinValueUSD) ||
+              0) + element.coinValueUSD,
+        });
+      });
+    }
+    obj.total = {
+      coins_data: obj.total.coins_data ? coinsData : dataZero.coins,
+      cryptoBalance: obj.total.cryptoBalance + cryptoBalance,
+      fiatBalance: obj.total.fiatBalance + fiatBalance,
+      totalBalance: obj.total.totalBalance + cryptoBalance + fiatBalance,
+    };
+    //
+
     for (const index in data.userApps) {
       const appCode = data.userApps[index].app_code;
       const proId = data.userApps[index].profile_id;
@@ -248,6 +302,39 @@ function NetWorthContextProvider({ children }) {
     if (liquidity) {
       if (liquidity === 'Liquid') {
         let arr = [];
+        arr.push({
+          img: '',
+          name: 'Nitrous',
+          value:
+            (appBalances['nitrous'].coins_data.filter(
+              (coin) => coinListObject[coin.coinSymbol].coinName === assetCoin
+            ) &&
+              appBalances['nitrous'].coins_data.filter(
+                (coin) => coinListObject[coin.coinSymbol].coinName === assetCoin
+              )[0] &&
+              appBalances['nitrous'].coins_data.filter(
+                (coin) => coinListObject[coin.coinSymbol].coinName === assetCoin
+              )[0].coinValueUSD) ||
+            0,
+          color: colors(-1),
+          percent:
+            ((appBalances['nitrous'].coins_data.filter(
+              (coin) => coinListObject[coin.coinSymbol].coinName === assetCoin
+            ) &&
+              appBalances['nitrous'].coins_data.filter(
+                (coin) => coinListObject[coin.coinSymbol].coinName === assetCoin
+              )[0] &&
+              appBalances['nitrous'].coins_data.filter(
+                (coin) => coinListObject[coin.coinSymbol].coinName === assetCoin
+              )[0].coinValueUSD) ||
+              0 /
+                appBalances.total.coins_data.filter(
+                  (coin) =>
+                    coinListObject[coin.coinSymbol].coinName === assetCoin
+                )[0].coinValueUSD) * 100,
+          type: 'app',
+          assetText: 'GX Vault',
+        });
         userApps.forEach((app, i) => {
           arr.push({
             img: app.app_logo,
