@@ -14,7 +14,7 @@ function MobileLayout({
 }) {
   const { height } = useWindowDimensions();
   return (
-    <div className="mobile-layout" style={{ height }}>
+    <div className="mobile-layout" style={{ height, maxHeight: '100vh' }}>
       <MobileNavbar active={active} />
       <div className={`mobile-content  ${className}`}>{children}</div>
       {footerMain ? (
