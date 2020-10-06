@@ -295,11 +295,41 @@ function NetWorthContextProvider({ children }) {
   const [assetClass, setAssetClass] = useState(null);
   const [assetCoin, setAssetCoin] = useState(null);
   const [liquidity, setLiquidity] = useState(null);
+  const [isBondRedeemed, setIsBondRedeemed] = useState(false);
   const [cardList, setCardList] = useState([]);
   const [selectedTotalBalance, setSelectedTotalBalance] = useState(0);
 
   useEffect(() => {
-    if (liquidity) {
+    if (isBondRedeemed) {
+      let arr = [];
+      let total = 0;
+      icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
+        coinNameObject[assetCoin].coinSymbol
+      ].contracts.forEach((contract) => {
+        if (contract.status === 'redeemed') {
+          total += contract.voc_usd;
+        }
+      });
+      icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
+        coinNameObject[assetCoin].coinSymbol
+      ].contracts.forEach((contract, i) => {
+        if (contract.status === 'redeemed')
+          arr.push({
+            img: assetLogo,
+            name: 'Assets.io',
+            value: contract.voc_usd,
+            color: colors(i),
+            percent: (contract.voc_usd / total) * 100,
+            type: 'app',
+            assets: contract.days,
+            assetText: 'Day Bond',
+            id: contract._id,
+            status: contract.status,
+          });
+      });
+      setCardList(arr);
+      setSelectedTotalBalance(total);
+    } else if (liquidity) {
       if (liquidity === 'Liquid') {
         let arr = [];
         arr.push({
@@ -385,7 +415,7 @@ function NetWorthContextProvider({ children }) {
         icedValues[assetClass === 'Cryptocurrency' ? 'crypto' : 'fiat'][
           coinNameObject[assetCoin].coinSymbol
         ].contracts.forEach((contract, i) => {
-          if ((contract.status = 'active'))
+          if (contract.status === 'active')
             arr.push({
               img: assetLogo,
               name: 'Assets.io',
@@ -591,6 +621,7 @@ function NetWorthContextProvider({ children }) {
     appBalances,
     assetCoin,
     liquidity,
+    isBondRedeemed,
     fiatBalance,
     cryptoBalance,
     icedValues,
@@ -617,10 +648,11 @@ function NetWorthContextProvider({ children }) {
         assetClass,
         assetCoin,
         liquidity,
+        isBondRedeemed,
       },
     });
     // eslint-disable-next-line
-  }, [assetClass, assetCoin, liquidity]);
+  }, [assetClass, assetCoin, liquidity, isBondRedeemed]);
 
   return (
     <NetWorthContext.Provider
@@ -641,6 +673,8 @@ function NetWorthContextProvider({ children }) {
         setAssetCoin,
         liquidity,
         setLiquidity,
+        isBondRedeemed,
+        setIsBondRedeemed,
         icedValues,
         selectedTotalBalance,
         tabData,

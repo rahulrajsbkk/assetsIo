@@ -67,6 +67,14 @@
         .clickText {
           display: none;
         }
+        .clickHere {
+          margin-bottom: -30px;
+          .a {
+            cursor: pointer;
+            text-decoration: underline;
+            font-weight: 600;
+          }
+        }
       }
       .netWorthCardsList {
         flex: 0 0 62%;

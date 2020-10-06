@@ -23,6 +23,8 @@ function NetWorthChart({ match, setNetWorthMobileOpen }) {
     loadingAppBalance,
     setTabData,
     tabData,
+    isBondRedeemed,
+    setIsBondRedeemed,
   } = useContext(NetWorthContext);
   const { coinNameObject } = useContext(BankContext);
 
@@ -54,6 +56,7 @@ function NetWorthChart({ match, setNetWorthMobileOpen }) {
             assetClass: null,
             assetCoin: null,
             liquidity: null,
+            isBondRedeemed: false,
           },
         });
         break;
@@ -64,6 +67,7 @@ function NetWorthChart({ match, setNetWorthMobileOpen }) {
             assetClass,
             assetCoin: null,
             liquidity: null,
+            isBondRedeemed: false,
           },
         });
         break;
@@ -74,6 +78,18 @@ function NetWorthChart({ match, setNetWorthMobileOpen }) {
             assetClass,
             assetCoin,
             liquidity: null,
+            isBondRedeemed: false,
+          },
+        });
+        break;
+      case 'liquidity':
+        setTabData({
+          ...tabData,
+          [uuidv4()]: {
+            assetClass,
+            assetCoin,
+            liquidity,
+            isBondRedeemed: false,
           },
         });
         break;
@@ -84,6 +100,7 @@ function NetWorthChart({ match, setNetWorthMobileOpen }) {
             assetClass,
             assetCoin,
             liquidity,
+            isBondRedeemed,
           },
         });
         break;
@@ -104,22 +121,35 @@ function NetWorthChart({ match, setNetWorthMobileOpen }) {
         setLiquidity(null);
         setAssetCoin(null);
         setAssetClass(null);
+        setIsBondRedeemed(false);
         break;
       case 'assetClass':
         setLiquidity(null);
         setAssetCoin(null);
+        setIsBondRedeemed(false);
         break;
       case 'assetCoin':
         setLiquidity(null);
+        setIsBondRedeemed(false);
+        break;
+      case 'liquidity':
+        setIsBondRedeemed(false);
         break;
       default:
         break;
     }
     setFilter(null);
   }
-
   useEffect(() => {
-    if (liquidity) {
+    if (isBondRedeemed) {
+      setTitle(
+        `Redeemed ${
+          coinNameObject &&
+          coinNameObject[assetCoin] &&
+          coinNameObject[assetCoin].coinSymbol
+        } Bonds`
+      );
+    } else if (liquidity) {
       if (liquidity === 'Liquid') {
         setTitle(
           `Liquid ${
@@ -144,7 +174,7 @@ function NetWorthChart({ match, setNetWorthMobileOpen }) {
     } else {
       setTitle('Net-Worth');
     }
-  }, [assetClass, assetCoin, liquidity, coinNameObject]);
+  }, [assetClass, assetCoin, liquidity, coinNameObject, isBondRedeemed]);
 
   return (
     <>
@@ -158,6 +188,7 @@ function NetWorthChart({ match, setNetWorthMobileOpen }) {
               setAssetClass(null);
               setAssetCoin(null);
               setLiquidity(null);
+              setIsBondRedeemed(false);
             }}
           >
             Net-Worth
@@ -172,6 +203,7 @@ function NetWorthChart({ match, setNetWorthMobileOpen }) {
                 onClick={() => {
                   setAssetCoin(null);
                   setLiquidity(null);
+                  setIsBondRedeemed(false);
                 }}
               >
                 {assetClass}
@@ -189,6 +221,7 @@ function NetWorthChart({ match, setNetWorthMobileOpen }) {
                 }}
                 onClick={() => {
                   setLiquidity(null);
+                  setIsBondRedeemed(false);
                 }}
               >
                 {assetCoin}
@@ -200,7 +233,24 @@ function NetWorthChart({ match, setNetWorthMobileOpen }) {
           {liquidity ? (
             <>
               &nbsp;&gt;&nbsp;
-              <span onClick={() => {}}>{liquidity}</span>
+              <span
+                onContextMenuCapture={() => {
+                  setFilter('liquidity');
+                }}
+                onClick={() => {
+                  setIsBondRedeemed(false);
+                }}
+              >
+                {liquidity}
+              </span>
+            </>
+          ) : (
+            <></>
+          )}
+          {isBondRedeemed ? (
+            <>
+              &nbsp;&gt;&nbsp;
+              <span onClick={() => {}}>Redeemed</span>
             </>
           ) : (
             <></>
@@ -233,6 +283,42 @@ function NetWorthChart({ match, setNetWorthMobileOpen }) {
             />
           </div>
         </div>
+        {liquidity === 'Bonds' ? (
+          isBondRedeemed ? (
+            <div
+              onContextMenuCapture={() => {
+                setFilter('isBond');
+              }}
+              className="clickHere"
+            >
+              Click{' '}
+              <span className="a" onClick={() => setIsBondRedeemed(false)}>
+                Here
+              </span>{' '}
+              To Go Back To Active Bonds
+            </div>
+          ) : (
+            <div
+              onContextMenuCapture={() => {
+                setFilter('isBond');
+              }}
+              className="clickHere"
+            >
+              Click{' '}
+              <span
+                className="a"
+                onClick={() => {
+                  setIsBondRedeemed(true);
+                }}
+              >
+                Here
+              </span>{' '}
+              To See Your Redeemed Bonds
+            </div>
+          )
+        ) : (
+          ''
+        )}
         <div className="clickText">
           Click The Assets Icon To See Your Portfolio Composition
         </div>

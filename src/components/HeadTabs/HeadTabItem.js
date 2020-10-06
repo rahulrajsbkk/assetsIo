@@ -11,6 +11,8 @@ function HeadTabItem({ index }) {
     setLiquidity,
     tabData,
     setTabData,
+    isBondRedeemed,
+    setIsBondRedeemed,
   } = useContext(NetWorthContext);
   const { coinNameObject } = useContext(BankContext);
   const [title, setTitle] = useState('Net-Worth By Asset Class');
@@ -18,10 +20,19 @@ function HeadTabItem({ index }) {
     setAssetClass(tabData[index].assetClass);
     setAssetCoin(tabData[index].assetCoin);
     setLiquidity(tabData[index].liquidity);
+    setIsBondRedeemed(tabData[index].isBondRedeemed);
     setTabIndex(index);
   };
   useEffect(() => {
-    if (tabData[index].liquidity) {
+    if (tabData[index].isBondRedeemed) {
+      setTitle(
+        `Redeemed ${
+          coinNameObject &&
+          coinNameObject[tabData[index].assetCoin] &&
+          coinNameObject[tabData[index].assetCoin].coinSymbol
+        } Bonds`
+      );
+    } else if (tabData[index].liquidity) {
       if (tabData[index].liquidity === 'Liquid') {
         setTitle(
           `Liquid ${
@@ -46,7 +57,7 @@ function HeadTabItem({ index }) {
     } else {
       setTitle('Net-Worth By Asset Class');
     }
-  }, [tabData, index, coinNameObject]);
+  }, [tabData, index, coinNameObject, isBondRedeemed]);
   return (
     <div className={`headTab ${tabIndex === index}`}>
       <div className="text" onClick={changeTab}>
