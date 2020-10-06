@@ -318,22 +318,26 @@ function BondOverview({ match }) {
             <div className="head">Term Earning Power</div>
             <div className="date">{`${contract.days} Payments`}</div>
             <div className="item">
-              <div className="label">Daily Interest Rate</div>
+              <div className="label">Term Interest Rate</div>
               <div className="value">
                 <div className="primary">
                   {FormatNumber(
-                    contract && contract.interestRate * contract.days,
+                    contract && contract.interest_rate * contract.days,
                     3
                   )}
                 </div>
               </div>
             </div>
             <div className="item">
-              <div className="label">Cost Per Bond</div>
+              <div className="label">Term Interest</div>
               <div className="value">
                 <div className="primary">
                   {FormatNumber(
-                    contract && contract.interestValue * contract.days,
+                    contract &&
+                      (contract.investment *
+                        contract.interest_rate *
+                        contract.days) /
+                        100,
                     5
                   )}{' '}
                   {contract && contract.coin}
@@ -341,7 +345,11 @@ function BondOverview({ match }) {
                 <div className="secondary">
                   $
                   {FormatCurrency(
-                    contract && contract.interestValueUsd * contract.days,
+                    contract &&
+                      (contract.investment_usd *
+                        contract.interest_rate *
+                        contract.days) /
+                        100,
                     'USD'
                   )}
                 </div>
@@ -368,7 +376,11 @@ function BondOverview({ match }) {
               <div className="label">Base Compression Rate</div>
               <div className="value">
                 <div className="primary">
-                  {FormatNumber(contract && contract.base_compression_rate, 3)}%
+                  {FormatNumber(
+                    contract && contract.interest_factors.base_compression_rate,
+                    3
+                  )}
+                  %
                 </div>
               </div>
             </div>
@@ -376,7 +388,11 @@ function BondOverview({ match }) {
               <div className="label">Interest Rate Velocity</div>
               <div className="value">
                 <div className="primary up">
-                  {FormatNumber(contract && contract.base_velocity, 2)}%
+                  {FormatNumber(
+                    contract && contract.interest_factors.base_velocity,
+                    2
+                  )}
+                  %
                 </div>
               </div>
             </div>
@@ -384,7 +400,10 @@ function BondOverview({ match }) {
               <div className="label">Velocity Acceleration Factor</div>
               <div className="value">
                 <div className="primary down">
-                  {FormatNumber(contract && -contract.acceleration, 2)}
+                  {FormatNumber(
+                    contract && -contract.interest_factors.acceleration,
+                    2
+                  )}
                 </div>
               </div>
             </div>
@@ -432,7 +451,7 @@ function BondOverview({ match }) {
               <div className="value">
                 <div className="primary">
                   {FormatCurrency(
-                    contract && contract.earningPower,
+                    contract && contract.initial_earning_power,
                     contract && contract.coin
                   )}
                 </div>
@@ -454,7 +473,8 @@ function BondOverview({ match }) {
               <div className="value">
                 <div className="primary">
                   {FormatCurrency(
-                    contract && contract.earningPower - contract.redemptionFee,
+                    contract &&
+                      contract.initial_earning_power - contract.redemptionFee,
                     contract && contract.coin
                   )}
                 </div>
@@ -466,7 +486,8 @@ function BondOverview({ match }) {
                 <div className="primary up">
                   {FormatNumber(
                     contract &&
-                      (contract.earningPower / contract.investment) * 100,
+                      (contract.initial_earning_power / contract.investment) *
+                        100,
                     2
                   )}
                   %
@@ -602,7 +623,8 @@ function BondOverview({ match }) {
                   {FormatCurrency(
                     contractEarningsOverView &&
                       contractEarningsOverView.interest_paid_usd
-                  )}USD
+                  )}
+                  USD
                 </div>
               </div>
               <div className="item">
@@ -683,21 +705,6 @@ function BondOverview({ match }) {
                   </Fragment>
                 );
               })}
-              <div className="day">September 5th 2020</div>
-              <div className="vaults-itm">
-                <img
-                  src="https://apimachine-s3.s3.us-east-2.amazonaws.com/coinImages/ethereumCoin.png"
-                  alt=""
-                />
-                <div className="name-n-date mr-auto">
-                  <div className="name">A ice Debit from Iced Contract</div>
-                  <div className="date">September 5th 2020 at 4:04:17 AM </div>
-                </div>
-                <div className="credit false">
-                  <span className="expand">Expand</span>
-                  <span className="value">0.0000</span>
-                </div>
-              </div>
             </Scrollbars>
           </div>
           <div className="bondCertificate">
