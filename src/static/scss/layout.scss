@@ -301,8 +301,8 @@
       }
     }
     &.collapse {
-      flex: 0 0 7%;
-      max-width: 7%;
+      flex: 0 0 5%;
+      max-width: 5%;
       .toolTip {
         position: absolute;
         top: 0;
@@ -326,8 +326,8 @@
         justify-content: center;
         position: relative;
         img {
-          width: 60px;
-          height: 60px;
+          width: 50px;
+          height: 50px;
           border-radius: 6px;
           margin: auto;
         }
@@ -347,21 +347,23 @@
         .menu-side {
           overflow: visible !important;
           position: relative;
-          padding: 0 45px;
+          padding: 0 5px;
           .menu-itm {
+            margin: 6px 0;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             h5 {
               img {
                 height: auto;
-                width: 100%;
+                width: 30px;
                 opacity: 0.25;
+                margin: 0;
               }
               span {
                 display: none;
               }
-            }
-            .toolTip {
-              left: 140%;
             }
             &:hover,
             &.active {
@@ -399,8 +401,8 @@
               align-items: center;
               border-color: #e7e7e740;
               img {
-                height: 55px;
-                width: 55px;
+                height: 30px;
+                width: 30px;
               }
             }
           }
@@ -416,8 +418,8 @@
         padding: 24px 6px;
         color: $primary-color;
         svg {
-          height: 55px;
-          width: 45px;
+          height: 30px;
+          width: 30px;
         }
       }
     }
