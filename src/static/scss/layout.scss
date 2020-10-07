@@ -10,8 +10,13 @@
     position: sticky;
     top: 0;
     left: 0;
+    .toolTip,
+    .logoutBtn {
+      display: none;
+    }
     .profile {
       padding: 60px 50px 0 50px;
+
       img {
         width: 80px;
         height: 80px;
@@ -293,6 +298,127 @@
         font-weight: 600;
         margin: auto;
         text-align: center;
+      }
+    }
+    &.collapse {
+      flex: 0 0 7%;
+      max-width: 7%;
+      .toolTip {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 85%;
+        margin: auto;
+        height: 30px;
+        width: 140px;
+        background: white;
+        border: 1px solid $vault-border-color;
+        font-size: 17px;
+        justify-content: center;
+        align-items: center;
+        color: $primary-color;
+      }
+      .profile {
+        padding: 0;
+        margin-top: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        img {
+          width: 60px;
+          height: 60px;
+          border-radius: 6px;
+          margin: auto;
+        }
+        h5,
+        .getStartedBtn,
+        .col {
+          display: none;
+        }
+        &:hover {
+          .toolTip {
+            display: flex;
+          }
+        }
+      }
+      .menu-scrl {
+        overflow: visible !important;
+        .menu-side {
+          overflow: visible !important;
+          position: relative;
+          padding: 0 45px;
+          .menu-itm {
+            position: relative;
+            h5 {
+              img {
+                height: auto;
+                width: 100%;
+                opacity: 0.25;
+              }
+              span {
+                display: none;
+              }
+            }
+            .toolTip {
+              left: 140%;
+            }
+            &:hover,
+            &.active {
+              h5 {
+                img {
+                  opacity: 1;
+                }
+              }
+            }
+            &:hover {
+              .toolTip {
+                display: flex;
+              }
+            }
+          }
+        }
+      }
+      .assetPriceWrapper {
+        flex: unset;
+        display: flex;
+        flex-direction: column;
+        .tab-inrest-asset {
+          display: flex;
+          flex-direction: column;
+          height: unset;
+          .tab-itm {
+            display: none;
+            &.settings {
+              background: #e7e7e7;
+              max-width: unset;
+              width: unset;
+              opacity: 1;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-color: #e7e7e740;
+              img {
+                height: 55px;
+                width: 55px;
+              }
+            }
+          }
+        }
+        .rate-list-wrapper {
+          display: none;
+        }
+      }
+      .logoutBtn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px 6px;
+        color: $primary-color;
+        svg {
+          height: 55px;
+          width: 45px;
+        }
       }
     }
   }

@@ -10,11 +10,14 @@ import moneyMarkets from '../static/images/sidebar-icons/moneyMarkets.svg';
 import planB from '../static/images/sidebar-icons/planB.svg';
 import LoginWrapper from '../components/LoginModal/LoginWrapper';
 import AssetPriceOrRates from './AssetPriceOrRates';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 function LayoutSidebarGuest({ active }) {
   const history = useHistory();
   const [loginModalOpen, setLoginModalOpen] = useState(false);
   const [onLoginPage, setOnLoginPage] = useState('');
+  const [sidebarCollapse, setSidebarCollapse] = useState(false);
   const onLogin = () => {
     if (onLoginPage) {
       history.push(onLoginPage);
@@ -22,9 +25,18 @@ function LayoutSidebarGuest({ active }) {
   };
   return (
     <>
-      <div key="guest" className="side-bar d-flex flex-column">
+      <div
+        key="guest"
+        className={`side-bar d-flex flex-column ${
+          sidebarCollapse && 'collapse'
+        }`}
+      >
         <div className="profile d-flex">
-          <img src={guest} alt="" />
+          <img
+            src={guest}
+            alt=""
+            onClick={() => setSidebarCollapse(!sidebarCollapse)}
+          />
           <div className="col my-auto">
             <h5>Assets.io&nbsp;</h5>
             <div
@@ -37,6 +49,7 @@ function LayoutSidebarGuest({ active }) {
               Get Started
             </div>
           </div>
+          <div className="toolTip">Expand Menu</div>
         </div>
         <Scrollbars
           className="menu-scrl"
@@ -53,6 +66,7 @@ function LayoutSidebarGuest({ active }) {
               <img src={iced} alt="" />
               <span className="my-auto">Index</span>
             </h5>
+            <div className="toolTip">Index</div>
           </Link>
           <Link
             to="/moneyMarkets"
@@ -62,6 +76,7 @@ function LayoutSidebarGuest({ active }) {
               <img src={moneyMarkets} alt="" />
               <span className="my-auto">MoneyMarkets</span>
             </h5>
+            <div className="toolTip">MoneyMarkets</div>
           </Link>
           <div
             onClick={() => {
@@ -74,12 +89,14 @@ function LayoutSidebarGuest({ active }) {
               <img src={portfolio} alt="" />
               <span className="my-auto">My Net-Worth</span>
             </h5>
+            <div className="toolTip">My Assets</div>
           </div>
           <div href="https://planb.assets.io/" className={`menu-itm disable`}>
             <h5 className="d-flex py-3 menu-itm">
               <img src={planB} alt="" />
               <span className="my-auto">PlanB</span>
             </h5>
+            <div className="toolTip">PlanB</div>
           </div>
           <Link
             to="/mobile-apps"
@@ -89,10 +106,20 @@ function LayoutSidebarGuest({ active }) {
               <img src={appstore} alt="" />
               <span className="my-auto">Mobile Apps</span>
             </h5>
+            <div className="toolTip">Mobile Apps</div>
           </Link>
         </Scrollbars>
 
         <AssetPriceOrRates isIndex={active === 'index'} />
+        <div
+          className="logoutBtn"
+          onClick={() => {
+            setLoginModalOpen(true);
+            setOnLoginPage(false);
+          }}
+        >
+          <FontAwesomeIcon icon={faLock} />
+        </div>
       </div>
       {loginModalOpen ? (
         <LoginWrapper
