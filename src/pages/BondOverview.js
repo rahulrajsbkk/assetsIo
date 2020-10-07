@@ -291,15 +291,23 @@ function BondOverview({ match }) {
               </div>
             </div>
             <div className="item">
-              <div className="label">Cost Per Bond</div>
+              <div className="label">Daily Interest</div>
               <div className="value">
                 <div className="primary">
-                  {FormatNumber(contract && contract.interestValue, 5)}{' '}
+                  {FormatNumber(
+                    contract &&
+                      (contract.investment * contract.interest_rate) / 100,
+                    5
+                  )}{' '}
                   {contract && contract.coin}
                 </div>
                 <div className="secondary">
                   $
-                  {FormatCurrency(contract && contract.interestValueUsd, 'USD')}
+                  {FormatCurrency(
+                    contract &&
+                      (contract.investment_usd * contract.interest_rate) / 100,
+                    'USD'
+                  )}
                 </div>
               </div>
             </div>
@@ -370,7 +378,7 @@ function BondOverview({ match }) {
             <div className="head">Interest Rate Mechanics</div>
             <div className="date">
               Daily Rate =&nbsp;
-              {FormatNumber(contract && contract.interestRate, 3)}%
+              {FormatNumber(contract && contract.interest_rate, 3)}%
             </div>
             <div className="item">
               <div className="label">Base Compression Rate</div>
