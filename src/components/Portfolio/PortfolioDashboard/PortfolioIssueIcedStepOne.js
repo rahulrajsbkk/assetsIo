@@ -398,7 +398,7 @@ function PortfolioIssueIcedStepOne() {
               </div>
             </div>
             <div className="item">
-              <div className="label">Cost Per Bond</div>
+              <div className="label">Daily Interest</div>
               <div className="value">
                 <div className="primary">
                   {FormatNumber(
@@ -431,7 +431,7 @@ function PortfolioIssueIcedStepOne() {
             <div className="head">Term Earning Power</div>
             <div className="date">{`${icingDays} Payments`}</div>
             <div className="item">
-              <div className="label">Daily Interest Rate</div>
+              <div className="label">Term Interest Rate</div>
               <div className="value">
                 <div className="primary">
                   {FormatNumber(
@@ -442,7 +442,7 @@ function PortfolioIssueIcedStepOne() {
               </div>
             </div>
             <div className="item">
-              <div className="label">Cost Per Bond</div>
+              <div className="label">Term Interest</div>
               <div className="value">
                 <div className="primary">
                   {FormatNumber(
