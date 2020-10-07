@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 import iced from '../static/images/logo.svg';
 import guest from '../static/images/logoWtBg.svg';
@@ -10,8 +12,6 @@ import moneyMarkets from '../static/images/sidebar-icons/moneyMarkets.svg';
 import planB from '../static/images/sidebar-icons/planB.svg';
 import LoginWrapper from '../components/LoginModal/LoginWrapper';
 import AssetPriceOrRates from './AssetPriceOrRates';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 function LayoutSidebarGuest({ active }) {
   const history = useHistory();
@@ -110,7 +110,10 @@ function LayoutSidebarGuest({ active }) {
           </Link>
         </Scrollbars>
 
-        <AssetPriceOrRates isIndex={active === 'index'} />
+        <AssetPriceOrRates
+          setSidebarCollapse={setSidebarCollapse}
+          isIndex={active === 'index'}
+        />
         <div
           className="logoutBtn"
           onClick={() => {

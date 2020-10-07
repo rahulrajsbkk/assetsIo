@@ -5,7 +5,7 @@ import settingsIcon from '../static/images/sidebar-icons/settings.svg';
 import { BankContext } from '../context/Context';
 import SidebarSettings from './SidebarSettings';
 
-function AssetPriceOrRates({ isIndex }) {
+function AssetPriceOrRates({ isIndex, setSidebarCollapse }) {
   const {
     coinListObject,
     coinList,
@@ -85,7 +85,12 @@ function AssetPriceOrRates({ isIndex }) {
             )}
             <div
               className={`tab-itm settings order-3 ${tabItem === 'Settings'}`}
-              onClick={() => setTabItem('Settings')}
+              onClick={() => {
+                setTabItem('Settings');
+                try {
+                  setSidebarCollapse(false);
+                } catch (e) {}
+              }}
             >
               <img src={settingsIcon} alt="" />
             </div>

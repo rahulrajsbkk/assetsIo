@@ -1,6 +1,8 @@
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useContext, useRef, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Scrollbars } from 'react-custom-scrollbars';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
 
 import guest from '../static/images/guest.jpg';
 import iced from '../static/images/logo.svg';
@@ -17,7 +19,7 @@ import { FormatCurrency } from '../utils/FunctionTools';
 
 function LayoutSidebar({ active }) {
   const history = useHistory();
-  const { username, name, profileImg } = useContext(BankContext);
+  const { username, name, profileImg, login } = useContext(BankContext);
   const { totalBalance } = useContext(NetWorthContext);
 
   const menuEndRef = useRef(null);
@@ -33,14 +35,23 @@ function LayoutSidebar({ active }) {
     }
   }, [active]);
 
+  const [sidebarCollapse, setSidebarCollapse] = useState(false);
+
   return (
-    <div className="side-bar d-flex flex-column">
+    <div
+      className={`side-bar d-flex flex-column ${sidebarCollapse && 'collapse'}`}
+    >
       <div className="profile d-flex">
-        <img src={profileImg ? profileImg : guest} alt="" />
+        <img
+          src={profileImg ? profileImg : guest}
+          alt=""
+          onClick={() => setSidebarCollapse(!sidebarCollapse)}
+        />
         <div className="col my-auto">
           <h5>{name ? name : username}&nbsp;</h5>
           <div className="getStartedBtn">${FormatCurrency(totalBalance)}</div>
         </div>
+        <div className="toolTip">Expand Menu</div>
       </div>
       <Scrollbars
         className="menu-scrl"
@@ -58,6 +69,7 @@ function LayoutSidebar({ active }) {
             <img src={iced} alt="" />
             <span className="my-auto">Index</span>
           </h5>
+          <div className="toolTip">Index</div>
         </Link>
         <Link
           to="/moneyMarkets"
@@ -67,6 +79,7 @@ function LayoutSidebar({ active }) {
             <img src={moneyMarkets} alt="" />
             <span className="my-auto">MoneyMarkets</span>
           </h5>
+          <div className="toolTip">MoneyMarkets</div>
         </Link>
         <Link
           to="/"
@@ -76,6 +89,7 @@ function LayoutSidebar({ active }) {
             <img src={portfolio} alt="" />
             <span className="my-auto">Assets</span>
           </h5>
+          <div className="toolTip">Assets</div>
         </Link>
         <div
           className={`menu-itm${active.includes('vaults') ? ' active' : ''}`}
@@ -87,6 +101,7 @@ function LayoutSidebar({ active }) {
             <img src={card} alt="" />
             <span className="my-auto">Vaults</span>
           </h5>
+          <div className="toolTip">Vaults</div>
         </div>
         <Link
           to="/earning"
@@ -96,12 +111,14 @@ function LayoutSidebar({ active }) {
             <img src={earnings} alt="" />
             <span className="my-auto">Fixed Income</span>
           </h5>
+          <div className="toolTip">Fixed Income</div>
         </Link>
         <div href="https://planb.assets.io/" className={`menu-itm disable`}>
           <h5 className="d-flex py-3 menu-itm">
             <img src={planB} alt="" />
             <span className="my-auto">PlanB</span>
           </h5>
+          <div className="toolTip">PlanB</div>
         </div>
         <Link
           to="/mobile-apps"
@@ -109,12 +126,24 @@ function LayoutSidebar({ active }) {
         >
           <h5 className="d-flex py-3 menu-itm">
             <img src={appstore} alt="" />
-            <span className="my-auto">Mobile</span>
+            <span className="my-auto">Mobile Apps</span>
           </h5>
+          <div className="toolTip">Expand Menu</div>
         </Link>
         <div ref={menuEndRef} className="spacer" />
       </Scrollbars>
-      <AssetPriceOrRates isIndex={active === 'index'} />
+      <AssetPriceOrRates
+        isIndex={active === 'index'}
+        setSidebarCollapse={setSidebarCollapse}
+      />
+      <div
+        className="logoutBtn"
+        onClick={() => {
+          login();
+        }}
+      >
+        <FontAwesomeIcon icon={faLock} />
+      </div>
     </div>
   );
 }
