@@ -53,7 +53,7 @@ function LiveTradesCard() {
   function handleOpen() {
     let inter = setInterval(() => {
       console.log('sent :>> ', email);
-      wsRef.current.sendMessage(email);
+      wsRef && wsRef.current && wsRef.current.sendMessage(email);
     }, 1000);
     setIntervalVar(inter);
   }

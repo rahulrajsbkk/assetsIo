@@ -3,8 +3,11 @@ import BtcUsdtChart from './BtcUsdtChart';
 import MenuLayout from '../MenuLayout/MenuLayout';
 import Dropdown from 'antd/lib/dropdown/index';
 import { OptionsContext } from '../../ContextAPI/OptionContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
+import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
 
-function ChartCard() {
+function ChartCard({ fullScreen, setFullScreen }) {
   const {
     setSearchOn,
     tickerTime,
@@ -76,6 +79,19 @@ function ChartCard() {
     <div className="card chart-card card-dark flex-grow-1 h-100 d-flex flex-column">
       <div className="d-flex chart-head">
         <div className="my-auto">
+          <div
+            className="d-flex input-dropdown my-1 mx-2"
+            onClick={() => {
+              setFullScreen(!fullScreen);
+            }}
+          >
+            <FontAwesomeIcon
+              className="icon"
+              icon={fullScreen ? faCompress : faExpand}
+            />
+          </div>
+        </div>
+        <div className="my-auto">
           <div className="d-flex input-dropdown mx-2">
             <div
               className="d-flex"
@@ -132,7 +148,8 @@ function ChartCard() {
           onVisibleChange={() => setTimeToggle(!timeToggle)}
         >
           <div className="d-flex input-dropdown my-1 mx-2">
-            <i className="icon far fa-clock mx-2 my-auto" />
+            <FontAwesomeIcon className="icon mx-2 my-auto" icon={faClock} />
+            <i className="icon far fa-clock" />
             <div className="drop">{time[tickerTime]}</div>
             <div className="divider" />
             <button className="btn-dropdown my-auto">
