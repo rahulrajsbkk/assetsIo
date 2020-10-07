@@ -1,0 +1,102 @@
+@font-face {
+  font-family: "charts-icon";
+  src: url("../fonts/icomoon.eot?ix18sy");
+  src: url("../fonts/icomoon.eot?ix18sy#iefix") format("embedded-opentype"),
+    url("../fonts/icomoon.ttf?ix18sy") format("truetype"),
+    url("../fonts/icomoon.woff?ix18sy") format("woff"),
+    url("../fonts/icomoon.svg?ix18sy#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="charts-icon-"],
+[class*=" charts-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "charts-icon" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.charts-icon-line:before {
+  content: "\e900";
+}
+.charts-icon-candle:before {
+  content: "\e901";
+}
+.charts-icon-area:before {
+  content: "\e902";
+}
+.charts-icon-bar:before {
+  content: "\e903";
+}
+.charts-icon-options:before {
+  content: "\e904";
+}
+
+@font-face {
+  font-family: "tokenicon";
+  src: url("../fonts/tokenicon.eot?uffi2j");
+  src: url("../fonts/tokenicon.eot?uffi2j#iefix") format("embedded-opentype"),
+    url("../fonts/tokenicon.ttf?uffi2j") format("truetype"),
+    url("../fonts/tokenicon.woff?uffi2j") format("woff"),
+    url("../fonts/tokenicon.svg?uffi2j#tokenicon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="tokenicon-"],
+[class*=" tokenicon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "tokenicon" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tokenicon-all_trades:before {
+  content: "\e900";
+}
+.tokenicon-all-funds:before {
+  content: "\e901";
+}
+.tokenicon-btc:before {
+  content: "\e902";
+}
+.tokenicon-eth:before {
+  content: "\e903";
+}
+.tokenicon-gx-options:before {
+  content: "\e904";
+}
+.tokenicon-news-portal:before {
+  content: "\e905";
+}
+.tokenicon-trade-history:before {
+  content: "\e906";
+}
+.tokenicon-usd:before {
+  content: "\e907";
+}
+.tokenicon-usdt:before {
+  content: "\e908";
+}
+.tokenicon-vault:before {
+  content: "\e909";
+}

@@ -1,0 +1,164 @@
+$col-gray: #8d8e9b;
+$col-border: #787885;
+.setup-trade-profile-view {
+  background: #292934;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  .title {
+    background: $col-gray;
+    display: flex;
+    img {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  .setup-trade-form {
+    padding: 3rem;
+    .group {
+      ::-webkit-input-placeholder {
+        color: $col-border;
+      }
+      :-ms-input-placeholder {
+        color: $col-border;
+      }
+      ::placeholder {
+        color: $col-border;
+      }
+      .label-title {
+        text-transform: uppercase;
+        color: $col-gray;
+        margin-bottom: 2rem;
+      }
+      .border-wrapper {
+        border: 1px solid $col-border;
+        box-sizing: border-box;
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.12),
+          0px 0px 1px rgba(0, 0, 0, 0.48);
+        border-radius: 5px;
+      }
+      .cloud {
+        img {
+          padding: 8px;
+          height: 40px;
+          width: 40px;
+        }
+      }
+      .uname {
+        margin-left: 8px;
+        width: 0;
+        flex-grow: 1;
+        display: flex;
+        input {
+          flex-grow: 1;
+          height: 40px;
+          width: 100%;
+          border: none;
+          background: none;
+          color: white;
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+      .select {
+        width: 0;
+        flex-grow: 1;
+        padding: 16px 8px;
+        justify-content: center;
+        cursor: pointer;
+        h6 {
+          color: $col-border;
+          font-size: 18px;
+          line-height: 1;
+          margin: 0;
+        }
+        img {
+          margin-left: 4px;
+          height: 18px;
+          width: auto;
+          max-width: 22px;
+        }
+        &:hover,
+        &.active {
+          background-color: #e0e0e0;
+          color: $col-border;
+        }
+      }
+      .bio {
+        width: 100%;
+        display: flex;
+        textarea {
+          padding: 8px;
+          resize: none;
+          flex-grow: 1;
+          width: 100%;
+          border: none;
+          background: none;
+          color: white;
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+    @include md {
+      padding: 2rem;
+      .group {
+        .select {
+          padding: 16px 8px;
+          align-items: center;
+          h6 {
+            color: $col-border;
+            font-size: 15px;
+            line-height: 1;
+            margin: 0;
+          }
+          img {
+            height: 14px;
+            max-width: 20px;
+          }
+          &:hover,
+          &.active {
+            background-color: #e0e0e0;
+            color: $col-border;
+          }
+        }
+        .bio {
+          width: 100%;
+          display: flex;
+          textarea {
+            padding: 8px;
+            resize: none;
+            flex-grow: 1;
+            width: 100%;
+            border: none;
+            background: none;
+            color: white;
+            &:focus {
+              outline: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  .footer-btn {
+    .btn {
+      height: 54px;
+      width: 54px;
+      background: #292934;
+      display: flex;
+      margin: 2px;
+      border-radius: 0;
+      &:hover {
+        background: #dfdfdf;
+      }
+      img {
+        height: 20px;
+        width: auto;
+        margin: auto;
+      }
+    }
+  }
+}

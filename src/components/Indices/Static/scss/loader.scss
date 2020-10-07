@@ -1,0 +1,16 @@
+.loader-spin {
+  .percent {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    display: flex;
+    h2 {
+      font-size: 3rem;
+      color: #787885;
+      margin: auto;
+    }
+  }
+}

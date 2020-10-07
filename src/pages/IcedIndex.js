@@ -12,6 +12,7 @@ import IcePayouts from '../components/MarketPage/IcePayouts/IcePayouts';
 import IceIndices from '../components/MarketPage/IceIndices/IceIndices';
 import IceTrust from '../components/MarketPage/IceTrust/IceTrust';
 import { BankContext } from '../context/Context';
+import Indices from '../components/Indices/Indices';
 
 function IcedIndex({ activeTab }) {
   const { iceSidebarOpen, setIceSidebarOpen } = useContext(BankContext);
@@ -34,7 +35,7 @@ function IcedIndex({ activeTab }) {
       case 'indices':
         return (
           <>
-            <IceIndices />
+            <Indices />
           </>
         );
       case 'bridge':
@@ -99,18 +100,16 @@ function IcedIndex({ activeTab }) {
                   onClick={() => {
                     setMenuSelected('bridge');
                   }}
-                  // onMouseEnter={() => setDetailIndex(1)}
-                  // onMouseLeave={() => setDetailIndex(null)}
                 >
                   Trusts
                 </div>
                 <div
-                  className={`tab-itm ${menuSelected === 'borrow-intrest'}`}
-                  // onClick={() => {
-                  //   setMenuSelected('borrow-intrest');
-                  // }}
-                  onMouseEnter={() => setDetailIndex(1)}
-                  onMouseLeave={() => setDetailIndex(null)}
+                  className={`tab-itm ${menuSelected === 'indices'}`}
+                  onClick={() => {
+                    setMenuSelected('indices');
+                  }}
+                  // onMouseEnter={() => setDetailIndex(1)}
+                  // onMouseLeave={() => setDetailIndex(null)}
                 >
                   Indicies
                 </div>

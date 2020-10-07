@@ -1,0 +1,228 @@
+$bg-color: #0f0f14;
+$border-color: #8b8c99;
+.modal-deposit {
+  background-color: rgba(0, 0, 0, 0.5);
+  .modal-dialog {
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 100%;
+    display: flex;
+  }
+  .modal-content {
+    margin-top: auto;
+    margin-bottom: auto;
+    background: transparent;
+    .deposit-card {
+      border-radius: 10px;
+      background: $bg-color;
+      border: 2px solid $border-color;
+      .title {
+        cursor: default;
+        border-bottom: 1px solid $border-color;
+        color: $border-color;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.7rem;
+        line-height: 1;
+        margin: 0;
+      }
+      .select-coin {
+        .search-wrap {
+          border: 1px solid $border-color;
+          color: $border-color;
+          font-size: 20px;
+          border-radius: 4px;
+          i {
+            padding-left: 8px;
+          }
+          .search-input {
+            width: 0;
+            flex-grow: 1;
+            padding-left: 8px;
+            padding-right: 8px;
+            border: none;
+            background: none;
+            outline: none;
+          }
+        }
+        .tab-coins {
+          border: 1px solid $border-color;
+          text-align: center;
+          color: $border-color;
+          overflow: hidden;
+          .tab-itm {
+            background-color: $bg-color;
+            cursor: pointer;
+            padding: 8px;
+            &:hover {
+              color: white;
+              transform: scaleX(1.1);
+            }
+            &.active {
+              background-color: $border-color;
+              color: white;
+            }
+          }
+        }
+        .asset-list {
+          max-height: 350px;
+          overflow-y: auto;
+          .asset-item {
+            cursor: pointer;
+            border-bottom: 1px solid $border-color;
+            .icon {
+              width: 32px;
+              height: 32px;
+            }
+            h4 {
+              font-size: 21px;
+              line-height: 1;
+              color: $border-color;
+              margin-top: auto;
+              margin-bottom: auto;
+              span {
+                &.up {
+                  color: #26a69a;
+                }
+                &.down {
+                  color: #ef5350;
+                }
+              }
+            }
+            &.active,
+            &:hover {
+              h4 {
+                color: whitesmoke;
+                transform: scale(1.05);
+              }
+            }
+          }
+        }
+        .deposit-footer {
+          cursor: pointer;
+          background-color: $border-color;
+          color: white;
+          font-size: 16px;
+          text-align: center;
+          line-height: 1;
+          padding: 12px;
+          margin: 0;
+        }
+      }
+      .set-amount {
+        .group {
+          p {
+            color: $border-color;
+          }
+          .border-wrap {
+            cursor: default;
+            border: 1px solid $border-color;
+            color: $border-color;
+            padding: 6px;
+            border-radius: 4px;
+            height: 60px;
+            // To Remove The Buttons
+            input[type="number"]::-webkit-inner-spin-button,
+            input[type="number"]::-webkit-outer-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+            input[type="number"] {
+              -moz-appearance: textfield;
+            }
+            .amount-input {
+              border-color: $border-color !important;
+              width: 0;
+              flex-grow: 1;
+              padding-left: 8px;
+              padding-right: 8px;
+              font-size: 20px;
+              border: none;
+              background: none;
+              outline: none;
+            }
+            .icon {
+              margin-top: auto;
+              margin-bottom: auto;
+              margin-left: 10px;
+              margin-right: 10px;
+              width: 30px;
+              height: 30px;
+            }
+            h4 {
+              color: $border-color;
+              margin: 0;
+              font-size: 22px;
+              span {
+                text-transform: capitalize;
+              }
+            }
+            h6 {
+              color: $border-color;
+              margin: 0;
+              font-size: 14px;
+            }
+            &.select-sym {
+              height: unset;
+              min-height: 60px;
+              padding: 0;
+              .drop-togle {
+                height: 60px;
+                padding: 6px;
+                .fas {
+                  cursor: pointer;
+                }
+              }
+              .drop-items {
+                border-top: 1px solid $border-color;
+                height: 60px;
+                padding: 6px;
+                justify-content: space-around;
+                i {
+                  font-size: 2rem;
+                  margin-left: auto;
+                  margin-right: auto;
+                }
+                h6 {
+                  text-align: center;
+                  margin: 4px;
+                  margin-left: auto;
+                  margin-right: auto;
+                }
+                div {
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+        .coin-detail {
+          h5 {
+            font-size: 18px;
+            color: $border-color;
+            margin: 0;
+            line-height: 1;
+            font-weight: 500;
+          }
+          h6 {
+            font-size: 14px;
+            color: $border-color;
+            margin: 0;
+            line-height: 1;
+            font-weight: 500;
+          }
+        }
+        .deposit-footer {
+          cursor: pointer;
+          background-color: $border-color;
+          color: white;
+          font-size: 16px;
+          text-align: center;
+          line-height: 1;
+          padding: 10px;
+          margin: 0;
+        }
+      }
+    }
+  }
+}

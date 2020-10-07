@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'navicon';
+  src: url('../fonts/navicon.eot?4cns7j');
+  src: url('../fonts/navicon.eot?4cns7j#iefix') format('embedded-opentype'),
+    url('../fonts/navicon.ttf?4cns7j') format('truetype'),
+    url('../fonts/navicon.woff?4cns7j') format('woff'),
+    url('../fonts/navicon.svg?4cns7j#navicon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^='navicon-'],
+[class*=' navicon-'] {
+  font-family: 'navicon' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.navicon-broker:before {
+  content: '\e900';
+}
+.navicon-deposit:before {
+  content: '\e901';
+}
+.navicon-funds:before {
+  content: '\e902';
+}
+.navicon-logout:before {
+  content: '\e903';
+}
+.navicon-withdraw:before {
+  content: '\e904';
+}
