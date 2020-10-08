@@ -13,11 +13,13 @@ import IceIndices from '../components/MarketPage/IceIndices/IceIndices';
 import IceTrust from '../components/MarketPage/IceTrust/IceTrust';
 import { BankContext } from '../context/Context';
 import Indices from '../components/Indices/Indices';
+import EnterPinUnlock from '../components/EnterPinUnlock/EnterPinUnlock';
 
 function IcedIndex({ activeTab }) {
   const { iceSidebarOpen, setIceSidebarOpen } = useContext(BankContext);
   const [menuSelected, setMenuSelected] = useState('earn-intrest');
   const { width } = useWindowDimensions();
+  const [pinModal, setPinModal] = useState(true);
   function getPageContent(tab) {
     switch (tab) {
       case 'bonds-tab':
@@ -36,6 +38,14 @@ function IcedIndex({ activeTab }) {
         return (
           <>
             <Indices />
+            {pinModal && (
+              <EnterPinUnlock
+                onSucces={() => setPinModal(false)}
+                onClose={() => {
+                  setMenuSelected('earn-intrest');
+                }}
+              />
+            )}
           </>
         );
       case 'bridge':

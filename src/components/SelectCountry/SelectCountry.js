@@ -14,7 +14,7 @@ function SelectCountry() {
         `https://comms.globalxchange.com/coin/iced/get/country/data?email=${email}`
       ).then((res) => {
         const { data } = res;
-        if (data.status) {
+        if (data.status && data.user[0]) {
           if (!data.user[0].countryData) {
             setOpenModal(true);
           }
