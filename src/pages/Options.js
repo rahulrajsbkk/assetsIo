@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Layout from '../Layout/Index';
 import useWindowDimensions from '../utils/WindowSize';
@@ -11,6 +12,7 @@ import Indices from '../components/Indices/Indices';
 import EnterPinUnlock from '../components/EnterPinUnlock/EnterPinUnlock';
 
 function Options({ activeTab }) {
+  const history = useHistory();
   const { iceSidebarOpen, setIceSidebarOpen } = useContext(BankContext);
   const [menuSelected, setMenuSelected] = useState('earn-intrest');
   const { width } = useWindowDimensions();
@@ -25,7 +27,7 @@ function Options({ activeTab }) {
               <EnterPinUnlock
                 onSucces={() => setPinModal(false)}
                 onClose={() => {
-                  setMenuSelected('earn-intrest');
+                  history.push('/');
                 }}
               />
             )}

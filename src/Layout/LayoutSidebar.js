@@ -121,6 +121,16 @@ function LayoutSidebar({ active }) {
           <div className="toolTip">PlanB</div>
         </div>
         <Link
+          to="/options"
+          className={`menu-itm${active === 'Options' ? ' active' : ''}`}
+        >
+          <h5 className="d-flex py-3 menu-itm">
+            <img src={appstore} alt="" />
+            <span className="my-auto">Options</span>
+          </h5>
+          <div className="toolTip">Options</div>
+        </Link>
+        <Link
           to="/mobile-apps"
           className={`menu-itm${active === 'mobileApps' ? ' active' : ''}`}
         >
@@ -128,7 +138,7 @@ function LayoutSidebar({ active }) {
             <img src={appstore} alt="" />
             <span className="my-auto">Mobile Apps</span>
           </h5>
-          <div className="toolTip">Expand Menu</div>
+          <div className="toolTip">Mobile Apps</div>
         </Link>
         <div ref={menuEndRef} className="spacer" />
       </Scrollbars>

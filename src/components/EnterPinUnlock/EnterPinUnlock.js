@@ -37,7 +37,16 @@ function EnterPinUnlock({ onSucces, onClose }) {
           separator={<span> </span>}
           inputStyle="otp-input"
         />
-        <div className="btnCloseFooter">Close</div>
+        <div
+          className="btnCloseFooter"
+          onClick={() => {
+            try {
+              onClose();
+            } catch (error) {}
+          }}
+        >
+          Close
+        </div>
       </div>
     </div>
   );

@@ -152,6 +152,16 @@ function LayoutSidebarCoins({ active }) {
               </h5>
             </div>
             <Link
+              to="/options"
+              className={`menu-itm${active === 'Options' ? ' active' : ''}`}
+            >
+              <h5 className="d-flex py-3 menu-itm">
+                <img src={appstore} alt="" />
+                <span className="my-auto">Options</span>
+              </h5>
+              <div className="toolTip">Options</div>
+            </Link>
+            <Link
               to="/mobile-apps"
               className={`menu-itm${active === 'mobileApps' ? ' active' : ''}`}
             >
@@ -207,6 +217,16 @@ function LayoutSidebarCoins({ active }) {
                 <span className="my-auto">PlanB</span>
               </h5>
             </div>
+            <Link
+              to="/options"
+              className={`menu-itm${active === 'Options' ? ' active' : ''}`}
+            >
+              <h5 className="d-flex py-3 menu-itm">
+                <img src={appstore} alt="" />
+                <span className="my-auto">Options</span>
+              </h5>
+              <div className="toolTip">Options</div>
+            </Link>
             <Link
               to="/mobile-apps"
               className={`menu-itm${active === 'mobileApps' ? ' active' : ''}`}
