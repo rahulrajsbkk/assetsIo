@@ -1,41 +1,26 @@
 import React, { useState, useContext, useEffect } from 'react';
 
 import Layout from '../Layout/Index';
-import EarnIntrest from '../components/MarketPage/EarnIntrest/EarnIntrest';
 import useWindowDimensions from '../utils/WindowSize';
-import BondsContent from '../components/MarketPage/BondsContent/BondsContent';
 import IndexContextProvider from '../context/IndexContext';
 import iceLogo from '../static/images/logo.svg';
 import backDouble from '../static/images/backDouble.svg';
 import IceSidebar from '../components/IceSidebar/IceSidebar';
-import IcePayouts from '../components/MarketPage/IcePayouts/IcePayouts';
-import IceIndices from '../components/MarketPage/IceIndices/IceIndices';
-import IceTrust from '../components/MarketPage/IceTrust/IceTrust';
 import { BankContext } from '../context/Context';
+import Indices from '../components/Indices/Indices';
 import EnterPinUnlock from '../components/EnterPinUnlock/EnterPinUnlock';
 
-function IcedIndex({ activeTab }) {
+function Options({ activeTab }) {
   const { iceSidebarOpen, setIceSidebarOpen } = useContext(BankContext);
   const [menuSelected, setMenuSelected] = useState('earn-intrest');
   const { width } = useWindowDimensions();
   const [pinModal, setPinModal] = useState(true);
   function getPageContent(tab) {
     switch (tab) {
-      case 'bonds-tab':
+      default:
         return (
           <>
-            <BondsContent />
-          </>
-        );
-      case 'payouts':
-        return (
-          <>
-            <IcePayouts />
-          </>
-        );
-      case 'indices':
-        return (
-          <>
+            <Indices />
             {pinModal && (
               <EnterPinUnlock
                 onSucces={() => setPinModal(false)}
@@ -44,19 +29,6 @@ function IcedIndex({ activeTab }) {
                 }}
               />
             )}
-          </>
-        );
-      case 'bridge':
-        return (
-          <>
-            <IceTrust />
-          </>
-        );
-
-      default:
-        return (
-          <>
-            <EarnIntrest />
           </>
         );
     }
@@ -77,11 +49,11 @@ function IcedIndex({ activeTab }) {
     <IndexContextProvider>
       <Layout
         active={activeTab || 'index'}
-        className="icedIndex"
+        className="Options"
         menuSelected={menuSelected}
         setMenuSelected={setMenuSelected}
-        hideFooter={menuSelected === 'bridge'}
-        footerMain={Boolean(activeTab)}
+        hideFooter={true}
+        footerMain={true}
       >
         <div className="icedContainer">
           <div className={`mainContent ${iceSidebarOpen}`}>
@@ -161,4 +133,4 @@ function IcedIndex({ activeTab }) {
   );
 }
 
-export default IcedIndex;
+export default Options;

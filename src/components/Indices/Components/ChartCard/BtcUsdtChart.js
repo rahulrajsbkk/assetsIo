@@ -30,8 +30,8 @@ function BtcUsdtChart() {
       width: chartContainerRef.current.clientWidth,
       height: chartContainerRef.current.clientHeight,
       layout: {
-        backgroundColor: '#2d2d38',
-        textColor: 'rgba(255, 255, 255, 0.9)',
+        backgroundColor: '#fff',
+        textColor: '#464b4e',
       },
       grid: {
         vertLines: {
@@ -103,7 +103,7 @@ function BtcUsdtChart() {
 
     areaSeries = chart.current.addAreaSeries({
       topColor: 'rgba(0, 162, 255, 0.481)',
-      bottomColor: 'rgba(0, 0, 0, 0.3)',
+      bottomColor: '#e7e7e7',
       lineColor: 'rgb(33, 149, 243)',
       lineStyle: 0,
       lineWidth: 2,

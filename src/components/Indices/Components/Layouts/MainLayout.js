@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CoinsSidebar from '../CoinsSidebar/CoinsSidebar';
+// import CoinsSidebar from '../CoinsSidebar/CoinsSidebar';
 
 function MainLayout({ children, className }) {
   const [isToken, setIsToken] = useState(true);
@@ -15,7 +15,7 @@ function MainLayout({ children, className }) {
       <div className={'opt-layout d-flex flex-column'}>
         <div className="flex-grow-1 d-flex flex-column">{tabItem[tab]}</div>
       </div>
-      <CoinsSidebar isToken={isToken} />
+      {/* <CoinsSidebar isToken={isToken} /> */}
     </div>
   );
 }

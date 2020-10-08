@@ -1,0 +1,67 @@
+.Options {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  .icedContainer {
+    flex: 1;
+    display: flex;
+    .mainContent {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      .tab {
+        height: 70px;
+        display: flex;
+        .tab-itm {
+          cursor: pointer;
+          flex: 1;
+          border-bottom: 2px solid #e7e7e7;
+          font-size: 15px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          opacity: 0.25;
+          position: relative;
+          &.true {
+            opacity: 1;
+            font-size: 20px;
+            border-color: $primary-color;
+          }
+          &.ice {
+            max-width: 80px;
+            opacity: 1;
+            border-color: #e7e7e740;
+            img {
+              width: 30px;
+              height: 30px;
+            }
+          }
+        }
+      }
+      .content-section {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding: 0;
+        zoom: 0.8;
+        .home-page {
+          height: 0;
+          flex-grow: 1;
+          &.fullscreen {
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: unset;
+            position: fixed;
+          }
+        }
+      }
+    }
+    @include mdportrait {
+      .mainContent {
+        width: 100%;
+      }
+    }
+  }
+}

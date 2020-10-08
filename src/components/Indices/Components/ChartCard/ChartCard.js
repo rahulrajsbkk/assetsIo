@@ -76,7 +76,10 @@ function ChartCard({ fullScreen, setFullScreen }) {
     </MenuLayout>
   );
   return (
-    <div className="card chart-card card-dark flex-grow-1 h-100 d-flex flex-column">
+    <div
+      className="card chart-card card-dark flex-grow-1 h-100 d-flex flex-column"
+      id="chartCard"
+    >
       <div className="d-flex chart-head">
         <div className="my-auto">
           <div
@@ -143,6 +146,7 @@ function ChartCard({ fullScreen, setFullScreen }) {
 
         <Dropdown
           className="ml-auto"
+          getPopupContainer={() => document.getElementById('chartCard')}
           overlay={timeMenu}
           visible={timeToggle}
           onVisibleChange={() => setTimeToggle(!timeToggle)}

@@ -1,4 +1,5 @@
 @import 'chart-icon-font';
+@import 'colors';
 @import 'navicon-font';
 @import 'navbar';
 @import 'home';
@@ -94,7 +95,6 @@ body {
   }
 }
 .opt-layout {
-  height: 100vh;
   width: 100%;
   @media only screen and (max-width: #{992px}) {
     height: unset;

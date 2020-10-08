@@ -12,6 +12,7 @@ import NetWorthPage from './pages/NetWorthPage';
 import IceMechineMobile from './pages/IceMechineMobile';
 import MoneyMarkets from './pages/MoneyMarkets';
 import BondOverview from './pages/BondOverview';
+import Options from './pages/Options';
 
 function Routes({ match }) {
   const { email } = useContext(BankContext);
@@ -38,6 +39,7 @@ function Routes({ match }) {
       <Route exact path="/">
         <>{email ? <NetWorthPage /> : <IcedIndex />}</>
       </Route>
+      <Route exact path="/options" component={Options} />
       <Route exact path="/vault" component={Vault} />
       <Route exact path="/earning" component={Earnings} />
       <Route exact path="/vault/:type" component={Vault} />

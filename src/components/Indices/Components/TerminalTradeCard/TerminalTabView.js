@@ -131,7 +131,10 @@ function TerminalTabView() {
   }, [time, timeUnit]);
 
   return (
-    <div className="d-flex tabview-call-put justify-content-around flex-grow-1 flex-column px-3">
+    <div
+      className="d-flex tabview-call-put justify-content-around flex-grow-1 flex-column px-3"
+      id="tabViewTerminal"
+    >
       <div>
         <h6 className="text-white justify-content-between d-flex">
           Amount <span>Balance: ${usdAmountFormatter.format(balance)}</span>
@@ -189,6 +192,7 @@ function TerminalTabView() {
             overlay={timeMenu}
             visible={timeToggle}
             onVisibleChange={() => setTimeToggle(!timeToggle)}
+            getPopupContainer={() => document.getElementById('tabViewTerminal')}
           >
             <div className="d-flex input-dropdown time">
               <div className="drop my-auto">{timeUnit.name}</div>

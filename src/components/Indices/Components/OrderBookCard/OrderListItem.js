@@ -8,7 +8,7 @@ function OrderListItem({ value, color, largest, setLargest }) {
   const { usdAmountFormatter, btcAmountFormatter } = useContext(OptionsContext);
   return (
     <div
-      className="flex-grow-1 d-flex justify-content-between order-list-itm text-left text-white px-4"
+      className="flex-grow-1 d-flex justify-content-between order-list-itm text-left text-dark align-items-center px-4"
       style={{
         background: `linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) ${
           100 - percentage
