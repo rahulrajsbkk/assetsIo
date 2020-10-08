@@ -50,7 +50,7 @@ function Options({ activeTab }) {
   return (
     <IndexContextProvider>
       <Layout
-        active={activeTab || 'index'}
+        active="Options"
         className="Options"
         menuSelected={menuSelected}
         setMenuSelected={setMenuSelected}
@@ -62,38 +62,38 @@ function Options({ activeTab }) {
             {width > 768 ? (
               <div className="tab">
                 <div
-                  className={`tab-itm ${menuSelected === 'earn-intrest'}`}
+                  className={`tab-itm ${menuSelected === 'Assets'}`}
                   onClick={() => {
-                    setMenuSelected('earn-intrest');
+                    setMenuSelected('Assets');
                   }}
                 >
-                  Earn
+                  Assets
                 </div>
                 <div
-                  className={`tab-itm ${menuSelected === 'bonds-tab'}`}
+                  className={`tab-itm ${menuSelected === 'Indicies'}`}
                   onClick={() => {
-                    setMenuSelected('bonds-tab');
+                    setMenuSelected('Indicies');
+                  }}
+                >
+                  Indicies
+                </div>
+                <div
+                  className={`tab-itm ${menuSelected === 'Bonds'}`}
+                  onClick={() => {
+                    setMenuSelected('Bonds');
                   }}
                 >
                   Bonds
                 </div>
                 <div
-                  className={`tab-itm ${menuSelected === 'bridge'}`}
+                  className={`tab-itm ${menuSelected === 'Funds'}`}
                   onClick={() => {
-                    setMenuSelected('bridge');
-                  }}
-                >
-                  Trusts
-                </div>
-                <div
-                  className={`tab-itm ${menuSelected === 'indices'}`}
-                  onClick={() => {
-                    setMenuSelected('indices');
+                    setMenuSelected('Funds');
                   }}
                   // onMouseEnter={() => setDetailIndex(1)}
                   // onMouseLeave={() => setDetailIndex(null)}
                 >
-                  Indicies
+                  Funds
                 </div>
                 <div
                   onClick={() => setIceSidebarOpen(!iceSidebarOpen)}
