@@ -52,8 +52,9 @@
     "react-test": "react-scripts test --env=jsdom",
     "react-eject": "react-scripts eject",
     "electron-build": "electron-builder  --mac --win --linux",
-    "release": "yarn react-build && electron-builder --publish=always",
-    "build": "yarn react-build && yarn electron-build",
+    "electron-build-linux": "electron-builder --linux",
+    "release": "npm run react-build && electron-builder --publish=always",
+    "build": "npm run react-build && npm run electron-build",
     "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
   },
   "eslintConfig": {
@@ -87,9 +88,5 @@
     "pretty-quick": "^2.0.1",
     "wait-on": "^5.2.0"
   },
-  "build": {
-    "publish": {
-      "provider": "github"
-    }
-  }
+  "build": {}
 }
