@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Scrollbars from 'react-custom-scrollbars';
 import { BankContext } from '../../../../context/Context';
+import BtcUsdtChart from '../ChartCard/BtcUsdtChart';
 
 function MainContentCard({ asset }) {
   const { coinList } = useContext(BankContext);
@@ -14,7 +15,9 @@ function MainContentCard({ asset }) {
       <div className="head">
         <div className="titleText">{asset} Markets</div>
       </div>
-      <div className="content"></div>
+      <div className="content">
+        <BtcUsdtChart />
+      </div>
       <div className="footerControlls">
         <div className="valueNSearch">
           <div className="coinNameNValue">

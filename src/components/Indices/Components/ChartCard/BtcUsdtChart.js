@@ -102,9 +102,9 @@ function BtcUsdtChart() {
     });
 
     areaSeries = chart.current.addAreaSeries({
-      topColor: 'rgba(0, 162, 255, 0.481)',
+      topColor: '#464b4e',
       bottomColor: '#e7e7e7',
-      lineColor: 'rgb(33, 149, 243)',
+      lineColor: '#464b4e',
       lineStyle: 0,
       lineWidth: 2,
       crosshairMarkerVisible: false,
