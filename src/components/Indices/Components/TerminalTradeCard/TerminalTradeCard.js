@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import TerminalTabView from "./TerminalTabView";
-import RecentTradesTabView from "./RecentTradesTabView";
+import React, { useState } from 'react';
+import TerminalTabView from './TerminalTabView';
+import RecentTradesTabView from './RecentTradesTabView';
 
 function TerminalTradeCard() {
-  const [tab, setTab] = useState("terminal");
+  const [tab, setTab] = useState('Options');
   return (
     <div className="card card-terminal-trades card-dark flex-grow-1 h-100 d-flex flex-column">
       <div className="opt-tab d-flex">
         <div
-          className={"tab-itm w-50 p-3 " + (tab === "recent" ? "active" : "")}
-          onClick={() => setTab("recent")}
+          className={'tab-itm w-50 p-3 ' + (tab === 'Mortgage' ? 'active' : '')}
+          onClick={() => setTab('Mortgage')}
         >
-          Recent Trades
+          Mortgage
         </div>
         <div
-          className={"tab-itm w-50 p-3 " + (tab !== "recent" ? "active" : "")}
-          onClick={() => setTab("terminal")}
+          className={'tab-itm w-50 p-3 ' + (tab === 'Options' ? 'active' : '')}
+          onClick={() => setTab('Options')}
         >
-          Terminal
+          Options
         </div>
       </div>
-      {tab === "recent" ? <RecentTradesTabView /> : <TerminalTabView />}
+      {tab === 'Mortgage' ? <></> : <TerminalTabView />}
     </div>
   );
 }

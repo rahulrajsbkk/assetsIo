@@ -2,6 +2,8 @@ import React, { useState, useContext, useEffect } from 'react';
 import { OptionsContext } from '../../ContextAPI/OptionContext';
 import Dropdown from 'antd/lib/dropdown/index';
 import MenuLayout from '../MenuLayout/MenuLayout';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 function TerminalTabView() {
   const {
@@ -136,28 +138,8 @@ function TerminalTabView() {
       id="tabViewTerminal"
     >
       <div>
-        <h6 className="text-white justify-content-between d-flex">
-          Amount <span>Balance: ${usdAmountFormatter.format(balance)}</span>
-        </h6>
+        <h6 className="textTitle">Amount</h6>
         <div className="d-flex input-num">
-          <button
-            className="btn-max"
-            onClick={() => setAmount((balance * 0.5).toFixed(2))}
-          >
-            50%
-          </button>
-          <button
-            className="btn-max"
-            onClick={() => setAmount((balance * 0.25).toFixed(2))}
-          >
-            25%
-          </button>
-          <button
-            className="btn-max"
-            onClick={() => setAmount((balance * 0.1).toFixed(2))}
-          >
-            10%
-          </button>
           <input
             type="number"
             className="d-flex"
@@ -170,41 +152,7 @@ function TerminalTabView() {
         </div>
       </div>
       <div>
-        <h6 className="text-white">Timer</h6>
-        <div className="d-flex justify-content-between">
-          <div className="d-flex input-num time">
-            <button className="btn-num border-right" onClick={subTime}>
-              -
-            </button>
-            <input
-              type="number"
-              className="d-flex"
-              min={0}
-              value={time}
-              step={1}
-              readOnly
-            />
-            <button className="btn-num border-left" onClick={addTime}>
-              +
-            </button>
-          </div>
-          <Dropdown
-            overlay={timeMenu}
-            visible={timeToggle}
-            onVisibleChange={() => setTimeToggle(!timeToggle)}
-            getPopupContainer={() => document.getElementById('tabViewTerminal')}
-          >
-            <div className="d-flex input-dropdown time">
-              <div className="drop my-auto">{timeUnit.name}</div>
-              <button className="btn-dropdown border-left">
-                <i className="fas fa-chevron-down" />
-              </button>
-            </div>
-          </Dropdown>
-        </div>
-      </div>
-      <div>
-        <h6 className="text-white">Profit Potential</h6>
+        <h6 className="textTitle">Profit Potential</h6>
         <div className="d-flex input-num">
           <div className="border-right profit d-flex">
             <div className="my-auto mx-auto">50%</div>
@@ -224,15 +172,19 @@ function TerminalTabView() {
           className="d-flex btn justify-content-center btn btn-success"
           onClick={() => startTrade(true)}
         >
-          <h3 className="my-auto">LONG</h3>
-          <h3 className="fas fa-arrow-up mx-2 my-auto" />
+          <h3>
+            SELL
+            <FontAwesomeIcon icon={faArrowDown} />
+          </h3>
         </button>
         <button
           className="d-flex btn justify-content-center btn btn-danger"
           onClick={() => startTrade(false)}
         >
-          <h3 className="my-auto">SHORT</h3>
-          <h3 className="fas fa-arrow-down mx-2 my-auto" />
+          <h3>
+            BUY
+            <FontAwesomeIcon icon={faArrowUp} />
+          </h3>
         </button>
       </div>
     </div>

@@ -1,5 +1,235 @@
 .home-page {
   background-color: $card-color;
+  display: flex;
+  flex-direction: column;
+  .content-home-page {
+    flex-grow: 1;
+    display: flex;
+    height: 0;
+    .one {
+      flex: 0 0 75%;
+      padding: 40px;
+      padding-right: 20px;
+      display: flex;
+      .contentCard {
+        flex: 1;
+      }
+    }
+    .two {
+      flex: 0 0 25%;
+      max-width: 25%;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      padding-left: 0;
+      .orderBookWrap {
+        flex: 0 0 66%;
+        padding: 20px;
+        .order-book-card {
+          .opt-tab {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            .tab-itm {
+              font-weight: bold;
+              padding-top: 10px;
+              padding-bottom: 10px;
+              &:last-child {
+                padding-left: 0;
+              }
+              &:hover {
+                transform: none;
+              }
+            }
+          }
+          .order-book-list {
+            h4 {
+              height: 55px;
+              display: flex;
+              align-items: center;
+              font-size: 1.3rem;
+              color: $primary-color;
+              border: 1px $border-color;
+              border-style: solid none;
+            }
+          }
+        }
+      }
+      .tradeCardWrap {
+        flex: 0 0 34%;
+        padding: 20px;
+        padding-top: 0;
+        .card-terminal-trades {
+          .trades-tab-view {
+            .tab-btn {
+              padding: 8px 0;
+              .tab-btn-itm {
+                min-width: 25%;
+                text-align: center;
+                color: $secondary-color;
+                padding: 4px 8px 4px 8px;
+                border-radius: 4px;
+                cursor: pointer;
+                &:hover {
+                  background: #47465480;
+                  color: $primary-color;
+                }
+                &.active {
+                  background: $border-color;
+                  color: $primary-color;
+                }
+              }
+            }
+            .trade-list {
+              .fund-list-head {
+                background: $border-color;
+              }
+              .fund-list-item {
+                padding-top: 6px;
+                padding-bottom: 6px;
+                background: $card-color;
+                font-size: 16px;
+                text-align: left;
+                h6 {
+                  font-size: 15px;
+                  line-height: 23px;
+                  color: $primary-color;
+                }
+                p {
+                  font-size: 12px;
+                }
+              }
+              .fund-list-item:nth-child(odd) {
+                background: #353540;
+              }
+            }
+          }
+          .tabview-call-put {
+            input[type='number']::-webkit-inner-spin-button,
+            input[type='number']::-webkit-outer-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+            input[type='number'] {
+              -moz-appearance: textfield;
+            }
+            .textTitle {
+              color: $secondary-color;
+            }
+
+            .input-num {
+              height: 45px;
+              border: 2px solid $border-color;
+              border-radius: 4px;
+              &.time {
+                width: 48%;
+              }
+              .btn-num {
+                background: none;
+                border: none;
+                border-color: $border-color !important;
+                font-size: 32px;
+                line-height: 1;
+                text-align: center;
+                width: 40px;
+                height: 40px;
+                color: $primary-color;
+              }
+              .btn-max {
+                background: none;
+                border: 1px solid $border-color;
+                font-size: 12px;
+                line-height: 1;
+                text-align: center;
+                width: 55px;
+                height: 32px;
+                margin: 8px 4px;
+                color: $primary-color;
+                @include md {
+                  margin: 2px 4px;
+                  height: 20px;
+                  width: 40px;
+                  font-size: 10px;
+                }
+                &:first-child {
+                  margin-left: 8px;
+                }
+              }
+              input {
+                width: 0;
+                text-align: center;
+                color: $primary-color;
+                background: none;
+                flex-grow: 1;
+                border: none;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                &:focus {
+                  border: none;
+                  outline: none;
+                }
+              }
+              .profit {
+                height: 40px;
+                border-color: $border-color !important;
+                width: 50%;
+                text-align: center;
+                color: $primary-color;
+                background: none;
+                border: none;
+                padding-left: 2rem;
+                padding-right: 2rem;
+              }
+            }
+            .input-dropdown {
+              border: 2px solid $border-color;
+              border-radius: 4px;
+              &.time {
+                width: 48%;
+              }
+              .btn-dropdown {
+                background: none;
+                border: none;
+                border-color: $border-color !important;
+                font-size: 24px;
+                line-height: 1;
+                text-align: center;
+                width: 40px;
+                height: 40px;
+                color: $primary-color;
+              }
+              .drop {
+                width: 0;
+                color: $primary-color;
+                background: none;
+                flex-grow: 1;
+                border: none;
+                padding-left: 2rem;
+                padding-right: 2rem;
+                &:focus {
+                  border: none;
+                  outline: none;
+                }
+              }
+            }
+            .btn {
+              width: 48%;
+              h3 {
+                margin: 0;
+                padding: 4px;
+                color: white;
+                font-size: 1rem;
+                font-weight: bold;
+                svg {
+                  margin-left: 6px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
   button {
     outline: none !important;
   }
@@ -66,164 +296,7 @@
       overflow-y: auto;
     }
   }
-  .card-terminal-trades {
-    .trades-tab-view {
-      .tab-btn {
-        padding: 8px 0;
-        .tab-btn-itm {
-          min-width: 25%;
-          text-align: center;
-          color: $secondary-color;
-          padding: 4px 8px 4px 8px;
-          border-radius: 4px;
-          cursor: pointer;
-          &:hover {
-            background: #47465480;
-            color: $primary-color;
-          }
-          &.active {
-            background: $border-color;
-            color: $primary-color;
-          }
-        }
-      }
-      .trade-list {
-        .fund-list-head {
-          background: $border-color;
-        }
-        .fund-list-item {
-          padding-top: 6px;
-          padding-bottom: 6px;
-          background: $card-color;
-          font-size: 16px;
-          text-align: left;
-          h6 {
-            font-size: 15px;
-            line-height: 23px;
-            color: $primary-color;
-          }
-          p {
-            font-size: 12px;
-          }
-        }
-        .fund-list-item:nth-child(odd) {
-          background: #353540;
-        }
-      }
-    }
-    .tabview-call-put {
-      input[type='number']::-webkit-inner-spin-button,
-      input[type='number']::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
-      input[type='number'] {
-        -moz-appearance: textfield;
-      }
-      .input-num {
-        border: 2px solid $border-color;
-        border-radius: 4px;
-        &.time {
-          width: 48%;
-        }
-        .btn-num {
-          background: none;
-          border: none;
-          border-color: $border-color !important;
-          font-size: 32px;
-          line-height: 1;
-          text-align: center;
-          width: 40px;
-          height: 40px;
-          color: $primary-color;
-        }
-        .btn-max {
-          background: none;
-          border: 1px solid $border-color;
-          font-size: 12px;
-          line-height: 1;
-          text-align: center;
-          width: 55px;
-          height: 32px;
-          margin: 8px 4px;
-          color: $primary-color;
-          @include md {
-            margin: 2px 4px;
-            height: 20px;
-            width: 40px;
-            font-size: 10px;
-          }
-          &:first-child {
-            margin-left: 8px;
-          }
-        }
-        input {
-          width: 0;
-          text-align: center;
-          color: $primary-color;
-          background: none;
-          flex-grow: 1;
-          border: none;
-          padding-left: 2rem;
-          padding-right: 2rem;
-          &:focus {
-            border: none;
-            outline: none;
-          }
-        }
-        .profit {
-          height: 40px;
-          border-color: $border-color !important;
-          width: 50%;
-          text-align: center;
-          color: $primary-color;
-          background: none;
-          border: none;
-          padding-left: 2rem;
-          padding-right: 2rem;
-        }
-      }
-      .input-dropdown {
-        border: 2px solid $border-color;
-        border-radius: 4px;
-        &.time {
-          width: 48%;
-        }
-        .btn-dropdown {
-          background: none;
-          border: none;
-          border-color: $border-color !important;
-          font-size: 24px;
-          line-height: 1;
-          text-align: center;
-          width: 40px;
-          height: 40px;
-          color: $primary-color;
-        }
-        .drop {
-          width: 0;
-          color: $primary-color;
-          background: none;
-          flex-grow: 1;
-          border: none;
-          padding-left: 2rem;
-          padding-right: 2rem;
-          &:focus {
-            border: none;
-            outline: none;
-          }
-        }
-      }
-      .btn {
-        width: 48%;
-        h3 {
-          padding: 4px;
-          color: $primary-color;
-          font-size: 1rem;
-        }
-      }
-    }
-  }
+
   .card-pulse-market {
     .market-tab-view {
       .market-itm {
@@ -490,21 +563,7 @@
       }
     }
   }
-  .order-book-card {
-    .opt-tab {
-      .tab-itm {
-        padding-top: 10px;
-        padding-bottom: 10px;
-      }
-    }
-    .order-book-list {
-      h4 {
-        font-size: 1.3rem;
-        color: $primary-color;
-        background: $border-color;
-      }
-    }
-  }
+
   @media only screen and (max-width: #{1450px}) {
     .opt-tab {
       .tab-itm {

@@ -7,30 +7,24 @@ import LiveTradesCard from '../../Components/LiveTradesCard/LiveTradesCard';
 import ChartCard from '../../Components/ChartCard/ChartCard';
 import OrderBookCard from '../../Components/OrderBookCard/OrderBookCard';
 import { useState } from 'react';
+import MainContentCard from '../../Components/MainContentCard/MainContentCard';
 
-function Home() {
+function Home({ asset }) {
   const [fullScreen, setFullScreen] = useState(false);
   return (
     <MainLayout className={`home-page ${fullScreen && 'fullscreen'}`}>
-      <div className="row m-0 px-3 pt-2 pb-0 h-50">
-        <div className="col-lg-9 p-2 d-flex">
-          <ChartCard setFullScreen={setFullScreen} fullScreen={fullScreen} />
-        </div>
-        <div className="col-lg-3 p-2 d-flex">
+      <div className="one">
+        {/* <ChartCard setFullScreen={setFullScreen} fullScreen={fullScreen} />
+        <LiveTradesCard />
+        <PulseMarketCard />
+        <FundsCard /> */}
+        <MainContentCard asset={asset} />
+      </div>
+      <div className="two">
+        <div className="orderBookWrap">
           <OrderBookCard />
         </div>
-      </div>
-      <div className="row m-0 px-3 pt-0 pb-2 h-50">
-        <div className="col-lg-3 p-2 d-flex">
-          <LiveTradesCard />
-        </div>
-        <div className="col-lg-3 p-2 d-flex">
-          <PulseMarketCard />
-        </div>
-        <div className="col-lg-3 p-2 d-flex">
-          <FundsCard />
-        </div>
-        <div className="col-lg-3 p-2 d-flex">
+        <div className="tradeCardWrap">
           <TerminalTradeCard />
         </div>
       </div>
