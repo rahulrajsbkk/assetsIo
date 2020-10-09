@@ -5,10 +5,10 @@ import 'antd/dist/antd.css';
 import './Static/scss/master.scss';
 import Home from './pages/Home/Home';
 
-function Indices() {
+function Indices({ asset }) {
   return (
     <OptionsContextProvider>
-      <Home />
+      <Home asset={asset} />
     </OptionsContextProvider>
   );
 }

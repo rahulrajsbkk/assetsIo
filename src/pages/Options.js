@@ -14,7 +14,7 @@ import EnterPinUnlock from '../components/EnterPinUnlock/EnterPinUnlock';
 function Options({ activeTab }) {
   const history = useHistory();
   const { iceSidebarOpen, setIceSidebarOpen } = useContext(BankContext);
-  const [menuSelected, setMenuSelected] = useState('earn-intrest');
+  const [menuSelected, setMenuSelected] = useState('Assets');
   const { width } = useWindowDimensions();
   const [pinModal, setPinModal] = useState(true);
   function getPageContent(tab) {
@@ -22,7 +22,7 @@ function Options({ activeTab }) {
       default:
         return (
           <>
-            <Indices />
+            <Indices asset={menuSelected} />
             {pinModal && (
               <EnterPinUnlock
                 onSucces={() => setPinModal(false)}

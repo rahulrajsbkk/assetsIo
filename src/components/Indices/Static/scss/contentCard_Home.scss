@@ -1,0 +1,64 @@
+.contentCard {
+  display: flex;
+  flex-direction: column;
+  .head {
+    height: 60px;
+    border-bottom: 1px solid $border-color;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    .titleText {
+      font-size: 22px;
+      font-weight: 600;
+      color: $primary-color;
+    }
+  }
+  .content {
+    flex-grow: 1;
+  }
+  .footerControlls {
+    .valueNSearch {
+      height: 60px;
+      border: 1px $border-color;
+      border-style: solid none;
+      display: flex;
+      .coinNameNValue {
+        flex: 0 0 66%;
+        padding: 0 40px;
+        border-right: 1px solid $border-color;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .coinSearch {
+        padding: 0 40px;
+        width: 0;
+        flex: 0 0 34%;
+        border: none;
+        background: none;
+        font-size: 18px;
+      }
+    }
+    .coinListWrap {
+      height: 95px !important;
+      .listView {
+        display: flex;
+        align-items: center;
+        padding: 1px 50px;
+        img {
+          height: auto;
+          width: 50px;
+          flex: 0 0 50px;
+          margin-right: 40px;
+          &.true {
+            height: 65px;
+            width: auto;
+            flex: 0 0 65px;
+            margin-right: 40px;
+          }
+        }
+      }
+    }
+  }
+}
